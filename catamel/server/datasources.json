@@ -1,0 +1,14 @@
+{
+    "mongo": {
+        "host": "mongodb",
+        "port": 27017,
+        "url": "",
+        "database": "dacat",
+        "name": "db",
+        "connector": "mongodb"
+    },
+    "transient": {
+        "name": "transient",
+        "connector": "transient"
+    }
+}

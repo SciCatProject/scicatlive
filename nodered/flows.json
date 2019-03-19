@@ -5,9 +5,11 @@
         "label": "Flow 1"
     },
     {
-        "id": "f60ee569.074248",
+        "id": "cae4bc70.492ca",
         "type": "tab",
-        "label": "Flow 2"
+        "label": "postdataset",
+        "disabled": false,
+        "info": ""
     },
     {
         "id": "e68b93f.4149d7",
@@ -16,6 +18,13 @@
         "info": "",
         "in": [],
         "out": []
+    },
+    {
+        "id": "3e7ff69c.e76e5a",
+        "type": "kafka-broker",
+        "z": "",
+        "broker": "172.17.5.38",
+        "clientid": ""
     },
     {
         "id": "725427c8.e39378",
@@ -248,78 +257,82 @@
         ]
     },
     {
-        "id": "323075b4.a6880a",
-        "type": "catch",
-        "z": "f60ee569.074248",
+        "id": "f2bcd398.dd0fa",
+        "type": "rdkafka in",
+        "z": "cae4bc70.492ca",
         "name": "",
-        "scope": null,
-        "x": 131,
-        "y": 374,
+        "topic": "scicat",
+        "cgroup": "node-red-rdkafka",
+        "autocommit": true,
+        "broker": "3e7ff69c.e76e5a",
+        "x": 110,
+        "y": 220,
         "wires": [
             [
-                "eafdadb8.97829"
+                "bd00f829.b5cee8",
+                "ddbb6bbd.b81178"
             ]
         ]
     },
     {
-        "id": "944f0b90.fe8ed8",
-        "type": "subflow:e68b93f.4149d7",
-        "z": "f60ee569.074248",
-        "name": "",
-        "x": 369,
-        "y": 120,
-        "wires": []
-    },
-    {
-        "id": "eafdadb8.97829",
-        "type": "function",
-        "z": "f60ee569.074248",
-        "name": "Log exception",
-        "func": "// console.dir(msg.amqpMessage);\nconsole.dir(msg.error);\n// console.dir(msg.payload);\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 294,
-        "y": 405,
-        "wires": [
-            [
-                "1c9109cd.8fad56"
-            ]
-        ]
-    },
-    {
-        "id": "103ac622.87361a",
+        "id": "bd00f829.b5cee8",
         "type": "debug",
-        "z": "f60ee569.074248",
-        "name": "Input data",
+        "z": "cae4bc70.492ca",
+        "name": "output of kafka",
         "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 297,
-        "y": 39,
-        "wires": []
-    },
-    {
-        "id": "1c9109cd.8fad56",
-        "type": "debug",
-        "z": "f60ee569.074248",
-        "name": "Exception data",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 493,
-        "y": 403,
-        "wires": []
-    },
-    {
-        "id": "10806039.46d2a",
-        "type": "debug",
-        "z": "f60ee569.074248",
-        "name": "Final output",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 530,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 490,
         "y": 260,
         "wires": []
+    },
+    {
+        "id": "ddbb6bbd.b81178",
+        "type": "function",
+        "z": "cae4bc70.492ca",
+        "name": "build dataset`x",
+        "func": "// TODO take instrument from definiton provided earlier\nvar instrumentId=\"/PSI/SLS/cSAXS\";\nvar metaData=msg.payload;\nrd={};\n\n// check which information is available\n\n// Get contact details from proposal or eaccount\n\nconsole.log(\"Message payload:\",msg.payload);\nconsole.log(\"Message payload filename:\",msg.payload.filename);\n\n\n   rd.ownerEmail='gg';\n   rd.owner='c';\n   rd.contactEmail='c';\n   rd.principalInvestigator = 'c';\n   rd.proposalId=\"unknown\";\n\n\n// Assume that all tiems are already UTC\n\nrd.creationTime= Date.now();\nconsole.log('no entry field:',rd.creationTime);\nrd.description=\" Attributes:\";\nrd.dataFormat = ' Nexus version:';\n\nrd.sourceFolder='gtrrs';\nrd.orcidOfOwner = 'unknown';\n\nrd.classification = 'AV=medium,CO=low';\nrd.license = 'CC BY-SA 4.0';\nrd.type = 'raw';\nrd.ownerGroup='ess';\nrd.isPublished=false;\nrd.creationLocation = 'gtrsgsrt';\nrd.size='2';\nrd.scientificMetadata=JSON.parse(msg.payload);\n\nmsg.payload=rd;\nmsg.headers={\"content-type\": \"application/json; charset=utf-8\"};\nmsg.method='POST';\nmsg.url=global.get('api')+'/RawDatasets?access_token='+global.get('accessToken');\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 400,
+        "wires": [
+            [
+                "10554ee1.a73c21"
+            ]
+        ]
+    },
+    {
+        "id": "bdb5ddca.cbcf9",
+        "type": "debug",
+        "z": "cae4bc70.492ca",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 660,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "10554ee1.a73c21",
+        "type": "http request",
+        "z": "cae4bc70.492ca",
+        "name": "",
+        "method": "use",
+        "ret": "txt",
+        "url": "",
+        "tls": "",
+        "x": 470,
+        "y": 420,
+        "wires": [
+            [
+                "bdb5ddca.cbcf9"
+            ]
+        ]
     }
 ]

@@ -1,0 +1,9 @@
+version: '3'
+services:
+  create-data:
+    build:
+      context: create-data
+networks:
+  default:
+    external:
+      name: scicat-develop_default

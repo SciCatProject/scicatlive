@@ -23,7 +23,7 @@
         "id": "3e7ff69c.e76e5a",
         "type": "kafka-broker",
         "z": "",
-        "broker": "172.17.5.38",
+        "broker": "172.24.0.207",
         "clientid": ""
     },
     {

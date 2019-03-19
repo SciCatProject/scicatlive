@@ -6,12 +6,10 @@ RUN apk update && \
 WORKDIR /var/catamel
 
 COPY catamel/package.json catamel/package-lock.json ./
-RUN sed -i '/kafka/d' package.json && \
-    npm i --no-cache && \
-    npm i -g nodemon
+RUN npm i 
 
 COPY catamel .
 COPY server server/
 
 COPY wait-for.sh /var
-CMD ["/bin/sh", "/var/wait-for.sh", "mongodb:27017", "--", "nodemon", "."]
+CMD ["/bin/sh", "/var/wait-for.sh", "mongodb:27017", "--", "node", "."]

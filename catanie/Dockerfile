@@ -1,8 +1,7 @@
 FROM node:10-alpine
 
 RUN apk update && \
-    apk add git && \
-    npm i -g npm@6.1.0
+    apk add git 
 
 WORKDIR /var/catanie
 COPY catanie .

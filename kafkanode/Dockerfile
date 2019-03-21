@@ -7,5 +7,5 @@ WORKDIR /usr/src/app/
 
 RUN npm install
 
-COPY v20nodekafka/kafka.js /usr/src/app/
+COPY v20nodekafka/* /usr/src/app/
 CMD ["node","kafka.js"]

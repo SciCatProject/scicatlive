@@ -1,6 +1,6 @@
 .PHONY: all run run-hot stop clean data
 
-all : catanie/catanie catamel/catamel kafkanode/v20kafkanode
+all : catanie/catanie catamel/catamel kafkanode/v20nodekafka
 	docker-compose build
 	
 catanie/catanie :
@@ -9,8 +9,8 @@ catanie/catanie :
 catamel/catamel :
 	cd catamel && git clone https://github.com/SciCatProject/catamel.git
 
-kafkanode/v20kafkanode :
-	cd kafkanode && git clone https://github.com/garethcmurphy/v20kafkanode.git
+kafkanode/v20nodekafka :
+	cd kafkanode && git clone https://github.com/garethcmurphy/v20nodekafka.git
 
 stop :
 	docker-compose down

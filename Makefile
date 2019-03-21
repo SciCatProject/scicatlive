@@ -9,6 +9,9 @@ catanie/catanie :
 catamel/catamel :
 	cd catamel && git clone https://github.com/SciCatProject/catamel.git
 
+catamel/catamel :
+	cd kafkanode && git clone https://github.com/garethcmurphy/v20kafkanode.git
+
 stop :
 	docker-compose down
 

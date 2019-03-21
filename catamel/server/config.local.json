@@ -1,4 +1,5 @@
 {
+    "site": "ESS",
     "pidPrefix": "10.5072",
     "restApiRoot": "/api/v3"
 }

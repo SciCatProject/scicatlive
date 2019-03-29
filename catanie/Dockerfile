@@ -1,18 +1,12 @@
-FROM node:10-alpine	FROM node:10-alpine as builder
 
+FROM node:10-alpine
 
- RUN apk update && \	RUN apk update && \
-    apk add git 	    apk add git
+RUN apk update && \
+    apk add git 
 
+WORKDIR /var/catanie
+COPY catanie .
+RUN npm i --no-cache
 
- WORKDIR /var/catanie	WORKDIR /var/catanie
-COPY catanie .	COPY catanie .
-RUN npm i --no-cache	RUN npm i --no-cache
-RUN npx ng build --configuration=v20
-
-
- ENTRYPOINT ["npm", "run", "ng"]	
- CMD ["serve","--","--configuration", "v20"]
- 
- 
- 
+ENTRYPOINT ["npm", "run", "ng"]
+CMD ["serve","--","--configuration", "v20"]

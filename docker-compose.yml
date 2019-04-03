@@ -3,6 +3,7 @@ services:
   catanie:
     ports:
     - "4200:4200"
+    - "80:80"
     build:
       context: catanie
   catamel:

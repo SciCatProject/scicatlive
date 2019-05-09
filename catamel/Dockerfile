@@ -2,7 +2,8 @@ FROM node:9.11.1-alpine
 
 RUN apk update && \
     apk add make && \
-    apk add python 
+    apk add python && \
+    apk add git
 WORKDIR /var/catamel
 
 COPY catamel/package.json catamel/package-lock.json ./

@@ -3,6 +3,7 @@ FROM node:9.11.1-alpine
 RUN apk update && \
     apk add make  \
     python  \
+    g++ \ 
     git
 WORKDIR /var/catamel
 

@@ -8,4 +8,4 @@ WORKDIR /usr/src/app/
 RUN npm install
 
 COPY v20nodekafka/* /usr/src/app/
-CMD ["node","kafka.js"]
+CMD ["npx","ts-node","src/kafka.ts"]

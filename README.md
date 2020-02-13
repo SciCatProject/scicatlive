@@ -6,7 +6,7 @@
 - Docker
 - docker-compose
 - Make
-## 0. If you are behiind a proxy
+## 0. If you are behind a proxy
 
 You can add 
 ```

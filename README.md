@@ -6,6 +6,11 @@
 - Docker
 - docker-compose
 - Make
+## 0. If you are behiind a proxy
+
+You can add 
+ENV http_proxy "http://192.your.proxy.ip"
+ENV https_proxy $http_proxy
 
 ## 1. Download & Build
 

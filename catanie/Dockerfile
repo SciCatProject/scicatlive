@@ -9,4 +9,4 @@ COPY catanie .
 RUN npm i --no-cache
 
 ENTRYPOINT ["npm", "run", "ng"]
-CMD ["serve","--","--configuration", "v20"]
+CMD ["serve"]

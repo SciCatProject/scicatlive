@@ -39,6 +39,11 @@ Start developing by executing
 
 This will mount the local source code folder (`src`) of Catanie, enabling hot reloading of code changes. Note that changes to anything outside this folder, e.g. `node_modules`, requires a rebuild.
 
+Access the client in your browser at htpp://localhost:4200 and login with sample credentials ingestor:aman
+
+Access the API Explorer in your browser at http://localhost:3000/explorer/#/
+
+You can get the access token for the API explorer by logging in with the client and going to settings.
 
 # Other tasks
 

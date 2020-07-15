@@ -1,7 +1,11 @@
 # Getting Started
 
-## Requirements
+The following steps will get you up and running with a basic deployment of SciCat with the components running in containers. 
 
+Firstly [clone this repo](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository). 
+
+## Requirements
+You will need the following installed on your machine before you can run SciCat.
 - git
 - Docker
 - docker-compose
@@ -33,13 +37,6 @@ Start developing by executing
 
 This will mount the local source code folder (`src`) of Catanie, enabling hot reloading of code changes. Note that changes to anything outside this folder, e.g. `node_modules`, requires a rebuild.
 
-## 3. Add Mock Data
-
-Run
-
-    make data
-
-to create and insert mock data (Datasets, Proposals etc.) This is done over the Catamel API, so the application needs to be running.
 
 # Other tasks
 
@@ -52,7 +49,6 @@ Other:
     make stop
     make clean
 
-# Todo
+# Add data to SciCat
 
-- Make catamel support hot reloading
-- Support testing in frontend
+Using the API you can now add data. A good place to start would be adding some datasets.

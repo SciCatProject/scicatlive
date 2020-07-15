@@ -31,6 +31,8 @@ This will:
 
 ## 2. Run & Develop
 
+The web client (Catanie) uses port 4200 and the API uses port 3000 so make sure they are free.
+
 Start developing by executing
 
     make run-hot

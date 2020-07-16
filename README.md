@@ -58,4 +58,5 @@ Other:
 
 # Add data to SciCat
 
-Using the API you can now add data. A good place to start would be adding some datasets.
+[Using the API you can now add data](https://scicatproject.github.io/documentation/Catanie/GettingMetadataIntoScicat.html). In the long term you will want some scripts running on your beamlines that will automatically add datasets when they are created.
+

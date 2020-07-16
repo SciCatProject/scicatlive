@@ -1,6 +1,6 @@
 # Getting Started
 
-The following steps will get you up and running with a basic deployment of SciCat with the components running in containers. 
+The following steps will get you up and running in minutes with a basic deployment of SciCat with the components running in containers. 
 
 Firstly [clone this repo](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository). 
 

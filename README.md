@@ -62,15 +62,14 @@ Other:
 
 # Configuring Catamel
 catamel/server:
-datasources.json - This sets up your connection to Mongo and should follow the syntax outlined in loopback
-config.local.js - These are site specific settings for your install, such as the prefix to use for IDs
-providers.json - Contains connection information to LDAP or other authentication sources
-component-config.json - This file defines the connection to RabbitMQ or other message que
+* datasources.json - This sets up your connection to Mongo and should follow the syntax outlined in loopback
+* config.local.js - These are site specific settings for your install, such as the prefix to use for IDs
+* providers.json - Contains connection information to LDAP or other authentication sources
+* component-config.json - This file defines the connection to RabbitMQ or other message que
 
 # Configure Catanie
-catanie/src/environment
-
-environment.ts or other builds defined in angular.js - contains all configuration for Catanie
+catanie/src/environment:
+* environment.ts or other builds defined in angular.js - contains all configuration for Catanie
 
 
 

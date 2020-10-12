@@ -58,18 +58,13 @@ Other:
 
 # Add data to SciCat
 
-[Using the API you can now add data](https://scicatproject.github.io/documentation/Catanie/GettingMetadataIntoScicat.html). In the long term you will want some scripts running on your beamlines that will automatically add datasets when they are created.
+Please follow the various options outlined in the [Ingestor Manual](https://scicatproject.github.io/documentation/Ingestor). Ideally we would fill some example data automatically here, but this not yet been done :-( . Any help here is appreciated, feel free to send a pull request.
 
-# Configuring Catamel
-catamel/server:
-* datasources.json - This sets up your connection to Mongo and should follow the syntax outlined in loopback
-* config.local.js - These are site specific settings for your install, such as the prefix to use for IDs
-* providers.json - Contains connection information to LDAP or other authentication sources
-* component-config.json - This file defines the connection to RabbitMQ or other message que
+# Configuring
 
-# Configure Catanie
-catanie/src/environment:
-* environment.ts or other builds defined in angular.js - contains all configuration for Catanie
+Please follow the documentation about the various [configuration files](https://scicatproject.github.io/documentation/Operator/Step_by_Step_Setup.html) both for the backend catamel and the frontend catanie
+
+
 
 
 

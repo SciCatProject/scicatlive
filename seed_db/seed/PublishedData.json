@@ -1,5 +1,5 @@
 {
-	"_id": "DOI.SAMPLE.PREFIX/17dc6d7c-c64d-4e35-845d-2bc56a8a3ce5",
+	"_id": "DOI.SAMPLE.PREFIX/desy_pub1",
 	"creator": [
 		"Oleksandr Yefanov",
 		"al."
@@ -38,7 +38,7 @@
 	}
 }
 {
-	"_id": "DOI.SAMPLE.PREFIX/70ff9ccf-b5d1-45fe-b796-771360b2bdaf",
+	"_id": "DOI.SAMPLE.PREFIX/dls_pub1",
 	"creator": [
 		"Stephen Collins"
 	],
@@ -74,7 +74,7 @@
 	}
 }
 {
-	"_id": "DOI.SAMPLE.PREFIX/b611f422-0cf1-4e3c-aab3-66bad4e21c74",
+	"_id": "DOI.SAMPLE.PREFIX/ukri_pub1",
 	"creator": [
 		"Duncan N. Johnstone",
 		"al."
@@ -111,7 +111,7 @@
 	}
 }
 {
-	"_id": "DOI.SAMPLE.PREFIX/651cbdcd-83ed-41e3-98af-a56948c3bb3f",
+	"_id": "DOI.SAMPLE.PREFIX/hzdr_pub1",
 	"creator": [
 		"Hao Chu",
 		"al."
@@ -148,7 +148,7 @@
 	}
 }
 {
-	"_id": "DOI.SAMPLE.PREFIX/5edc6ae9-17e0-4903-84fd-01d8b2bb718f",
+	"_id": "DOI.SAMPLE.PREFIX/maxiv_pub1",
 	"creator": [
 		"Rajmund Mokso",
 		"al."
@@ -186,7 +186,7 @@
 	}
 }
 {
-	"_id": "DOI.SAMPLE.PREFIX/123",
+	"_id": "DOI.SAMPLE.PREFIX/maxiv_pub2",
 	"creator": [
 		"Maik Kahnt",
 		"al."
@@ -223,7 +223,7 @@
 	}
 }
 {
-	"_id": "DOI.SAMPLE.PREFIX/72b7d657-3644-4c13-a3f2-df8379e62096",
+	"_id": "DOI.SAMPLE.PREFIX/psi_pub1",
 	"creator": [
 		"Elena Borisova",
 		"Goran Lovric",
@@ -269,7 +269,7 @@
 	}
 }
 {
-	"_id": "DOI.SAMPLE.PREFIX/7fbffe36-c133-444e-903d-0e4609421961",
+	"_id": "DOI.SAMPLE.PREFIX/soleil_pub1",
 	"creator": [
 		"Doru Constantin",
 		"al."
@@ -304,7 +304,7 @@
 	}
 }
 {
-	"_id": "DOI.SAMPLE.PREFIX/1099be44-efcc-4dd1-8c34-22b07cb1fcf1",
+	"_id": "DOI.SAMPLE.PREFIX/ukri_pub2",
 	"creator": [
 		"Franz Lang"
 	],
@@ -341,7 +341,7 @@
 	}
 }
 {
-	"_id": "DOI.SAMPLE.PREFIX/9f3d1fd5-0a36-4143-9330-7ff7b886799e",
+	"_id": "DOI.SAMPLE.PREFIX/ukri_pub3",
 	"creator": [
 		"Chiara Triestino"
 	],
@@ -377,7 +377,7 @@
 	}
 }
 {
-	"_id": "DOI.SAMPLE.PREFIX/f68779ef-dc82-4a2a-b590-b154a04f3967",
+	"_id": "DOI.SAMPLE.PREFIX/ukri_pub4",
 	"creator": [
 		"Gabriel Bernardo"
 	],
@@ -414,7 +414,7 @@
 	}
 }
 {
-	"_id": "DOI.SAMPLE.PREFIX/5e587abb-03ed-4627-90bd-dc1075c0e211",
+	"_id": "DOI.SAMPLE.PREFIX/maxiv_pub2",
 	"creator": [
 		"Maik Kahnt",
 		"al."
@@ -451,7 +451,7 @@
 	}
 }
 {
-	"_id": "DOI.SAMPLE.PREFIX/9693c228-e338-4e56-8e51-b12b30d330b2",
+	"_id": "DOI.SAMPLE.PREFIX/dls_pub2",
 	"creator": [
 		"Duncan N. Johnstone",
 		"al."

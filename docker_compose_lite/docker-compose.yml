@@ -1,0 +1,50 @@
+version: "3.8"
+services:
+  reverse-proxy:
+    image: traefik:latest
+    command: --api.insecure=true --providers.docker=true --entrypoints.web.address=:80
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  mongodb:
+    image: bitnami/mongodb:4.0
+    volumes:
+      - "mongodb_data:/bitnami"
+    ports:
+      - "27017:27017"
+  openldap:
+    image: osixia/openldap:latest
+    hostname: openldap
+    volumes:
+      - ./configs/ldap:/container/service/slapd/assets/config/bootstrap/ldif/custom
+    command: --copy-service --loglevel debug
+    environment:
+      LDAP_TLS_VERIFY_CLIENT: never
+      LDAP_DOMAIN: mydomain.org
+      LDAP_TLS: "false"
+      LDAP_BASE_DN: "dc=admin,dc=mydomain,dc=org"
+    ports:
+      - "389:389"
+  catamel:
+    image: dacat/catamel:latest
+    depends_on:
+      - mongodb
+      - openldap
+    volumes:
+      - ./configs/catamel/config.local.js:/home/node/app/server/config.local.js
+      - ./configs/catamel/providers.json:/home/node/app/server/providers.json
+    labels:
+      - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
+      - "traefik.http.routers.catamel.entrypoints=web"
+  catanie:
+    image: dacat/catanie:latest
+    depends_on:
+      - catamel
+    labels:
+      - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.catanie.entrypoints=web"
+volumes:
+  mongodb_data:
+    driver: local

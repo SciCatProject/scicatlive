@@ -1,0 +1,42 @@
+{
+  "local": {
+    "provider": "local",
+    "module": "passport-local",
+    "usernameField": "username",
+    "passwordField": "password",
+    "authPath": "/auth/local",
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/local",
+    "failureFlash": true
+  },
+  "ldap": {
+    "provider": "ldap",
+    "authScheme": "ldap",
+    "module": "passport-ldapauth",
+    "authPath": "/auth/msad",
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/msad",
+    "handleErrorsAsFailures": true,
+    "session": true,
+    "json": true,
+    "failureFlash": true,
+    "profileAttributesFromLDAP": {
+      "login": "uid",
+      "username": "uid",
+      "displayName": "cn",
+      "email": "mail",
+      "externalId": "uid",
+      "accessGroups": ["memberOf","cn=(.+),ou=OwnerGroups,dc=scicat,dc=mydomain,dc=org","$1"]
+    },
+  "server": {
+      "url": "ldap://openldap:389",
+      "bindDn": "cn=admin,dc=mydomain,dc=org",
+      "bindCredentials": "admin",
+      "searchBase": "dc=scicat,dc=mydomain,dc=org",
+      "includeRaw": true,
+      "searchFilter": "(uid={{username}})",
+      "searchAttributes" : ["dn", "controls", "cn", "uid", "objectClass", "userPassword", "sn", "givenName", "mail", "memberOf"]
+
+    }
+  }
+}

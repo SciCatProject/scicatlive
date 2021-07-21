@@ -1,0 +1,78 @@
+dn: dc=scicat,dc=mydomain,dc=org
+objectClass: top
+objectClass: domain
+dc: scicat
+
+dn: ou=Users,dc=scicat,dc=mydomain,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: Users
+
+dn: ou=OwnerGroups,dc=scicat,dc=mydomain,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: Groups
+
+
+dn: cn=Alpha Beta,ou=Users,dc=scicat,dc=mydomain,dc=org
+uid: alpha_beta
+cn: Alpha Beta
+givenName: Alpha
+sn: Beta
+mail: alpha.beta@mydomain.ac.uk
+userPassword: alphabeta
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+
+dn: cn=Gamma Delta,ou=Users,dc=scicat,dc=mydomain,dc=org
+uid: gamma_delta
+cn: Gamma Delta
+givenName: Gamma
+sn: Delta
+mail: gamma.delta@mydomain.ac.uk
+userPassword: gammadelta
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+
+dn: cn=Epsilon Zeta,ou=Users,dc=scicat,dc=mydomain,dc=org
+uid: epsilon_zeta
+cn: Epsilon Zeta
+givenName: Epsilon
+sn: Zeta
+mail: epsilon.zeta@mydomain.ac.uk
+userPassword: epsilonzeta
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+
+dn: cn=Eta Theta,ou=Users,dc=scicat,dc=mydomain,dc=org
+uid: eta_theta
+cn: Eta Theta
+givenName: Eta
+sn: Theta
+mail: eta_theta@mydomain.ac.uk
+userPassword: etatheta
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+
+dn: cn=Users 1,ou=OwnerGroups,dc=scicat,dc=mydomain,dc=org
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Users 1
+uniqueMember: cn=Alpha Beta,ou=Users,dc=scicat,dc=mydomain,dc=org
+uniqueMember: cn=Gamma Delta,ou=Users,dc=scicat,dc=mydomain,dc=org
+
+dn: cn=Users 2,ou=OwnerGroups,dc=scicat,dc=mydomain,dc=org
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Users2
+uniqueMember: cn=Epsilon Zeta,ou=Users,dc=scicat,dc=mydomain,dc=org
+uniqueMember: cn=Eta Theta,ou=Users,dc=scicat,dc=mydomain,dc=org
+

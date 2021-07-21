@@ -7,14 +7,13 @@ Files for running SciCat with docker-compose.
 
 1. Clone the repository
    ```sh
-   git clone https://gitlab.esss.lu.se/swap/scicat.git
+   git clone https://github.com/SciCatProject/scicatlive.git
    ```
 2. Run with the following command inside the directory
    ```sh
    docker-compose up -d
    ```
-3. SciCat will now be available on http://localhost. The Loopback API explorer is available at http://localhost/explorer/
- 
+3. SciCat will now be available on http://localhost. The Loopback API explorer of catamel is available at http://localhost/explorer/, the one for the search-api at http://localhost/panosc-explorer/.
 
 ## Add Your Local Configuration
 
@@ -40,6 +39,16 @@ There are a few functional accounts available for handling data:
 | ingestor         | aman        | Ingest datasets              |
 | archiveManager   | aman        | Manage archiving of datasets |
 | proposalIngestor | aman        | Ingest proposals             |
+
+
+## Seeding of the database
+
+All files used in the seeding of the database are in the [seed folder](./seed_db/seed). 
+
+To add more collections during the creation of the database:
+1. add the corresponding file(s) there, keeping the convention: `filename := collectionname.json`.
+2. Restart the docker container.
+
 
 ## Get Access Token for the API Explorer
 

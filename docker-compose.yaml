@@ -1,7 +1,6 @@
-version: "3.2"
 services:
   reverse-proxy:
-    image: traefik:v2.0
+    image: traefik:2.5
     command: --api.insecure=true --providers.docker=true --entrypoints.web.address=:80
     ports:
       - "80:80"
@@ -9,7 +8,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   mongodb:
-    image: bitnami/mongodb:4.0
+    image: bitnami/mongodb:4.2
     volumes:
       - "mongodb_data:/bitnami"
       - "./seed_db/seed:/seed"

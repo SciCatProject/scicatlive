@@ -1,0 +1,35 @@
+version: "3.2"
+services:
+  reverse-proxy:
+    image: traefik:v2.0
+    command: --api.insecure=true --providers.docker=true --entrypoints.web.address=:80
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  mongodb:
+    image: bitnami/mongodb:4.0
+    volumes:
+      - "mongodb_data:/bitnami"
+  catamel:
+    image: dacat/catamel:latest
+    depends_on:
+      - mongodb
+    # volumes:
+    #   - ./config/catamel/providers.json:/usr/src/app/server/providers.json
+    labels:
+      - "traefik.http.routers.catamel.rule=Host(`scicat.com`)"
+      - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
+      - "traefik.http.routers.catamel.entrypoints=web"
+  catanie:
+    image: dacat/catanie:latest
+    depends_on:
+      - catamel
+    labels:
+      - "traefik.http.routers.catanie.rule=Host(`scicat.com`)"
+      - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.catanie.entrypoints=web"
+volumes:
+  mongodb_data:
+    driver: local

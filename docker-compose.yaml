@@ -1,0 +1,45 @@
+services:
+  reverse-proxy:
+    image: traefik:2.5
+    command: --api.insecure=true --providers.docker=true --entrypoints.web.address=:80
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  mongodb:
+    image: bitnami/mongodb:4.2
+    volumes:
+      - "mongodb_data:/bitnami"
+      - "./seed_db/seed:/seed"
+      - "./seed_db/mongo_import.sh:/docker-entrypoint-initdb.d/mongo_import.sh"
+  catamel:
+    image: dacat/catamel:latest
+    depends_on:
+      - mongodb
+    volumes:
+      - ./config/catamel/config.local.js:/home/node/app/server/config.local.js
+    #   - ./config/catamel/providers.json:/home/node/app/server/providers.json
+    labels:
+      - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
+      - "traefik.http.routers.catamel.entrypoints=web"
+  catanie:
+    image: dacat/catanie:latest
+    depends_on:
+      - catamel
+    labels:
+      - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.catanie.entrypoints=web"
+  search-api:
+    image: dacat/panosc-search-api:latest
+    depends_on: 
+      - catamel
+    labels:
+      - "traefik.http.routers.panosc-search-api.rule=PathPrefix(`/panosc-api`, `/panosc-explorer`)"
+      - "traefik.http.routers.panosc-search-api.entrypoints=web"
+    environment:
+      BASE_URL: "http://catamel:3000/api/v3"
+      FACILITY: "SAMPLE-SITE"
+volumes:
+  mongodb_data:
+    driver: local

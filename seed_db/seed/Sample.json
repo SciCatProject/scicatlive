@@ -1,52 +1,54 @@
-{
-	"_id": "sample2",
-	"description": "Lysozyme",
-	"isPublished": true,
-	"createdAt": {
-		"$date": "2021-06-29T16:47:29.140Z"
+[
+	{
+		"_id": "sample2",
+		"description": "Lysozyme",
+		"isPublished": true,
+		"createdAt": {
+			"$date": "2021-06-29T16:47:29.140Z"
+		},
+		"ownerGroup": "aGroup",
+		"createdBy": "ingestor",
+		"updatedAt": {
+			"$date": "2021-06-29T16:47:29.141Z"
+		}
 	},
-	"ownerGroup": "aGroup",
-	"createdBy": "ingestor",
-	"updatedAt": {
-		"$date": "2021-06-29T16:47:29.141Z"
-	}
-}
-{
-	"_id": "sample4",
-	"description": "HoIG crystal sample",
-	"isPublished": true,
-	"createdAt": {
-		"$date": "2021-06-29T16:47:42.546Z"
+	{
+		"_id": "sample4",
+		"description": "HoIG crystal sample",
+		"isPublished": true,
+		"createdAt": {
+			"$date": "2021-06-29T16:47:42.546Z"
+		},
+		"ownerGroup": "aGroup",
+		"createdBy": "ingestor",
+		"updatedAt": {
+			"$date": "2021-06-29T16:47:42.547Z"
+		}
 	},
-	"ownerGroup": "aGroup",
-	"createdBy": "ingestor",
-	"updatedAt": {
-		"$date": "2021-06-29T16:47:42.547Z"
-	}
-}
-{
-	"_id": "sample3",
-	"description": "liquid foam",
-	"isPublished": true,
-	"createdAt": {
-		"$date": "2021-06-29T16:47:56.767Z"
+	{
+		"_id": "sample3",
+		"description": "liquid foam",
+		"isPublished": true,
+		"createdAt": {
+			"$date": "2021-06-29T16:47:56.767Z"
+		},
+		"ownerGroup": "aGroup",
+		"createdBy": "ingestor",
+		"updatedAt": {
+			"$date": "2021-06-29T16:47:56.769Z"
+		}
 	},
-	"ownerGroup": "aGroup",
-	"createdBy": "ingestor",
-	"updatedAt": {
-		"$date": "2021-06-29T16:47:56.769Z"
+	{
+		"_id": "sample1",
+		"description": "juvenile Wistar rat (13 days). fresh post-mortem (\u003c30 minutes)",
+		"isPublished": true,
+		"createdAt": {
+			"$date": "2021-06-29T16:48:09.707Z"
+		},
+		"ownerGroup": "aGroup",
+		"createdBy": "ingestor",
+		"updatedAt": {
+			"$date": "2021-06-29T16:48:09.708Z"
+		}
 	}
-}
-{
-	"_id": "sample1",
-	"description": "juvenile Wistar rat (13 days). fresh post-mortem (\u003c30 minutes)",
-	"isPublished": true,
-	"createdAt": {
-		"$date": "2021-06-29T16:48:09.707Z"
-	},
-	"ownerGroup": "aGroup",
-	"createdBy": "ingestor",
-	"updatedAt": {
-		"$date": "2021-06-29T16:48:09.708Z"
-	}
-}
+]

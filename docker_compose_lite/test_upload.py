@@ -30,7 +30,8 @@ payload = {
   "classification": "AV=medium,CO=low",
   "license": "string",
   "isPublished": True,
-  "createdBy": "firstnamelastname",
+  "createdBy": "Alpha Beta",
+  "creationLocation": "Beamline 1",
   "createdAt": now_as_scicat_datetime_format(),
   "datasetlifecycle": {
     "archivable": False,

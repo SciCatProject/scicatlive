@@ -10,9 +10,7 @@
 		"title": "",
 		"abstract": "",
 		"ownerGroup": "aGroup",
-		"accessGroups": [
-			"slstomcat"
-		],
+		"accessGroups": [],
 		"createdBy": "ingestor",
 		"MeasurementPeriodList": [
 			{

@@ -56,12 +56,6 @@
 		"inputDatasets": [],
 		"usedSoftware": [],
 		"scientificMetadata": {
-			"beamline": {
-				"value": "SPB/SFX"
-			},
-			"facility": {
-				"value": "European XFEL"
-			},
 			"beamEnergy": {
 				"value": 9.30,
 				"unit": "keV",
@@ -129,12 +123,6 @@
 		"inputDatasets": [],
 		"usedSoftware": [],
 		"scientificMetadata": {
-			"beamline": {
-				"value": "SPB/SFX"
-			},
-			"facility": {
-				"value": "European XFEL"
-			},
 			"beamEnergy": {
 				"value": 9.30,
 				"unit": "keV",
@@ -202,12 +190,6 @@
 		"inputDatasets": [],
 		"usedSoftware": [],
 		"scientificMetadata": {
-			"beamline": {
-				"value": "SPB/SFX"
-			},
-			"facility": {
-				"value": "European XFEL"
-			},
 			"beamEnergy": {
 				"value": 9.30,
 				"unit": "keV",
@@ -579,21 +561,6 @@
 			"https://doi.org/10.1107/S0909049512032864"
 		],
 		"scientificMetadata": {
-			"beamline": {
-				"value": "TOMCAT X02DA"
-			},
-			"camera": {
-				"value": "GigaFRoST"
-			},
-			"facility": {
-				"value": "Swiss Light Source, Paul Scherrer Institute"
-			},
-			"opticalMagnification": {
-				"value": "4x"
-			},
-			"scintillator": {
-				"value": "150 um LuAG:Ce"
-			},
 			"beamEnergy": {
 				"value": 21,
 				"unit": "keV",
@@ -611,15 +578,11 @@
 				"unit": "um",
 				"valueSI": 0.00000275,
 				"unitSI": "m"
-			},
-			"sample": {
-				"sampleCondition": "fresh post-mortem (\u003c30 minutes)",
-				"sampleName": "PSI-2018-R2",
-				"sampleType": "juvenile Wistar rat (13 days)"
 			}
 		},
 		"sampleId": "sample1",
-		"instrumentId": "psi_instrument1"
+		"instrumentId": "psi_instrument1",
+		"proposalId": "psi_proposal1"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds2",
@@ -681,21 +644,6 @@
 			"https://doi.org/10.1107/S0909049512032864"
 		],
 		"scientificMetadata": {
-			"beamline": {
-				"value": "TOMCAT X02DA"
-			},
-			"camera": {
-				"value": "GigaFRoST"
-			},
-			"facility": {
-				"value": "Swiss Light Source, Paul Scherrer Institute"
-			},
-			"opticalMagnification": {
-				"value": "4x"
-			},
-			"scintillator": {
-				"value": "150 um LuAG:Ce"
-			},
 			"beamEnergy": {
 				"value": 21,
 				"unit": "keV",
@@ -713,15 +661,11 @@
 				"unit": "um",
 				"valueSI": 0.00000275,
 				"unitSI": "m"
-			},
-			"sample": {
-				"sampleCondition": "fresh post-mortem (\u003c30 minutes)",
-				"sampleName": "PSI-2018-R2",
-				"sampleType": "juvenile Wistar rat (13 days)"
 			}
 		},
 		"sampleId": "sample1",
-		"instrumentId": "psi_instrument1"
+		"instrumentId": "psi_instrument1",
+		"proposalId": "psi_proposal1"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds3",
@@ -783,21 +727,6 @@
 			"https://doi.org/10.1107/S0909049512032864"
 		],
 		"scientificMetadata": {
-			"beamline": {
-				"value": "TOMCAT X02DA"
-			},
-			"camera": {
-				"value": "GigaFRoST"
-			},
-			"facility": {
-				"value": "Swiss Light Source, Paul Scherrer Institute"
-			},
-			"opticalMagnification": {
-				"value": "4x"
-			},
-			"scintillator": {
-				"value": "150 um LuAG:Ce"
-			},
 			"beamEnergy": {
 				"value": 21,
 				"unit": "keV",
@@ -815,15 +744,11 @@
 				"unit": "um",
 				"valueSI": 0.00000275,
 				"unitSI": "m"
-			},
-			"sample": {
-				"sampleCondition": "fresh post-mortem (\u003c30 minutes)",
-				"sampleName": "PSI-2018-R2",
-				"sampleType": "juvenile Wistar rat (13 days)"
 			}
 		},
 		"sampleId": "sample1",
-		"instrumentId": "psi_instrument1"
+		"instrumentId": "psi_instrument1",
+		"proposalId": "psi_proposal1"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/soleil_ds1",

@@ -76,3 +76,21 @@ cn: Users2
 uniqueMember: cn=Epsilon Zeta,ou=Users,dc=scicat,dc=mydomain,dc=org
 uniqueMember: cn=Eta Theta,ou=Users,dc=scicat,dc=mydomain,dc=org
 
+dn: ou=PI Groups,dc=scicat,dc=mydomain,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: PI Groups
+
+dn: cn=Eta Theta,ou=PI Groups,dc=scicat,dc=mydomain,dc=org
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Eta Theta
+uniqueMember: cn=Epsilon Zeta,ou=Users,dc=scicat,dc=mydomain,dc=org
+uniqueMember: cn=Eta Theta,ou=Users,dc=scicat,dc=mydomain,dc=org
+
+dn: cn=Gamma Delta,ou=PI Groups,dc=scicat,dc=mydomain,dc=org
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Gamma Delta
+uniqueMember: cn=Alpha Beta,ou=Users,dc=scicat,dc=mydomain,dc=org
+uniqueMember: cn=Gamma Delta,ou=Users,dc=scicat,dc=mydomain,dc=org

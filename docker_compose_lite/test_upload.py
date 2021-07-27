@@ -60,7 +60,7 @@ payload = {
 BASE_URL = 'http://localhost/api/v3/'
 
 # get token
-r = requests.post(BASE_URL + 'Users/login', json=dict(username='ingestor', password='aman'))
+r = requests.post(BASE_URL + 'Users/login', json=dict(username='ingestor', password='ingestor1'))
 token = r.json()['id']
 print(f'token: {token}')
 

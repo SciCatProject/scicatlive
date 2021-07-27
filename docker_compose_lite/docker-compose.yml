@@ -35,6 +35,9 @@ services:
     volumes:
       - ./configs/catamel/config.local.js:/home/node/app/server/config.local.js
       - ./configs/catamel/providers.json:/home/node/app/server/providers.json
+      - ./configs/catamel/functionalAccounts.json:/home/node/app/server/functionalAccounts.json
+      - ./configs/catamel/datasources.local.json:/home/node/app/server/datasources.local.json
+      # ./configs/catamel/component-config.local.json:/home/node/app/server/component-config.local.json - uncomment to work wit rabbitmq
     labels:
       - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
       - "traefik.http.routers.catamel.entrypoints=web"

@@ -1,3 +1,6 @@
-catamel/catamel/*
-catanie/catanie/*
-kafkanode/v20nodekafka/*
+docker_compose_from_src/catamel/catamel/*
+docker_compose_from_src/catanie/catanie/*
+docker_compose_from_src/kafkanode/v20nodekafka/*
+.idea*
+.pytest_cache
+__pycache__

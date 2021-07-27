@@ -1,0 +1,39 @@
+[{
+    "account": "admin",
+    "password": "administrator1",
+    "email": "scicatadmin@your.site",
+    "role": "admin",
+    "global": true
+}, {
+    "account": "ingestor",
+    "password": "ingestor1",
+    "email": "scicatingestor@your.site",
+    "role": "ingestor",
+    "global" : true
+}, {
+    "account": "archiveManager",
+    "password": "archiver1",
+    "email": "scicatarchivemanager@your.site",
+    "role": "archivemanager"
+}, {
+    "account": "proposalIngestor",
+    "password": "proposalIngestor1",
+    "email": "scicatproposalingestor@your.site",
+    "role": "proposalingestor"
+}, {
+    "account": "synmx",
+    "password": "synmxer1",
+    "email": "synmx@your.site",
+    "role": "ingestor"
+}, {
+    "account": "syncsaxs",
+    "password": "syncsaxser1",
+    "email": "syncsaxs@your.site",
+    "role": "ingestor"
+}, {
+    "account": "syntomcat",
+    "password": "syntomcater1",
+    "email": "syntomcat@your.site",
+    "role": "ingestor"
+}
+]

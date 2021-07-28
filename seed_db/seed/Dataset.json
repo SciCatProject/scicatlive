@@ -251,8 +251,7 @@
 		"inputDatasets": [],
 		"usedSoftware": [
 			"https://zenodo.org/record/4444832#.YNsUwXUzaV4"
-		],
-		"sampleId": "sample4"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/dls_ds2",
@@ -311,8 +310,7 @@
 		"inputDatasets": [],
 		"usedSoftware": [
 			"https://dlsltd.sharepoint.com/sites/GRA0046-PRV/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FGRA0046%2DPRV%2FShared%20Documents%2Fwp4%2Dreference%2Ddata%2Dsets%2FOneDrive%5F1%5F24%2D02%2D2021%2Ezip\u0026parent=%2Fsites%2FGRA0046%2DPRV%2FShared%20Documents%2Fwp4%2Dreference%2Ddata%2Dsets\u0026p=true\u0026originalPath=aHR0cHM6Ly9kbHNsdGQuc2hhcmVwb2ludC5jb20vOnU6L3MvR1JBMDA0Ni1QUlYvRVI2ZWxDQmVySHhEbENmWUNsQmVVRnNCYWtOYkRzUkVNUm9iTlc5VnZyVVhhUT9ydGltZT0tbDc5SWdBNzJVZw"
-		],
-		"instrumentId": "Merlin-Medipix"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/hzdr_ds1",
@@ -371,8 +369,7 @@
 		"inputDatasets": [],
 		"usedSoftware": [
 			"https://www.hzdr.de/db/Cms?pOid=34100\u0026pNid=2609\u0026pLang=en"
-		],
-		"instrumentId": "hzdr_instrument1"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/maxiv_ds1",
@@ -431,9 +428,7 @@
 		"inputDatasets": [],
 		"usedSoftware": [
 			"https://doi.org/10.1109/TCI.2019.2898088"
-		],
-		"sampleId": "sample3",
-		"instrumentId": "maxiv_instrument1"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/maxiv_ds2",
@@ -492,8 +487,7 @@
 		"inputDatasets": [],
 		"usedSoftware": [
 			"https://software.pan-data.eu/software/160/ptypy"
-		],
-		"instrumentId": "maxiv_instrument2"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds1",
@@ -573,10 +567,7 @@
 				"valueSI": 0.00000275,
 				"unitSI": "m"
 			}
-		},
-		"sampleId": "sample1",
-		"instrumentId": "psi_instrument1",
-		"proposalId": "psi_proposal1"
+		}
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds2",
@@ -656,10 +647,7 @@
 				"valueSI": 0.00000275,
 				"unitSI": "m"
 			}
-		},
-		"sampleId": "sample1",
-		"instrumentId": "psi_instrument1",
-		"proposalId": "psi_proposal1"
+		}
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds3",
@@ -676,7 +664,7 @@
 		"creationTime": {
 			"$date": "2019-02-25T17:23:25.000Z"
 		},
-		"type": "derived",
+		"type": "raw",
 		"description": "Full-volume high-resolution x-ray tomographic microscopy reconstruction of a juvenile rat lung in fresh post mortem conditions",
 		"datasetName": "data_final_volume_fullresolution/PSI-2018-R2-6_full_volume",
 		"classification": "IN=medium,AV=low,CO=low",
@@ -715,11 +703,6 @@
 			}
 		],
 		"investigator": "Christian M. Schlepütz",
-		"inputDatasets": [],
-		"usedSoftware": [
-			"https://doi.org/10.1364/oe.23.027975",
-			"https://doi.org/10.1107/S0909049512032864"
-		],
 		"scientificMetadata": {
 			"beamEnergy": {
 				"value": 21,
@@ -915,8 +898,7 @@
 		"inputDatasets": [],
 		"usedSoftware": [
 			"https://github.com/DAaaS-reference-data/SANS/blob/main/ExPaNDS_reduction.ipynb"
-		],
-		"instrumentId": "ukri_instrument1"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds2",
@@ -972,12 +954,6 @@
 			}
 		],
 		"investigator": "Franz Lang",
-		"inputDatasets": [
-			"PID.SAMPLE.PREFIX/ukri_ds1"
-		],
-		"usedSoftware": [
-			"https://github.com/DAaaS-reference-data/SANS/blob/main/ExPaNDS_reduction.ipynb"
-		],
 		"instrumentId": "ukri_instrument1"
 	},
 	{
@@ -1037,8 +1013,7 @@
 		"inputDatasets": [],
 		"usedSoftware": [
 			"https://github.com/DAaaS-reference-data/SANS/blob/main/ExPaNDS_reduction.ipynb"
-		],
-		"instrumentId": "ukri_instrument1"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds4",
@@ -1097,8 +1072,7 @@
 		"inputDatasets": [],
 		"usedSoftware": [
 			"https://doi.org/10.1107/S1600576720000151"
-		],
-		"instrumentId": "ukri_instrument2"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds5",
@@ -1215,7 +1189,6 @@
 		],
 		"usedSoftware": [
 			"https://github.com/DAaaS-reference-data/Reflectivity/blob/main/OFFSPEC_runs_46992-4/RB1720415_run_46992.py"
-		],
-		"instrumentId": "ukri_instrument3"
+		]
 	}
 ]

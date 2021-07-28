@@ -53,8 +53,6 @@
 			}
 		],
 		"principalInvestigator": "Oleksandr Yefanov",
-		"inputDatasets": [],
-		"usedSoftware": [],
 		"scientificMetadata": {
 			"beamEnergy": {
 				"value": 9.30,
@@ -120,8 +118,6 @@
 			}
 		],
 		"principalInvestigator": "Oleksandr Yefanov",
-		"inputDatasets": [],
-		"usedSoftware": [],
 		"scientificMetadata": {
 			"beamEnergy": {
 				"value": 9.30,
@@ -187,8 +183,6 @@
 			}
 		],
 		"principalInvestigator": "Oleksandr Yefanov",
-		"inputDatasets": [],
-		"usedSoftware": [],
 		"scientificMetadata": {
 			"beamEnergy": {
 				"value": 9.30,
@@ -862,9 +856,7 @@
 				"name": "photon_and_neutron_technique.defined_by_experimental_probe.photon_probe.x-ray_probe.small_angle_x-ray_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.low_momentum_transfer_scattering.small_angle_scattering.small_angle_x-ray_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.Q133900.small_angle_scattering.small_angle_x-ray_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.CHMO_0000182.small_angle_scattering.small_angle_x-ray_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.diffraction.small_angle_scattering.small_angle_x-ray_scattering"
 			}
 		],
-		"principalInvestigator": "Doru Constantin",
-		"inputDatasets": [],
-		"usedSoftware": []
+		"principalInvestigator": "Doru Constantin"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds1",
@@ -1162,8 +1154,6 @@
 			}
 		],
 		"investigator": "Gabriel Bernardo",
-		"inputDatasets": [],
-		"usedSoftware": [],
 		"instrumentId": "ukri_instrument3"
 	},
 	{

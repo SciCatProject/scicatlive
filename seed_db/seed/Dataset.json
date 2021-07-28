@@ -695,7 +695,7 @@
 				"name": "photon_and_neutron_technique.defined_by_purpose.obtain_spatial_map.obtain_3D_spatial_map.tomography;photon_and_neutron_technique.defined_by_functional_dependence.obtain_spatial_map.obtain_3D_spatial_map.tomography;photon_and_neutron_technique.defined_by_functional_dependence.imaging.obtain_3D_spatial_map.tomography"
 			}
 		],
-		"investigator": "Christian M. Schlepütz",
+		"principalInvestigator": "Christian M. Schlepütz",
 		"scientificMetadata": {
 			"beamEnergy": {
 				"value": 21,

@@ -52,7 +52,7 @@
 				"name": "photon_and_neutron_technique.defined_by_purpose.obtain_atomic_structure.crystallography.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.pulsed_probe.single_shot_technique.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.pulsed_probe.ultrafast_probe.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.photon_probe.x-ray_probe.x-ray_single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.Q133900.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.CHMO_0000182.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.diffraction.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography"
 			}
 		],
-		"investigator": "Oleksandr Yefanov",
+		"principalInvestigator": "Oleksandr Yefanov",
 		"inputDatasets": [],
 		"usedSoftware": [],
 		"scientificMetadata": {
@@ -119,7 +119,7 @@
 				"name": "photon_and_neutron_technique.defined_by_purpose.obtain_atomic_structure.crystallography.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.pulsed_probe.single_shot_technique.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.pulsed_probe.ultrafast_probe.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.photon_probe.x-ray_probe.x-ray_single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.Q133900.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.CHMO_0000182.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.diffraction.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography"
 			}
 		],
-		"investigator": "Oleksandr Yefanov",
+		"principalInvestigator": "Oleksandr Yefanov",
 		"inputDatasets": [],
 		"usedSoftware": [],
 		"scientificMetadata": {
@@ -186,7 +186,7 @@
 				"name": "photon_and_neutron_technique.defined_by_purpose.obtain_atomic_structure.crystallography.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.pulsed_probe.single_shot_technique.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.pulsed_probe.ultrafast_probe.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.photon_probe.x-ray_probe.x-ray_single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.Q133900.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.CHMO_0000182.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.diffraction.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography"
 			}
 		],
-		"investigator": "Oleksandr Yefanov",
+		"principalInvestigator": "Oleksandr Yefanov",
 		"inputDatasets": [],
 		"usedSoftware": [],
 		"scientificMetadata": {
@@ -215,7 +215,7 @@
 		"creationTime": {
 			"$date": "2018-08-28T13:46:43.000Z"
 		},
-		"type": "raw",
+		"type": "derived",
 		"description": "",
 		"datasetName": "*.nxs",
 		"classification": "IN=medium,AV=low,CO=low",
@@ -335,7 +335,7 @@
 		"creationTime": {
 			"$date": "2020-04-15T13:46:43.000Z"
 		},
-		"type": "raw",
+		"type": "derived",
 		"description": "",
 		"datasetName": "record/277",
 		"classification": "IN=medium,AV=low,CO=low",
@@ -456,7 +456,7 @@
 		"creationTime": {
 			"$date": "2020-03-10T13:46:43.000Z"
 		},
-		"type": "raw",
+		"type": "derived",
 		"description": "",
 		"datasetName": "files.zip",
 		"classification": "IN=medium,AV=low,CO=low",
@@ -862,7 +862,7 @@
 				"name": "photon_and_neutron_technique.defined_by_experimental_probe.photon_probe.x-ray_probe.small_angle_x-ray_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.low_momentum_transfer_scattering.small_angle_scattering.small_angle_x-ray_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.Q133900.small_angle_scattering.small_angle_x-ray_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.CHMO_0000182.small_angle_scattering.small_angle_x-ray_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.diffraction.small_angle_scattering.small_angle_x-ray_scattering"
 			}
 		],
-		"investigator": "Doru Constantin",
+		"principalInvestigator": "Doru Constantin",
 		"inputDatasets": [],
 		"usedSoftware": []
 	},
@@ -881,7 +881,7 @@
 		"creationTime": {
 			"$date": "2021-02-23T13:46:43.000Z"
 		},
-		"type": "raw",
+		"type": "derived",
 		"description": "",
 		"datasetName": "main/nexus_files",
 		"classification": "IN=medium,AV=low,CO=low",
@@ -1003,7 +1003,7 @@
 		"creationTime": {
 			"$date": "2021-02-23T13:46:43.000Z"
 		},
-		"type": "raw",
+		"type": "derived",
 		"description": "",
 		"datasetName": "main/mantid-files",
 		"classification": "IN=medium,AV=low,CO=low",

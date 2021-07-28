@@ -945,7 +945,7 @@
 				"name": "photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.low_momentum_transfer_scattering.small_angle_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.Q133900.small_angle_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.CHMO_0000182.small_angle_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.diffraction.small_angle_scattering"
 			}
 		],
-		"investigator": "Franz Lang",
+		"principalInvestigator": "Franz Lang",
 		"instrumentId": "ukri_instrument1"
 	},
 	{
@@ -1117,7 +1117,7 @@
 				"name": "photon_and_neutron_technique.defined_by_experimental_physical_process.reflection_technique.reflectometry.neutron_reflectometry;photon_and_neutron_technique.defined_by_experimental_probe.neutron_probe.neutron_reflectometry;photon_and_neutron_technique.defined_by_functional_dependence.versus_momentum_transfer.reflectometry.neutron_reflectometry"
 			}
 		],
-		"investigator": "Gabriel Bernardo",
+		"principalInvestigator": "Gabriel Bernardo",
 		"instrumentId": "ukri_instrument3"
 	},
 	{

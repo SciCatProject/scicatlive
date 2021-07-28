@@ -776,8 +776,7 @@
 		"investigator": "Doru Constantin",
 		"inputDatasets": [
 			"PID.SAMPLE.PREFIX/soleil_ds2"
-		],
-		"usedSoftware": []
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/soleil_ds2",

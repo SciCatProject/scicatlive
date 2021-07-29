@@ -7,12 +7,18 @@ services:
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+  mongodb_seed:
+    image: bitnami/mongodb:4.2
+    volumes:
+      - "./seed_db/seed:/seed"
+      - "./seed_db/mongo_import.sh:/docker-entrypoint-initdb.d/mongo_import.sh"
+    depends_on:
+      - mongodb
+    restart: on-failure
   mongodb:
     image: bitnami/mongodb:4.2
     volumes:
       - "mongodb_data:/bitnami"
-      - "./seed_db/seed:/seed"
-      - "./seed_db/mongo_import.sh:/docker-entrypoint-initdb.d/mongo_import.sh"
   catamel:
     image: dacat/catamel:latest
     depends_on:

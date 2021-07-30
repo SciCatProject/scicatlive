@@ -52,16 +52,8 @@
 				"name": "photon_and_neutron_technique.defined_by_purpose.obtain_atomic_structure.crystallography.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.pulsed_probe.single_shot_technique.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.pulsed_probe.ultrafast_probe.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.photon_probe.x-ray_probe.x-ray_single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.Q133900.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.CHMO_0000182.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.diffraction.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography"
 			}
 		],
-		"investigator": "Oleksandr Yefanov",
-		"inputDatasets": [],
-		"usedSoftware": [],
+		"principalInvestigator": "Oleksandr Yefanov",
 		"scientificMetadata": {
-			"beamline": {
-				"value": "SPB/SFX"
-			},
-			"facility": {
-				"value": "European XFEL"
-			},
 			"beamEnergy": {
 				"value": 9.30,
 				"unit": "keV",
@@ -125,16 +117,8 @@
 				"name": "photon_and_neutron_technique.defined_by_purpose.obtain_atomic_structure.crystallography.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.pulsed_probe.single_shot_technique.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.pulsed_probe.ultrafast_probe.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.photon_probe.x-ray_probe.x-ray_single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.Q133900.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.CHMO_0000182.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.diffraction.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography"
 			}
 		],
-		"investigator": "Oleksandr Yefanov",
-		"inputDatasets": [],
-		"usedSoftware": [],
+		"principalInvestigator": "Oleksandr Yefanov",
 		"scientificMetadata": {
-			"beamline": {
-				"value": "SPB/SFX"
-			},
-			"facility": {
-				"value": "European XFEL"
-			},
 			"beamEnergy": {
 				"value": 9.30,
 				"unit": "keV",
@@ -198,16 +182,8 @@
 				"name": "photon_and_neutron_technique.defined_by_purpose.obtain_atomic_structure.crystallography.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.pulsed_probe.single_shot_technique.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.pulsed_probe.ultrafast_probe.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_probe.photon_probe.x-ray_probe.x-ray_single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.Q133900.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.CHMO_0000182.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.diffraction.atomic_scale_diffraction.atomic_scale_diffraction_3D_volume.atomic_scale_diffraction_3D_volume_3D_periodic.single_crystal_diffraction.serial_femtosecond_crystallography"
 			}
 		],
-		"investigator": "Oleksandr Yefanov",
-		"inputDatasets": [],
-		"usedSoftware": [],
+		"principalInvestigator": "Oleksandr Yefanov",
 		"scientificMetadata": {
-			"beamline": {
-				"value": "SPB/SFX"
-			},
-			"facility": {
-				"value": "European XFEL"
-			},
 			"beamEnergy": {
 				"value": 9.30,
 				"unit": "keV",
@@ -233,7 +209,7 @@
 		"creationTime": {
 			"$date": "2018-08-28T13:46:43.000Z"
 		},
-		"type": "raw",
+		"type": "derived",
 		"description": "",
 		"datasetName": "*.nxs",
 		"classification": "IN=medium,AV=low,CO=low",
@@ -272,11 +248,9 @@
 			}
 		],
 		"investigator": "Stephen Collins",
-		"inputDatasets": [],
 		"usedSoftware": [
 			"https://zenodo.org/record/4444832#.YNsUwXUzaV4"
-		],
-		"sampleId": "sample4"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/dls_ds2",
@@ -332,11 +306,9 @@
 			}
 		],
 		"investigator": "Duncan N. Johnstone",
-		"inputDatasets": [],
 		"usedSoftware": [
 			"https://dlsltd.sharepoint.com/sites/GRA0046-PRV/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FGRA0046%2DPRV%2FShared%20Documents%2Fwp4%2Dreference%2Ddata%2Dsets%2FOneDrive%5F1%5F24%2D02%2D2021%2Ezip\u0026parent=%2Fsites%2FGRA0046%2DPRV%2FShared%20Documents%2Fwp4%2Dreference%2Ddata%2Dsets\u0026p=true\u0026originalPath=aHR0cHM6Ly9kbHNsdGQuc2hhcmVwb2ludC5jb20vOnU6L3MvR1JBMDA0Ni1QUlYvRVI2ZWxDQmVySHhEbENmWUNsQmVVRnNCYWtOYkRzUkVNUm9iTlc5VnZyVVhhUT9ydGltZT0tbDc5SWdBNzJVZw"
-		],
-		"instrumentId": "Merlin-Medipix"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/hzdr_ds1",
@@ -353,7 +325,7 @@
 		"creationTime": {
 			"$date": "2020-04-15T13:46:43.000Z"
 		},
-		"type": "raw",
+		"type": "derived",
 		"description": "",
 		"datasetName": "record/277",
 		"classification": "IN=medium,AV=low,CO=low",
@@ -392,11 +364,9 @@
 			}
 		],
 		"investigator": "Hao Chu",
-		"inputDatasets": [],
 		"usedSoftware": [
 			"https://www.hzdr.de/db/Cms?pOid=34100\u0026pNid=2609\u0026pLang=en"
-		],
-		"instrumentId": "hzdr_instrument1"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/maxiv_ds1",
@@ -452,12 +422,9 @@
 			}
 		],
 		"investigator": "Rajmund Mokso",
-		"inputDatasets": [],
 		"usedSoftware": [
 			"https://doi.org/10.1109/TCI.2019.2898088"
-		],
-		"sampleId": "sample3",
-		"instrumentId": "maxiv_instrument1"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/maxiv_ds2",
@@ -474,7 +441,7 @@
 		"creationTime": {
 			"$date": "2020-03-10T13:46:43.000Z"
 		},
-		"type": "raw",
+		"type": "derived",
 		"description": "",
 		"datasetName": "files.zip",
 		"classification": "IN=medium,AV=low,CO=low",
@@ -513,11 +480,9 @@
 			}
 		],
 		"investigator": "Maik Kahnt",
-		"inputDatasets": [],
 		"usedSoftware": [
 			"https://software.pan-data.eu/software/160/ptypy"
-		],
-		"instrumentId": "maxiv_instrument2"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds1",
@@ -573,27 +538,11 @@
 			}
 		],
 		"investigator": "Christian M. Schlepütz",
-		"inputDatasets": [],
 		"usedSoftware": [
 			"https://doi.org/10.1364/oe.23.027975",
 			"https://doi.org/10.1107/S0909049512032864"
 		],
 		"scientificMetadata": {
-			"beamline": {
-				"value": "TOMCAT X02DA"
-			},
-			"camera": {
-				"value": "GigaFRoST"
-			},
-			"facility": {
-				"value": "Swiss Light Source, Paul Scherrer Institute"
-			},
-			"opticalMagnification": {
-				"value": "4x"
-			},
-			"scintillator": {
-				"value": "150 um LuAG:Ce"
-			},
 			"beamEnergy": {
 				"value": 21,
 				"unit": "keV",
@@ -611,15 +560,8 @@
 				"unit": "um",
 				"valueSI": 0.00000275,
 				"unitSI": "m"
-			},
-			"sample": {
-				"sampleCondition": "fresh post-mortem (\u003c30 minutes)",
-				"sampleName": "PSI-2018-R2",
-				"sampleType": "juvenile Wistar rat (13 days)"
 			}
-		},
-		"sampleId": "sample1",
-		"instrumentId": "psi_instrument1"
+		}
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds2",
@@ -675,27 +617,11 @@
 			}
 		],
 		"investigator": "Christian M. Schlepütz",
-		"inputDatasets": [],
 		"usedSoftware": [
 			"https://doi.org/10.1364/oe.23.027975",
 			"https://doi.org/10.1107/S0909049512032864"
 		],
 		"scientificMetadata": {
-			"beamline": {
-				"value": "TOMCAT X02DA"
-			},
-			"camera": {
-				"value": "GigaFRoST"
-			},
-			"facility": {
-				"value": "Swiss Light Source, Paul Scherrer Institute"
-			},
-			"opticalMagnification": {
-				"value": "4x"
-			},
-			"scintillator": {
-				"value": "150 um LuAG:Ce"
-			},
 			"beamEnergy": {
 				"value": 21,
 				"unit": "keV",
@@ -713,15 +639,8 @@
 				"unit": "um",
 				"valueSI": 0.00000275,
 				"unitSI": "m"
-			},
-			"sample": {
-				"sampleCondition": "fresh post-mortem (\u003c30 minutes)",
-				"sampleName": "PSI-2018-R2",
-				"sampleType": "juvenile Wistar rat (13 days)"
 			}
-		},
-		"sampleId": "sample1",
-		"instrumentId": "psi_instrument1"
+		}
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds3",
@@ -738,7 +657,7 @@
 		"creationTime": {
 			"$date": "2019-02-25T17:23:25.000Z"
 		},
-		"type": "derived",
+		"type": "raw",
 		"description": "Full-volume high-resolution x-ray tomographic microscopy reconstruction of a juvenile rat lung in fresh post mortem conditions",
 		"datasetName": "data_final_volume_fullresolution/PSI-2018-R2-6_full_volume",
 		"classification": "IN=medium,AV=low,CO=low",
@@ -776,28 +695,8 @@
 				"name": "photon_and_neutron_technique.defined_by_purpose.obtain_spatial_map.obtain_3D_spatial_map.tomography;photon_and_neutron_technique.defined_by_functional_dependence.obtain_spatial_map.obtain_3D_spatial_map.tomography;photon_and_neutron_technique.defined_by_functional_dependence.imaging.obtain_3D_spatial_map.tomography"
 			}
 		],
-		"investigator": "Christian M. Schlepütz",
-		"inputDatasets": [],
-		"usedSoftware": [
-			"https://doi.org/10.1364/oe.23.027975",
-			"https://doi.org/10.1107/S0909049512032864"
-		],
+		"principalInvestigator": "Christian M. Schlepütz",
 		"scientificMetadata": {
-			"beamline": {
-				"value": "TOMCAT X02DA"
-			},
-			"camera": {
-				"value": "GigaFRoST"
-			},
-			"facility": {
-				"value": "Swiss Light Source, Paul Scherrer Institute"
-			},
-			"opticalMagnification": {
-				"value": "4x"
-			},
-			"scintillator": {
-				"value": "150 um LuAG:Ce"
-			},
 			"beamEnergy": {
 				"value": 21,
 				"unit": "keV",
@@ -815,15 +714,11 @@
 				"unit": "um",
 				"valueSI": 0.00000275,
 				"unitSI": "m"
-			},
-			"sample": {
-				"sampleCondition": "fresh post-mortem (\u003c30 minutes)",
-				"sampleName": "PSI-2018-R2",
-				"sampleType": "juvenile Wistar rat (13 days)"
 			}
 		},
 		"sampleId": "sample1",
-		"instrumentId": "psi_instrument1"
+		"instrumentId": "psi_instrument1",
+		"proposalId": "psi_proposal1"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/soleil_ds1",
@@ -881,8 +776,7 @@
 		"investigator": "Doru Constantin",
 		"inputDatasets": [
 			"PID.SAMPLE.PREFIX/soleil_ds2"
-		],
-		"usedSoftware": []
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/soleil_ds2",
@@ -937,9 +831,7 @@
 				"name": "photon_and_neutron_technique.defined_by_experimental_probe.photon_probe.x-ray_probe.small_angle_x-ray_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.low_momentum_transfer_scattering.small_angle_scattering.small_angle_x-ray_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.Q133900.small_angle_scattering.small_angle_x-ray_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.CHMO_0000182.small_angle_scattering.small_angle_x-ray_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.diffraction.small_angle_scattering.small_angle_x-ray_scattering"
 			}
 		],
-		"investigator": "Doru Constantin",
-		"inputDatasets": [],
-		"usedSoftware": []
+		"principalInvestigator": "Doru Constantin"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds1",
@@ -956,7 +848,7 @@
 		"creationTime": {
 			"$date": "2021-02-23T13:46:43.000Z"
 		},
-		"type": "raw",
+		"type": "derived",
 		"description": "",
 		"datasetName": "main/nexus_files",
 		"classification": "IN=medium,AV=low,CO=low",
@@ -995,11 +887,9 @@
 			}
 		],
 		"investigator": "Franz Lang",
-		"inputDatasets": [],
 		"usedSoftware": [
 			"https://github.com/DAaaS-reference-data/SANS/blob/main/ExPaNDS_reduction.ipynb"
-		],
-		"instrumentId": "ukri_instrument1"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds2",
@@ -1016,7 +906,7 @@
 		"creationTime": {
 			"$date": "2021-02-23T13:46:43.000Z"
 		},
-		"type": "derived",
+		"type": "raw",
 		"description": "",
 		"datasetName": "main/original_reduced_data",
 		"classification": "IN=medium,AV=low,CO=low",
@@ -1054,13 +944,7 @@
 				"name": "photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.low_momentum_transfer_scattering.small_angle_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.Q133900.small_angle_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.CHMO_0000182.small_angle_scattering;photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.diffraction.small_angle_scattering"
 			}
 		],
-		"investigator": "Franz Lang",
-		"inputDatasets": [
-			"PID.SAMPLE.PREFIX/ukri_ds1"
-		],
-		"usedSoftware": [
-			"https://github.com/DAaaS-reference-data/SANS/blob/main/ExPaNDS_reduction.ipynb"
-		],
+		"principalInvestigator": "Franz Lang",
 		"instrumentId": "ukri_instrument1"
 	},
 	{
@@ -1078,7 +962,7 @@
 		"creationTime": {
 			"$date": "2021-02-23T13:46:43.000Z"
 		},
-		"type": "raw",
+		"type": "derived",
 		"description": "",
 		"datasetName": "main/mantid-files",
 		"classification": "IN=medium,AV=low,CO=low",
@@ -1117,11 +1001,9 @@
 			}
 		],
 		"investigator": "Franz Lang",
-		"inputDatasets": [],
 		"usedSoftware": [
 			"https://github.com/DAaaS-reference-data/SANS/blob/main/ExPaNDS_reduction.ipynb"
-		],
-		"instrumentId": "ukri_instrument1"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds4",
@@ -1177,11 +1059,9 @@
 			}
 		],
 		"investigator": "Chiara Triestino",
-		"inputDatasets": [],
 		"usedSoftware": [
 			"https://doi.org/10.1107/S1600576720000151"
-		],
-		"instrumentId": "ukri_instrument2"
+		]
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds5",
@@ -1236,9 +1116,7 @@
 				"name": "photon_and_neutron_technique.defined_by_experimental_physical_process.reflection_technique.reflectometry.neutron_reflectometry;photon_and_neutron_technique.defined_by_experimental_probe.neutron_probe.neutron_reflectometry;photon_and_neutron_technique.defined_by_functional_dependence.versus_momentum_transfer.reflectometry.neutron_reflectometry"
 			}
 		],
-		"investigator": "Gabriel Bernardo",
-		"inputDatasets": [],
-		"usedSoftware": [],
+		"principalInvestigator": "Gabriel Bernardo",
 		"instrumentId": "ukri_instrument3"
 	},
 	{
@@ -1300,7 +1178,6 @@
 		],
 		"usedSoftware": [
 			"https://github.com/DAaaS-reference-data/Reflectivity/blob/main/OFFSPEC_runs_46992-4/RB1720415_run_46992.py"
-		],
-		"instrumentId": "ukri_instrument3"
+		]
 	}
 ]

@@ -7,12 +7,10 @@
 		"email": "email.com",
 		"firstname": "Christian M.",
 		"lastname": "Schlepütz",
-		"title": "",
+		"title": "Full-volume high-resolution x-ray tomographic microscopy reconstruction of a juvenile rat lung in fresh post mortem conditions; cropped to the maximum extent of the lung structure",
 		"abstract": "",
 		"ownerGroup": "aGroup",
-		"accessGroups": [
-			"slstomcat"
-		],
+		"accessGroups": [],
 		"createdBy": "ingestor",
 		"MeasurementPeriodList": [
 			{

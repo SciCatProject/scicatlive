@@ -11,50 +11,6 @@
 		}
 	},
 	{
-		"_id": "dls_instrument1",
-		"name": "Merlin-Medipix",
-		"createdBy": "ingestor",
-		"createdAt": {
-			"$date": "2021-06-30T16:11:41.574Z"
-		},
-		"updatedAt": {
-			"$date": "2021-06-30T16:11:41.576Z"
-		}
-	},
-	{
-		"_id": "hzdr_instrument1",
-		"name": "ELBE",
-		"createdBy": "ingestor",
-		"createdAt": {
-			"$date": "2021-06-30T16:13:22.785Z"
-		},
-		"updatedAt": {
-			"$date": "2021-06-30T16:13:22.786Z"
-		}
-	},
-	{
-		"_id": "maxiv_instrument1",
-		"name": "GigaFRoST",
-		"createdBy": "ingestor",
-		"createdAt": {
-			"$date": "2021-06-30T16:15:15.552Z"
-		},
-		"updatedAt": {
-			"$date": "2021-06-30T16:15:15.553Z"
-		}
-	},
-	{
-		"_id": "maxiv_instrument2",
-		"name": "NanoMAX",
-		"createdBy": "ingestor",
-		"createdAt": {
-			"$date": "2021-06-30T16:16:21.154Z"
-		},
-		"updatedAt": {
-			"$date": "2021-06-30T16:16:21.154Z"
-		}
-	},
-	{
 		"_id": "psi_instrument1",
 		"name": "TOMCAT X02DA",
 		"createdBy": "ingestor",
@@ -74,17 +30,6 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-30T16:22:14.215Z"
-		}
-	},
-	{
-		"_id": "ukri_instrument2",
-		"name": "ISIS IMAT",
-		"createdBy": "ingestor",
-		"createdAt": {
-			"$date": "2021-06-30T16:23:30.437Z"
-		},
-		"updatedAt": {
-			"$date": "2021-06-30T16:23:30.438Z"
 		}
 	},
 	{

@@ -11,11 +11,11 @@ services:
     image: bitnami/mongodb:4.2
     volumes:
       - "./seed_db/seed:/seed"
-      - "./seed_db/mongo_import.sh:/seed/mongo_import.sh"
+      - "./seed_db/mongo_import.sh:/mnt/mongo_import.sh"
     command: 
       - "sh"
       - "-c"
-      - "chmod u+x /seed/mongo_import.sh && /seed/mongo_import.sh"
+      - "chmod u+x /mnt/mongo_import.sh && /mnt/mongo_import.sh"
     user: "1000:1000"
     depends_on:
       - mongodb

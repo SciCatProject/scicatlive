@@ -42,7 +42,8 @@ services:
       - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
       - "traefik.http.routers.catanie.entrypoints=web"
   search-api:
-    image: dacat/panosc-search-api:latest
+    build:
+      context: https://github.com/minottic/panosc-search-api.git#tech
     depends_on: 
       - catamel
     labels:
@@ -51,6 +52,9 @@ services:
     environment:
       BASE_URL: "http://catamel:3000/api/v3"
       FACILITY: "SAMPLE-SITE"
+    volumes:
+      - ./config/search-api/config.json:/home/node/app/config.json
+
 volumes:
   mongodb_data:
     driver: local

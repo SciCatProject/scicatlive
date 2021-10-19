@@ -1,0 +1,12 @@
+{
+    "technique": {
+        "class": "BioPortalTechniques",
+        "url": "https://data.bioontology.org/ontologies/PANET/classes",
+        "apiKey": "<YOUR_BIOPORTAL_API_KEY",
+        "cache": {
+            "class": "LoopbackCache",
+            "sttl": 600,
+            "collection": "Technique"
+        }
+    }
+}

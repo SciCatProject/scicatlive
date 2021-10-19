@@ -1,0 +1,218 @@
+[
+    // non specific
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "name": "small angle scattering"
+                    }
+                }
+            }
+        ]
+    },
+    // specific
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "name": "small angle x-ray scattering"
+                    }
+                }
+            }
+        ]
+    },
+    // synonym
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "name": "small angle diffraction"
+                    }
+                }
+            }
+        ]
+    },
+    // filter with name of first parent technique AND name of second parent
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "and": [
+                            {
+                                "name": "small angle scattering"
+                            },
+                            {
+                                "name": "x-ray probe"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    // filter with name of first specific technique OR name of second specific technique
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "or": [
+                            {
+                                "name": "small angle x-ray scattering"
+                            },
+                            {
+                                "name": "high-resolution neutron imaging"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    // filter with name of first parent technique AND name of second parent, using LIKE
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "and": [
+                            {
+                                "name": {
+                                    "like": "%small%"
+                                }
+                            },
+                            {
+                                "name": {
+                                    "like": "%x-ray%"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    // filter with name AND pid of the same technique
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "and": [
+                            {
+                                "name": "small angle x-ray scattering"
+                            },
+                            {
+                                "pid": "http://purl.org/pan-science/PaNET/PaNET01188"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    // filter with synonym of parent technique AND pid of the specific technique
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "and": [
+                            {
+                                "name": "small angle diffraction"
+                            },
+                            {
+                                "pid": "http://purl.org/pan-science/PaNET/PaNET01188"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    // filter with name of first specific technique AND name of second specific technique which have empty intersection
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "and": [
+                            {
+                                "name": "small angle x-ray scattering"
+                            },
+                            {
+                                "name": "high-resolution neutron imaging"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    // one of the two conditions is empty -> returns empty
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "and": [
+                            {
+                                "name": "small angle x-ray scattering"
+                            },
+                            {
+                                "pid": "high-resolution neutron imaging"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    // empty where condition (plain)
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "pid": "x-ray absorption"
+                    }
+                }
+            }
+        ]
+    },
+    // empty condition for both ANDs
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "and": [
+                            {
+                                "pid": "small angle x-ray scattering"
+                            },
+                            {
+                                "pid": "high-resolutio"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+]

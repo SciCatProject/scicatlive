@@ -1,5 +1,7 @@
 [
-    // non specific
+    // non specific 
+    // returns datasets with technique = small angle scattering or descendants
+    // from DB: [small angle scattering, small angle x-ray scattering]
     {
         "include": [
             {
@@ -13,6 +15,8 @@
         ]
     },
     // specific
+    // returns datasets with technique = small angle x-ray scattering or descendants
+    // from DB: [small angle x-ray scattering]
     {
         "include": [
             {
@@ -26,6 +30,9 @@
         ]
     },
     // synonym
+    // since small angle diffraction is a synonym of small angle scattering, 
+    // it returns datasets with technique = small angle scattering or descendants 
+    // from DB: [small angle scattering, small angle x-ray scattering]
     {
         "include": [
             {
@@ -39,6 +46,8 @@
         ]
     },
     // filter with name of first parent technique AND name of second parent
+    // it returns datasets with technique which belongs to the intersection of descendants of small angle scattering and x-ray probe 
+    // from DB: [small angle x-ray scattering]
     {
         "include": [
             {
@@ -59,6 +68,8 @@
         ]
     },
     // filter with name of first specific technique OR name of second specific technique
+    // it returns datasets with technique = small angle x-ray scattering or descendants OR high-resolution neutron imaging or descendants
+    // from DB: [small angle x-ray scattering, high-resolution neutron imaging]
     {
         "include": [
             {
@@ -79,6 +90,9 @@
         ]
     },
     // filter with name of first parent technique AND name of second parent, using LIKE
+    // returns datasets where the technique belongs to the intersection of descendats of techniques whose name contains 'small'
+    // and descendants whose name contains 'x-ray'
+    // from DB: [small angle x-ray scattering]
     {
         "include": [
             {
@@ -103,6 +117,9 @@
         ]
     },
     // filter with name AND pid of the same technique
+    // it returns datasets with technique which belongs to the intersection of descendants of small angle scattering 
+    // and pid = http://purl.org/pan-science/PaNET/PaNET01188 (x-ray probe)
+    // from DB: [small angle x-ray scattering]
     {
         "include": [
             {
@@ -123,6 +140,10 @@
         ]
     },
     // filter with synonym of parent technique AND pid of the specific technique
+    // since small angle diffraction is a synonym of small angle scattering, 
+    // it returns datasets with technique which belongs to the intersection of descendants of small angle scattering 
+    // and pid = http://purl.org/pan-science/PaNET/PaNET01188 (x-ray probe)
+    // from DB: [small angle x-ray scattering]
     {
         "include": [
             {
@@ -143,6 +164,9 @@
         ]
     },
     // filter with name of first specific technique AND name of second specific technique which have empty intersection
+    // it returns datasets with technique which belongs to the intersection of descendants of small angle scattering 
+    // and high-resolution neutron imaging, which is empty 
+    // from DB: []
     {
         "include": [
             {
@@ -162,7 +186,10 @@
             }
         ]
     },
-    // one of the two conditions is empty -> returns empty
+    // one of the two conditions is empty
+    // it returns datasets with technique which belongs to the intersection of descendants of small angle scattering 
+    // and pid = high-resolution neutron imaging, which does not exist, thus empty 
+    // from DB: []
     {
         "include": [
             {
@@ -183,6 +210,8 @@
         ]
     },
     // empty where condition (plain)
+    // returns datasets with technique = x-ray absorption or descendants
+    // from DB: technique not present: []
     {
         "include": [
             {
@@ -196,6 +225,9 @@
         ]
     },
     // empty condition for both ANDs
+    // it returns datasets with technique which belongs to the intersection of descendants of pid = small angle scattering 
+    // and pid = high-resolutio, which is empty 
+    // from DB: []
     {
         "include": [
             {

@@ -1,7 +1,18 @@
 [
-    // non specific 
-    // returns datasets with technique = small angle scattering or descendants
-    // from DB: [small angle scattering, small angle x-ray scattering]
+    // query 1
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "name": "x-ray emission spectroscopy"
+                    }
+                }
+            }
+        ]
+    },
+    // query 2
     {
         "include": [
             {
@@ -14,40 +25,77 @@
             }
         ]
     },
-    // specific
-    // returns datasets with technique = small angle x-ray scattering or descendants
-    // from DB: [small angle x-ray scattering]
+    // query 3
     {
         "include": [
             {
                 "relation": "techniques",
                 "scope": {
                     "where": {
-                        "name": "small angle x-ray scattering"
+                        "name": {
+                            "neq": "x-ray emission spectroscopy"
+                        }
                     }
                 }
             }
         ]
     },
-    // synonym
-    // since small angle diffraction is a synonym of small angle scattering, 
-    // it returns datasets with technique = small angle scattering or descendants 
-    // from DB: [small angle scattering, small angle x-ray scattering]
+    // query 4
     {
         "include": [
             {
                 "relation": "techniques",
                 "scope": {
                     "where": {
-                        "name": "small angle diffraction"
+                        "name": {
+                            "neq": "small angle scattering"
+                        }
                     }
                 }
             }
         ]
     },
-    // filter with name of first parent technique AND name of second parent
-    // it returns datasets with technique which belongs to the intersection of descendants of small angle scattering and x-ray probe 
-    // from DB: [small angle x-ray scattering]
+    // query 5
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "and": [
+                            {
+                                "name": "small angle scattering"
+                            },
+                            {
+                                "name": "magnetism technique"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    // query 6
+    {
+        "include": [
+            {
+                "relation": "techniques",
+                "scope": {
+                    "where": {
+                        "or": [
+                            {
+                                "name": "small angle scattering"
+                            },
+                            {
+                                "name": "magnetism technique"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    // query 7
     {
         "include": [
             {
@@ -67,9 +115,7 @@
             }
         ]
     },
-    // filter with name of first specific technique OR name of second specific technique
-    // it returns datasets with technique = small angle x-ray scattering or descendants OR high-resolution neutron imaging or descendants
-    // from DB: [small angle x-ray scattering, high-resolution neutron imaging]
+    // query 8
     {
         "include": [
             {
@@ -78,10 +124,10 @@
                     "where": {
                         "or": [
                             {
-                                "name": "small angle x-ray scattering"
+                                "name": "small angle scattering"
                             },
                             {
-                                "name": "high-resolution neutron imaging"
+                                "name": "x-ray probe"
                             }
                         ]
                     }
@@ -89,10 +135,7 @@
             }
         ]
     },
-    // filter with name of first parent technique AND name of second parent, using LIKE
-    // returns datasets where the technique belongs to the intersection of descendats of techniques whose name contains 'small'
-    // and descendants whose name contains 'x-ray'
-    // from DB: [small angle x-ray scattering]
+    // query 9
     {
         "include": [
             {
@@ -101,13 +144,11 @@
                     "where": {
                         "and": [
                             {
-                                "name": {
-                                    "like": "%small%"
-                                }
+                                "name": "small angle scattering"
                             },
                             {
                                 "name": {
-                                    "like": "%x-ray%"
+                                    "neq": "x-ray probe"
                                 }
                             }
                         ]
@@ -116,10 +157,7 @@
             }
         ]
     },
-    // filter with name AND pid of the same technique
-    // it returns datasets with technique which belongs to the intersection of descendants of small angle scattering 
-    // and pid = http://purl.org/pan-science/PaNET/PaNET01188 (x-ray probe)
-    // from DB: [small angle x-ray scattering]
+    // query 10
     {
         "include": [
             {
@@ -128,118 +166,12 @@
                     "where": {
                         "and": [
                             {
-                                "name": "small angle x-ray scattering"
+                                "name": "small angle scattering"
                             },
                             {
-                                "pid": "http://purl.org/pan-science/PaNET/PaNET01188"
-                            }
-                        ]
-                    }
-                }
-            }
-        ]
-    },
-    // filter with synonym of parent technique AND pid of the specific technique
-    // since small angle diffraction is a synonym of small angle scattering, 
-    // it returns datasets with technique which belongs to the intersection of descendants of small angle scattering 
-    // and pid = http://purl.org/pan-science/PaNET/PaNET01188 (x-ray probe)
-    // from DB: [small angle x-ray scattering]
-    {
-        "include": [
-            {
-                "relation": "techniques",
-                "scope": {
-                    "where": {
-                        "and": [
-                            {
-                                "name": "small angle diffraction"
-                            },
-                            {
-                                "pid": "http://purl.org/pan-science/PaNET/PaNET01188"
-                            }
-                        ]
-                    }
-                }
-            }
-        ]
-    },
-    // filter with name of first specific technique AND name of second specific technique which have empty intersection
-    // it returns datasets with technique which belongs to the intersection of descendants of small angle scattering 
-    // and high-resolution neutron imaging, which is empty 
-    // from DB: []
-    {
-        "include": [
-            {
-                "relation": "techniques",
-                "scope": {
-                    "where": {
-                        "and": [
-                            {
-                                "name": "small angle x-ray scattering"
-                            },
-                            {
-                                "name": "high-resolution neutron imaging"
-                            }
-                        ]
-                    }
-                }
-            }
-        ]
-    },
-    // one of the two conditions is empty
-    // it returns datasets with technique which belongs to the intersection of descendants of small angle scattering 
-    // and pid = high-resolution neutron imaging, which does not exist, thus empty 
-    // from DB: []
-    {
-        "include": [
-            {
-                "relation": "techniques",
-                "scope": {
-                    "where": {
-                        "and": [
-                            {
-                                "name": "small angle x-ray scattering"
-                            },
-                            {
-                                "pid": "high-resolution neutron imaging"
-                            }
-                        ]
-                    }
-                }
-            }
-        ]
-    },
-    // empty where condition (plain)
-    // returns datasets with technique = x-ray absorption or descendants
-    // from DB: technique not present: []
-    {
-        "include": [
-            {
-                "relation": "techniques",
-                "scope": {
-                    "where": {
-                        "pid": "x-ray absorption"
-                    }
-                }
-            }
-        ]
-    },
-    // empty condition for both ANDs
-    // it returns datasets with technique which belongs to the intersection of descendants of pid = small angle scattering 
-    // and pid = high-resolutio, which is empty 
-    // from DB: []
-    {
-        "include": [
-            {
-                "relation": "techniques",
-                "scope": {
-                    "where": {
-                        "and": [
-                            {
-                                "pid": "small angle x-ray scattering"
-                            },
-                            {
-                                "pid": "high-resolutio"
+                                "name": {
+                                    "neq": "magnetism technique"
+                                }
                             }
                         ]
                     }

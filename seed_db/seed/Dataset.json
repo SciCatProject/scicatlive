@@ -48,8 +48,8 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01168",
-				"name": "serial femtosecond crystallography"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01183",
+				"name": "resonant inelastic x-ray scattering"
 			}
 		],
 		"principalInvestigator": "Oleksandr Yefanov",
@@ -113,8 +113,8 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01168",
-				"name": "serial femtosecond crystallography"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01183",
+				"name": "resonant inelastic x-ray scattering"
 			}
 		],
 		"principalInvestigator": "Oleksandr Yefanov",
@@ -178,8 +178,8 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01168",
-				"name": "serial femtosecond crystallography"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01183",
+				"name": "resonant inelastic x-ray scattering"
 			}
 		],
 		"principalInvestigator": "Oleksandr Yefanov",
@@ -243,8 +243,8 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01102",
-				"name": "x-ray single crystal diffraction"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01275",
+				"name": "anomalous solution x-ray scattering"
 			}
 		],
 		"investigator": "Stephen Collins",
@@ -301,8 +301,8 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01136",
-				"name": "diffraction imaging"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01162",
+				"name": "grazing incidence small angle x-ray scattering"
 			}
 		],
 		"investigator": "Duncan N. Johnstone",
@@ -359,8 +359,8 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01115",
-				"name": "optical spectroscopy"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01281",
+				"name": "inelastic x-ray small angle scattering"
 			}
 		],
 		"investigator": "Hao Chu",
@@ -417,8 +417,8 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01168",
-				"name": "serial femtosecond crystallography"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01183",
+				"name": "resonant inelastic x-ray scattering"
 			}
 		],
 		"investigator": "Rajmund Mokso",
@@ -475,8 +475,8 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01212",
-				"name": "ptychography"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01282",
+				"name": "soft x-ray small angle scattering"
 			}
 		],
 		"investigator": "Maik Kahnt",
@@ -533,8 +533,8 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01129",
-				"name": "tomography"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01313",
+				"name": "magnetic x-ray tomography"
 			}
 		],
 		"investigator": "Christian M. Schlepütz",
@@ -612,8 +612,8 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01129",
-				"name": "tomography"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01313",
+				"name": "magnetic x-ray tomography"
 			}
 		],
 		"investigator": "Christian M. Schlepütz",
@@ -691,8 +691,8 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01129",
-				"name": "tomography"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01313",
+				"name": "magnetic x-ray tomography"
 			}
 		],
 		"principalInvestigator": "Christian M. Schlepütz",
@@ -769,8 +769,8 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01188",
-				"name": "small angle x-ray scattering"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01200",
+				"name": "x-ray emission spectroscopy"
 			}
 		],
 		"investigator": "Doru Constantin",
@@ -827,8 +827,8 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01188",
-				"name": "small angle x-ray scattering"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01200",
+				"name": "x-ray emission spectroscopy"
 			}
 		],
 		"principalInvestigator": "Doru Constantin"
@@ -882,8 +882,12 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01124",
-				"name": "small angle scattering"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01200",
+				"name": "x-ray emission spectroscopy"
+			},
+			{
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01313",
+				"name": "magnetic x-ray tomography"
 			}
 		],
 		"investigator": "Franz Lang",
@@ -940,8 +944,12 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01124",
-				"name": "small angle scattering"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01200",
+				"name": "x-ray emission spectroscopy"
+			},
+			{
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01313",
+				"name": "magnetic x-ray tomography"
 			}
 		],
 		"principalInvestigator": "Franz Lang",
@@ -996,8 +1004,12 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01124",
-				"name": "small angle scattering"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01200",
+				"name": "x-ray emission spectroscopy"
+			},
+			{
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01313",
+				"name": "magnetic x-ray tomography"
 			}
 		],
 		"investigator": "Franz Lang",
@@ -1054,8 +1066,12 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01250",
-				"name": "high-resolution neutron imaging"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01200",
+				"name": "x-ray emission spectroscopy"
+			},
+			{
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01313",
+				"name": "magnetic x-ray tomography"
 			}
 		],
 		"investigator": "Chiara Triestino",
@@ -1112,8 +1128,12 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01239",
-				"name": "neutron reflectometry"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01200",
+				"name": "x-ray emission spectroscopy"
+			},
+			{
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01099",
+				"name": "grazing incidence small angle scattering"
 			}
 		],
 		"principalInvestigator": "Gabriel Bernardo",
@@ -1168,8 +1188,12 @@
 		},
 		"techniques": [
 			{
-				"pid": "http://purl.org/pan-science/PaNET/PaNET01239",
-				"name": "neutron reflectometry"
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01200",
+				"name": "x-ray emission spectroscopy"
+			},
+			{
+				"pid": "http://purl.org/pan-science/PaNET/PaNET01275",
+				"name": "anomalous solution x-ray scattering"
 			}
 		],
 		"investigator": "Gabriel Bernardo",

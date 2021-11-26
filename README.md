@@ -19,7 +19,8 @@ Files for running SciCat with docker-compose.
 
 1. Add your local configuration to [config.local.js](./config/catamel/config.local.js)
 2. Uncomment the `volumes:` line and the line containing `config.local.js` in the catamel service section in [docker-compose.yaml](./docker-compose.yaml) (if commented)
-3. Restart the docker containers
+3. If willing to test the integration with BioPortal (technique ontology), add the BioPortal API key to [config.json](./config/search-api/config.json), under the `apiKey` field. 
+4. Restart the docker containers
 
 
 ## Add LDAP Authentication

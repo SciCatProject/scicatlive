@@ -42,8 +42,7 @@ services:
       - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
       - "traefik.http.routers.catanie.entrypoints=web"
   search-api:
-    build:
-      context: https://github.com/minottic/panosc-search-api.git#tech
+    image: dacat/panosc-search-api:latest
     depends_on: 
       - catamel
     labels:

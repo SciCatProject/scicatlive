@@ -58,4 +58,4 @@ To use scicat, please refer to the [original documentation](https://scicatprojec
 
 ## Testing the integration of techniques
 
-To test the integration of the technique ontology, this [file](./docs/techniques-queries-examples.md) provides a set of examples and expected results. More detailed documentation is available [here](https://github.com/panosc-eu/search-api/pull/57).
+To test the integration of the technique ontology, this [file](./docs/techniques-queries-examples.md) provides a set of examples and expected results. More detailed documentation is available [here](https://github.com/panosc-eu/search-api/blob/master/doc/dataset-techniques-requirements.md).

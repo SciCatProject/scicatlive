@@ -2047,8 +2047,8 @@ Query details:
  |   | PID.SAMPLE.PREFIX/ukri_ds2 | x-ray emission spectroscopy ,<br /> ~~magnetic x-ray tomography~~ | http://purl.org/pan-science/PaNET/PaNET01200 ,<br /> ~~http://purl.org/pan-science/PaNET/PaNET01313~~ |
  |   | PID.SAMPLE.PREFIX/ukri_ds3 | x-ray emission spectroscopy ,<br /> ~~magnetic x-ray tomography~~ | http://purl.org/pan-science/PaNET/PaNET01200 ,<br /> ~~http://purl.org/pan-science/PaNET/PaNET01313~~ |
  |   | PID.SAMPLE.PREFIX/ukri_ds4 | x-ray emission spectroscopy ,<br /> ~~magnetic x-ray tomography~~ | http://purl.org/pan-science/PaNET/PaNET01200 ,<br /> ~~http://purl.org/pan-science/PaNET/PaNET01313~~ |
- |   | PID.SAMPLE.PREFIX/ukri_ds5 | x-ray emission spectroscopy ,<br /> **grazing incidence small angle scattering** | http://purl.org/pan-science/PaNET/PaNET01200 ,<br /> **http://purl.org/pan-science/PaNET/PaNET01162** |
- |   | PID.SAMPLE.PREFIX/ukri_ds6 | x-ray emission spectroscopy ,<br /> **anomalous solution x-ray scattering** | http://purl.org/pan-science/PaNET/PaNET01200 ,<br /> **http://purl.org/pan-science/PaNET/PaNET01275** |
+ | Y | PID.SAMPLE.PREFIX/ukri_ds5 | x-ray emission spectroscopy ,<br /> **grazing incidence small angle scattering** | http://purl.org/pan-science/PaNET/PaNET01200 ,<br /> **http://purl.org/pan-science/PaNET/PaNET01162** |
+ | Y | PID.SAMPLE.PREFIX/ukri_ds6 | x-ray emission spectroscopy ,<br /> **anomalous solution x-ray scattering** | http://purl.org/pan-science/PaNET/PaNET01200 ,<br /> **http://purl.org/pan-science/PaNET/PaNET01275** |
 
 
 #### Status

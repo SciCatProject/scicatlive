@@ -34,13 +34,13 @@ services:
     labels:
       - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
       - "traefik.http.routers.catamel.entrypoints=web"
-  catanie:
-    image: dacat/catanie:latest
-    depends_on:
-      - catamel
-    labels:
-      - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
-      - "traefik.http.routers.catanie.entrypoints=web"
+  # catanie:
+  #   image: dacat/catanie:latest
+  #   depends_on:
+  #     - catamel
+  #   labels:
+  #     - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
+  #     - "traefik.http.routers.catanie.entrypoints=web"
   search-api:
     image: dacat/panosc-search-api:latest
     depends_on: 
@@ -56,12 +56,12 @@ services:
   pss-scoring:
     image: nitrosx71/panosc-search-scoring:v1.0-alpha
     labels:
+      # - "traefik.http.routers.pss-scoring.middlewares=pss-scoring-stripprefix"
+      # - "traefik.http.middlewares.pss-scoring-stripprefix.stripprefix.prefixes=/pss"
+      # - "traefik.http.middlewares.pss-scoring-stripprefix.stripprefix.forceSlash=false"
       - "traefik.http.services.pss-scoring.loadbalancer.server.port=8000"
-      - "traefik.http.routers.pss-scoring.rule=PathPrefix(`/pss`)"
+      - "traefik.http.routers.pss-scoring.rule=PathPrefix(`/`)"
       - "traefik.http.routers.pss-scoring.entrypoints=web"
-      - "traefik.http.routers.pss-scoring.middlewares=pss-scoring-stripprefix"
-      - "traefik.http.middlewares.pss-scoring-stripprefix.stripprefix.prefixes=/pss"
-      - "traefik.http.middlewares.pss-scoring-stripprefix.stripprefix.forceSlash=false"
     depends_on:
       - mongodb
     environment:

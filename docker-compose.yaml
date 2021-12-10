@@ -35,12 +35,15 @@ services:
       - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
       - "traefik.http.routers.catamel.entrypoints=web"
   catanie:
-    image: dacat/catanie:latest
+    build:
+      context: https://github.com/SciCatProject/frontend.git#develop
     depends_on:
       - catamel
     labels:
       - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
       - "traefik.http.routers.catanie.entrypoints=web"
+    volumes:
+      - ./config/catanie/environment.ts:/usr/src/app/src/environments/environment.development.ts
   search-api:
     image: dacat/panosc-search-api:latest
     depends_on: 

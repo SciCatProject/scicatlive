@@ -17,8 +17,8 @@ Files for running SciCat with docker-compose.
 
 ## Add Your Local Configuration
 
-1. Add your local configuration to [config.local.js](./config/catamel/config.local.js)
-2. Uncomment the `volumes:` line and the line containing `config.local.js` in the catamel service section in [docker-compose.yaml](./docker-compose.yaml) (if commented)
+1. Add your local configuration to the [config](./config) folder.
+2. Uncomment the `volumes:` e.g. line and the line containing `config.local.js` in the catamel service section in [docker-compose.yaml](./docker-compose.yaml) (if commented)
 3. Restart the docker containers
 
 

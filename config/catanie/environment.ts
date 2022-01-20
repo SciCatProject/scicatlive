@@ -7,7 +7,7 @@ import { TableColumn } from "state-management/models";
 
 export const environment = {
   production: true,
-  lbBaseURL: "http://localhost",
+  lbBaseURL: "",
   fileserverBaseURL: "",
   synapseBaseUrl: "",
   riotBaseUrl: "",

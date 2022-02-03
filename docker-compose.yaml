@@ -32,27 +32,35 @@ services:
       - ./config/catamel/config.local.js:/home/node/app/server/config.local.js
     #   - ./config/catamel/providers.json:/home/node/app/server/providers.json
     labels:
-      - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
+      - "traefik.http.routers.catamel.rule=(Host(`localhost`) && PathPrefix(`/api`, `/auth`, `/explorer`))"
       - "traefik.http.routers.catamel.entrypoints=web"
   catanie:
     image: dacat/catanie:latest
     depends_on:
       - catamel
     labels:
-      - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.catanie.rule=(Host(`localhost`) && PathPrefix(`/`))"
       - "traefik.http.routers.catanie.entrypoints=web"
   search-api:
-    image: dacat/panosc-search-api:latest
+    build:
+      context: https://github.com/minottic/panosc-search-api.git#pans
     depends_on: 
       - catamel
+      - pan-ontologies
     labels:
-      - "traefik.http.routers.panosc-search-api.rule=PathPrefix(`/panosc-api`, `/panosc-explorer`)"
+      - "traefik.http.routers.panosc-search-api.rule=(Host(`localhost`) && PathPrefix(`/panosc-api`, `/panosc-explorer`))"
       - "traefik.http.routers.panosc-search-api.entrypoints=web"
     environment:
       BASE_URL: "http://catamel:3000/api/v3"
       FACILITY: "SAMPLE-SITE"
+      PANET_BASE_URL: "http://pan-ontologies:3000"
     volumes:
       - ./config/search-api/config.json:/home/node/app/config.json
+  pan-ontologies:
+    image: ghcr.io/expands-eu/pan-ontologies-api:latest
+    labels:
+      - "traefik.http.routers.pan-ontologies.rule=Host(`ont.localhost`)"
+      - "traefik.http.routers.pan-ontologies.entrypoints=web"
 
 volumes:
   mongodb_data:

@@ -128,7 +128,6 @@ Interpreted query:
         }
       }
     }
-  ]
 }
 ```
 
@@ -182,7 +181,6 @@ A user is searching for datasets tagged with technique *small angle scattering* 
         }
       }
     }
-  ,
   ]
 }
 ```

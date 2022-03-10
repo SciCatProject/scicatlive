@@ -36,14 +36,14 @@ services:
       - "traefik.http.routers.catamel.entrypoints=web"
   catanie:
     build:
-      context: https://github.com/SciCatProject/frontend.git#develop
+      context: https://github.com/SciCatProject/frontend.git#runtime-configuration
     depends_on:
       - catamel
     labels:
       - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
       - "traefik.http.routers.catanie.entrypoints=web"
     volumes:
-      - ./config/catanie/environment.ts:/usr/src/app/src/environments/environment.development.ts
+      - ./config/catanie/config.json:/usr/share/nginx/html/assets/config.json
   search-api:
     image: dacat/panosc-search-api:latest
     depends_on: 

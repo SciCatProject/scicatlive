@@ -41,6 +41,8 @@ services:
     #image: dacat/catanie:2431284a58361320b334162def0323e5e017aaeaproduction
     depends_on:
       - catamel
+    volumes:
+      - ./config/frontend/config.json:/usr/share/nginx/html/assets/config.json
     labels:
       - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
       - "traefik.http.routers.catanie.entrypoints=web"

@@ -74,5 +74,6 @@
    "shareEnabled":false,
    "shoppingCartEnabled":false,
    "shoppingCartOnHeader":false,
-   "tableSciDataEnabled":true
+   "tableSciDataEnabled":true,
+   "accessTokenPrefix": ""
 }

@@ -26,7 +26,7 @@ services:
       - "mongodb_data:/bitnami"
   catamel:
     #image: dacat/catamel:latest
-    image: scicatproject/backend:stable
+    image: scicatproject/backend:v0.0.5
     depends_on:
       - mongodb
     volumes:
@@ -38,7 +38,7 @@ services:
       - "traefik.http.routers.catamel.entrypoints=web"
   catanie:
     #image: dacat/catanie:latest
-    image: scicatproject/frontend:stable
+    image: scicatproject/frontend:v4.0.0
     #image: dacat/catanie:2431284a58361320b334162def0323e5e017aaeaproduction
     depends_on:
       - catamel

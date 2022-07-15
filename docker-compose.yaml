@@ -16,7 +16,7 @@ services:
       - "sh"
       - "-c"
       - "chmod u+x /mnt/mongo_import.sh && /mnt/mongo_import.sh"
-    user: "1000:1000"
+    user: "0:0"
     depends_on:
       - mongodb
     restart: on-failure

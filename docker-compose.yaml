@@ -7,6 +7,7 @@ services:
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
   mongodb_seed:
     image: bitnami/mongodb:4.2
     volumes:
@@ -20,12 +21,13 @@ services:
     depends_on:
       - mongodb
     restart: on-failure
+
   mongodb:
     image: bitnami/mongodb:4.2
     volumes:
       - "mongodb_data:/bitnami"
+
   catamel:
-    #image: dacat/catamel:latest
     image: scicatproject/backend:v0.0.5
     depends_on:
       - mongodb
@@ -36,10 +38,9 @@ services:
     labels:
       - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
       - "traefik.http.routers.catamel.entrypoints=web"
+
   catanie:
-    #image: dacat/catanie:latest
     image: scicatproject/frontend:v4.0.0
-    #image: dacat/catanie:2431284a58361320b334162def0323e5e017aaeaproduction
     depends_on:
       - catamel
     volumes:
@@ -57,6 +58,7 @@ services:
     environment:
       BASE_URL: "http://catamel:3000/api/v3"
       FACILITY: "SAMPLE-SITE"
+
 volumes:
   mongodb_data:
     driver: local

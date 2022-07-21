@@ -1,3 +1,9 @@
+x-logging: &loki-logging
+    driver: loki
+    options:
+      loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
+      loki-retries: "10"
+
 services:
   reverse-proxy:
     image: traefik:2.5
@@ -7,6 +13,7 @@ services:
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    logging: *loki-logging
 
   mongodb_seed:
     image: bitnami/mongodb:4.2
@@ -21,11 +28,13 @@ services:
     depends_on:
       - mongodb
     restart: on-failure
+    logging: *loki-logging
 
   mongodb:
     image: bitnami/mongodb:4.2
     volumes:
       - "mongodb_data:/bitnami"
+    logging: *loki-logging
 
   loki:
     image: grafana/loki:2.6.0
@@ -34,6 +43,7 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     volumes:
       - ./config/loki/loki-local-config.yaml:/etc/loki/local-config.yaml
+    logging: *loki-logging
 
   grafana:
     image: grafana/grafana:latest
@@ -42,6 +52,7 @@ services:
       - "traefik.http.routers.grafana.entrypoints=web"
     volumes:
       - ./config/grafana/grafana.ini:/etc/grafana/grafana.ini
+    logging: *loki-logging
 
   catamel:
     image: scicatproject/backend:v0.0.5
@@ -54,6 +65,7 @@ services:
     labels:
       - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
       - "traefik.http.routers.catamel.entrypoints=web"
+    logging: *loki-logging
 
   catanie:
     image: scicatproject/frontend:v4.0.0
@@ -64,6 +76,8 @@ services:
     labels:
       - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
       - "traefik.http.routers.catanie.entrypoints=web"
+    logging: *loki-logging
+
   search-api:
     image: dacat/panosc-search-api:latest
     depends_on: 
@@ -74,6 +88,7 @@ services:
     environment:
       BASE_URL: "http://catamel:3000/api/v3"
       FACILITY: "SAMPLE-SITE"
+    logging: *loki-logging
 
 volumes:
   mongodb_data:

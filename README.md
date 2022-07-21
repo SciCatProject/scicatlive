@@ -9,11 +9,15 @@ Files for running SciCat with docker-compose.
    ```sh
    git clone https://github.com/SciCatProject/scicatlive.git
    ```
-2. Run with the following command inside the directory
+2. Install Loki logging driver
+   ```sh
+   docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
+   ```
+3. Run with the following command inside the directory
    ```sh
    docker-compose up -d
    ```
-3. SciCat will now be available on http://localhost. The Loopback API explorer of catamel is available at http://localhost/explorer/, the one for the search-api at http://localhost/panosc-explorer/.
+4. SciCat will now be available on http://localhost. The Loopback API explorer of catamel is available at http://localhost/explorer/, the one for the search-api at http://localhost/panosc-explorer/. Grafana is available at http://localhost/grafana/ (username: `admin`, password: `admin`).
 
 ## Add Your Local Configuration
 

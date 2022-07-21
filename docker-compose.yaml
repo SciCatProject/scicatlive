@@ -35,6 +35,14 @@ services:
     volumes:
       - ./config/loki/loki-local-config.yaml:/etc/loki/local-config.yaml
 
+  grafana:
+    image: grafana/grafana:latest
+    labels:
+      - "traefik.http.routers.grafana.rule=Path(`/grafana`) || PathPrefix(`/grafana/`)"
+      - "traefik.http.routers.grafana.entrypoints=web"
+    volumes:
+      - ./config/grafana/grafana.ini:/etc/grafana/grafana.ini
+
   catamel:
     image: scicatproject/backend:v0.0.5
     depends_on:

@@ -24,22 +24,25 @@ services:
     image: bitnami/mongodb:4.2
     volumes:
       - "mongodb_data:/bitnami"
-  catamel:
-    #image: dacat/catamel:latest
-    image: scicatproject/backend:v0.0.5
+  backend:
+    #image: scicatproject/backend:v0.0.5
+    image: ghcr.io/scicatproject/backend-next:latest
     depends_on:
       - mongodb
     volumes:
-      - ./config/catamel/config.local.js:/usr/src/app/server/config.local.js
-      - ./config/catamel/datasources.json:/usr/src/app/server/datasources.json
-      - ./config/catamel/providers.json:/usr/src/app/server/providers.json
+      #- ./config/catamel/config.local.js:/usr/src/app/server/config.local.js
+      #- ./config/catamel/datasources.json:/usr/src/app/server/datasources.json
+      #- ./config/catamel/providers.json:/usr/src/app/server/providers.json
+      - ./config/backend/config.env:/home/node/app/.env
+      - ./config/backend/functionalAccounts.json:/home/node/app/functionalAccounts.json
     labels:
-      - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
-      - "traefik.http.routers.catamel.entrypoints=web"
+      - "traefik.http.routers.backend.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
+      - "traefik.http.routers.backend.entrypoints=web"
   frontend:
+    # ghcr.io/scicatproject/frontend:latest
     image: scicatproject/frontend:v4.0.0
     depends_on:
-      - catamel
+      - backend
     volumes:
       - ./config/frontend/config.json:/usr/share/nginx/html/assets/config.json
     labels:
@@ -48,12 +51,12 @@ services:
   search-api:
     image: dacat/panosc-search-api:latest
     depends_on: 
-      - catamel
+      - backend
     labels:
       - "traefik.http.routers.panosc-search-api.rule=PathPrefix(`/panosc-api`, `/panosc-explorer`)"
       - "traefik.http.routers.panosc-search-api.entrypoints=web"
     environment:
-      BASE_URL: "http://catamel:3000/api/v3"
+      BASE_URL: "http://backend:3000/api/v3"
       FACILITY: "SAMPLE-SITE"
 volumes:
   mongodb_data:

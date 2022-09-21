@@ -8,7 +8,8 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-30T16:03:04.315Z"
-		}
+		},
+		"pid": "desy_instrument1"
 	},
 	{
 		"_id": "psi_instrument1",
@@ -19,7 +20,8 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-30T16:20:03.791Z"
-		}
+		},
+		"pid": "psi_instrument1"
 	},
 	{
 		"_id": "ukri_instrument1",
@@ -30,7 +32,8 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-30T16:22:14.215Z"
-		}
+		},
+		"pid": "ukri_instrument1"
 	},
 	{
 		"_id": "ukri_instrument3",
@@ -41,6 +44,7 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-30T16:24:41.200Z"
-		}
+		},
+		"pid": "ukri_instrument3"
 	}
 ]

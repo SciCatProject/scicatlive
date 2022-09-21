@@ -36,7 +36,8 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-29T16:07:43.451Z"
-		}
+		},
+		"doi": "DOI.SAMPLE.PREFIX/desy_pub1"
 	},
 	{
 		"_id": "DOI.SAMPLE.PREFIX/dls_pub1",
@@ -72,7 +73,8 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-29T16:08:13.824Z"
-		}
+		},
+		"doi": "DOI.SAMPLE.PREFIX/dls_pub1"
 	},
 	{
 		"_id": "DOI.SAMPLE.PREFIX/hzdr_pub1",
@@ -109,7 +111,8 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-29T16:12:16.024Z"
-		}
+		},
+		"doi": "DOI.SAMPLE.PREFIX/hzdr_pub1"
 	},
 	{
 		"_id": "DOI.SAMPLE.PREFIX/maxiv_pub1",
@@ -147,7 +150,8 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-29T16:12:32.385Z"
-		}
+		},
+		"doi": "DOI.SAMPLE.PREFIX/maxiv_pub1"
 	},
 	{
 		"_id": "DOI.SAMPLE.PREFIX/maxiv_pub2",
@@ -184,7 +188,8 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-29T16:12:47.019Z"
-		}
+		},
+		"doi": "DOI.SAMPLE.PREFIX/maxiv_pub2"
 	},
 	{
 		"_id": "DOI.SAMPLE.PREFIX/psi_pub1",
@@ -230,7 +235,8 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-29T16:13:09.717Z"
-		}
+		},
+		"doi": "DOI.SAMPLE.PREFIX/psi_pub1"
 	},
 	{
 		"_id": "DOI.SAMPLE.PREFIX/soleil_pub1",
@@ -265,7 +271,8 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-29T16:13:24.198Z"
-		}
+		},
+		"doi": "DOI.SAMPLE.PREFIX/soleil_pub1"
 	},
 	{
 		"_id": "DOI.SAMPLE.PREFIX/ukri_pub1",
@@ -302,7 +309,8 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-29T16:13:50.550Z"
-		}
+		},
+		"doi": "DOI.SAMPLE.PREFIX/ukri_pub1"
 	},
 	{
 		"_id": "DOI.SAMPLE.PREFIX/ukri_pub3",
@@ -338,7 +346,8 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-29T16:14:08.356Z"
-		}
+		},
+		"doi": "DOI.SAMPLE.PREFIX/ukri_pub3"
 	},
 	{
 		"_id": "DOI.SAMPLE.PREFIX/ukri_pub4",
@@ -375,7 +384,8 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-29T16:14:24.725Z"
-		}
+		},
+		"doi": "DOI.SAMPLE.PREFIX/ukri_pub4"
 	},
 	{
 		"_id": "DOI.SAMPLE.PREFIX/dls_pub2",
@@ -412,6 +422,7 @@
 		},
 		"updatedAt": {
 			"$date": "2021-06-29T16:20:56.182Z"
-		}
+		},
+		"doi": "DOI.SAMPLE.PREFIX/dls_pub2"
 	}
 ]

@@ -10,7 +10,8 @@
 		"createdBy": "ingestor",
 		"updatedAt": {
 			"$date": "2021-06-29T16:47:29.141Z"
-		}
+		},
+		"sampleId": "sample2"
 	},
 	{
 		"_id": "sample1",
@@ -23,6 +24,7 @@
 		"createdBy": "ingestor",
 		"updatedAt": {
 			"$date": "2021-06-29T16:48:09.708Z"
-		}
+		},
+		"sampleId": "sample1"
 	}
 ]

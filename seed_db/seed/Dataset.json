@@ -62,7 +62,8 @@
 			}
 		},
 		"sampleId": "sample2",
-		"instrumentId": "desy_instrument1"
+		"instrumentId": "desy_instrument1",
+		"pid": "PID.SAMPLE.PREFIX/desy_ds1"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/desy_ds2",
@@ -127,7 +128,8 @@
 			}
 		},
 		"sampleId": "sample2",
-		"instrumentId": "desy_instrument1"
+		"instrumentId": "desy_instrument1",
+		"pid": "PID.SAMPLE.PREFIX/desy_ds2"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/desy_ds3",
@@ -192,7 +194,8 @@
 			}
 		},
 		"sampleId": "sample2",
-		"instrumentId": "desy_instrument1"
+		"instrumentId": "desy_instrument1",
+		"pid": "PID.SAMPLE.PREFIX/desy_ds3"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/dls_ds1",
@@ -250,7 +253,8 @@
 		"investigator": "Stephen Collins",
 		"usedSoftware": [
 			"https://zenodo.org/record/4444832#.YNsUwXUzaV4"
-		]
+		],
+		"pid": "PID.SAMPLE.PREFIX/dls_ds1"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/dls_ds2",
@@ -307,8 +311,9 @@
 		],
 		"investigator": "Duncan N. Johnstone",
 		"usedSoftware": [
-			"https://dlsltd.sharepoint.com/sites/GRA0046-PRV/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FGRA0046%2DPRV%2FShared%20Documents%2Fwp4%2Dreference%2Ddata%2Dsets%2FOneDrive%5F1%5F24%2D02%2D2021%2Ezip\u0026parent=%2Fsites%2FGRA0046%2DPRV%2FShared%20Documents%2Fwp4%2Dreference%2Ddata%2Dsets\u0026p=true\u0026originalPath=aHR0cHM6Ly9kbHNsdGQuc2hhcmVwb2ludC5jb20vOnU6L3MvR1JBMDA0Ni1QUlYvRVI2ZWxDQmVySHhEbENmWUNsQmVVRnNCYWtOYkRzUkVNUm9iTlc5VnZyVVhhUT9ydGltZT0tbDc5SWdBNzJVZw"
-		]
+			"https://dlsltd.sharepoint.com/sites/GRA0046-PRV/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FGRA0046%2DPRV%2FShared%20Documents%2Fwp4%2Dreference%2Ddata%2Dsets%2FOneDrive%5F1%5F24%2D02%2D2021%2Ezip&parent=%2Fsites%2FGRA0046%2DPRV%2FShared%20Documents%2Fwp4%2Dreference%2Ddata%2Dsets&p=true&originalPath=aHR0cHM6Ly9kbHNsdGQuc2hhcmVwb2ludC5jb20vOnU6L3MvR1JBMDA0Ni1QUlYvRVI2ZWxDQmVySHhEbENmWUNsQmVVRnNCYWtOYkRzUkVNUm9iTlc5VnZyVVhhUT9ydGltZT0tbDc5SWdBNzJVZw"
+		],
+		"pid": "PID.SAMPLE.PREFIX/dls_ds2"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/hzdr_ds1",
@@ -365,8 +370,9 @@
 		],
 		"investigator": "Hao Chu",
 		"usedSoftware": [
-			"https://www.hzdr.de/db/Cms?pOid=34100\u0026pNid=2609\u0026pLang=en"
-		]
+			"https://www.hzdr.de/db/Cms?pOid=34100&pNid=2609&pLang=en"
+		],
+		"pid": "PID.SAMPLE.PREFIX/hzdr_ds1"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/maxiv_ds1",
@@ -424,7 +430,8 @@
 		"investigator": "Rajmund Mokso",
 		"usedSoftware": [
 			"https://doi.org/10.1109/TCI.2019.2898088"
-		]
+		],
+		"pid": "PID.SAMPLE.PREFIX/maxiv_ds1"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/maxiv_ds2",
@@ -482,7 +489,8 @@
 		"investigator": "Maik Kahnt",
 		"usedSoftware": [
 			"https://software.pan-data.eu/software/160/ptypy"
-		]
+		],
+		"pid": "PID.SAMPLE.PREFIX/maxiv_ds2"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds1",
@@ -561,7 +569,8 @@
 				"valueSI": 0.00000275,
 				"unitSI": "m"
 			}
-		}
+		},
+		"pid": "PID.SAMPLE.PREFIX/psi_ds1"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds2",
@@ -640,7 +649,8 @@
 				"valueSI": 0.00000275,
 				"unitSI": "m"
 			}
-		}
+		},
+		"pid": "PID.SAMPLE.PREFIX/psi_ds2"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds3",
@@ -718,7 +728,8 @@
 		},
 		"sampleId": "sample1",
 		"instrumentId": "psi_instrument1",
-		"proposalId": "psi_proposal1"
+		"proposalId": "psi_proposal1",
+		"pid": "PID.SAMPLE.PREFIX/psi_ds3"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/soleil_ds1",
@@ -776,7 +787,8 @@
 		"investigator": "Doru Constantin",
 		"inputDatasets": [
 			"PID.SAMPLE.PREFIX/soleil_ds2"
-		]
+		],
+		"pid": "PID.SAMPLE.PREFIX/soleil_ds1"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/soleil_ds2",
@@ -831,7 +843,8 @@
 				"name": "photon_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.low_momentum_transfer_scattering.small_angle_scattering.small_angle_x-ray_scattering;\nphoton_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.Q133900.small_angle_scattering.small_angle_x-ray_scattering;\nphoton_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.CHMO_0000182.small_angle_scattering.small_angle_x-ray_scattering;\nphoton_and_neutron_technique.defined_by_experimental_physical_process.scattering_technique.elastic_scattering.diffraction.small_angle_scattering.small_angle_x-ray_scattering;\nphoton_and_neutron_technique.defined_by_experimental_probe.photon_probe.x-ray_probe.small_angle_x-ray_scattering"
 			}
 		],
-		"principalInvestigator": "Doru Constantin"
+		"principalInvestigator": "Doru Constantin",
+		"pid": "PID.SAMPLE.PREFIX/soleil_ds2"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds1",
@@ -889,7 +902,8 @@
 		"investigator": "Franz Lang",
 		"usedSoftware": [
 			"https://github.com/DAaaS-reference-data/SANS/blob/main/ExPaNDS_reduction.ipynb"
-		]
+		],
+		"pid": "PID.SAMPLE.PREFIX/ukri_ds1"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds2",
@@ -945,7 +959,8 @@
 			}
 		],
 		"principalInvestigator": "Franz Lang",
-		"instrumentId": "ukri_instrument1"
+		"instrumentId": "ukri_instrument1",
+		"pid": "PID.SAMPLE.PREFIX/ukri_ds2"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds3",
@@ -1003,7 +1018,8 @@
 		"investigator": "Franz Lang",
 		"usedSoftware": [
 			"https://github.com/DAaaS-reference-data/SANS/blob/main/ExPaNDS_reduction.ipynb"
-		]
+		],
+		"pid": "PID.SAMPLE.PREFIX/ukri_ds3"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds4",
@@ -1061,7 +1077,8 @@
 		"investigator": "Chiara Triestino",
 		"usedSoftware": [
 			"https://doi.org/10.1107/S1600576720000151"
-		]
+		],
+		"pid": "PID.SAMPLE.PREFIX/ukri_ds4"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds5",
@@ -1117,7 +1134,8 @@
 			}
 		],
 		"principalInvestigator": "Gabriel Bernardo",
-		"instrumentId": "ukri_instrument3"
+		"instrumentId": "ukri_instrument3",
+		"pid": "PID.SAMPLE.PREFIX/ukri_ds5"
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds6",
@@ -1178,6 +1196,7 @@
 		],
 		"usedSoftware": [
 			"https://github.com/DAaaS-reference-data/Reflectivity/blob/main/OFFSPEC_runs_46992-4/RB1720415_run_46992.py"
-		]
+		],
+		"pid": "PID.SAMPLE.PREFIX/ukri_ds6"
 	}
 ]

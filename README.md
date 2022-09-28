@@ -17,8 +17,8 @@ Files for running SciCat with docker-compose.
 
 ## Add Your Local Configuration
 
-1. Add your local configuration to [config.local.js](./config/catamel/config.local.js)
-2. Uncomment the `volumes:` line and the line containing `config.local.js` in the catamel service section in [docker-compose.yaml](./docker-compose.yaml) (if commented)
+1. Add your local configuration to [config.env](./config/backend/config.env) and [config.json](./config/frontend/config.json)
+2. Make sure that the concerned `volumes:` lines in [docker-compose.yaml](./docker-compose.yaml) are uncommented
 3. Restart the docker containers
 
 
@@ -40,6 +40,7 @@ There are a few functional accounts available for handling data:
 | archiveManager   | aman        | Manage archiving of datasets |
 | proposalIngestor | aman        | Ingest proposals             |
 
+The functional accounts can be configured in [functionalAccounts.json](./config/backend/functionalAccounts.json)
 
 ## Seeding of the database
 

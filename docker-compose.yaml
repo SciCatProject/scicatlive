@@ -13,7 +13,9 @@ services:
     volumes:
       - "./seed_db/seed:/seed"
       - "./seed_db/mongo_import.sh:/mnt/mongo_import.sh"
-    command: 
+    env_file:
+      - "./config/backend/.env"
+    command:
       - "sh"
       - "-c"
       - "chmod u+x /mnt/mongo_import.sh && /mnt/mongo_import.sh"
@@ -27,10 +29,10 @@ services:
       - "mongodb_data:/bitnami"
   backend:
     image: ghcr.io/scicatproject/backend-next
-    env_file: 
+    env_file:
       - "./config/backend/.env"
     volumes:
-      - ./config/frontend/config.json:/home/node/app/dist/src/config/frontend.config.json    
+      - ./config/frontend/config.json:/home/node/app/dist/src/config/frontend.config.json
     depends_on:
       - mongodb
     labels:
@@ -47,7 +49,7 @@ services:
       - "traefik.http.routers.frontend.entrypoints=web"
   search-api:
     image: ghcr.io/scicatproject/panosc-search-api
-    depends_on: 
+    depends_on:
       - backend
     labels:
       - "traefik.http.routers.panosc-search-api.rule=PathPrefix(`/panosc-api`, `/panosc-explorer`)"

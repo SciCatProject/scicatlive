@@ -4,5 +4,6 @@ cd /seed
 
 for FILE_NAME in $(ls *.json)
 do
-    mongoimport --host mongodb --db scicat --collection ${FILE_NAME%.*} --file $FILE_NAME --jsonArray
+    echo "Importing from $FILE_NAME"
+    mongoimport --uri $MONGODB_URI  --collection ${FILE_NAME%.*} --file $FILE_NAME --jsonArray
 done

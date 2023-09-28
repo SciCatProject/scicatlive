@@ -1,28 +1,4 @@
 [{
-	"_id": "desy_instrument1",
-	"name": "SPB/SFX",
-	"createdBy": "ingestor",
-	"createdAt": {
-		"$date": "2021-06-30T16:03:04.313Z"
-	},
-	"updatedAt": {
-		"$date": "2021-06-30T16:03:04.315Z"
-	},
-	"pid": "desy_instrument1"
-},
-{
-	"_id": "psi_instrument1",
-	"name": "TOMCAT X02DA",
-	"createdBy": "ingestor",
-	"createdAt": {
-		"$date": "2021-06-30T16:20:03.79Z"
-	},
-	"updatedAt": {
-		"$date": "2021-06-30T16:20:03.791Z"
-	},
-	"pid": "psi_instrument1"
-},
-{
 	"_id": "ukri_instrument3",
 	"name": "ISIS Offspec",
 	"createdBy": "ingestor",
@@ -32,7 +8,8 @@
 	"updatedAt": {
 		"$date": "2021-06-30T16:24:41.2Z"
 	},
-	"pid": "ukri_instrument3"
+	"pid": "ukri_instrument3",
+	"uniqueName": "ISIS Offspec ea176a4793ad"
 },
 {
 	"_id": "ukri_instrument1",
@@ -44,6 +21,33 @@
 	"updatedAt": {
 		"$date": "2021-06-30T16:22:14.215Z"
 	},
-	"pid": "ukri_instrument1"
+	"pid": "ukri_instrument1",
+	"uniqueName": "LOQ 542c624d6043"
+},
+{
+	"_id": "psi_instrument1",
+	"name": "TOMCAT X02DA",
+	"createdBy": "ingestor",
+	"createdAt": {
+		"$date": "2021-06-30T16:20:03.79Z"
+	},
+	"updatedAt": {
+		"$date": "2021-06-30T16:20:03.791Z"
+	},
+	"pid": "psi_instrument1",
+	"uniqueName": "TOMCAT X02DA 71cea777fc7f"
+},
+{
+	"_id": "desy_instrument1",
+	"name": "SPB/SFX",
+	"createdBy": "ingestor",
+	"createdAt": {
+		"$date": "2021-06-30T16:03:04.313Z"
+	},
+	"updatedAt": {
+		"$date": "2021-06-30T16:03:04.315Z"
+	},
+	"pid": "desy_instrument1",
+	"uniqueName": "SPB/SFX 4927d80f3c61"
 }]
 

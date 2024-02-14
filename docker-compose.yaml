@@ -36,7 +36,7 @@ services:
       - ./config/backend/config.env:/home/node/app/.env
       - ./config/backend/functionalAccounts.json:/home/node/app/functionalAccounts.json
     labels:
-      - "traefik.http.routers.backend.rule=PathPrefix(`/api`, `/auth`, `/explorer-next`)"
+      - "traefik.http.routers.backend.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
       - "traefik.http.routers.backend.entrypoints=web"
   frontend:
     # ghcr.io/scicatproject/frontend:latest

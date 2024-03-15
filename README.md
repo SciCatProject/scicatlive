@@ -13,7 +13,7 @@ Files for running SciCat with docker-compose.
    ```sh
    docker-compose up -d
    ```
-3. SciCat will now be available on http://localhost. The Loopback API explorer of catamel is available at http://localhost/explorer/, the one for the search-api at http://localhost/panosc-explorer/.
+3. SciCat will now be available on http://localhost. The Loopback API explorer of catamel is available at http://localhost/explorer/, the one for the search-api at http://localhost/explorer/.
 
 ## Add Your Local Configuration
 

@@ -36,17 +36,15 @@ services:
     labels:
       - "traefik.http.routers.backend.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
       - "traefik.http.routers.backend.entrypoints=web"
-  catanie:
-    #image: dacat/catanie:latest
+  frontend:
     image: scicatproject/frontend:v4.0.0
-    #image: dacat/catanie:2431284a58361320b334162def0323e5e017aaeaproduction
     depends_on:
       - backend
     volumes:
       - ./config/frontend/config.json:/usr/share/nginx/html/assets/config.json
     labels:
-      - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
-      - "traefik.http.routers.catanie.entrypoints=web"
+      - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.frontend.entrypoints=web"
   search-api:
     image: dacat/panosc-search-api:latest
     depends_on:

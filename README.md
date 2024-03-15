@@ -13,7 +13,11 @@ Files for running SciCat with docker-compose.
    ```sh
    docker-compose up -d
    ```
-3. SciCat will now be available on http://localhost. The Loopback API explorer of the backend is available at http://localhost/explorer/, the one for the search-api at http://localhost/panosc-explorer/.
+3. SciCat will now be available on http://localhost. 
+
+The Loopback API explorer of the backend is available at http://backend.localhost/explorer/ and the APIs at http://backend.localhost/api/. 
+
+The Loopback API explorer of the search-api at http://searchapi.localhost/explorer/ and the APIs at http://searchapi.localhost/api/.
 
 ## Add Your Local Configuration
 

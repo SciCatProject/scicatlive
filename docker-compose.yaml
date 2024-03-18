@@ -1,8 +1,8 @@
 version: '3'
 include: 
-  - ./config/mongodbseed/docker-compose.yaml
-  - ./config/mongodb/docker-compose.yaml
-  - ./config/proxy/docker-compose.yaml
-  - ./config/backend/docker-compose.yaml
-  - ./config/frontend/docker-compose.yaml
-  - ./config/searchapi/docker-compose.yaml
+  - ./service/mongodbseed/docker-compose.yaml
+  - ./service/mongodb/docker-compose.yaml
+  - ./service/proxy/docker-compose.yaml
+  - ./service/backend/docker-compose.yaml
+  - ./service/frontend/docker-compose.yaml
+  - ./service/searchapi/docker-compose.yaml

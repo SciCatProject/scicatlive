@@ -2,6 +2,7 @@ version: '3'
 include: 
   - ./config/backend/docker-compose.yaml
   - ./config/frontend/docker-compose.yaml
+  - ./config/searchapi/docker-compose.yaml
 services:
   reverse-proxy:
     image: traefik:2.5
@@ -28,16 +29,6 @@ services:
     image: bitnami/mongodb:4.2
     volumes:
       - "mongodb_data:/bitnami"
-  searchapi:
-    image: dacat/panosc-search-api:latest
-    depends_on:
-      - backend
-    labels:
-      - "traefik.http.routers.searchapi.rule=PathPrefix(`/panosc-api`, `/panosc-explorer`)"
-      - "traefik.http.routers.searchapi.entrypoints=web"
-    environment:
-      BASE_URL: "http://backend:3000/api/v3"
-      FACILITY: "SAMPLE-SITE"
 volumes:
   mongodb_data:
     driver: local

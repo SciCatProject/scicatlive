@@ -1,0 +1,14 @@
+services:
+  mongodbseed:
+    image: bitnami/mongodb:4.2
+    volumes:
+      - "./seed:/seed"
+      - "./mongo_import.sh:/mnt/mongo_import.sh"
+    command: 
+      - "sh"
+      - "-c"
+      - "chmod u+x /mnt/mongo_import.sh && /mnt/mongo_import.sh"
+    user: "0:0"
+    depends_on:
+      - mongodb
+    restart: on-failure

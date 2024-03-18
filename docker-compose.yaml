@@ -4,15 +4,8 @@ include:
   - ./config/frontend/docker-compose.yaml
   - ./config/searchapi/docker-compose.yaml
   - ./config/mongodb/docker-compose.yaml
+  - ./config/proxy/docker-compose.yaml
 services:
-  proxy:
-    image: traefik:2.5
-    command: --api.insecure=true --providers.docker=true --entrypoints.web.address=:80
-    ports:
-      - "80:80"
-      - "8080:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
   mongodb_seed:
     image: bitnami/mongodb:4.2
     volumes:

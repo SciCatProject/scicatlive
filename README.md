@@ -15,41 +15,61 @@ Files for running SciCat with docker-compose.
    ```
 3. SciCat will now be available on http://localhost. The Loopback API explorer of the backend is available at http://localhost/explorer/, the one for the search-api at http://localhost/panosc-explorer/.
 
-## Add Your Local Configuration
+## Default setup
 
-1. Add your local configuration to [config.local.js](./service/backend/config/config.local.js)
-2. Uncomment the `volumes:` line and the line containing `config.local.js` in the backend service section in [docker-compose.yaml](./docker-compose.yaml) (if commented)
-3. Restart the docker containers
-
-
-## Add LDAP Authentication
-
-1. Add your LDAP configuration to [providers.json](./service/backend/config/providers.json)
-2. Uncomment the `volumes:` line and the line containing `providers.json` in the backend service section in [docker-compose.yaml](./docker-compose.yaml)
-3. Restart the docker containers 
+By running `docker-compose up -d` these steps take place: 
+1. a [mongodb](./service/mongodb/) container is created.
+2. some initial data is [imported](./service/mongodbseed/) in (1).
+3. the SciCat [backend v3](./service/backend/) container is created and connected to (1).
+4. the SciCat [frontend](./service/frontend/) container is created and connected to (3).
+5. the SciCat [PaN searchapi](./service/searchapi/) container is created and connected to (3).
 
 
-## Functional Accounts
+```mermaid
+graph TD;
+   mongodb --- mongodbseed;
+   mongodb --- backend;
+   backend --- frontend;
+   backend --- searchapi;
+```
 
-There are a few functional accounts available for handling data:
+## Select the services
 
-| Username         | Password    | Usage                        |
-| ---------------- | ----------- | ---------------------------- |
-| admin            | 2jf70TPNZsS | Admin                        |
-| ingestor         | aman        | Ingest datasets              |
-| archiveManager   | aman        | Manage archiving of datasets |
-| proposalIngestor | aman        | Ingest proposals             |
+The user can selectively decide the containers to spin up and the dependencies will be resolved accordingly. The available services are in the [service](./service/) folder and called consistently. 
 
 
-## Seeding of the database
+For example, one could decide to only run the `backend` by running:
 
-All files used in the seeding of the database are in the [seed folder](./service/mongodbseed/config). 
+```sh
+docker-compose up -d backend
+```
 
-To add more collections during the creation of the database:
-1. add the corresponding file(s) there, keeping the convention: `filename := collectionname.json`.
-2. Restart the docker container.
+This will run, from the [previous section](#default-setup), (1), (2) and (3) but skip (4) and 5. 
 
-These files are ingested into the database using mongo funcionalities and bypassing the backend, i.e. they are not to be taken as examples to use the backend API.
+Accordingly,
+```sh
+docker-compose up -d frontend(/searchapi)
+```
+
+Will run, from the [previous section](#default-setup), (1), (2), (3) and (4/(5)) but skip (5/(4)). 
+
+## Custom configure a service
+
+Every service folder (inside the [service](./service/) parent directory) contains its configuration and some instructions, at least for the non third-party containers.
+
+For example, to configure the [backend](./service/backend/), the user can change any file in the [backend config](./service/backend/config/) folder, for which instructions are available in the [README](./service/backend/README.md) file. 
+
+After any configuration change, `docker-compose up -d` must be rerun, to allow loading the changes.
+
+## Add a new service
+
+To add a new service: 
+1. create a dedicated folder in the [service](./service/) one
+2. call it as the service should be named
+3. create the `docker-compose.yaml` file with the required dependencies (if any).
+4. eventually create a `config` folder if it requires configuration
+5. add a `README.md` file if needed
+6. include the reference to (3) to the global [docker-compose include list](docker-compose.yaml#L2)
 
 ## General use of scicat
 

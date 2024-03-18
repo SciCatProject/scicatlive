@@ -43,7 +43,7 @@ There are a few functional accounts available for handling data:
 
 ## Seeding of the database
 
-All files used in the seeding of the database are in the [seed folder](./seed_db/seed). 
+All files used in the seeding of the database are in the [seed folder](./seed_db/config). 
 
 To add more collections during the creation of the database:
 1. add the corresponding file(s) there, keeping the convention: `filename := collectionname.json`.

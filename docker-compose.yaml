@@ -6,7 +6,7 @@ include:
   - ./config/mongodb/docker-compose.yaml
   - ./config/proxy/docker-compose.yaml
 services:
-  mongodb_seed:
+  mongodbseed:
     image: bitnami/mongodb:4.2
     volumes:
       - "./seed_db/seed:/seed"

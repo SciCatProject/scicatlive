@@ -1,0 +1,12 @@
+services:
+  backend:
+    image: scicatproject/backend:v0.0.5
+    depends_on:
+      - mongodb
+    volumes:
+      - ./config.local.js:/usr/src/app/server/config.local.js
+      - ./datasources.json:/usr/src/app/server/datasources.json
+      - ./providers.json:/usr/src/app/server/providers.json
+    labels:
+      - "traefik.http.routers.backend.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
+      - "traefik.http.routers.backend.entrypoints=web"

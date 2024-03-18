@@ -3,6 +3,7 @@ include:
   - ./config/backend/docker-compose.yaml
   - ./config/frontend/docker-compose.yaml
   - ./config/searchapi/docker-compose.yaml
+  - ./config/mongodb/docker-compose.yaml
 services:
   reverse-proxy:
     image: traefik:2.5
@@ -25,10 +26,3 @@ services:
     depends_on:
       - mongodb
     restart: on-failure
-  mongodb:
-    image: bitnami/mongodb:4.2
-    volumes:
-      - "mongodb_data:/bitnami"
-volumes:
-  mongodb_data:
-    driver: local

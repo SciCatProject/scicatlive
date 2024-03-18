@@ -6,6 +6,5 @@ services:
     labels:
       - "traefik.http.routers.searchapi.rule=PathPrefix(`/panosc-api`, `/panosc-explorer`)"
       - "traefik.http.routers.searchapi.entrypoints=web"
-    environment:
-      BASE_URL: "http://backend:3000/api/v3"
-      FACILITY: "SAMPLE-SITE"
+    env_file:
+      - ./config/.env

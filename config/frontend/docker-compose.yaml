@@ -1,0 +1,10 @@
+services:
+  frontend:
+    image: scicatproject/frontend:v4.0.0
+    depends_on:
+      - backend
+    volumes:
+      - ./config.json:/usr/share/nginx/html/assets/config.json
+    labels:
+      - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.frontend.entrypoints=web"

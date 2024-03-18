@@ -1,6 +1,7 @@
 version: '3'
 include: 
   - ./config/backend/docker-compose.yaml
+  - ./config/frontend/docker-compose.yaml
 services:
   reverse-proxy:
     image: traefik:2.5
@@ -27,15 +28,6 @@ services:
     image: bitnami/mongodb:4.2
     volumes:
       - "mongodb_data:/bitnami"
-  frontend:
-    image: scicatproject/frontend:v4.0.0
-    depends_on:
-      - backend
-    volumes:
-      - ./config/frontend/config.json:/usr/share/nginx/html/assets/config.json
-    labels:
-      - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
-      - "traefik.http.routers.frontend.entrypoints=web"
   search-api:
     image: dacat/panosc-search-api:latest
     depends_on:

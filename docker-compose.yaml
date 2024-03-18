@@ -28,13 +28,13 @@ services:
     image: bitnami/mongodb:4.2
     volumes:
       - "mongodb_data:/bitnami"
-  search-api:
+  searchapi:
     image: dacat/panosc-search-api:latest
     depends_on:
       - backend
     labels:
-      - "traefik.http.routers.panosc-search-api.rule=PathPrefix(`/panosc-api`, `/panosc-explorer`)"
-      - "traefik.http.routers.panosc-search-api.entrypoints=web"
+      - "traefik.http.routers.searchapi.rule=PathPrefix(`/panosc-api`, `/panosc-explorer`)"
+      - "traefik.http.routers.searchapi.entrypoints=web"
     environment:
       BASE_URL: "http://backend:3000/api/v3"
       FACILITY: "SAMPLE-SITE"

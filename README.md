@@ -17,14 +17,14 @@ Files for running SciCat with docker-compose.
 
 ## Add Your Local Configuration
 
-1. Add your local configuration to [config.local.js](./config/backend/config.local.js)
+1. Add your local configuration to [config.local.js](./config/backend/config/config.local.js)
 2. Uncomment the `volumes:` line and the line containing `config.local.js` in the backend service section in [docker-compose.yaml](./docker-compose.yaml) (if commented)
 3. Restart the docker containers
 
 
 ## Add LDAP Authentication
 
-1. Add your LDAP configuration to [providers.json](./config/backend/providers.json)
+1. Add your LDAP configuration to [providers.json](./config/backend/config/providers.json)
 2. Uncomment the `volumes:` line and the line containing `providers.json` in the backend service section in [docker-compose.yaml](./docker-compose.yaml)
 3. Restart the docker containers 
 

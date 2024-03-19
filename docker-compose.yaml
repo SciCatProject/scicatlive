@@ -9,7 +9,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   mongodb:
-    image: mongo:4.2
+    image: mongo:7.0
     volumes:
       - "mongodb_data:/data/db"
       - "./seed_db/init.js:/docker-entrypoint-initdb.d/init.js"

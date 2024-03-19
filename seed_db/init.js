@@ -1,8 +1,8 @@
 db = connect('mongodb://localhost/dacat');
-seedFiles = listFiles('/seed');
-seedFiles.forEach((file) => {
-  collectionName = file.baseName.replace(/\.json$/, '');
-  content = JSON.parse(cat(file.name));
+seedFiles = fs.readdirSync('/seed');
+seedFiles.forEach((filename) => {
+  collectionName = filename.replace(/\.json$/, '');
+  content = JSON.parse(fs.readFileSync('/seed/' + filename, 'utf8'));
   db.createCollection(collectionName);
   db[collectionName].insertMany(content);
 });

@@ -28,11 +28,15 @@ services:
   backend:
     image: scicatproject/backend:v0.0.5
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_started
+      local-rabbitmq:
+        condition: service_healthy
     volumes:
       - ./config/backend/config.local.js:/usr/src/app/server/config.local.js
       - ./config/backend/datasources.json:/usr/src/app/server/datasources.json
       - ./config/backend/providers.json:/usr/src/app/server/providers.json
+      - ./config/backend/component-config.local.json:/usr/src/app/server/component-config.local.json
     labels:
       - "traefik.http.routers.backend.rule=Host(`backend.localhost`)"
   frontend:
@@ -52,6 +56,30 @@ services:
     environment:
       BASE_URL: "http://backend:3000/api/v3"
       FACILITY: "SAMPLE-SITE"
+  local-rabbitmq:
+    hostname: local-rabbitmq
+    build: 'rabbitmq/.'
+    labels:
+      - "traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.localhost`)"
+      - "traefik.http.services.rabbitmq.loadbalancer.server.port=15672"
+    expose:
+      - 4369
+      - 5672
+      - 25672
+      - 15672
+    environment:
+      - RABBITMQ_USER=admin
+      - RABBITMQ_PASSWORD=password
+    volumes:
+      - 'rabbitmq_data:/bitnami'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:15672"]
+      start_period: 3s
+      interval: 30s
+      timeout: 10s
+      retries: 5
 volumes:
   mongodb_data:
+    driver: local
+  rabbitmq_data:
     driver: local

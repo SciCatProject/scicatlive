@@ -8,23 +8,12 @@ services:
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-  mongodb_seed:
-    image: bitnami/mongodb:4.2
-    volumes:
-      - "./seed_db/seed:/seed"
-      - "./seed_db/mongo_import.sh:/mnt/mongo_import.sh"
-    command: 
-      - "sh"
-      - "-c"
-      - "chmod u+x /mnt/mongo_import.sh && /mnt/mongo_import.sh"
-    user: "0:0"
-    depends_on:
-      - mongodb
-    restart: on-failure
   mongodb:
-    image: bitnami/mongodb:4.2
+    image: mongo:7.0
     volumes:
-      - "mongodb_data:/bitnami"
+      - "mongodb_data:/data/db"
+      - "./seed_db/init.js:/docker-entrypoint-initdb.d/init.js"
+      - "./seed_db/seed:/seed"
   backend:
     image: scicatproject/backend:v0.0.5
     depends_on:

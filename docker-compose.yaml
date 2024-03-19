@@ -1,13 +1,26 @@
 version: '3'
 services:
   reverse-proxy:
-    image: traefik:2.5
-    command: --api.insecure=true --providers.docker=true --entrypoints.web.address=:80
+    image: traefik:2.11.0
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entryPoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entryPoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.websecure.http.tls.certResolver=leresolver"
+      - "--certificatesResolvers.leresolver.acme.email=username@example.com"
+      - "--certificatesResolvers.leresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesResolvers.leresolver.acme.storage=/letsencrypt/acme.json"
+      - "--certificatesResolvers.leresolver.acme.httpChallenge.entryPoint=web"
     ports:
       - "80:80"
-      - "8080:8080"
+      - "443:443"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./letsencrypt:/letsencrypt"
   mongodb:
     image: mongo:7.0
     volumes:
@@ -23,7 +36,9 @@ services:
       - ./config/backend/datasources.json:/usr/src/app/server/datasources.json
       - ./config/backend/providers.json:/usr/src/app/server/providers.json
     labels:
-      - "traefik.http.routers.backend.rule=Host(`backend.localhost`)"
+      - "traefik.http.routers.backend.rule=(Host(`scicat-live.example.com`) && PathPrefix(`/api`, `/auth`, `/explorer`))"
+      - "traefik.http.routers.backend.entrypoints=websecure"
+      - "traefik.http.routers.backend.tls.certresolver=leresolver"
   frontend:
     image: scicatproject/frontend:v4.0.0
     depends_on:
@@ -31,13 +46,17 @@ services:
     volumes:
       - ./config/frontend/config.json:/usr/share/nginx/html/assets/config.json
     labels:
-      - "traefik.http.routers.frontend.rule=Host(`localhost`)"
+      - "traefik.http.routers.frontend.rule=(Host(`scicat-live.example.com`) && PathPrefix(`/`))"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=leresolver"
   search-api:
     image: dacat/panosc-search-api:latest
     depends_on:
       - backend
     labels:
-      - "traefik.http.routers.panosc-search-api.rule=Host(`searchapi.localhost`)"
+      - "traefik.http.routers.panosc-search-api.rule=(Host(`scicat-live.example.com`) && PathPrefix(`/panosc-api`, `/panosc-explorer`))"
+      - "traefik.http.routers.panosc-search-api.entrypoints=websecure"
+      - "traefik.http.routers.panosc-search-api.tls.certresolver=leresolver"
     environment:
       BASE_URL: "http://backend:3000/api/v3"
       FACILITY: "SAMPLE-SITE"

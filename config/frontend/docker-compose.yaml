@@ -4,6 +4,6 @@ services:
     depends_on:
       - backend
     volumes:
-      - ./config.json:/usr/share/nginx/html/assets/config.json
+      - ./config/config.json:/usr/share/nginx/html/assets/config.json
     labels:
       - "traefik.http.routers.frontend.rule=Host(`localhost`)"

@@ -2,12 +2,6 @@
     "loopback-component-explorer": {
         "mountPath": "/explorer"
     },
-    "loopback-component-visualizer": {
-        "mountPath": "/visualize"
-    },
-    "loopback-component-model-diagram": {
-        "mountPath": "/modeldiagram"
-    },
     "../node_modules/loopback-component-mq/lib": {
         "options": {
             "restPort": 15672,
@@ -20,7 +14,7 @@
         },
         "topology": {
             "connection": {
-                "uri": "amqp://admin:password@local-rabbitmq"
+                "uri": "amqp://user:password@rabbitmq"
             },
             "exchanges": [{
                 "name": "jobs.write",

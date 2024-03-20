@@ -2,6 +2,7 @@ version: '3'
 include:
   - ./config/backend/docker-compose.yaml
   - ./config/frontend/docker-compose.yaml
+  - ./config/searchapi/docker-compose.yaml
   - ./config/proxy/docker-compose.yaml
 services:
   mongodb:
@@ -10,15 +11,6 @@ services:
       - "mongodb_data:/data/db"
       - "./seed_db/init.js:/docker-entrypoint-initdb.d/init.js"
       - "./seed_db/seed:/seed"
-  searchapi:
-    image: dacat/panosc-search-api:latest
-    depends_on:
-      - backend
-    labels:
-      - "traefik.http.routers.searchapi.rule=Host(`searchapi.localhost`)"
-    environment:
-      BASE_URL: "http://backend:3000/api/v3"
-      FACILITY: "SAMPLE-SITE"
   rabbitmq:
     image: rabbitmq:3.13-management-alpine
     labels:

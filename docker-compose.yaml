@@ -61,14 +61,6 @@ services:
     labels:
       - "traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.localhost`)"
       - "traefik.http.services.rabbitmq.loadbalancer.server.port=15672"
-    expose:
-      - 4369
-      - 5672
-      - 25672
-      - 15672
-    environment:
-      - RABBITMQ_DEFAULT_USER=user 
-      - RABBITMQ_DEFAULT_PASS=password 
     volumes:
       - 'rabbitmq_data:/bitnami'
     healthcheck:

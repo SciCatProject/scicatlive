@@ -14,7 +14,7 @@
         },
         "topology": {
             "connection": {
-                "uri": "amqp://user:password@rabbitmq"
+                "uri": "amqp://guest:guest@rabbitmq"
             },
             "exchanges": [{
                 "name": "jobs.write",

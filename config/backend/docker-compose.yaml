@@ -7,9 +7,9 @@ services:
       rabbitmq:
         condition: service_healthy
     volumes:
-      - ./config.local.js:/usr/src/app/server/config.local.js
-      - ./datasources.json:/usr/src/app/server/datasources.json
-      - ./providers.json:/usr/src/app/server/providers.json
-      - ./component-config.local.json:/usr/src/app/server/component-config.local.json
+      - ./config/config.local.js:/usr/src/app/server/config.local.js
+      - ./config/datasources.json:/usr/src/app/server/datasources.json
+      - ./config/providers.json:/usr/src/app/server/providers.json
+      - ./config/component-config.local.json:/usr/src/app/server/component-config.local.json
     labels:
       - "traefik.http.routers.backend.rule=Host(`backend.localhost`)"

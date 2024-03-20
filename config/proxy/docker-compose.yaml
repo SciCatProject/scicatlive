@@ -1,5 +1,5 @@
 services:
-  reverse-proxy:
+  proxy:
     image: traefik:2.5
     command: --api.insecure=true --providers.docker=true --entrypoints.web.address=:80
     ports:

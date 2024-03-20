@@ -1,0 +1,15 @@
+services:
+  backend:
+    image: scicatproject/backend:v0.0.5
+    depends_on:
+      mongodb:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+    volumes:
+      - ./config.local.js:/usr/src/app/server/config.local.js
+      - ./datasources.json:/usr/src/app/server/datasources.json
+      - ./providers.json:/usr/src/app/server/providers.json
+      - ./component-config.local.json:/usr/src/app/server/component-config.local.json
+    labels:
+      - "traefik.http.routers.backend.rule=Host(`backend.localhost`)"

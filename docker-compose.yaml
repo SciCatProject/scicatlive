@@ -1,16 +1,11 @@
 version: '3'
 include:
+  - ./config/mongodb/docker-compose.yaml
   - ./config/backend/docker-compose.yaml
   - ./config/frontend/docker-compose.yaml
   - ./config/searchapi/docker-compose.yaml
   - ./config/proxy/docker-compose.yaml
 services:
-  mongodb:
-    image: mongo:7.0
-    volumes:
-      - "mongodb_data:/data/db"
-      - "./seed_db/init.js:/docker-entrypoint-initdb.d/init.js"
-      - "./seed_db/seed:/seed"
   rabbitmq:
     image: rabbitmq:3.13-management-alpine
     labels:
@@ -39,7 +34,5 @@ services:
       RMQ_USER: "guest"
       RMQ_PW: "guest"
 volumes:
-  mongodb_data:
-    driver: local
   rabbitmq_data:
     driver: local

@@ -21,11 +21,11 @@ The Loopback API explorer of the search-api at http://searchapi.localhost/explor
 
 ## Backend configuration
 
-To configure the backend follow [here](./config/backend/README.md)
+To configure the backend follow [here](./services/backend/README.md)
 
 ## Seeding of the database
 
-For instructions on the seeding of the database see [here](./config/mongodb/README.md)
+For instructions on the seeding of the database see [here](./services/mongodb/README.md)
 
 ## General use of scicat
 

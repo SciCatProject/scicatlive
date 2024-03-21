@@ -24,7 +24,6 @@ database | mongodb database | "dacat"
 password | mongodb user password | ""
 user | mongodb user password | ""
 
-
 ### [providers.json](./config/providers.json)
 
 It allows setting the authentication providers. The `local` block sets the local accounts.
@@ -49,6 +48,17 @@ site | name of the facility runnin SciCat | "SAMPLE-SITE"
 queue | message broker flavour for the JOBs | "rabbitmq"
 logbook.enabled | option to enable scichat | "false"
 
+### Functional Accounts
+
+There are a few functional accounts available for handling data:
+
+| Username         | Password    | Usage                        |
+| ---------------- | ----------- | ---------------------------- |
+| admin            | 2jf70TPNZsS | Admin                        |
+| ingestor         | aman        | Ingest datasets              |
+| archiveManager   | aman        | Manage archiving of datasets |
+| proposalIngestor | aman        | Ingest proposals             |
+
 ## Defaul configuration
 
-In the default configuration folder [config](./config), the backend is set to use the mongo container.
+In the default configuration folder [config](./config), the backend is set to use the [mongo container](../mongodb/).

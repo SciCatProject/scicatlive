@@ -26,10 +26,13 @@ A similar script handles retrieval:
 4. Mark job as done (jobStatusMessage: `"finishedSuccessful"`)
 
 ## [Config](./config/.env) - Environment Variables
- - SCI_URL - the base url of the backend (usually ends in `/api/v_`)
- - SCI_USER - the scicat user's username used for accessing the backend
- - SCI_PW - the above user's password
- - TOKEN - scicat access token, can be used instead of username and password
- - RMQ_URL - RabbitMQ API url
- - RMQ_USER - the username used for accessing RabbitMQ
- - RMQ_PW - the password used for accessing RabbitMQ
+
+| Variable | Description                                                     |
+| -------- | --------------------------------------------------------------- |
+| SCI_URL  | the base url of the backend (usually ends in `/api/v_`)         |
+| SCI_USER |  the scicat user's username used for accessing the backend      |
+| SCI_PW   | the above user's password                                       |
+| TOKEN    | scicat access token, can be used instead of user and pw         |
+| RMQ_URL  | RabbitMQ API url                                                |
+| RMQ_USER | the username used for accessing RabbitMQ                        |
+| RMQ_PW   | the password used for accessing RabbitMQ                        |

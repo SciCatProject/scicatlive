@@ -1,4 +1,6 @@
 version: '3'
+include:
+  - ./config/backend/docker-compose.yaml
 services:
   reverse-proxy:
     image: traefik:2.5
@@ -14,20 +16,6 @@ services:
       - "mongodb_data:/data/db"
       - "./seed_db/init.js:/docker-entrypoint-initdb.d/init.js"
       - "./seed_db/seed:/seed"
-  backend:
-    image: scicatproject/backend:v0.0.5
-    depends_on:
-      mongodb:
-        condition: service_started
-      rabbitmq:
-        condition: service_healthy
-    volumes:
-      - ./config/backend/config.local.js:/usr/src/app/server/config.local.js
-      - ./config/backend/datasources.json:/usr/src/app/server/datasources.json
-      - ./config/backend/providers.json:/usr/src/app/server/providers.json
-      - ./config/backend/component-config.local.json:/usr/src/app/server/component-config.local.json
-    labels:
-      - "traefik.http.routers.backend.rule=Host(`backend.localhost`)"
   frontend:
     image: scicatproject/frontend:v4.0.0
     depends_on:

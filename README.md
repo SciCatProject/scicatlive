@@ -47,13 +47,7 @@ There are a few functional accounts available for handling data:
 
 ## Seeding of the database
 
-All files used in the seeding of the database are in the [seed folder](./seed_db/seed). 
-
-To add more collections during the creation of the database:
-1. add the corresponding file(s) there, keeping the convention: `filename := collectionname.json`.
-2. Restart the docker container.
-
-These files are ingested into the database using mongo funcionalities and bypassing the backend, i.e. they are not to be taken as examples to use the backend API.
+For instructions on the seeding of the database see [here](./config/mongodb/README.md)
 
 ## General use of scicat
 

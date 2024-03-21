@@ -1,25 +1,9 @@
 version: '3'
 include:
   - ./config/mongodb/docker-compose.yaml
+  - ./config/rabbitmq/docker-compose.yaml
   - ./config/backend/docker-compose.yaml
   - ./config/frontend/docker-compose.yaml
   - ./config/searchapi/docker-compose.yaml
   - ./config/archivemock/docker-compose.yaml
   - ./config/proxy/docker-compose.yaml
-services:
-  rabbitmq:
-    image: rabbitmq:3.13-management-alpine
-    labels:
-      - "traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.localhost`)"
-      - "traefik.http.services.rabbitmq.loadbalancer.server.port=15672"
-    volumes:
-      - 'rabbitmq_data:/bitnami'
-    healthcheck:
-      test: rabbitmq-diagnostics -q ping
-      start_period: 5s
-      interval: 30s
-      timeout: 10s
-      retries: 5
-volumes:
-  rabbitmq_data:
-    driver: local

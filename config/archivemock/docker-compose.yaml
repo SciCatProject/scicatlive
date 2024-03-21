@@ -1,5 +1,5 @@
 services:
-  archive-mock:
+  archivemock:
     build: https://github.com/SwissOpenEM/ScicatArchiveMock.git
     depends_on:
       rabbitmq:

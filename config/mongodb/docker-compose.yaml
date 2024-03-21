@@ -3,8 +3,8 @@ services:
     image: mongo:7.0
     volumes:
       - "mongodb_data:/data/db"
-      - "../seed_db/init.js:/docker-entrypoint-initdb.d/init.js"
-      - "../seed_db/seed:/seed"
+      - "./config/init.js:/docker-entrypoint-initdb.d/init.js"
+      - "./config/seed:/seed"
 
 volumes:
   mongodb_data:

@@ -22,7 +22,7 @@ By running `docker-compose up -d` these steps take place:
 4. the SciCat [frontend](./services/frontend/) container is created and connected to (3).
 5. the SciCat [PaN searchapi](./services/searchapi/) container is created and connected to (3).
 6. a SciCat [archive mock](./services/archivemock/) container is created and connected to (2) and (3).
-7. a reverse [proxy](./services/proxy) container is created and routes trafic to (2), (3), (4), (5) and (6) through localhost subdomains, in the form: `http://${service}.localhot` (for the ones of need). The frontend is available at simply `http://localhost`.
+7. a reverse [proxy](./services/proxy) container is created and routes trafic to (2), (3), (4) and (5) through localhost subdomains, in the form: `http://${service}.localhost` (for the ones of need). The frontend is available at simply `http://localhost`.
 
 
 Here below we show the dependencies (if `B` depends on `A`, then we visualize as `A --> B`): 

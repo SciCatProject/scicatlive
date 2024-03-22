@@ -1,0 +1,22 @@
+version: '3'
+include:
+  - ./docker-compose.yaml
+services:
+  ci:
+    image: alpine:latest
+    depends_on:
+      archivemock:
+        condition: service_started
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_started
+      mongodb:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+      proxy:
+        condition: service_started
+      searchapi:
+        condition: service_started
+    entrypoint: /bin/sh -c "return 0"

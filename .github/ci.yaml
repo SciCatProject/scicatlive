@@ -1,6 +1,6 @@
 version: '3'
 include:
-  - ./docker-compose.yaml
+  - ../docker-compose.yaml
 services:
   ci:
     image: alpine:latest
@@ -19,4 +19,4 @@ services:
         condition: service_started
       searchapi:
         condition: service_started
-    entrypoint: /bin/sh -c "return 0"
+    entrypoint: /bin/sh -c "sleep 30 && return 0"

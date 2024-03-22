@@ -13,4 +13,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Test docker-compose.yaml
-      run: docker compose -f ci.yaml up --build --exit-code-from ci
+      run: docker compose -f .github/ci.yaml up --build --exit-code-from ci

@@ -1,0 +1,16 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+    branches: 
+      - master
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test docker-compose.yaml
+      run: docker compose up --wait --wait-timeout 300

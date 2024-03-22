@@ -4,15 +4,13 @@ on:
   push:
     branches: 
       - master
-      - add_ci
   pull_request:
     branches: 
       - master
-      - add_ci
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Run tests
+    - name: Test docker-compose.yaml
       run: docker compose -f ci.yaml up --build --exit-code-from ci

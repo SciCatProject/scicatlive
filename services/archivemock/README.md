@@ -3,8 +3,8 @@
 The Archive Mock simulates the interactions of an archival mock with SciCat. 
 
 ## Service Requirements
- - RabbitMQ
- - SciCat Backend (configured to use the RabbitMQ instance above for jobs)
+ - [RabbitMQ](../rabbitmq/)
+ - [SciCat Backend](../backend/) (configured to use the RabbitMQ instance above for jobs)
 
 ## [Config](./config/.env) - Environment Variables
 
@@ -12,4 +12,4 @@ The container uses [environment variables](https://github.com/SwissOpenEM/Scicat
 
 ## Default configuraiton
 
-By default, it is configured to connect to the `Scicat Backend` container with the `admin` account, and to the `RabbitMQ` container with the `guest` account. It will then handle all archival and retrieval jobs posted to RabbitMQ, and update the corresponding Datasets accordingly in Scicat.
+By default, it is configured to connect to the [Scicat Backend](../backend/) container with the `admin` account, and to the [RabbitMQ](../rabbitmq/) container with the `guest` account. It will then handle all archival and retrieval jobs posted to RabbitMQ, and update the corresponding Datasets accordingly in Scicat.

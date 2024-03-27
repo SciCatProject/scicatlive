@@ -4,11 +4,11 @@ on:
   push:
     branches: 
       - master
-      - add_ci
+      - update_ci
   pull_request:
     branches: 
       - master
-      - add_ci
+      - update_ci
 jobs:
   test:
     runs-on: ubuntu-latest

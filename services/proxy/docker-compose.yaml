@@ -1,7 +1,10 @@
 services:
   proxy:
     image: "traefik:2.5"
-    command: "--api.insecure=true --providers.docker=true --entrypoints.web.address=:80"
+    command: >-
+      --api.insecure=true
+      --providers.docker=true
+      --entrypoints.web.address=:80
     ports:
       - "80:80"
       - "8080:8080"

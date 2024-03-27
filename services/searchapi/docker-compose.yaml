@@ -1,9 +1,9 @@
 services:
   searchapi:
-    image: dacat/panosc-search-api:latest
+    image: "dacat/panosc-search-api:latest"
     depends_on:
-      - backend
+      - "backend"
     labels:
       - "traefik.http.routers.searchapi.rule=Host(`searchapi.localhost`)"
     env_file:
-      - ./config/.env
+      - "./config/.env"

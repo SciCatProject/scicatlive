@@ -4,13 +4,19 @@ on:
   push:
     branches: 
       - master
+      - add_ci
   pull_request:
     branches: 
       - master
+      - add_ci
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: Install 'yamllint'
+      run: sudo apt-get install -y yamllint
+    - name: Lint YAML files
+      run: yamllint -c .github/yamllint_config.yaml .
     - name: Test docker-compose.yaml
       run: docker compose up --wait --wait-timeout 300

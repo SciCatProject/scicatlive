@@ -1,9 +1,9 @@
 version: '3'
 include:
-  - ./services/mongodb/docker-compose.yaml
-  - ./services/rabbitmq/docker-compose.yaml
-  - ./services/backend/docker-compose.yaml
-  - ./services/frontend/docker-compose.yaml
-  - ./services/searchapi/docker-compose.yaml
-  - ./services/archivemock/docker-compose.yaml
-  - ./services/proxy/docker-compose.yaml
+  - './services/mongodb/docker-compose.yaml'
+  - './services/rabbitmq/docker-compose.yaml'
+  - './services/backend/docker-compose.yaml'
+  - './services/frontend/docker-compose.yaml'
+  - './services/searchapi/docker-compose.yaml'
+  - './services/archivemock/docker-compose.yaml'
+  - './services/proxy/docker-compose.yaml'

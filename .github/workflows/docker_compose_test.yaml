@@ -1,14 +1,12 @@
-name: "Docker Image CI"
+name: "Docker Compose CI"
 
 "on":  # 'on' is a truthy value normally, quotes are needed
   push:
     branches:
       - "master"
-      - "update_ci"
   pull_request:
     branches:
       - "master"
-      - "update_ci"
 jobs:
   test:
     runs-on: "ubuntu-latest"

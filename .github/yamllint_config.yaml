@@ -3,5 +3,7 @@
 extends: "default"
 
 rules:
-  quoted-strings: "enable"
+  quoted-strings:
+    required: true
+    quote-type: "double"
   document-start: "disable"

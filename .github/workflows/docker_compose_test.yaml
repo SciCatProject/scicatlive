@@ -1,20 +1,20 @@
-name: "Docker Compose CI"
+name: Docker Compose CI
 
-"on":  # 'on' is a truthy value normally, quotes are needed
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
-      - "master"
+      - master
   pull_request:
     branches:
-      - "master"
+      - master
 jobs:
   test:
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
     steps:
-      - uses: "actions/checkout@v3"
-      - name: "Install 'yamllint'"
-        run: "sudo apt-get install -y yamllint"
-      - name: "Lint YAML files"
-        run: "yamllint -c .github/yamllint_config.yaml ."
-      - name: "Test docker-compose.yaml"
-        run: "docker compose up --wait --wait-timeout 300"
+      - uses: actions/checkout@v3
+      - name: Install 'yamllint'
+        run: sudo apt-get install -y yamllint
+      - name: Lint YAML files
+        run: yamllint -c .github/yamllint_config.yaml .
+      - name: Test docker-compose.yaml
+        run: docker compose up --wait --wait-timeout 300

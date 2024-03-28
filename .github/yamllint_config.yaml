@@ -1,9 +1,9 @@
 ---
 
-extends: "default"
+extends: default
 
 rules:
   quoted-strings:
-    required: true
-    quote-type: "double"
-  document-start: "disable"
+    required: only-when-needed
+    quote-type: single
+  document-start: disable

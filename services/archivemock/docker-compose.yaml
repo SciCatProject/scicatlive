@@ -1,10 +1,10 @@
 services:
   archivemock:
-    build: https://github.com/SwissOpenEM/ScicatArchiveMock.git
+    build: "https://github.com/SwissOpenEM/ScicatArchiveMock.git"
     depends_on:
       rabbitmq:
-        condition: service_healthy
+        condition: "service_healthy"
       backend:
-        condition: service_healthy
+        condition: "service_healthy"
     env_file:
-      - ./config/.env
+      - "./config/.env"

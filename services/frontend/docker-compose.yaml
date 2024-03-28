@@ -1,10 +1,10 @@
 services:
   frontend:
-    image: scicatproject/frontend:v4.0.0
+    image: "scicatproject/frontend:v4.0.0"
     depends_on:
       backend:
-        condition: service_healthy
+        condition: "service_healthy"
     volumes:
-      - ./config/config.json:/usr/share/nginx/html/assets/config.json
+      - "./config/config.json:/usr/share/nginx/html/assets/config.json"
     labels:
       - "traefik.http.routers.frontend.rule=Host(`localhost`)"

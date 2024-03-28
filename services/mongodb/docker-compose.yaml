@@ -1,6 +1,6 @@
 services:
   mongodb:
-    image: mongo:7.0
+    image: "mongo:7.0"
     volumes:
       - "mongodb_data:/data/db"
       - "./config/init.js:/docker-entrypoint-initdb.d/init.js"
@@ -8,4 +8,4 @@ services:
 
 volumes:
   mongodb_data:
-    driver: local
+    driver: "local"

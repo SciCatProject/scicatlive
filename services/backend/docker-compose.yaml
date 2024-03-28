@@ -1,21 +1,21 @@
 services:
   backend:
-    image: "scicatproject/backend:v0.0.5"
+    image: scicatproject/backend:v0.0.5
     depends_on:
       mongodb:
-        condition: "service_started"
+        condition: service_started
       rabbitmq:
-        condition: "service_healthy"
+        condition: service_healthy
     volumes:
-      - "./config/config.local.js:/usr/src/app/server/config.local.js"
-      - "./config/datasources.json:/usr/src/app/server/datasources.json"
-      - "./config/providers.json:/usr/src/app/server/providers.json"
-      - "./config/component-config.local.json:/usr/src/app/server/component-config.local.json"
+      - ./config/config.local.js:/usr/src/app/server/config.local.js
+      - ./config/datasources.json:/usr/src/app/server/datasources.json
+      - ./config/providers.json:/usr/src/app/server/providers.json
+      - ./config/component-config.local.json:/usr/src/app/server/component-config.local.json
     labels:
-      - "traefik.http.routers.backend.rule=Host(`backend.localhost`)"
+      - traefik.http.routers.backend.rule=Host(`backend.localhost`)
     healthcheck:
-      test: "wget --spider 'http://127.0.0.1:3000/'"
-      start_period: "5s"
-      interval: "30s"
-      timeout: "10s"
+      test: wget --spider 'http://127.0.0.1:3000/'
+      start_period: 5s
+      interval: 30s
+      timeout: 10s
       retries: 5

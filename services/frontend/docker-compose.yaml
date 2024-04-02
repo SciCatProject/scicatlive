@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: scicatproject/frontend:v4.0.0
+    image: scicatproject/frontend:v4.4.0
     depends_on:
       backend:
         condition: service_healthy

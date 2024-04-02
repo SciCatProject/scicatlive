@@ -2,8 +2,7 @@ services:
   backend-next:
     image: ghcr.io/scicatproject/backend-next:v4.4.0
     depends_on:
-      mongodb:
-        condition: service_started
+      - mongodb
     volumes:
       - ./config/functionalAccounts.json:/home/node/app/functionalAccounts.json
     env_file:

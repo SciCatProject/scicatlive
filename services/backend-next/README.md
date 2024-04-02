@@ -4,7 +4,7 @@ The SciCat backend-next is a rewrite of the original backend, built on top of th
 
 ## Configuration options
 
-The backend-next service is mainly configured via environment variables.
+The backend-next service is mainly configured via environment variables. For an extensive list of available options see [here](https://scicatproject.github.io/documentation/Development/v4.x/backend/configuration.html).
 
 ### Functional Accounts
 

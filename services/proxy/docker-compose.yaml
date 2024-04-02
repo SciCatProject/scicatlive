@@ -1,6 +1,6 @@
 services:
   proxy:
-    image: traefik:2.5
+    image: traefik:2.11
     command:
       - --api.insecure=true
       - --providers.docker=true

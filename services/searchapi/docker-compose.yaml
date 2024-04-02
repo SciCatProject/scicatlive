@@ -1,6 +1,6 @@
 services:
   searchapi:
-    image: dacat/panosc-search-api:latest
+    image: ghcr.io/scicatproject/panosc-search-api:latest
     depends_on:
       - backend
     labels:

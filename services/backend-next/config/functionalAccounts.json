@@ -3,15 +3,13 @@
     "username": "admin",
     "password": "2jf0TPNZsS",
     "email": "scicatadmin@your.site",
-    "role": "admin",
-    "global": true
+    "role": "admin"
   },
   {
     "username": "ingestor",
     "password": "aman",
     "email": "scicatingestor@your.site",
-    "role": "ingestor",
-    "global": true
+    "role": "ingestor"
   },
   {
     "username": "archiveManager",

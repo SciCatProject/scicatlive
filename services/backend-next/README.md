@@ -6,6 +6,8 @@ The SciCat backend-next is a rewrite of the original backend, built on top of th
 
 The backend-next service is mainly configured via environment variables. For an extensive list of available options see [here](https://scicatproject.github.io/documentation/Development/v4.x/backend/configuration.html).
 
+It can also serve the frontend theme and configuration by mounting the files in `/home/node/app/dist/config/frontend.theme.json` and `/home/node/app/dist/config/frontend.config.json`.
+
 ### Functional Accounts
 
 There are a few functional accounts available for handling data:

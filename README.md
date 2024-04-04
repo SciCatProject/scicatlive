@@ -41,7 +41,7 @@ graph TD
    subgraph services
       subgraph backends
          backend
-         backend-next
+         backendnext
       end
 
       rabbitmq --> archivemock

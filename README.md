@@ -27,10 +27,11 @@ By running `docker-compose up -d` these steps take place:
 1. a [mongodb](./services/mongodb/) container is created with some intial data.
 2. a [rabbitmq](./services/rabbitmq/) container is created.
 3. the SciCat [backend v3](./services/backend/) container is created and connected to (1) and (2).
-4. the SciCat [frontend](./services/frontend/) container is created and connected to (3).
-5. the SciCat [PaN searchapi](./services/searchapi/) container is created and connected to (3).
-6. a SciCat [archive mock](./services/archivemock/) container is created and connected to (2) and (3).
-7. a reverse [proxy](./services/proxy) container is created and routes trafic to (2), (3), (4) and (5) through localhost subdomains, in the form: `http://${service}.localhost` (for the ones of need). The frontend is available at simply `http://localhost`.
+4. the SciCat [backend v4](./services/backendnext/) container is created and connected to (1).
+5. the SciCat [frontend](./services/frontend/) container is created and connected to (3).
+6. the SciCat [PaN searchapi](./services/searchapi/) container is created and connected to (3).
+7. a SciCat [archive mock](./services/archivemock/) container is created and connected to (2) and (3).
+8. a reverse [proxy](./services/proxy) container is created and routes trafic to (2), (3), (4) and (5) through localhost subdomains, in the form: `http://${service}.localhost` (for the ones of need). The frontend is available at simply `http://localhost`.
 
 
 Here below we show the dependencies (if `B` depends on `A`, then we visualize as `A --> B`):
@@ -76,7 +77,7 @@ Accordingly,
 docker-compose up -d frontend(/searchapi)
 ```
 
-Will run, from the [previous section](#default-setup), (1), (2), (3) and (4/(5)) but skip (5/(4)), (6) and (7).
+Will run, from the [previous section](#default-setup), (1), (2), (3) and (5/(6)) but skip (4), (6/(5)), (7) and (8).
 
 ## Custom configure a service
 

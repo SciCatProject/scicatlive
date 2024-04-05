@@ -5,6 +5,12 @@ services:
       backend:
         condition: service_healthy
     volumes:
-      - ./config/config.json:/usr/share/nginx/html/assets/config.json
+      - ./config:/config
+    command:
+      - sh
+      - -c
+      - /config/init.sh && nginx -g "daemon off;"
+    environment:
+      BE_VERSION: ${BE_VERSION:-backendnext}
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)

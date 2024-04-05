@@ -1,3 +1,7 @@
+include:
+  - ../rabbitmq/docker-compose.yaml
+  - ../archivemock/docker-compose.yaml
+
 services:
   backend:
     image: ghcr.io/scicatproject/backend:latest

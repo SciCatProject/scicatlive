@@ -1,4 +1,3 @@
 {
-    "accessTokenPrefix": "",
-    "lbBaseURL": "http://backend.localhost"
+    "accessTokenPrefix": ""
 }

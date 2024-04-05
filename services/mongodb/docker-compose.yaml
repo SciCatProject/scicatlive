@@ -5,6 +5,8 @@ services:
       - mongodb_data:/data/db
       - ./config/init.js:/docker-entrypoint-initdb.d/init.js
       - ./config/seed:/seed
+    environment:
+      BE_VERSION: ${BE_VERSION:-backendnext}
 
 volumes:
   mongodb_data:

@@ -39,7 +39,7 @@ Here below we show the dependencies (if `B` depends on `A`, then we visualize as
 graph TD
    subgraph services
       subgraph backends
-         backend
+         backend[backend*]
          backendnext
       end
 

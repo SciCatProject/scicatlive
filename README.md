@@ -56,7 +56,7 @@ graph TD
 
 ## Select the BE version to use
 
-The user can select what backend version to use, by setting the BE_VERSION environment variable, [either](https://docs.docker.com/compose/environment-variables/envvars-precedence/) setting it in the shell or changing the [.env](./.env#L1) file. If this variable is blank, the system will default to `backendnext`. The services with `**` have a dependency on the `BE_VERSION` value.
+The user can select what backend (either `backend` or `backendnext`) version to use, by setting the BE_VERSION environment variable, [either](https://docs.docker.com/compose/environment-variables/envvars-precedence/) setting it in the shell or changing the [.env](./.env#L1) file. If this variable is blank, the system will default to `backendnext`. The services with `**` have a dependency on the `BE_VERSION` value.
 
 ## Select the services
 

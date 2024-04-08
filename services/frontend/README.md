@@ -4,8 +4,12 @@ The SciCat frontend is the SciCat metadata catalogue web UI, built on top of the
 
 ## Configuration options
 
-The frontend configuration is set by the [config.json file](./config/config.json). For an extensive list of available options see [here](https://scicatproject.github.io/documentation/Development/v3.x/Configuration.html) in the SciCat frontend section.
+The frontend configuration is set by the [configfiles](./config/). Files inside the [config](./config/) folder, with a `.json` extension are merged in alphabetical order, with [config.v3.json](./config/config.v3.json) applied depending on the [BE_VERSION](README.md#dependency-on-be_version). For an extensive list of available options see [here](https://scicatproject.github.io/documentation/Development/v3.x/Configuration.html) in the SciCat frontend section.
 
-## Defaul configuration
+## Default configuration
 
-In the default configuration [config.json file](./config/config.json), the frontend is set to call the [backend container](../backend/) which is available on the `backend.localhost`.
+In the default configuration [config](./config/), the frontend is set to call the [backend container](../backend/) which is available on the `backend.localhost`. 
+
+## Dependency on `BE_VERSION`
+
+The `BE_VERSION` value controls if the `frontend` should connect to the [backend container](../backend/) or the [backendnext container](../backendnext/).

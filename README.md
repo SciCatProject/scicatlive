@@ -45,7 +45,7 @@ graph TD
       end
 
       mongodb[mongodb**] --> backends
-      backend --> frontend
+      backend --> frontend[frontend**]
       backend --> searchapi
    end
 

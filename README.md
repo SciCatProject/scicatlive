@@ -25,14 +25,13 @@ Note: older versions might not contain certain functionality (e.g. archival mock
 
 By running `docker-compose up -d` these steps take place:
 1. a [mongodb](./services/mongodb/) container is created with some intial data.
-2. a [rabbitmq](./services/rabbitmq/) container is created.
-3. the SciCat [backend v3](./services/backend/) container is created and connected to (1) and (2).
-4. the SciCat [backend v4](./services/backendnext/) container is created and connected to (1).
-5. the SciCat [frontend](./services/frontend/) container is created and connected to (3).
-6. the SciCat [PaN searchapi](./services/searchapi/) container is created and connected to (3).
-7. a SciCat [archive mock](./services/archivemock/) container is created and connected to (2) and (3).
-8. a reverse [proxy](./services/proxy) container is created and routes trafic to (2), (3), (4) and (5) through localhost subdomains, in the form: `http://${service}.localhost` (for the ones of need). The frontend is available at simply `http://localhost`.
+2. the SciCat [backend v3*](./services/backend/) container is created and connected to (1).
+3. the SciCat [backend v4](./services/backendnext/) container is created and connected to (1).
+4. the SciCat [frontend](./services/frontend/) container is created and connected to (3).
+5. the SciCat [PaN searchapi](./services/searchapi/) container is created and connected to (3).
+6. a reverse [proxy](./services/proxy) container is created and routes trafic to (2), (3), (4) and (5) through localhost subdomains, in the form: `http://${service}.localhost` (for the ones of need). The frontend is available at simply `http://localhost`.
 
+We flag with `*` the services which have extra internal dependencies, which are not shared across the two backend versions. To view them, refer to the service README.
 
 Here below we show the dependencies (if `B` depends on `A`, then we visualize as `A --> B`):
 
@@ -40,14 +39,11 @@ Here below we show the dependencies (if `B` depends on `A`, then we visualize as
 graph TD
    subgraph services
       subgraph backends
-         backend
+         backend[backend*]
          backendnext
       end
 
-      rabbitmq --> archivemock
-      rabbitmq --> backend
       mongodb --> backends
-      backend --> archivemock
       backend --> frontend
       backend --> searchapi
    end
@@ -55,7 +51,6 @@ graph TD
    proxy -.- backends
    proxy -.- frontend
    proxy -.- searchapi
-   proxy -.- rabbitmq
 ```
 
 ## Select the services
@@ -70,14 +65,14 @@ docker-compose up -d backend
 
 (or a list of services, for example, with the proxy `docker-compose up -d backend proxy`)
 
-This will run, from the [previous section](#default-setup), (1), (2) and (3) but skip the rest.
+This will run, from the [previous section](#default-setup), (1) and (2) but skip the rest.
 
 Accordingly,
 ```sh
 docker-compose up -d frontend(/searchapi)
 ```
 
-Will run, from the [previous section](#default-setup), (1), (2), (3) and (5/(6)) but skip (4), (6/(5)), (7) and (8).
+Will run, from the [previous section](#default-setup), (1), (2) and (4/(5)) but skip (3), (5/(4)) and 6.
 
 ## Custom configure a service
 
@@ -89,14 +84,15 @@ After any configuration change, `docker-compose up -d` must be rerun, to allow l
 
 ## Add a new service
 
-To add a new service:
+To add a new service (see the [backend](./services/backend/) for an extensive example):
 1. create a dedicated folder in the [services](./services/) one
 2. call it as the service should be named
 3. create the `docker-compose.yaml` file with the required dependencies (if any)
-4. eventually create a `config` folder if it requires configuration
-5. add a `README.md` file in the service if needed
-6. include the reference to (3) to the global [docker-compose include list](docker-compose.yaml#L2)
-7. update the main [README.md](README.md) if needed
+4. eventually include any service in (3) which is specific to the service and not shared across the global setup
+5. eventually create a `config` folder if it requires configuration
+6. add a `README.md` file in the service if needed
+7. include the reference to (3) to the global [docker-compose include list](docker-compose.yaml#L2)
+8. update the main [README.md](README.md) if needed
 
 ## General use of scicat
 

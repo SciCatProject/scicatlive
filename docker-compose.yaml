@@ -5,4 +5,6 @@ include:
   - ./services/backendnext/docker-compose.yaml
   - ./services/frontend/docker-compose.yaml
   - ./services/searchapi/docker-compose.yaml
+  - ./services/elastic/docker-compose.yaml
+  - ./services/archivemock/docker-compose.yaml
   - ./services/proxy/docker-compose.yaml

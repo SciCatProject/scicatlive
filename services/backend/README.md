@@ -68,7 +68,9 @@ Here below we show the internal dependencies of the service, which are not alrea
 ```mermaid
 graph TD   
     proxy -.- rabbitmq
-    rabbitmq --> archivemock
-    rabbitmq --> backend
-    backend --> archivemock
+    subgraph services
+        rabbitmq --> archivemock
+        rabbitmq --> backend
+        backend --> archivemock
+    end
 ```

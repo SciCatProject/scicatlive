@@ -9,12 +9,8 @@ services:
         soft: -1
         hard: -1
     healthcheck:
-      test:
-        [
-          CMD-SHELL,
-          'curl -f localhost:9200 | grep -q
-            ''"tagline" : "You Know, for Search"'''
-        ]
+      test: 'curl -f localhost:9200 | grep -q
+              ''"tagline" : "You Know, for Search"'''
       interval: 10s
       timeout: 10s
       retries: 15

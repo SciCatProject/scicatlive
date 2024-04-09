@@ -1,5 +1,5 @@
 {
-   "accessTokenPrefix": "",
+   "accessTokenPrefix": "Bearer ",
    "addDatasetEnabled":false,
    "archiveWorkflowEnabled":false,
    "datasetReduceEnabled":true,
@@ -17,7 +17,7 @@
    "jsonMetadataEnabled":true,
    "jupyterHubUrl":"",
    "landingPage":"",
-   "lbBaseURL":"http://backend.localhost",
+   "lbBaseURL":"http://backendnext.localhost",
    "localColumns":[
       {
          "name":"datasetName",

@@ -1,6 +1,6 @@
 # Mongodb
 
-The `mongodb` container is responsible of creating a mongodb container with initial metadata that will later be used by the [backend](../backend/) container.
+The `mongodb` container is responsible of creating a mongodb container with initial metadata.
 
 ## Configuration options
 
@@ -14,10 +14,10 @@ These files are ingested into the database using mongo funcionalities and bypass
 
 ## Default configuration
 
-In the default configuration [init.js](./config/init.js), the seeding creates data in the [dacat](./config/init.js#L1) mongodb database used by the [backend container](../backend/) 
+In the default configuration [init.js](./config/init.js), the seeding creates data in the mongodb database used by the `backend` service (either [v3](../backendv3/), by default, or [v4](../backendv4/) if specified otherwise by setting `BE_VERSION`).
+
+For an explanation of how setting `BE_VERSION` changes the environment creation see [here](./README.md#dependency-on-be_version).
 
 ## Dependency on `BE_VERSION`
 
-The seeded database is controlled by the [BE_VERSION environment](./docker-compose.yaml#L9) variable set at startup. This will control what DB is seeded, either the [dacat](./config/init.js#L1) mongodb database used by the [backend container](../backend/)  or the [dacat-next](./config/init.js#L1) mongodb database used by the [backendnext container](../backendnext/).  
-
-For an explanation of how setting `BE_VERSION` changes the environment creation see [here](./README.md#dependency-on-be_version).
+Since [v3](../backendv3/) and [v4](../backendv4/) connect to two different DBs, the [BE_VERSION](./docker-compose.yaml#L9) environment variable controls [which DB](./config/init.js#L1) should be seeded (`dacat` for [v3](../backendv3/) and `dacat-next` for [v4](../backendv4/)).

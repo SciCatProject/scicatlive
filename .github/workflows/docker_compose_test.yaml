@@ -19,7 +19,7 @@ jobs:
       - lint
     strategy:
       matrix:
-        BE_VERSION: [backend, backendnext]
+        BE_VERSION: [v3, v4]
     steps:
       - uses: actions/checkout@v4
       - name: Test docker-compose.yaml

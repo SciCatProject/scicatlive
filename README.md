@@ -25,7 +25,7 @@ Note: older versions might not contain certain functionality (e.g. archival mock
 
 By running `docker-compose up -d` these steps take place:
 1. a [mongodb**](./services/mongodb/) container is created with some intial data.
-2. the SciCat [backend v3*](./services/backend/) container is created and connected to (1).
+2. the SciCat [backend v3*](./services/backendv3/) container is created and connected to (1).
 3. the SciCat [frontend**](./services/frontend/) container is created and connected to (2).
 4. the SciCat [PaN searchapi](./services/searchapi/) container is created and connected to (2).
 5. a reverse [proxy](./services/proxy) container is created and routes traffic to (2), (3) and (4) through localhost subdomains, in the form: `http://${service}.localhost` (for the ones of need). The frontend is available at simply `http://localhost`.
@@ -36,7 +36,7 @@ Here below we show the dependencies (if `B` depends on `A`, then we visualize as
 graph TD
    subgraph services
       subgraph backend
-         backends[backend*/backendnext*]
+         backends[v3*/v4*]
       end
       mongodb[mongodb**] --> backend
       backend --> frontend[frontend**]
@@ -48,20 +48,20 @@ graph TD
    proxy -.- searchapi
 ```
 
-We flag with `*` the services which have extra internal dependencies, which are not shared across the two backend versions, and with `**` the ones which have a dependency on the `BE_VERSION` value. To view them, refer to the service README.
+We flag with `*` the services which have extra internal dependencies, which are not shared across the two backend versions, and with `**` the ones which have an explicit dependency on the `BE_VERSION` value. To view them, refer to the service README.
 
 ## Select the BE version to use
 
-The user can select what backend version to use, by setting the `BE_VERSION` environment variable (either `backend` or `backendnext`), [either](https://docs.docker.com/compose/environment-variables/envvars-precedence/) setting it in the shell or changing the [.env](./.env#L1) file. If this variable is blank, the system will default to `backendnext`. The services with `**` have a dependency on the `BE_VERSION` value. For any value of `BE_VERSION`, the `backend` is available at `http://backend.localhost`.
+The user can select what backend version to use, by setting the `BE_VERSION` environment variable (either `v3` or `v4`), [either](https://docs.docker.com/compose/environment-variables/envvars-precedence/) setting it in the shell or changing the [.env](./.env#L1) file. If this variable is blank, the system will default to `v4`. The services with `**` have a dependency on the `BE_VERSION` value. For any value of `BE_VERSION`, the `backend` is available at `http://backend.localhost`.
 
 For example, by running: 
 
 ```sh
-export BE_VERSION=backendnext
+export BE_VERSION=v4
 docker-compose up -d
 ```
 
-Service (2) of the [default setup](README.md#default-setup) is replaced with the [backendnext* service](./services/backendnext/) and then steps from (1) to (5) are run. 
+Service (2) of the [default setup](README.md#default-setup) is replaced with the [v4* service](./services/backendv4/) and then steps from (1) to (5) are run. 
 
 After optionally setting the `BE_VERSION`, one can still select the services to run as described [here](README.md#select-the-services).
 
@@ -105,16 +105,16 @@ After any configuration change, `docker-compose up -d` must be rerun, to allow l
 
 ## Add a new service
 
-To add a new service (see the [backend](./services/backend/) for an extensive example):
+To add a new service (see the [backend v4](./services/backendv4/) for an extensive example):
 1. create a dedicated folder in the [services](./services/) one
 2. name it as the service
 3. create the `docker-compose.yaml` file with the required dependencies (if any)
 4. eventually include any service in (3) which is specific to the service and not shared across the global setup
 5. eventually add the condition on the backend version (e.g. [here](./services/frontend/docker-compose.yaml#L14))
 6. eventually create a `config` folder if it requires configuration
-7. add a `README.md` file in the service if needed
+7. eventually add a `README.md` file in the service
 8. include the reference to (3) to the global [docker-compose include list](docker-compose.yaml#L2)
-9. update the main [README.md](README.md) if needed
+9. eventually update the main [README.md](README.md)
 
 ## General use of SciCat
 

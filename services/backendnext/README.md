@@ -1,6 +1,6 @@
-# [Backend next](https://github.com/SciCatProject/scicat-backend-next)
+# [Backend v4](https://github.com/SciCatProject/scicat-backend-next)
 
-The SciCat backend-next or v4 is a rewrite of the original backend, built on top of the NestJS framework.
+The SciCat backend v4 is a rewrite of the original backend, built on top of the NestJS framework.
 
 ## Configuration options
 
@@ -25,5 +25,5 @@ Here below we show the internal dependencies of the service, which are not alrea
 
 ```mermaid
 graph TD   
-    elasticsearch --> backendnext
+    elasticsearch --> backend
 ```

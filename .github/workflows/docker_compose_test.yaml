@@ -17,7 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - lint
+    strategy:
+      matrix:
+        BE_VERSION: [backend, backendnext]
     steps:
       - uses: actions/checkout@v4
       - name: Test docker-compose.yaml
-        run: docker compose up --wait --wait-timeout 300
+        run: |-
+          export BE_VERSION=${{ matrix.BE_VERSION }}
+          docker compose up --wait --wait-timeout 300

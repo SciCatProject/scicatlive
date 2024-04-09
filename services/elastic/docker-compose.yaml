@@ -1,13 +1,8 @@
-version: '2.2'
-
 services:
   elastic:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.13.1
     volumes:
       - esdata:/usr/share/elasticsearch/data
-    labels:
-      - traefik.http.routers.elastic.rule=Host(`elastic.localhost`)
-      - traefik.http.services.elastic.loadbalancer.server.port=9200
     mem_limit: 1073741824
     ulimits:
       memlock:

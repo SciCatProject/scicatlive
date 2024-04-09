@@ -1,3 +1,6 @@
+include:
+  - ../elastic/docker-compose.yaml
+
 services:
   backendnext:
     image: ghcr.io/scicatproject/backend-next:v4.4.0

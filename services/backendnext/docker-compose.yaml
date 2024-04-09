@@ -1,8 +1,14 @@
+include:
+  - ../elastic/docker-compose.yaml
+
 services:
   backendnext:
     image: ghcr.io/scicatproject/backend-next:v4.4.0
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_started
+      elastic:
+        condition: service_healthy
     volumes:
       - ./config/functionalAccounts.json:/home/node/app/functionalAccounts.json
     env_file:

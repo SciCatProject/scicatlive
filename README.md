@@ -26,7 +26,7 @@ Note: older versions might not contain certain functionality (e.g. archival mock
 By running `docker-compose up -d` these steps take place:
 1. a [mongodb**](./services/mongodb/) container is created with some intial data.
 2. the SciCat [backend v3*](./services/backend/) container is created and connected to (1).
-3. the SciCat [backend v4](./services/backendnext/) container is created and connected to (1).
+3. the SciCat [backend v4*](./services/backendnext/) container is created and connected to (1).
 4. the SciCat [frontend](./services/frontend/) container is created and connected to (3).
 5. the SciCat [PaN searchapi](./services/searchapi/) container is created and connected to (3).
 6. a reverse [proxy](./services/proxy) container is created and routes trafic to (2), (3), (4) and (5) through localhost subdomains, in the form: `http://${service}.localhost` (for the ones of need). The frontend is available at simply `http://localhost`.

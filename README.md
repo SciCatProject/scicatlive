@@ -81,10 +81,19 @@ This will run, from the [previous section](#default-setup), (1) and (2) but skip
 
 Accordingly,
 ```sh
-docker-compose up -d frontend(/searchapi)
+docker-compose up -d frontend
 ```
 
-Will run, from the [previous section](#default-setup), (1), (2) and (3/(4)) but skip (4/(3)) and (5).
+Will run, from the [previous section](#default-setup), (1), (2) and (3) but skip (4) and (5).
+
+And 
+
+```sh
+docker-compose up -d searchapi
+```
+
+Will run, from the [previous section](#default-setup), (1), (2) and (4) but skip (3) and (5).
+
 
 ## Custom configure a service
 
@@ -98,7 +107,7 @@ After any configuration change, `docker-compose up -d` must be rerun, to allow l
 
 To add a new service (see the [backend](./services/backend/) for an extensive example):
 1. create a dedicated folder in the [services](./services/) one
-2. call it as the service should be named
+2. name it as the service
 3. create the `docker-compose.yaml` file with the required dependencies (if any)
 4. eventually include any service in (3) which is specific to the service and not shared across the global setup
 5. eventually add the condition on the backend version (e.g. [here](./services/frontend/docker-compose.yaml#L14))

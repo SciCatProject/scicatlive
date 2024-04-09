@@ -2,10 +2,14 @@ services:
   mongodb:
     image: mongo:7.0
     volumes:
-      - mongodb_data:/data/db
+      - ${BE_VERSION:-backendnext}_mongodb_data:/data/db
       - ./config/init.js:/docker-entrypoint-initdb.d/init.js
       - ./config/seed:/seed
+    environment:
+      BE_VERSION: ${BE_VERSION:-backendnext}
 
 volumes:
-  mongodb_data:
+  backendnext_mongodb_data:
+    driver: local
+  backend_mongodb_data:
     driver: local

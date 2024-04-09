@@ -12,6 +12,12 @@ To add more collections during the creation of the database:
 
 These files are ingested into the database using mongo funcionalities and bypassing the backend, i.e. they are not to be taken as examples to use the backend API.
 
-## Defaul configuration
+## Default configuration
 
-In the default configuration [init.js](./config/init.js), the seeding creates data in the [dacat](./config/init.js#L1) mongodb database used by the [backend container](../backend/).
+In the default configuration [init.js](./config/init.js), the seeding creates data in the [dacat](./config/init.js#L1) mongodb database used by the [backend container](../backend/) 
+
+## Dependency on `BE_VERSION`
+
+The seeded database is controlled by the [BE_VERSION environment](./docker-compose.yaml#L9) variable set at startup. This will control what DB is seeded, either the [dacat](./config/init.js#L1) mongodb database used by the [backend container](../backend/)  or the [dacat-next](./config/init.js#L1) mongodb database used by the [backendnext container](../backendnext/).  
+
+For an explanation of how setting `BE_VERSION` changes the environment creation see [here](./README.md#dependency-on-be_version).

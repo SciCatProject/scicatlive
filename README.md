@@ -24,14 +24,15 @@ Note: older versions might not contain certain functionality (e.g. archival mock
 ## Default setup
 
 By running `docker-compose up -d` these steps take place:
-1. a [mongodb](./services/mongodb/) container is created with some intial data.
+1. a [mongodb**](./services/mongodb/) container is created with some intial data.
 2. the SciCat [backend v3*](./services/backend/) container is created and connected to (1).
 3. the SciCat [backend v4](./services/backendnext/) container is created and connected to (1).
 4. the SciCat [frontend](./services/frontend/) container is created and connected to (3).
 5. the SciCat [PaN searchapi](./services/searchapi/) container is created and connected to (3).
 6. a reverse [proxy](./services/proxy) container is created and routes trafic to (2), (3), (4) and (5) through localhost subdomains, in the form: `http://${service}.localhost` (for the ones of need). The frontend is available at simply `http://localhost`.
 
-We flag with `*` the services which have extra internal dependencies, which are not shared across the two backend versions. To view them, refer to the service README.
+We flag with `*` the services which have extra internal dependencies, which are not shared across the two backend versions, and with `**` the ones which have a dependency on the `BE_VERSION` value. To view them, refer to the service README.
+
 
 Here below we show the dependencies (if `B` depends on `A`, then we visualize as `A --> B`):
 
@@ -43,7 +44,7 @@ graph TD
          backendnext
       end
 
-      mongodb --> backends
+      mongodb[mongodb**] --> backends
       backend --> frontend
       backend --> searchapi
    end
@@ -52,6 +53,10 @@ graph TD
    proxy -.- frontend
    proxy -.- searchapi
 ```
+
+## Select the BE version to use
+
+The user can select what backend (either `backend` or `backendnext`) version to use, by setting the BE_VERSION environment variable, [either](https://docs.docker.com/compose/environment-variables/envvars-precedence/) setting it in the shell or changing the [.env](./.env#L1) file. If this variable is blank, the system will default to `backendnext`. The services with `**` have a dependency on the `BE_VERSION` value.
 
 ## Select the services
 

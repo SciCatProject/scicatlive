@@ -1,4 +1,4 @@
-db = connect('mongodb://localhost/dacat');
+db = connect(`mongodb://localhost/${process.env.BE_VERSION === 'backendnext'? 'dacat-next': 'dacat'}`);
 seedFiles = fs.readdirSync('/seed');
 seedFiles.forEach((filename) => {
   collectionName = filename.replace(/\.json$/, '');

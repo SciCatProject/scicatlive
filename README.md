@@ -26,37 +26,44 @@ Note: older versions might not contain certain functionality (e.g. archival mock
 By running `docker-compose up -d` these steps take place:
 1. a [mongodb**](./services/mongodb/) container is created with some intial data.
 2. the SciCat [backend v3*](./services/backend/) container is created and connected to (1).
-3. the SciCat [backend v4*](./services/backendnext/) container is created and connected to (1).
-4. the SciCat [frontend](./services/frontend/) container is created and connected to (3).
-5. the SciCat [PaN searchapi](./services/searchapi/) container is created and connected to (3).
-6. a reverse [proxy](./services/proxy) container is created and routes trafic to (2), (3), (4) and (5) through localhost subdomains, in the form: `http://${service}.localhost` (for the ones of need). The frontend is available at simply `http://localhost`.
-
-We flag with `*` the services which have extra internal dependencies, which are not shared across the two backend versions, and with `**` the ones which have a dependency on the `BE_VERSION` value. To view them, refer to the service README.
-
+3. the SciCat [frontend**](./services/frontend/) container is created and connected to (2).
+4. the SciCat [PaN searchapi](./services/searchapi/) container is created and connected to (2).
+5. a reverse [proxy](./services/proxy) container is created and routes traffic to (2), (3) and (4) through localhost subdomains, in the form: `http://${service}.localhost` (for the ones of need). The frontend is available at simply `http://localhost`.
 
 Here below we show the dependencies (if `B` depends on `A`, then we visualize as `A --> B`):
 
 ```mermaid
 graph TD
    subgraph services
-      subgraph backends
-         backend[backend*]
-         backendnext
+      subgraph backend
+         backends[backend*/backendnext*]
       end
-
-      mongodb[mongodb**] --> backends
+      mongodb[mongodb**] --> backend
       backend --> frontend[frontend**]
       backend --> searchapi
    end
 
-   proxy -.- backends
+   proxy -.- backend
    proxy -.- frontend
    proxy -.- searchapi
 ```
 
+We flag with `*` the services which have extra internal dependencies, which are not shared across the two backend versions, and with `**` the ones which have a dependency on the `BE_VERSION` value. To view them, refer to the service README.
+
 ## Select the BE version to use
 
-The user can select what backend (either `backend` or `backendnext`) version to use, by setting the BE_VERSION environment variable, [either](https://docs.docker.com/compose/environment-variables/envvars-precedence/) setting it in the shell or changing the [.env](./.env#L1) file. If this variable is blank, the system will default to `backendnext`. The services with `**` have a dependency on the `BE_VERSION` value.
+The user can select what backend version to use, by setting the `BE_VERSION` environment variable (either `backend` or `backendnext`), [either](https://docs.docker.com/compose/environment-variables/envvars-precedence/) setting it in the shell or changing the [.env](./.env#L1) file. If this variable is blank, the system will default to `backendnext`. The services with `**` have a dependency on the `BE_VERSION` value. For any value of `BE_VERSION`, the `backend` is available at `http://backend.localhost`.
+
+For example, by running: 
+
+```sh
+export BE_VERSION=backendnext
+docker-compose up -d
+```
+
+Service (2) of the [default setup](README.md#default-setup) is replaced with the [backendnext* service](./services/backendnext/) and then steps from (1) to (5) are run. 
+
+After optionally setting the `BE_VERSION`, one can still select the services to run as described [here](README.md#select-the-services).
 
 ## Select the services
 
@@ -74,10 +81,19 @@ This will run, from the [previous section](#default-setup), (1) and (2) but skip
 
 Accordingly,
 ```sh
-docker-compose up -d frontend(/searchapi)
+docker-compose up -d frontend
 ```
 
-Will run, from the [previous section](#default-setup), (1), (2) and (4/(5)) but skip (3), (5/(4)) and 6.
+Will run, from the [previous section](#default-setup), (1), (2) and (3) but skip (4) and (5).
+
+And 
+
+```sh
+docker-compose up -d searchapi
+```
+
+Will run, from the [previous section](#default-setup), (1), (2) and (4) but skip (3) and (5).
+
 
 ## Custom configure a service
 
@@ -91,14 +107,15 @@ After any configuration change, `docker-compose up -d` must be rerun, to allow l
 
 To add a new service (see the [backend](./services/backend/) for an extensive example):
 1. create a dedicated folder in the [services](./services/) one
-2. call it as the service should be named
+2. name it as the service
 3. create the `docker-compose.yaml` file with the required dependencies (if any)
 4. eventually include any service in (3) which is specific to the service and not shared across the global setup
-5. eventually create a `config` folder if it requires configuration
-6. add a `README.md` file in the service if needed
-7. include the reference to (3) to the global [docker-compose include list](docker-compose.yaml#L2)
-8. update the main [README.md](README.md) if needed
+5. eventually add the condition on the backend version (e.g. [here](./services/frontend/docker-compose.yaml#L14))
+6. eventually create a `config` folder if it requires configuration
+7. add a `README.md` file in the service if needed
+8. include the reference to (3) to the global [docker-compose include list](docker-compose.yaml#L2)
+9. update the main [README.md](README.md) if needed
 
-## General use of scicat
+## General use of SciCat
 
-To use scicat, please refer to the [original documentation](https://scicatproject.github.io/documentation/)
+To use SciCat, please refer to the [original documentation](https://scicatproject.github.io/documentation/)

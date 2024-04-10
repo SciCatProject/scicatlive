@@ -12,7 +12,7 @@ For an extensive list of available options see [here](https://scicatproject.gith
 
 ## Default configuration
 
-In the default configuration [config](./config/), the frontend is set to call the `backend service` available at `backend.localhost` (either [v3](../backendv3/), by default, or [v4](../backendv4/) if specified otherwise by setting `BE_VERSION`).
+In the default configuration [config](./config/), the frontend is set to call the `backend service` available at `backend.localhost` (either [v4](../backendv4/), by default, or [v3](../backendv3/) if specified otherwise by setting `BE_VERSION`).
 
 For an explanation of how setting `BE_VERSION` changes the environment creation see [here](./README.md#dependency-on-be_version).
 

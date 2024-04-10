@@ -12,8 +12,10 @@ For an extensive list of available options see [here](https://scicatproject.gith
 
 ## Default configuration
 
-In the default configuration [config](./config/), the frontend is set to call the [backend container](../backend/) which is available on the `backend.localhost`. 
+In the default configuration [config](./config/), the frontend is set to call the `backend service` available at `backend.localhost` (either [v3](../backendv3/), by default, or [v4](../backendv4/) if specified otherwise by setting `BE_VERSION`).
+
+For an explanation of how setting `BE_VERSION` changes the environment creation see [here](./README.md#dependency-on-be_version).
 
 ## Dependency on `BE_VERSION`
 
-The `BE_VERSION` value controls if the `frontend` should connect to the [backend container](../backend/) or the [backendnext container](../backendnext/). This is controlled by merging conditionally the [config.v3.json file](./config/config.v3.json) which is applied when `BE_VERSION=backend` and connects the `frontend` to the [backend container](../backend/).
+Since there was a small breaking change from `v3` to `v4`, when connecting to the `backend`, the `BE_VERSION` value controls if [config.v3.json file](./config/config.v3.json), which is applied when `BE_VERSION=v3`, should be included in the configs merge process.

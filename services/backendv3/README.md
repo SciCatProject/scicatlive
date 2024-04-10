@@ -1,4 +1,4 @@
-# [Backend](https://github.com/SciCatProject/backend)
+# [Backend v3](https://github.com/SciCatProject/backend)
 
 The SciCat backend v3 is the SciCat metadata catalogue RESTful API layer, built on top of the Loopback framework. 
 

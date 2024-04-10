@@ -6,6 +6,8 @@ The SciCat seachAPI is the SciCat metadata catalogue standardised API for commun
 
 The searchapi configuration is set by the [.env file](./config/.env). For an extensive list of available options see [here](https://github.com/SciCatProject/panosc-search-api).
 
-## Defaul configuration
+## Default configuration
 
-In the default configuration [.env file](./config/.env), the searchapi is set to call the [backend container](../backend/) which is available on `backend.localhost`.
+In the default configuration [.env file](./config/.env), the searchapi is set to call the `backend service` available at `backend.localhost` (either [v3](../backendv3/), by default, or [v4](../backendv4/) if specified otherwise by setting `BE_VERSION`).
+
+For an explanation of how setting `BE_VERSION` changes the environment creation see [here](./README.md#dependency-on-be_version).

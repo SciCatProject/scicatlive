@@ -11,6 +11,6 @@ services:
       - -c
       - /config/init.sh && nginx -g "daemon off;"
     environment:
-      BE_VERSION: ${BE_VERSION:-backendnext}
+      BE_VERSION: ${BE_VERSION:-v4}
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)

@@ -3,7 +3,7 @@ name: Docker Compose CI
 on:  # yamllint disable-line rule:truthy
   pull_request:
     branches:
-      - master
+      - main
 jobs:
   yaml-lint:
     runs-on: ubuntu-latest

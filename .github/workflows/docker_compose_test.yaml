@@ -5,7 +5,7 @@ on:  # yamllint disable-line rule:truthy
     branches:
       - master
 jobs:
-  lint:
+  yaml-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -13,10 +13,44 @@ jobs:
         run: sudo apt-get install -y yamllint
       - name: Lint YAML files
         run: yamllint -c .github/yamllint_config.yaml .
+  json-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install 'jsonlint' and 'git'
+        run: sudo apt install python3-demjson git
+      - name: Lint JSON files
+        run: >-
+          git ls-files -z '*.json' | xargs -0r jsonlint -s --allow=non-portable
+  shell-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install 'shellcheck' and 'git'
+        run: sudo apt install shellcheck git
+      - name: Lint shell files ([ba]sh scripts)
+        run: >-
+          git ls-files -z '*.sh' '*.bash' '*.ksh' '*.bashrc' '*.bash_profile'
+          '*.bash_login' '*.bash_logout' | xargs -0r shellcheck
+  javascript-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js v20
+        uses: actions/setup-node@v4
+        with:
+          node-version: v20
+      - name: install eslint and default rules
+        run: npm install eslint @eslint/js --save-dev
+      - name: Lint javascript files
+        run: npx eslint --config .github/eslint.config.mjs
   test:
     runs-on: ubuntu-latest
     needs:
-      - lint
+      - yaml-lint
+      - json-lint
+      - shell-lint
+      - javascript-lint
     strategy:
       matrix:
         BE_VERSION: [v3, v4]

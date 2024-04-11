@@ -43,7 +43,7 @@ jobs:
       - name: install eslint and default rules
         run: npm install eslint @eslint/js --save-dev
       - name: Lint javascript files
-        run: npx eslint --config .github/eslint.config.js
+        run: npx eslint --config .github/eslint.config.mjs
   test:
     runs-on: ubuntu-latest
     needs:

@@ -41,11 +41,13 @@ graph TD
       mongodb[mongodb**] --> backend
       backend --> frontend[frontend**]
       backend --> searchapi
+      backend --> jupyter
    end
 
    proxy -.- backend
    proxy -.- frontend
    proxy -.- searchapi
+   proxy -.- jupyter
 ```
 
 We flag with `*` the services which have extra internal dependencies, which are not shared across the two backend versions, and with `**` the ones which have an explicit dependency on the `BE_VERSION` value. To view them, refer to the service README.

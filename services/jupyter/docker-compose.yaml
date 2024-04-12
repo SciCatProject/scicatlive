@@ -8,10 +8,8 @@ services:
       - traefik.http.routers.jupyter.rule=Host(`jupyter.localhost`)
       - traefik.http.services.jupyter.loadbalancer.server.port=8888
     volumes:
-      - ./config/requirements.txt:/home/jovyan/.requirements.txt
+    #  - ./config/requirements.txt:/home/jovyan/.requirements.txt
       - ./config/notebooks:/home/jovyan/notebooks
     env_file:
       - config/.env
-    command: >-
-      /bin/bash -c "pip install --no-cache-dir -r .requirements.txt &&
-      start-notebook.py --NotebookApp.token=''"
+    command: start-notebook.py --NotebookApp.token=''

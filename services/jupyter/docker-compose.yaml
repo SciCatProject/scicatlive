@@ -12,4 +12,6 @@ services:
       - ./config/notebooks:/home/jovyan/notebooks
     env_file:
       - config/.env
-    command: /bin/bash -c "pip install --no-cache-dir -r .requirements.txt && start-notebook.py --NotebookApp.token=''"
+    command: >-
+      /bin/bash -c "pip install --no-cache-dir -r .requirements.txt &&
+      start-notebook.py --NotebookApp.token=''"

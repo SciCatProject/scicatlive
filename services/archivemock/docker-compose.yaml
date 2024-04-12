@@ -1,6 +1,6 @@
 services:
   archivemock:
-    build: https://github.com/SwissOpenEM/ScicatArchiveMock.git
+    image: ghcr.io/scicatproject/archive-mock:v1.0.0
     depends_on:
       rabbitmq:
         condition: service_healthy

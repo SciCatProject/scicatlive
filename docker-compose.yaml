@@ -5,3 +5,4 @@ include:
   - ./services/frontend/docker-compose.yaml
   - ./services/searchapi/docker-compose.yaml
   - ./services/proxy/docker-compose.yaml
+  - ./services/jupyter/docker-compose.yaml

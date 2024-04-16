@@ -18,4 +18,6 @@ An example image that is used for the attachment upload demonstration
 ## Default configuration
 This service is only dependant on the backend service, since it demonstrates communication with the latter through Pyscicat.
 
+The notebooks are mounted to the container from the [config/notebooks](config/notebooks/) directory. The changes to these notebooks should *not* be contributed back to this repository, unless this is intentional. In the case you want to upstream changes to these notebooks, be sure to clear all the results from them.
+
 The [main readme](../../README.md) covers all dependencies of this package.

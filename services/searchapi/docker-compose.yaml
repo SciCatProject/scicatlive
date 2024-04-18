@@ -4,6 +4,7 @@ services:
     depends_on:
       - backend
     labels:
-      - traefik.http.routers.searchapi.rule=Host(`searchapi.localhost`)
+      - traefik.http.routers.searchapi.rule=Host(`${SEARCH_HOST}`)
+      - traefik.http.routers.searchapi.entrypoints=${ROUTER_ENTRYPOINTS}
     env_file:
       - ./config/.env

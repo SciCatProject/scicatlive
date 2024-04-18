@@ -16,7 +16,8 @@ services:
       - ./config/providers.json:/home/node/app/server/providers.json
       - ./config/component-config.local.json:/home/node/app/server/component-config.local.json
     labels:
-      - traefik.http.routers.backend.rule=Host(`backend.localhost`)
+      - traefik.http.routers.backend.rule=Host(`${BE_HOST}`)
+      - traefik.http.routers.backend.entrypoints=${ROUTER_ENTRYPOINTS}
     healthcheck:
       test: wget --spider 'http://127.0.0.1:3000/'
       start_period: 5s

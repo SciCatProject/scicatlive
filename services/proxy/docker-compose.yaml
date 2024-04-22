@@ -1,12 +1,15 @@
 services:
   proxy:
     image: traefik:2.11
-    command:
-      - --api.insecure=true
-      - --providers.docker=true
-      - --entrypoints.web.address=:80
     ports:
       - 80:80
+      - 443:443
       - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/config.yaml:/etc/traefik/traefik.yaml:ro
+      - letsencrypt_proxy_data:/letsencrypt
+
+volumes:
+  letsencrypt_proxy_data:
+    driver: local

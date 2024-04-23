@@ -3,7 +3,7 @@ include:
 
 services:
   backend:
-    image: ghcr.io/scicatproject/backend-next:v4.4.0
+    image: ghcr.io/scicatproject/backend-next:v4.5.0
     depends_on:
       mongodb:
         condition: service_started

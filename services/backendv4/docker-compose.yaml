@@ -11,7 +11,7 @@ services:
       elastic:
         condition: service_healthy
       ldap:
-        condition: service_started
+        condition: service_healthy
     volumes:
       - ./config/functionalAccounts.json:/home/node/app/functionalAccounts.json
     env_file:

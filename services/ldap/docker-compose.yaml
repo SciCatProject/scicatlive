@@ -5,3 +5,9 @@ services:
       - ./config/ldifs:/ldifs:ro
     env_file:
       - ./config/.env
+    healthcheck:
+      test: ldapwhoami -H ldap://ldap:389 -D 'cn=admin,dc=facility' -w 'admin'
+      start_period: 5s
+      interval: 10s
+      timeout: 10s
+      retries: 5

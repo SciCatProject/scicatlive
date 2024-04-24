@@ -1,0 +1,7 @@
+services:
+  ldap:
+    image: bitnami/openldap:2.6.7
+    volumes:
+      - ./config/ldifs:/ldifs:ro
+    env_file:
+      - ./config/.env

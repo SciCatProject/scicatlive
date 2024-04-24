@@ -75,5 +75,7 @@
    "shareEnabled":false,
    "shoppingCartEnabled":false,
    "shoppingCartOnHeader":false,
-   "tableSciDataEnabled":true
+   "tableSciDataEnabled":true,
+   "loginLdapEnabled": true,
+   "loginLdapLabel": "Connect with LDAP"
 }

@@ -63,7 +63,12 @@
    "metadataStructure":"tree",
    "multipleDownloadAction":"",
    "multipleDownloadEnabled":false,
-   "oAuth2Endpoints":[],
+   "oAuth2Endpoints":[
+      {
+         "authURL": "api/v3/auth/oidc",
+         "displayText": "Login with OIDC"
+      }
+   ],
    "policiesEnabled":true,
    "retrieveDestinations": [],
    "riotBaseUrl":"",

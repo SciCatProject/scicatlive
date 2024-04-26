@@ -35,5 +35,6 @@ module.exports = {
   queue: "rabbitmq",
   logbook: {
     enabled: false
-  }
+  },
+  expressSessionSecret: "someSecret",
 };

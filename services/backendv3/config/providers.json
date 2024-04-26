@@ -8,5 +8,24 @@
     "successRedirect": "/auth/account",
     "failureRedirect": "/local",
     "failureFlash": true
+  },
+  "oidc": {
+    "session": false,
+    "provider": "oidc",
+    "authScheme": "openid connect",
+    "module": "/home/node/app/server/boot/oidcCompatibleStrategy",
+    "authPath": "/api/v3/auth/oidc",
+    "successRedirect": "http://localhost/user",
+    "failureRedirect": "http://localhost/login",
+    "failureFlash": true,
+    "issuer": "http://keycloak.localhost/realms/facility",
+    "authorizationURL": "http://keycloak.localhost/realms/facility/protocol/openid-connect/auth",
+    "tokenURL": "http://keycloak.localhost/realms/facility/protocol/openid-connect/token",
+    "userInfoURL": "http://keycloak.localhost/realms/facility/protocol/openid-connect/userinfo",
+    "clientID": "scicat",
+    "clientSecret": "q0bOG6p616zHlz4nxvC6Ex8f6JwGY0NV",
+    "callbackURL": "http://backend.localhost/auth/oidc/callback",
+    "scope": ["email", "profile", "openid"],
+    "loginCallback": "accessGroupsToProfile"
   }
 }

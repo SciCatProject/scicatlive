@@ -26,3 +26,5 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+    links:
+      - keycloak:keycloak.localhost

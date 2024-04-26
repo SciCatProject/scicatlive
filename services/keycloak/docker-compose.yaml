@@ -1,0 +1,16 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0
+    command: start-dev --http-port=80
+    env_file: ./config/.env
+    volumes:
+      - ./config/healthcheck.sh:/healthcheck.sh
+    healthcheck:
+      test: bash /healthcheck.sh
+      start_period: 5s
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    labels:
+      - traefik.http.routers.keycloak.rule=Host(`keycloak.localhost`)
+      - traefik.http.services.keycloak.loadbalancer.server.port=80

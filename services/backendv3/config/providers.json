@@ -25,7 +25,6 @@
     "clientID": "scicat",
     "clientSecret": "q0bOG6p616zHlz4nxvC6Ex8f6JwGY0NV",
     "callbackURL": "http://backend.localhost/auth/oidc/callback",
-    "scope": ["email", "profile", "openid"],
-    "loginCallback": "accessGroupsToProfile"
+    "scope": ["email", "profile", "openid"]
   }
 }

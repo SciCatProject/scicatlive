@@ -3,6 +3,7 @@ include:
 
 services:
   backend:
+    platform: linux/amd64
     image: ghcr.io/scicatproject/backend-next:v4.5.0
     depends_on:
       mongodb:

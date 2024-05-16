@@ -1,5 +1,6 @@
 services:
   archivemock:
+    platform: linux/amd64
     image: ghcr.io/scicatproject/archive-mock:v1.0.0
     depends_on:
       rabbitmq:

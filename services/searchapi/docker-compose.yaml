@@ -1,5 +1,6 @@
 services:
   searchapi:
+    platform: linux/amd64
     image: ghcr.io/scicatproject/panosc-search-api:latest
     depends_on:
       - backend

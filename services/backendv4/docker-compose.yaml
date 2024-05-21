@@ -14,7 +14,8 @@ services:
     env_file:
       - ./config/.env
     labels:
-      - traefik.http.routers.backend.rule=Host(`backend.localhost`)
+      - traefik.http.routers.backend.rule=Host(`${BE_HOST}`)
+      - traefik.http.routers.backend.entrypoints=${ROUTER_ENTRYPOINTS}
     healthcheck:
       test: wget --spider -Y off 'http://127.0.0.1:3000/api/v3/health'
       start_period: 5s

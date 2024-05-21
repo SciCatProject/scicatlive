@@ -13,4 +13,5 @@ services:
     environment:
       BE_VERSION: ${BE_VERSION:-v4}
     labels:
-      - traefik.http.routers.frontend.rule=Host(`localhost`)
+      - traefik.http.routers.frontend.rule=Host(`${FE_HOST}`)
+      - traefik.http.routers.frontend.entrypoints=${ROUTER_ENTRYPOINTS}

@@ -5,8 +5,24 @@ services:
       - --api.insecure=true
       - --providers.docker=true
       - --entrypoints.web.address=:80
+      - --certificatesresolvers.leresolver.acme.tlschallenge=true
+      - --certificatesresolvers.leresolver.acme.email=example@example.com
+      - --certificatesresolvers.leresolver.acme.storage=/letsencrypt/acme.json
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.websecure.http.tls.options=foobar
+      - --entrypoints.websecure.http.tls.certResolver=leresolver
+      # change the domains below if you want to use TLS,
+      # then reconfigure the services as well
+      - --entrypoints.websecure.http.tls.domains[0].main=${MAIN_DOMAIN}
+      - >-
+        --entrypoints.websecure.http.tls.domains[0].sans=
+        ${BE_HOST},
+        ${FE_HOST},
+        ${MQ_HOST},
+        ${SEARCH_HOST}
     ports:
       - 80:80
       - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./letsencrypt:/letsencrypt

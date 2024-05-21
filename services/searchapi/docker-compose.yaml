@@ -7,3 +7,5 @@ services:
       - traefik.http.routers.searchapi.rule=Host(`searchapi.localhost`)
     env_file:
       - ./config/.env
+    profiles:
+      - search

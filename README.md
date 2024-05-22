@@ -126,18 +126,18 @@ After any configuration change, `docker compose up -d` must be rerun, to allow l
 To add a new service (see the [backend v4](./services/backendv4/) for an extensive example):
 1. create a dedicated folder in the [services](./services/) one
 2. name it as the service
-3. create the `docker-compose.yaml` file with the required dependencies (if any)
+3. create the `compose.yaml` file with the required dependencies (if any)
 4. eventually, include any service in (3) which is specific to the service and not shared across the global setup
-5. eventually, add the condition on the backend version (e.g. [here](./services/frontend/docker-compose.yaml#L14))
+5. eventually, add the condition on the backend version (e.g. [here](./services/frontend/compose.yaml#L14))
 6. eventually, add the platform field, as described [here](#supported-os-architectures)
 7. eventually, create a `config` folder if it requires configuration
 8. eventually, add a `README.md` file in the service
-9. include the reference to (3) to the global [docker-compose include list](docker-compose.yaml#L2)
+9. include the reference to (3) to the global [compose include list](compose.yaml#L2)
 10. eventually, update the main [README.md](README.md)
 
 ### Supported OS architectures
 
-Since some images are not built with multi-arch, in particular the SciCat ones, make sure to specify the platform of the service in the docker-compose, when needed, to avoid possible issues when running `docker compose up` on different platforms, for example on MAC with arm64 architecture. See for example the [backendv4 docker-compose](./services/backendv4/docker-compose.yaml#L6)
+Since some images are not built with multi-arch, in particular the SciCat ones, make sure to specify the platform of the service in the compose, when needed, to avoid possible issues when running `docker compose up` on different platforms, for example on MAC with arm64 architecture. See for example the [backendv4 compose](./services/backendv4/compose.yaml#L6)
 
 ## General use of SciCat
 

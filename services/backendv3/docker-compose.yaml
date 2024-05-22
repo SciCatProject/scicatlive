@@ -1,6 +1,6 @@
 include:
-  - ../rabbitmq/docker-compose.yaml
-  - ../archivemock/docker-compose.yaml
+  - ../rabbitmq/compose.yaml
+  - ../archivemock/compose.yaml
 
 services:
   backend:

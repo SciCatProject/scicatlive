@@ -20,4 +20,4 @@ For an explanation of how setting `BE_VERSION` changes the environment creation 
 
 ## Dependency on `BE_VERSION`
 
-Since [v3](../backendv3/) and [v4](../backendv4/) connect to two different DBs, the [BE_VERSION](./docker-compose.yaml#L9) environment variable controls [which DB](./config/init.js#L1) should be seeded (`dacat` for [v3](../backendv3/) and `dacat-next` for [v4](../backendv4/)).
+Since [v3](../backendv3/) and [v4](../backendv4/) connect to two different DBs, the [BE_VERSION](./compose.yaml#L9) environment variable controls [which DB](./config/init.js#L1) should be seeded (`dacat` for [v3](../backendv3/) and `dacat-next` for [v4](../backendv4/)).

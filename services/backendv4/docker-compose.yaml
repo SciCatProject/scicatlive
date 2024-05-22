@@ -1,5 +1,5 @@
 include:
-  - ../elastic/docker-compose.yaml
+  - ../elastic/compose.yaml
 
 services:
   backend:

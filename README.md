@@ -31,7 +31,7 @@ By running `docker compose up -d` these steps take place:
 
 ## Enable extra services
 
-By using [docker compose profiles](https://docs.docker.com/compose/profiles/), some extra services can be enabled, in addition to the default ones. To enable any, run `docker compose --profile <PROFILE> up -d`, or export the `COMPOSE_PROFILES` env variable as described [either](https://docs.docker.com/compose/environment-variables/envvars-precedence/). If needed, the user can specify more than one profile in the CLI by using the flag as `--profile <PROFILE1> --profile <PROFILE1>`. 
+By using [docker compose profiles](https://docs.docker.com/compose/profiles/), some extra services can be enabled, in addition to the default ones. To enable any, run `docker compose --profile <PROFILE> up -d`, or export the `COMPOSE_PROFILES` env variable as described [here](https://docs.docker.com/compose/environment-variables/envvars-precedence/). If needed, the user can specify more than one profile in the CLI by using the flag as `--profile <PROFILE1> --profile <PROFILE2>`. 
 
 The available profiles and additional services are:
 
@@ -135,7 +135,7 @@ To add a new service (see the [backend v4](./services/backendv4/) for an extensi
 9. include the reference to (3) to the global [docker-compose include list](docker-compose.yaml#L2)
 10. eventually, update the main [README.md](README.md)
 
-## Supported OS architectures
+### Supported OS architectures
 
 Since some images are not built with multi-arch, in particular the SciCat ones, make sure to specify the platform of the service in the docker-compose, when needed, to avoid possible issues when running `docker compose up` on different platforms, for example on MAC with arm64 architecture. See for example the [backendv4 docker-compose](./services/backendv4/docker-compose.yaml#L6)
 

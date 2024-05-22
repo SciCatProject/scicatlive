@@ -56,7 +56,7 @@ jobs:
         BE_VERSION: [v3, v4]
     steps:
       - uses: actions/checkout@v4
-      - name: Test docker-compose.yaml
+      - name: Test compose.yaml
         run: |-
           export BE_VERSION=${{ matrix.BE_VERSION }}
           docker compose --profile '*' up --wait --wait-timeout 300

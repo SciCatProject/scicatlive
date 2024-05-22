@@ -1,5 +1,6 @@
 services:
   jupyter:
+    platform: linux/amd64
     image: quay.io/jupyter/base-notebook:x86_64-notebook-7.1.2
     depends_on:
       backend:

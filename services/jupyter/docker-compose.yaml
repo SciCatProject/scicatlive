@@ -11,3 +11,5 @@ services:
       - ./config/notebooks:/home/jovyan/notebooks
     env_file:
       - config/.env
+    profiles:
+      - analysis

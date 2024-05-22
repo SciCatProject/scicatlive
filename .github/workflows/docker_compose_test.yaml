@@ -59,4 +59,4 @@ jobs:
       - name: Test docker-compose.yaml
         run: |-
           export BE_VERSION=${{ matrix.BE_VERSION }}
-          docker compose up --wait --wait-timeout 300
+          docker compose --profile '*' up --wait --wait-timeout 300

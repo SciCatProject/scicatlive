@@ -13,7 +13,7 @@ It consists of two blocks, the [transient one](./config/datasources.json#L18-L21
 
 #### [mongo](./config/datasources.json#L6-L17)
 
-TL;DR in most cases, it is enough to set the desired url with the full connection string to your mongo instance.
+TL;DR in most cases, is enough to set the desired url with the full connection string to your mongo instance.
 
 Name | Description | Value
 --- | --- | ---
@@ -34,7 +34,7 @@ The only option available is to either enable or disable the local authenticatio
 
 ### [config.local.js](./config/config.local.js)
 
-It allows setting backend specific configurations. Here follows the commonly changed options. 
+It allows setting backend-specific configurations. Here are the commonly changed options. 
 
 #### [exports](./config/config.local.js#L3-L39)
 
@@ -59,11 +59,17 @@ There are a few functional accounts available for handling data:
 | archiveManager   | aman        | Manage archiving of datasets |
 | proposalIngestor | aman        | Ingest proposals             |
 
-## Defaul configuration
+## Default configuration
 
-In the default configuration folder [config](./config), the backend is set to use the [mongo container](../mongodb/), the [archive mock](../archivemock/) and [rabbitmq](../rabbitmq/). 
+In the default configuration folder [config](./config), the backend is set to use the [mongo container](../mongodb/)
 
-Here below we show the internal dependencies of the service, which are not already covered [here](./README.md) (if `B` depends on `A`, then we visualize as `A --> B`). The same subdomain to service convention applies.
+## Enable additional features
+
+Additionally, by setting the env variable [ENABLE_JOBS](../../.env#L5), the [archive mock](../archivemock/) and [rabbitmq](../rabbitmq/) services are started and the backend is configured to connect to them.
+
+## Dependencies
+
+Here below we show the internal dependencies of the service, which are not already covered [here](../../README.md) (if `B` depends on `A`, then we visualize it as `A --> B`). The same subdomain to service convention applies.
 
 ```mermaid
 graph TD   

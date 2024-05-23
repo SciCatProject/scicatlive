@@ -1,0 +1,8 @@
+version: '3'
+include:
+  - ./services/mongodb/compose.yaml
+  - ./services/backend${BE_VERSION:-v4}/compose.yaml
+  - ./services/frontend/compose.yaml
+  - ./services/searchapi/compose.yaml
+  - ./services/proxy/compose.yaml
+  - ./services/jupyter/compose.yaml

@@ -1,12 +1,11 @@
 services:
   proxy:
     image: traefik:2.11
-    command:
-      - --api.insecure=true
-      - --providers.docker=true
-      - --entrypoints.web.address=:80
     ports:
       - 80:80
-      - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    env_file:
+      - ./config/.env
+    labels:
+      - traefik.http.services.proxy.loadbalancer.server.port=8080

@@ -28,3 +28,4 @@ The proxy sets a default certificate resolver, using letsencrypt. To use it, the
 +     - traefik.http.routers.frontend.entrypoints=websecure
 +     - traefik.http.routers.frontend.tls.certresolver=leresolver
 ```
+4. Change any other service that referenced the changed host

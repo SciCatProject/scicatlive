@@ -16,7 +16,7 @@ These files are ingested into the database using mongo funcionalities and bypass
 
 In the default configuration [init.js](./config/init.js), the seeding creates data in the mongodb database used by the `backend` service (either [v4](../backendv4/), by default, or [v3](../backendv3/) if specified otherwise by setting `BE_VERSION`).
 
-For an explanation of how setting `BE_VERSION` changes the environment creation see [here](./README.md#dependency-on-be_version).
+For an explanation of how setting `BE_VERSION` changes the environment creation see [here](../../README.md#docker-compose-profiles-and-env-variables-configuration-options).
 
 ## Dependency on `BE_VERSION`
 

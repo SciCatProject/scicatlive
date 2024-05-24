@@ -19,11 +19,17 @@ There are a few functional accounts available for handling data:
 
 ## Default configuration
 
-In the default configuration folder [config](./config), the backend is set to use the [mongo container](../mongodb/) and the [elastic search container](../elastic/).
+In the default configuration folder [config](./config), the backend is set to use the [mongo container](../mongodb/).
 
-Here below we show the internal dependencies of the service, which are not already covered [here](./README.md) (if `B` depends on `A`, then we visualize as `A --> B`). The same subdomain to service convention applies.
+## Enable additional features
+
+Additionally, by setting the env variable `ENABLE_JOBS`, the [elastic search](../elastic/) service is started and the backend is configured to connect to them. 
+
+## Dependencies
+
+Here below we show the internal dependencies of the service, which are not already covered [here](../../README.md) (if `B` depends on `A`, then we visualize as `A --> B`). The same subdomain to service convention applies.
 
 ```mermaid
-graph TD   
+graph TD
     elasticsearch --> backend
 ```

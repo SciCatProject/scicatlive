@@ -19,7 +19,7 @@ By running `docker compose up -d` these steps take place:
 1. a [mongodb](./services/mongodb/) container is created with some initial data.
 2. the SciCat [backend v4](./services/backendv4/) container is created and connected to (1).
 3. the SciCat [frontend](./services/frontend/) container is created and connected to (2).
-4. a reverse [proxy](./services/proxy) container is created and routes traffic to (2) and (3) through localhost subdomains, in the form: `http://${service}.localhost` (for the ones in need). The frontend is available at simply `http://localhost`.
+4. a reverse [proxy](./services/proxy) container is created and routes traffic to (2) and (3) through localhost subdomains, in the form: `http://${service}.localhost`. The frontend is available at simply `http://localhost`.
 
 ## Extra services and features
 
@@ -70,10 +70,7 @@ graph TD
       backend --> jupyter
    end
 
-   proxy -.- backend
-   proxy -.- frontend
-   proxy -.- searchapi
-   proxy -.- jupyter
+   proxy -.- services
 ```
 
 We flag with `*` the services which have extra internal dependencies, which are not shared.

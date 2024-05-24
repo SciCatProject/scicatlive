@@ -6,7 +6,6 @@ services:
       backend:
         condition: service_healthy
     labels:
-      - traefik.http.routers.jupyter.rule=Host(`jupyter.localhost`)
       - traefik.http.services.jupyter.loadbalancer.server.port=8888
     volumes:
       - ./config/notebooks:/home/jovyan/notebooks

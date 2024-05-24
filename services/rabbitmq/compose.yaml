@@ -2,7 +2,6 @@ services:
   rabbitmq:
     image: rabbitmq:3.13-management-alpine
     labels:
-      - traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.localhost`)
       - traefik.http.services.rabbitmq.loadbalancer.server.port=15672
     volumes:
       - rabbitmq_data:/bitnami

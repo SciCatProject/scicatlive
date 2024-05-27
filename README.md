@@ -31,16 +31,17 @@ They are used to modify existing services where whenever enabling the feature re
 
 ### Docker compose profiles
 
-They are used when adding new services or grouping services together (and do not require changes in multiple services). To enable any, run `docker compose --profile <PROFILE> up -d`, or export the `COMPOSE_PROFILES` env variable as described [here](https://docs.docker.com/compose/environment-variables/envvars-precedence/). If needed, the user can specify more than one profile in the CLI by using the flag as `--profile <PROFILE1> --profile <PROFILE2>`. 
+They are used when adding new services or grouping services together (and do not require changes in multiple services). To enable any, run `docker compose --profile <PROFILE> up -d`, or export the `COMPOSE_PROFILES` env variable as described [here](https://docs.docker.com/compose/environment-variables/envvars-precedence/). If needed, the user can specify more than one profile in the CLI by using the flag as `--profile <PROFILE1> --profile <PROFILE2>`.
 
 ### Docker compose profiles and env variables configuration options
 
 | Type    | Env key            | Value: Service/Feature                                                          | Default | Backend Compatibility | Description                                                                                                                                                            | Other impacted services |
-|---------|--------------------|---------------------------------------------------------------------------------|---------|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
+| ------- | ------------------ | ------------------------------------------------------------------------------- | ------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | profile | `COMPOSE_PROFILES` | <li>`analysis`: jupyter<li>`search`: searchapi<li>`'*'`: jupyter,searchapi</li> | `''`    | *                     | <li>analysis: enables additional jupyter notebook with python SciCat SDK installed and example notebooks<li>search: enables a SciCat interface for standardised search |                         |
 | env     | `BE_VERSION`       | <li>`v3`: backendv3<li>`v4`: backendv4                                          | `v4`    | as set                | Sets the be version to use in (2) of [default setup](#default-setup) to v3                                                                                             | mongodb,frontend        |
 | env     | `JOBS_ENABLED`     | `true`: rabbitmq,archivemock,jobs feature                                       | `''`    | v3                    | Creates a rabbitmq message broker which the be posts to and the archivemock listens to. It emulates the data long-term archive/retrieve workflow                       |                         |
 | env     | `ELASTIC_ENABLED`  | `true`: elastic,elastic feature                                                 | `''`    | v4                    | Creates an elastic search service and sets the be to use it for full-text searches                                                                                     |                         |
+| env     | `LDAP_ENABLED`     | `true`: ldap login                                                              | `''`    | as set                | Creates an LDAP service and sets the be to use it as log in backend                                                                                                    |                         |
 
 
 After optionally setting any configuration option, one can still select the services to run as described [here](README.md#select-the-services).
@@ -96,7 +97,7 @@ docker compose up -d frontend
 
 Will run, from the [previous section](#default-setup), (1), (2) and (4) but skip (5).
 
-And 
+And
 
 ```sh
 docker compose --profile search up -d searchapi

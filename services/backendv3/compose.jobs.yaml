@@ -1,0 +1,11 @@
+include:
+  - ../rabbitmq/compose.yaml
+  - ../archivemock/compose.yaml
+
+services:
+  backend:
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    volumes:
+      - ./config/component-config.local.json:/home/node/app/server/component-config.local.json

@@ -23,7 +23,7 @@ In the default configuration folder [config](./config), the backend is set to us
 
 ## Enable additional features
 
-Additionally, by setting the env variable `ENABLE_JOBS`, the [elastic search](../elastic/) service is started and the backend is configured to connect to them. 
+Additionally, by setting the env variable `ELASTIC_ENABLED`, the [elastic search](../elastic/) service is started and the backend is configured to connect to them. 
 
 ## Dependencies
 

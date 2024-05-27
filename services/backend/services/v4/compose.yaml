@@ -1,0 +1,4 @@
+include:
+  - path:
+      - ./compose.base.yaml
+      - ../../..${ELASTIC_ENABLED:+/backend/services/v4}/compose${ELASTIC_ENABLED:+.elastic}.yaml

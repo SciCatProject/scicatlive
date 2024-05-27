@@ -1,4 +1,0 @@
-include:
-  - path:
-      - ./compose.base.yaml
-      - ..${JOBS_ENABLED:+/backendv3}/compose${JOBS_ENABLED:+.jobs}.yaml

@@ -1,0 +1,2 @@
+include:
+  - ./services/${BE_VERSION:-v4}/compose.yaml

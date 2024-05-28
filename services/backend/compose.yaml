@@ -1,2 +1,4 @@
 include:
-  - ./services/${BE_VERSION:-v4}/compose.yaml
+  - path:
+    - ./services/${BE_VERSION:-v4}/compose.yaml
+    - ..${JOBS_ENABLED:+/backend/services/$BE_VERSION}/compose${JOBS_ENABLED:+.jobs}.yaml

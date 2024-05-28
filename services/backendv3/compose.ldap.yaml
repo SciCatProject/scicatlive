@@ -1,0 +1,8 @@
+include:
+  - ../ldap/compose.yaml
+
+services:
+  backend:
+    depends_on:
+      ldap:
+        condition: service_healthy

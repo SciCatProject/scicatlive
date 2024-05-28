@@ -13,5 +13,6 @@ services:
       - /config/init.sh && nginx -g "daemon off;"
     environment:
       BE_VERSION: ${BE_VERSION:-v4}
+      LDAP_ENABLED: ${LDAP_ENABLED:-}
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)

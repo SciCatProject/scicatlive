@@ -12,7 +12,7 @@ For an extensive list of available options see [here](https://scicatproject.gith
 
 ## Default configuration
 
-In the default configuration [config](./config/), the frontend is set to call the `backend service` available at `backend.localhost` (either [v4](../backend/v4/), by default, or [v3](../backend/v3/) if specified otherwise by setting `BE_VERSION`).
+In the default configuration [config](./config/), the frontend is set to call the `backend service` available at `backend.localhost` (either [v4](../backend/services/v4/), by default, or [v3](../backend/services/v3/) if specified otherwise by setting `BE_VERSION`).
 
 For an explanation of how setting `BE_VERSION` changes the environment creation see [here](../../README.md#docker-compose-profiles-and-env-variables-configuration-options).
 

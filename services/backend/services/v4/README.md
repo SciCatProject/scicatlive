@@ -23,11 +23,11 @@ In the default configuration folder [config](./config), the backend is set to us
 
 ## Enable additional features
 
-Additionally, by setting the env variable `ELASTIC_ENABLED`, the [elastic search](../elastic/) service is started and the backend is configured to connect to them. 
+Additionally, by setting the env variable `ELASTIC_ENABLED`, the [elastic search](./services/elastic/) service is started and the backend is configured to connect to them. 
 
 ## Dependencies
 
-Here below we show the internal dependencies of the service, which are not already covered [here](../../README.md) (if `B` depends on `A`, then we visualize as `A --> B`). The same subdomain to service convention applies.
+Here below we show the internal dependencies of the service, which are not already covered [here](../../../../README.md) (if `B` depends on `A`, then we visualize as `A --> B`). The same subdomain to service convention applies.
 
 ```mermaid
 graph TD

@@ -2,3 +2,4 @@ include:
   - path:
       - ./compose.base.yaml
       - ../../..${JOBS_ENABLED:+/backend/services/v3}/compose${JOBS_ENABLED:+.jobs}.yaml
+      - ../../..${JOBS_ENABLED:+/backend/services/v3}/compose${JOBS_ENABLED:+.jobs}.yaml

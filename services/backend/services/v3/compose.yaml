@@ -1,0 +1,5 @@
+include:
+  - path:
+      - ./compose.base.yaml
+      - ../../..${JOBS_ENABLED:+/backend/services/v3}/compose${JOBS_ENABLED:+.jobs}.yaml
+      - ../../..${LDAP_ENABLED:+/backend/services/v3}/compose${LDAP_ENABLED:+.ldap}.yaml

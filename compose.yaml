@@ -1,4 +1,3 @@
-version: '3'
 include:
   - ./services/mongodb/compose.yaml
   - ./services/backend/compose.yaml

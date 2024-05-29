@@ -2,3 +2,4 @@ include:
   - path:
       - ./compose.base.yaml
       - ./services/elastic/.${ELASTIC_ENABLED:+./../}compose${ELASTIC_ENABLED:+.elastic}.yaml
+      - ../ldap/.${LDAP_ENABLED:+./v4/}compose${LDAP_ENABLED:+.ldap}.yaml

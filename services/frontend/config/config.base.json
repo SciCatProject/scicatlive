@@ -7,7 +7,7 @@
    "editMetadataEnabled":true,
    "editPublishedData":true,
    "editSampleEnabled":true,
-   "externalAuthEndpoint":"/auth/msad",
+   "externalAuthEndpoint":"/api/v3/auth/ldap",
    "facility":"SAMPLE-SITE",
    "fileColorEnabled":true,
    "fileDownloadEnabled":true,

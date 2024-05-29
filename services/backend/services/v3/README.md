@@ -69,6 +69,8 @@ In the default configuration folder [config](./config), the backend is set to us
 
 Additionally, by setting the env variable [ENABLE_JOBS](../../.env#L5), the [archive mock](./services/archivemock/) and [rabbitmq](./services/rabbitmq/) services are started and the backend is configured to connect to them.
 
+If `LDAP_ENABLED` is toggled, you can use LDAP to log in with a [LDAP user](../ldap/README.md#default-configuration).
+
 ## Dependencies
 
 Here below we show the internal dependencies of the service, which are not already covered [here](../../../../README.md) (if `B` depends on `A`, then we visualize it as `A --> B`). The same subdomain to service convention applies.
@@ -77,5 +79,6 @@ Here below we show the internal dependencies of the service, which are not alrea
 graph TD   
     rabbitmq --> archivemock
     rabbitmq --> backend
+    ldap --> backend
     backend --> archivemock
 ```

@@ -24,6 +24,9 @@ In the default configuration folder [config](./config), the backend is set to us
 ## Enable additional features
 
 Additionally, by setting the env variable `ELASTIC_ENABLED`, the [elastic search](./services/elastic/) service is started and the backend is configured to connect to them. 
+Additionally, by setting the env variable `ELASTIC_ENABLED`, the [elastic search](./services/elastic/) service is started and the backend is configured to connect to them.
+
+If `LDAP_ENABLED` is toggled, you can use LDAP to log in with a [LDAP user](../ldap/README.md#default-configuration).
 
 ## Dependencies
 
@@ -32,4 +35,5 @@ Here below we show the internal dependencies of the service, which are not alrea
 ```mermaid
 graph TD
     elasticsearch --> backend
+    ldap --> backend
 ```

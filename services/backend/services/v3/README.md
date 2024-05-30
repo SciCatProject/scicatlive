@@ -73,12 +73,11 @@ If `LDAP_ENABLED` is toggled, you can use LDAP to log in with a [LDAP user](../l
 
 ## Dependencies
 
-Here below we show the internal dependencies of the service, which are not already covered [here](../../../../README.md) (if `B` depends on `A`, then we visualize it as `A --> B`). The same subdomain to service convention applies.
+Here below we show the internal dependencies of the service, which are not already covered [here](../../../../README.md) and [here](../../README.md) (if `B` depends on `A`, then we visualize as `A --> B`). The same subdomain to service convention applies.
 
 ```mermaid
-graph TD   
+graph TD
     rabbitmq --> archivemock
     rabbitmq --> backend
-    ldap --> backend
     backend --> archivemock
 ```

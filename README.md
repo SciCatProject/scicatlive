@@ -17,7 +17,7 @@ SciCat with docker compose.
 
 By running `docker compose up -d` these steps take place:
 1. a [mongodb](./services/mongodb/) container is created with some initial data.
-2. the SciCat [backend v4](./services/backend/v4/) container is created and connected to (1).
+2. the SciCat [backend v4](./services/backend/services/v4/) container is created and connected to (1).
 3. the SciCat [frontend](./services/frontend/) container is created and connected to (2).
 4. a reverse [proxy](./services/proxy) container is created and routes traffic to (2) and (3) through localhost subdomains, in the form: `http://${service}.localhost`. The frontend is available at simply `http://localhost`.
 
@@ -108,12 +108,12 @@ Make sure to check the [backend compatibility](#docker-compose-profiles-and-env-
 
 ## Add a new service
 
-To add a new service (see the [backend v4](./services/backend/v4/) for an extensive example):
+To add a new service (see the [backend v4](./services/backend/services/v4/) for an extensive example):
 1. create a dedicated folder in the [services](./services/) one
 2. name it as the service
 3. create the `compose.yaml` file with the required dependencies (if any)
 4. eventually, include any service in (2) and (3) which is specific to the service and not shared across the global setup
-5. eventually, add additional configurable logic (e.g. [BE_VERSION dependency](./services/frontend/compose.yaml#L14) and [JOBS_ENABLED dependency](./services/backend/v3/compose.yaml))
+5. eventually, add additional configurable logic (e.g. [BE_VERSION dependency](./services/frontend/compose.yaml#L14) and [JOBS_ENABLED dependency](./services/backend/services/v3/compose.yaml)). Remember to add an empty `.compose.yaml` if the service supports on/off
 6. eventually, add the platform field, as described [here](#supported-os-architectures)
 7. eventually, create a `config` folder if it requires configuration
 8. eventually, add a `README.md` file in the service

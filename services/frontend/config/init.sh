@@ -5,7 +5,7 @@ apk update && apk add jq
 
 FILES=$(ls /config/*.json)
 
-function exclude_config () {
+exclude_config () {
     FILES=$(echo "$FILES" | xargs -n1 | grep -v "$1")
 }
 

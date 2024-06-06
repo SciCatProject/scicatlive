@@ -3,5 +3,5 @@
 
 FILES=$(ls /config/providers*.json)
 
-# shellcheck disable=SC2086
-npm_config_yes=true npx node-jq -s 'reduce .[] as $item ({}; . * $item)' $FILES > /home/node/app/server/providers.json
+# shellcheck disable=SC2086,SC2016
+npx --yes node-jq -s 'reduce .[] as $item ({}; . * $item)' $FILES > /home/node/app/server/providers.json

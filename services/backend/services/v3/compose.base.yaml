@@ -9,6 +9,11 @@ services:
       - ./config/config.local.js:/home/node/app/server/config.local.js
       - ./config/datasources.json:/home/node/app/server/datasources.json
       - ./config/providers.json:/home/node/app/server/providers.json
+      - ./config/init.sh:/init.sh
+    command:
+      - sh
+      - -c
+      - /init.sh && node .
     healthcheck:
       test: wget --spider 'http://127.0.0.1:3000/'
       start_period: 5s

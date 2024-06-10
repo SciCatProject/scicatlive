@@ -2,4 +2,3 @@ include:
   - path:
       - ./compose.base.yaml
       - ./services/rabbitmq/.${JOBS_ENABLED:+./../}compose${JOBS_ENABLED:+.jobs}.yaml
-      - ../ldap/.${LDAP_ENABLED:+./v3/}compose${LDAP_ENABLED:+.ldap}.yaml

@@ -54,12 +54,14 @@ jobs:
     strategy:
       matrix:
         BE_VERSION: [v3, v4]
-        JOBS_AND_ELASTIC_ENABLED: ['', true]
+        ELASTIC_OR_JOBS_ENABLED: ['', true]
+        LDAP_ENABLED: ['', true]
     steps:
       - uses: actions/checkout@v4
       - name: Test compose.yaml
         run: |-
-          export JOBS_ENABLED=${{ matrix.JOBS_AND_ELASTIC_ENABLED }}
-          export ELASTIC_ENABLED=${{ matrix.JOBS_AND_ELASTIC_ENABLED }}
+          export JOBS_ENABLED=${{ matrix.ELASTIC_OR_JOBS_ENABLED }}
+          export ELASTIC_ENABLED=${{ matrix.ELASTIC_OR_JOBS_ENABLED }}
+          export LDAP_ENABLED=${{ matrix.LDAP_ENABLED }}
           export BE_VERSION=${{ matrix.BE_VERSION }}
           docker compose --profile '*' up --wait --wait-timeout 300

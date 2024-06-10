@@ -1,0 +1,10 @@
+services:
+  backend:
+    command:
+        - sh
+        - -c
+        - /init.sh && npm ci && while true; do sleep 600; done
+    labels:
+      - traefik.http.services.backend.loadbalancer.server.port=3000
+    environment:
+      NODE_EVN: development

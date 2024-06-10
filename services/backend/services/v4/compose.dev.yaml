@@ -1,0 +1,11 @@
+services:
+  backend:
+    image: !reset null
+    command: /bin/sh -c "apk update && apk add git && git init && git remote add origin https://github.com/SciCatProject/scicat-backend-next.git && git fetch && git reset --hard origin/master && while true; do sleep 600; done"
+    user: root
+    build:
+      context: https://github.com/SciCatProject/scicat-backend-next.git
+      target: dev
+    labels:
+      - traefik.http.services.backend.loadbalancer.server.port=3000
+    healthcheck: !reset null

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! exec 3<>/dev/tcp/localhost/80; then
+if ! exec 3<>/dev/tcp/localhost/9000; then
     exit 1
 fi
 

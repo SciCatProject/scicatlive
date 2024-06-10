@@ -1,4 +1,4 @@
 include:
   - path:
-      - ./compose.base.yaml
+      - compose.base.yaml
       - .${JOBS_ENABLED:+/}compose.jobs.yaml

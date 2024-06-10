@@ -1,5 +1,6 @@
 [
 	{
+		"pid": "PID.SAMPLE.PREFIX/desy_ds1",
 		"_id": "PID.SAMPLE.PREFIX/desy_ds1",
 		"owner": "Oleksandr Yefanov",
 		"ownerEmail": "oleksandr.yefanov@desy.de",
@@ -66,6 +67,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/desy_ds2",
+		"pid": "PID.SAMPLE.PREFIX/desy_ds2",
 		"owner": "Oleksandr Yefanov",
 		"ownerEmail": "oleksandr.yefanov@desy.de",
 		"orcidOfOwner": "0000-0001-8676-0091",
@@ -131,6 +133,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/desy_ds3",
+		"pid": "PID.SAMPLE.PREFIX/desy_ds3",
 		"owner": "Oleksandr Yefanov",
 		"ownerEmail": "oleksandr.yefanov@desy.de",
 		"orcidOfOwner": "0000-0001-8676-0091",
@@ -196,6 +199,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/dls_ds1",
+		"pid": "PID.SAMPLE.PREFIX/dls_ds1",
 		"owner": "Stephen Collins",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -254,6 +258,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/dls_ds2",
+		"pid": "PID.SAMPLE.PREFIX/dls_ds2",
 		"owner": "Duncan N. Johnstone",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -312,6 +317,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/hzdr_ds1",
+		"pid": "PID.SAMPLE.PREFIX/hzdr_ds1",
 		"owner": "Hao Chu",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -370,6 +376,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/maxiv_ds1",
+		"pid": "PID.SAMPLE.PREFIX/maxiv_ds1",
 		"owner": "Rajmund Mokso",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -428,6 +435,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/maxiv_ds2",
+		"pid": "PID.SAMPLE.PREFIX/maxiv_ds2",
 		"owner": "Maik Kahnt",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -486,6 +494,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds1",
+		"pid": "PID.SAMPLE.PREFIX/psi_ds1",
 		"owner": "Christian M. Schlepütz",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -565,6 +574,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds2",
+		"pid": "PID.SAMPLE.PREFIX/psi_ds2",
 		"owner": "Christian M. Schlepütz",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -644,6 +654,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/psi_ds3",
+		"pid": "PID.SAMPLE.PREFIX/psi_ds3",
 		"owner": "Christian M. Schlepütz",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -722,6 +733,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/soleil_ds1",
+		"pid": "PID.SAMPLE.PREFIX/soleil_ds1",
 		"owner": "Doru Constantin",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -780,6 +792,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/soleil_ds2",
+		"pid": "PID.SAMPLE.PREFIX/soleil_ds2",
 		"owner": "Doru Constantin",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -835,6 +848,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds1",
+		"pid": "PID.SAMPLE.PREFIX/ukri_ds1",
 		"owner": "Franz Lang",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -893,6 +907,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds2",
+		"pid": "PID.SAMPLE.PREFIX/ukri_ds2",
 		"owner": "Franz Lang",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -949,6 +964,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds3",
+		"pid": "PID.SAMPLE.PREFIX/ukri_ds3",
 		"owner": "Franz Lang",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -1007,6 +1023,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds4",
+		"pid": "PID.SAMPLE.PREFIX/ukri_ds4",
 		"owner": "Chiara Triestino",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -1065,6 +1082,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds5",
+		"pid": "PID.SAMPLE.PREFIX/ukri_ds5",
 		"owner": "Gabriel Bernardo",
 		"ownerEmail": "",
 		"orcidOfOwner": "",
@@ -1121,6 +1139,7 @@
 	},
 	{
 		"_id": "PID.SAMPLE.PREFIX/ukri_ds6",
+		"pid": "PID.SAMPLE.PREFIX/ukri_ds6",
 		"owner": "Gabriel Bernardo",
 		"ownerEmail": "",
 		"orcidOfOwner": "",

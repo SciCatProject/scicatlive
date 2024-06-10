@@ -1,7 +1,4 @@
 {
-    "loopback-component-explorer": {
-        "mountPath": "/explorer"
-    },
     "../node_modules/loopback-component-mq/lib": {
         "options": {
             "restPort": 15672,

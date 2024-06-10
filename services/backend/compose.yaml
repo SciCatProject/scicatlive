@@ -1,4 +1,4 @@
 include:
   - path:
       - ./services/${BE_VERSION:-v4}/compose.yaml
-      - ./services/ldap/.${LDAP_ENABLED:+./${BE_VERSION:-v4}/}compose${LDAP_ENABLED:+.ldap}.yaml
+      - .${LDAP_ENABLED:+/services/${BE_VERSION:-v4}/}compose.ldap.yaml

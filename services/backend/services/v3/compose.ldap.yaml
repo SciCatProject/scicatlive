@@ -8,5 +8,3 @@ services:
         condition: service_healthy
     volumes:
       - ./config/providers.ldap.json:/config/providers.ldap.json
-    environment:
-      LDAP_ENABLED: true

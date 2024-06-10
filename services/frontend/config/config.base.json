@@ -7,7 +7,7 @@
    "editMetadataEnabled":true,
    "editPublishedData":true,
    "editSampleEnabled":true,
-   "externalAuthEndpoint":"/auth/msad",
+   "externalAuthEndpoint":"/api/v3/auth/ldap",
    "facility":"SAMPLE-SITE",
    "fileColorEnabled":true,
    "fileDownloadEnabled":true,
@@ -63,12 +63,6 @@
    "metadataStructure":"tree",
    "multipleDownloadAction":"",
    "multipleDownloadEnabled":false,
-   "oAuth2Endpoints":[
-      {
-         "authURL": "api/v3/auth/oidc",
-         "displayText": "Login with OIDC"
-      }
-   ],
    "policiesEnabled":true,
    "retrieveDestinations": [],
    "riotBaseUrl":"",

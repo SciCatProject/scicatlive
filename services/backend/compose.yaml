@@ -1,0 +1,5 @@
+include:
+  - path:
+      - ./services/${BE_VERSION:-v4}/compose.yaml
+      - ./services/ldap/.${LDAP_ENABLED:+./${BE_VERSION:-v4}/}compose${LDAP_ENABLED:+.ldap}.yaml
+      - ./services/keycloak/.${OIDC_ENABLED:+./${BE_VERSION:-v4}/}compose${OIDC_ENABLED:+.oidc}.yaml

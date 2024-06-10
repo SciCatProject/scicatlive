@@ -1,0 +1,19 @@
+services:
+  frontend:
+    platform: linux/amd64
+    image: ghcr.io/scicatproject/frontend:v4.4.1
+    depends_on:
+      backend:
+        condition: service_healthy
+    volumes:
+      - ./config:/config
+    command:
+      - sh
+      - -c
+      - /config/init.sh && nginx -g "daemon off;"
+    environment:
+      BE_VERSION: ${BE_VERSION:-v4}
+      LDAP_ENABLED: ${LDAP_ENABLED:-}
+      OIDC_ENABLED: ${OIDC_ENABLED:-}
+    labels:
+      - traefik.http.routers.frontend.rule=Host(`localhost`)

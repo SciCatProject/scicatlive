@@ -1,9 +1,0 @@
-services:
-  searchapi:
-    image: ghcr.io/scicatproject/panosc-search-api:latest
-    depends_on:
-      - backend
-    labels:
-      - traefik.http.routers.searchapi.rule=Host(`searchapi.localhost`)
-    env_file:
-      - ./config/.env

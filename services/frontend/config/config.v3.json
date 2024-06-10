@@ -1,3 +1,4 @@
 {
-    "accessTokenPrefix": ""
+    "accessTokenPrefix": "",
+    "externalAuthEndpoint":"/auth/msad"
 }

@@ -28,7 +28,7 @@ user | mongodb user password | ""
 
 It allows setting the authentication providers. The `local` block sets the local accounts.
 
-Any file called providers*.json will be merged together by the [init.sh](./config/init.sh). This is done to allow better scoping of providers options.
+Any file called providers*.json will be merged together by the [merge_json.sh](./entrypoints/merge_json.sh). This is done to allow better scoping of providers options.
 
 #### [local](./config/providers.json#L2-L11)
 

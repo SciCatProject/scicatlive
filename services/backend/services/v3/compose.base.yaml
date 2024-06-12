@@ -9,11 +9,13 @@ services:
       - ./config/config.local.js:/home/node/app/server/config.local.js
       - ./config/datasources.json:/home/node/app/server/datasources.json
       - ./config/providers.json:/config/providers.json
-      - ./entrypoints/init.sh:/init.sh
-    command:
-      - sh
-      - -c
-      - /init.sh && node .
+      # The volumes below allow to run init scripts before running the service
+      - ../../../../entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
+      - ./entrypoints/init.sh:/docker-entrypoints/0.sh
+    entrypoint:
+      - loop_entrypoints.sh
+      - docker-entrypoint.sh
+    command: node .
     healthcheck:
       test: wget --spider 'http://127.0.0.1:3000/'
       start_period: 5s

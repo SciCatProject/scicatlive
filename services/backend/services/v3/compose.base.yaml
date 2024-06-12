@@ -9,7 +9,7 @@ services:
       - ./config/config.local.js:/home/node/app/server/config.local.js
       - ./config/datasources.json:/home/node/app/server/datasources.json
       - ./config/providers.json:/config/providers.json
-      - ./config/init.sh:/init.sh
+      - ./entrypoints/init.sh:/init.sh
     command:
       - sh
       - -c

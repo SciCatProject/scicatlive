@@ -9,7 +9,7 @@ services:
       - ./config:/config
       # The volumes below allow to run init scripts before running the service
       - ../../entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
-      - ./entrypoints/init.sh:/docker-entrypoints/0.sh
+      - ./entrypoints/merge_json.sh:/docker-entrypoints/0.sh
     entrypoint: loop_entrypoints.sh
     command: nginx -g "daemon off;"
     environment:

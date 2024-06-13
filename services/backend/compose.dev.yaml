@@ -1,0 +1,13 @@
+services:
+  backend:
+    volumes:
+      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
+      - ${PWD}/entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
+    entrypoint:
+      - loop_entrypoints.sh
+      - docker-entrypoint.sh
+    command: infinite_loop.sh
+    labels:
+      - traefik.http.services.backend.loadbalancer.server.port=3000
+    healthcheck:
+      test: pgrep -f "/bin/sh /usr/local/bin/infinite_loop.sh"

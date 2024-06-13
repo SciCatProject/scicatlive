@@ -14,4 +14,4 @@ exclude_config () {
 [ -z "$OIDC_ENABLED" ] && exclude_config "oidc.json"
 
 # shellcheck disable=SC2086
-jq -s 'reduce .[] as $item ({}; . * $item)' $FILES > /usr/share/nginx/html/assets/config.json
+jq -s 'reduce .[] as $item ({}; . * $item)' $FILES > "${CONFIG_DIR:-/usr/share/nginx/html/assets}"/config.json

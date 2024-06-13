@@ -1,0 +1,21 @@
+services:
+  frontend:
+    platform: linux/amd64
+    image: ghcr.io/scicatproject/frontend:v4.4.1
+    depends_on:
+      backend:
+        condition: service_healthy
+    volumes:
+      - ./config:/config
+      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
+      # This is numbered 1 (and not 0) as in the DEV config, which
+      # inherits from this, it must be run after the git_init
+      - ./entrypoints/merge_json.sh:/docker-entrypoints/1.sh
+    entrypoint: loop_entrypoints.sh
+    command: nginx -g "daemon off;"
+    environment:
+      BE_VERSION: ${BE_VERSION:-v4}
+      LDAP_ENABLED: ${LDAP_ENABLED:-}
+      OIDC_ENABLED: ${OIDC_ENABLED:-}
+    labels:
+      - traefik.http.routers.frontend.rule=Host(`localhost`)

@@ -10,7 +10,7 @@ services:
       - ./config/datasources.json:/home/node/app/server/datasources.json
       - ./config/providers.json:/config/providers.json
       # The volumes below allow to run init scripts before running the service
-      - ../../../../entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
+      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
       - ./entrypoints/merge_json.sh:/docker-entrypoints/0.sh
     entrypoint:
       - loop_entrypoints.sh

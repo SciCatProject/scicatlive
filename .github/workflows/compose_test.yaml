@@ -67,3 +67,23 @@ jobs:
           export OIDC_ENABLED=${{ matrix.OIDC_ENABLED }}
           export BE_VERSION=${{ matrix.BE_VERSION }}
           docker compose --profile '*' up --wait --wait-timeout 300
+  test-dev:
+    runs-on: ubuntu-latest
+    needs:
+      - yaml-lint
+      - json-lint
+      - shell-lint
+      - javascript-lint
+    strategy:
+      matrix:
+        BE_VERSION: [v3, v4]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test DEV compose.yaml
+        run: |-
+          export BE_VERSION=${{ matrix.BE_VERSION }}
+          export JOBS_ENABLED=true
+          export ELASTIC_ENABLED=true
+          export LDAP_ENABLED=true
+          export DEV=true
+          docker compose --profile '*' up --wait --wait-timeout 600

@@ -16,6 +16,8 @@ In the default configuration [config](./config/), the frontend is set to call th
 
 For an explanation of how setting `BE_VERSION` changes the environment creation see [here](../../README.md#docker-compose-profiles-and-env-variables-configuration-options).
 
-## Dependency on `BE_VERSION`
+## Enable additional features
 
 Since there was a small breaking change from `v3` to `v4`, when connecting to the `backend`, the `BE_VERSION` value controls if [config.v3.json file](./config/config.v3.json), which is applied when `BE_VERSION=v3`, should be included in the configs merge process.
+
+With `DEV=true`, please use `npm start -- --host 0.0.0.0`. This is to allow traffic from any IP to the `frontend` component and it is necessary since the component runs in the docker network.

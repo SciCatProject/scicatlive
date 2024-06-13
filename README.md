@@ -43,7 +43,7 @@ They are used when adding new services or grouping services together (and do not
 | env     | `ELASTIC_ENABLED`  | `true`: elastic,elastic feature                                                 | `''`    | v4                    | Creates an elastic search service and sets the be to use it for full-text searches                                                                                     |                         |
 | env     | `LDAP_ENABLED`     | `true`: ldap auth                                                              | `''`    | *                | Creates an LDAP service and sets the be to use it as authentication backend                                                                                                    |                         |
 | env     | `OIDC_ENABLED`     | `true`: oidc auth                                                              | `''`    | *                | Creates an OIDC identity provider and sets the be to use it as authentication backend                                                                                                    |                         |
-
+| env     | `DEV`              | `true`: SciCat services in DEV mode                                       | `''`    | *             | The SciCat services' environment is prepared to easy the [development in a standardized environment](#dev-configuration)                                                                                       |                         |
 
 
 After optionally setting any configuration option, one can still select the services to run as described [here](README.md#select-the-services).
@@ -63,6 +63,30 @@ After any configuration change, `docker compose up -d` must be rerun, to allow l
 Sometimes, it is useful to run init scripts (entrypoints) before the service starts. For example, for the `frontend` composability, it is useful to specify its configuration through multiple JSON files, with different scopes, which are then merged by a [init script](./services/frontend/entrypoints/merge_json.sh). For this reason, one can define service-specific `entrypoints` (e.g. [frontend ones](./services/frontend/entrypoints/)) which can be run inside the container, before the service starts (i.e. before the docker compose `command` is executed). Whenever these entrypoints are shared between services, it is recommended to place them in an `entrypoints` folder below the outermost service (e.g. [this one](./entrypoints/)). 
 
 To ease the iterative execution of multiple init scripts, one can leverage the [loop_entrypoints](./entrypoints/loop_entrypoints.sh) utility, which loops alphabetically over `/docker-entrypoinst/*.sh` and executes each. This is in use in some services (e.g. in the [frontend](./services/frontend/compose.yaml)), so one can add additional init steps by mounting them, one by one, as volumes inside the container in the `/docker-entrypoints` folder and naming them depending on the desired order (eventually rename the existing ones as well).
+
+### DEV configuration
+
+To provide a consistent environment where developers can work, the `DEV=true` option creates the SciCat services, but instead of running them, it just creates the base environment that each service requires. For example, for the `backend`, instead of running the web server, it creates a NODE environment with `git` where one can develop and run the unit tests. This is useful as often differences in environments create collaboration problems. It should also provide an example of the configuration for running tests. Please refer to the services' README for additional information, or to the Dockerfile `CMD` of the components' GitHub repo if not specified otherwise. The `DEV=true` affects the SciCat services only.
+
+Please be patient when using DEV as each container runs unit tests as part of the init, which might take a little to finish. This is done to test the compatibility of upstream/latest with the `docker compose` (see warning). To see if any special precaution is required to run the tests, refer to the `entrypoints/tests.sh` mounted by the volumes. To disable test execution, just comment the `entrypoints/tests.sh` mount on the respective service.
+
+It is very convenient if using [VSCode](https://code.visualstudio.com/docs/devcontainers/attach-container), as, after the docker services are running, one can attach to it and start developing using all VSCode features, including version control and debugging.
+
+:warning: To prevent git unpushed changes from being lost when a container is restarted, the work folder of each service, when in DEV mode, is mounted to a docker volume, with naming convention `${COMPOSE_PROJECT_NAME}_<service>_dev`. Make sure, before removing docker volumes to push the relevant changes.
+
+:warning: As the DEV containers pull from upstream/latest, there is no guarantee of their functioning outside of releases. If they fail to start, try, as a first option, to build the image from a tag (e.g. [build context](./services/frontend/compose.dev.yaml)) using the [TAG](https://docs.docker.com/reference/cli/docker/image/build/#git-repositories) and then git checkout to that tag (e.g. set [GITHUB_REPO](./services/frontend/compose.dev.yaml) including the branch using the same syntax and value as the build context).
+
+e.g., for the frontend:
+```diff
+   build:
+-     context: https://github.com/SciCatProject/frontend.git
++     context: https://github.com/SciCatProject/frontend.git#v4.4.1
+   environment:
+-     GITHUB_REPO: https://github.com/SciCatProject/frontend.git
++     GITHUB_REPO: https://github.com/SciCatProject/frontend.git#v4.4.1
+```
+
+If you did not remove the volume, specified a new branch, and had any uncommited changes, they will be stashed to checkout to the selected branch. You can later reapply them by `git stash apply`.
 
 #### If the service does not support entrypoints yet, one needs to:
 
@@ -132,7 +156,7 @@ To add a new service (see the [backend v4](./services/backend/services/v4/) for 
 2. name it as the service
 3. create the `compose.yaml` file with the required dependencies (if any)
 4. eventually, include any service in (2) and (3) which is specific to the service and not shared across the global setup
-5. eventually, add additional configurable logic (e.g. [BE_VERSION dependency](./services/frontend/compose.yaml#L14) and [ELASTIC_ENABLED dependency](./services/backend/services/v4/compose.yaml)). Remember to add an empty `.compose.<FEATURE>.yaml` (e.g. [here](./services/backend/services/v4/.compose.elastic.yaml)) if the service supports on/off
+5. eventually, add additional configurable logic (e.g. [BE_VERSION dependency](./services/frontend/compose.yaml#L14) and [ELASTIC_ENABLED dependency](./services/backend/services/v4/compose.yaml)). Remember to add an empty `.compose.<FEATURE>.yaml` (e.g. [here](./services/backend/services/v4/.compose.elastic.yaml)) if the service supports on/off. This also include DEV configurations, e.g. [here](./services/searchapi/compose.dev.yaml)
 6. eventually, add entrypoints for init logics, as described [here](#if-the-service-does-not-support-entrypoints-yet-one-needs-to)
 7. eventually, add the platform field, as described [here](#supported-os-architectures)
 8. eventually, create a `config` folder if it requires configuration

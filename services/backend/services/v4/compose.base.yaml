@@ -7,7 +7,7 @@ services:
         condition: service_started
     volumes:
       - ./config/functionalAccounts.json:/home/node/app/functionalAccounts.json
-      - ../../../../entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
+      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
       - ./entrypoints/db_migration.sh:/docker-entrypoints/0.sh
     entrypoint:
       - loop_entrypoints.sh

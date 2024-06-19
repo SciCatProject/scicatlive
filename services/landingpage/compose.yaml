@@ -1,6 +1,6 @@
 services:
   landingpage:
-    image: latest
+    image: http://ghcr.io/scicatproject/landingpageserver:latest
 
     ports:
       - 4201:80

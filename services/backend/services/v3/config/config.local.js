@@ -38,5 +38,5 @@ module.exports = {
   logbook: {
     enabled: false
   },
-  expressSessionSecret: "someSecret",
+  expressSessionSecret: process.env.OIDC_ENABLED? "someSecret": undefined
 };

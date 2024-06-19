@@ -4,7 +4,7 @@ services:
     command: start-dev --import-realm --http-port=80
     env_file: ./config/.env
     volumes:
-      - ./config/healthcheck.sh:/healthcheck.sh
+      - ./healthcheck/healthcheck.sh:/healthcheck.sh
       - ./config/facility-realm.json:/opt/keycloak/data/import/facility-realm.json:ro
     labels:
       - traefik.http.services.keycloak.loadbalancer.server.port=80

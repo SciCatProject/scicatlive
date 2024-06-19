@@ -6,3 +6,5 @@ services:
       - 4201:80
 
     user: 0:0
+    profiles:
+      - search

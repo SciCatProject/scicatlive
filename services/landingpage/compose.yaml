@@ -1,6 +1,6 @@
 services:
   landingpage:
-    image:latest
+    image: latest
 
     ports:
       - 4201:80

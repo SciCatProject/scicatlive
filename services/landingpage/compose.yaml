@@ -1,0 +1,11 @@
+services:
+  landingpage:
+    image: ghcr.io/scicatproject/landingpageserver:v3.2-rc2
+    volumes:
+      - ./config/config.json:/usr/share/nginx/html/assets/config.json
+    profiles:
+      - search
+    restart: on-failure
+    depends_on:
+      backend:
+        condition: service_healthy

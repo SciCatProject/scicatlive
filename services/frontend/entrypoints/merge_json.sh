@@ -11,6 +11,7 @@ exclude_config () {
 
 [ "$BE_VERSION" = "v4" ] && exclude_config "v3.json"
 [ -z "$LDAP_ENABLED" ] && exclude_config "ldap.json"
+[ -z "$OIDC_ENABLED" ] && exclude_config "oidc.json"
 
 # shellcheck disable=SC2086
 jq -s 'reduce .[] as $item ({}; . * $item)' $FILES > /usr/share/nginx/html/assets/config.json

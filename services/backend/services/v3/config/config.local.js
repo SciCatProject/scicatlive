@@ -37,5 +37,6 @@ module.exports = {
   queue: process.env.ENABLE_JOBS? "rabbitmq": undefined,
   logbook: {
     enabled: false
-  }
+  },
+  expressSessionSecret: process.env.OIDC_ENABLED? "someSecret": undefined
 };

@@ -15,5 +15,6 @@ services:
     environment:
       BE_VERSION: ${BE_VERSION:-v4}
       LDAP_ENABLED: ${LDAP_ENABLED:-}
+      OIDC_ENABLED: ${OIDC_ENABLED:-}
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)

@@ -61,7 +61,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: List image versions
         run: |
-          echo "cache_key=$(grep 'image:' . -R | sed 's/.*image: *//' | sha256sum | cut -d ' ' -f 1)" >> $GITHUB_OUTPUT
+          cache_key="$(grep 'image:' . -R     \
+                      | sed 's/.*image: *//' \
+                      | sha256sum            \
+                      | cut -d ' ' -f 1)"
+          echo "cache_key=${cache_key}" >> $GITHUB_OUTPUT
+        shell: bash
       - name: Cache Docker images.
         uses: ScribeMD/docker-cache@0.5.0
         with:

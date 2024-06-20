@@ -59,6 +59,10 @@ jobs:
         OIDC_ENABLED: ['', true]
     steps:
       - uses: actions/checkout@v4
+      - name: Cache Docker images.
+        uses: ScribeMD/docker-cache@0.5.0
+        with:
+          key: docker-${{ runner.os }}-${{ hashFiles(compose.yaml) }}
       - name: Test compose.yaml
         run: |-
           export JOBS_ENABLED=${{ matrix.ELASTIC_OR_JOBS_ENABLED }}

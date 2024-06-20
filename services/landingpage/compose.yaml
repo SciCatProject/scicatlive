@@ -2,9 +2,5 @@ services:
   landingpage:
     image: ghcr.io/scicatproject/landingpageserver:latest
 
-    ports:
-      - 4201:80
-
-    user: 0:0
     profiles:
       - search

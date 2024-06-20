@@ -87,6 +87,7 @@ graph TD
       backend --> frontend
       backend --> searchapi
       backend --> jupyter
+      backend --> landingpage
    end
 
    proxy -.- services

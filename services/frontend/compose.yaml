@@ -1,20 +1,4 @@
-services:
-  frontend:
-    platform: linux/amd64
-    image: ghcr.io/scicatproject/frontend:v4.4.1
-    depends_on:
-      backend:
-        condition: service_healthy
-    volumes:
-      - ./config:/config
-      # The volumes below allow to run init scripts before running the service
-      - ../../entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
-      - ./entrypoints/merge_json.sh:/docker-entrypoints/0.sh
-    entrypoint: loop_entrypoints.sh
-    command: nginx -g "daemon off;"
-    environment:
-      BE_VERSION: ${BE_VERSION:-v4}
-      LDAP_ENABLED: ${LDAP_ENABLED:-}
-      OIDC_ENABLED: ${OIDC_ENABLED:-}
-    labels:
-      - traefik.http.routers.frontend.rule=Host(`localhost`)
+include:
+  - path:
+      - compose.base.yaml
+      - .${DEV:+/}compose.dev.yaml

@@ -7,10 +7,9 @@ services:
         condition: service_started
     volumes:
       - ./config/config.local.js:/home/node/app/server/config.local.js
-      - ./config/datasources.json:/home/node/app/server/datasources.json
+      - ./config/datasources.json:/config/datasources.0.json
       - ./config/providers.json:/config/providers.json
-      # The volumes below allow to run init scripts before running the service
-      - ../../../../entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
+      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
       - ./entrypoints/merge_json.sh:/docker-entrypoints/0.sh
     entrypoint:
       - loop_entrypoints.sh

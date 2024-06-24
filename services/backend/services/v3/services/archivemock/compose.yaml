@@ -1,11 +1,4 @@
-services:
-  archivemock:
-    platform: linux/amd64
-    image: ghcr.io/scicatproject/archive-mock:v1.0.0
-    depends_on:
-      rabbitmq:
-        condition: service_healthy
-      backend:
-        condition: service_healthy
-    env_file:
-      - ./config/.env
+include:
+  - path:
+      - compose.base.yaml
+      - .${DEV:+/}compose.dev.yaml

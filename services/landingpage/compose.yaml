@@ -1,0 +1,6 @@
+services:
+  landingpage:
+    image: ghcr.io/scicatproject/landingpageserver:latest
+
+    profiles:
+      - search

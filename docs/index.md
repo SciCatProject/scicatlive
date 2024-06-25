@@ -22,3 +22,11 @@ Docker compose will deploy
 3. the SciCat [frontend](./services/frontend/) container is created and connected to (2).
 4. a reverse [proxy](./services/proxy) container is created and routes traffic to (2) and (3) through localhost subdomains, in the form: `http://${service}.localhost`. The frontend is available at simply `http://localhost`.
 
+
+### Supported OS architectures
+
+Since some images are not built with multi-arch, in particular the SciCat ones, make sure to specify the platform of the service in the compose, when needed, to avoid possible issues when running `docker compose up` on different platforms, for example on MAC with arm64 architecture. See for example the [searchapi compose](./services/searchapi/compose.yaml#L3).
+
+## General use of SciCat
+
+To use SciCat, please refer to the [original documentation](https://scicatproject.github.io/documentation/).

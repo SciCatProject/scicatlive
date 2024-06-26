@@ -156,7 +156,7 @@ To add a new service (see the [backend v4](./services/backend/services/v4/) for 
 2. name it as the service
 3. create the `compose.yaml` file with the required dependencies (if any)
 4. eventually, include any service in (2) and (3) which is specific to the service and not shared across the global setup
-5. eventually, add additional configurable logic (e.g. [BE_VERSION dependency](./services/frontend/compose.yaml#L14) and [ELASTIC_ENABLED dependency](./services/backend/services/v4/compose.yaml)). Remember to add a `.compose.<FEATURE>.yaml` symlink to [.empty.yaml](./services/.empty.yaml) (e.g. [here](./services/backend/services/v4/.compose.elastic.yaml)) if the service supports on/off. This also includes DEV configurations, e.g. [here](./services/searchapi/compose.dev.yaml)
+5. eventually, add additional configurable logic (e.g. [BE_VERSION dependency](./services/frontend/compose.yaml#L14) and [ELASTIC_ENABLED dependency](./services/backend/services/v4/compose.yaml)). Remember to add an empty `.compose.<FEATURE>.yaml` (e.g. [here](./services/backend/services/v4/.compose.elastic.yaml)) if the service supports on/off. This also include DEV configurations, e.g. [here](./services/searchapi/compose.dev.yaml)
 6. eventually, add entrypoints for init logics, as described [here](#if-the-service-does-not-support-entrypoints-yet-one-needs-to)
 7. eventually, add the platform field, as described [here](#supported-os-architectures)
 8. eventually, create a `config` folder if it requires configuration

@@ -47,7 +47,7 @@ jobs:
       - name: Lint javascript files
         run: npx eslint --config .github/eslint.config.mjs
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     needs:
       - yaml-lint
       - json-lint
@@ -55,6 +55,7 @@ jobs:
       - javascript-lint
     strategy:
       matrix:
+        os: [ubuntu-latest, windows-latest]
         BE_VERSION: [v3, v4]
         ELASTIC_OR_JOBS_ENABLED: ['', true]
         LDAP_ENABLED: ['', true]
@@ -70,7 +71,7 @@ jobs:
           export BE_VERSION=${{ matrix.BE_VERSION }}
           docker compose --profile '*' up --wait --wait-timeout 300
   test-dev:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     needs:
       - yaml-lint
       - json-lint
@@ -78,6 +79,7 @@ jobs:
       - javascript-lint
     strategy:
       matrix:
+        os: [ubuntu-latest, windows-latest]
         BE_VERSION: [v3, v4]
     steps:
       - uses: actions/checkout@v4

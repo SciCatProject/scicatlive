@@ -11,8 +11,8 @@ services:
       CHROME_BIN: /usr/bin/chromium
     volumes:
       - frontend_dev:/frontend
-      - ${PWD}/entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
-      - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/0.sh
+      - ../../entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
+      - ../../entrypoints/setup_git.sh:/docker-entrypoints/0.sh
       - ./entrypoints/tests.sh:/docker-entrypoints/2.sh
     labels:
       - traefik.http.services.frontend.loadbalancer.server.port=4200

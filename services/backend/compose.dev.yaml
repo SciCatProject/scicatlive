@@ -1,8 +1,8 @@
 services:
   backend:
     volumes:
-      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
-      - ${PWD}/entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
+      - ../../../../entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
+      - ../../../../entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
     entrypoint:
       - loop_entrypoints.sh
       - docker-entrypoint.sh

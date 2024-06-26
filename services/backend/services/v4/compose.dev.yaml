@@ -9,7 +9,7 @@ services:
       GITHUB_REPO: https://github.com/SciCatProject/scicat-backend-next.git
     volumes:
       - v4_dev:/home/node/app
-      - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/0.sh
+      - ../../../../entrypoints/setup_git.sh:/docker-entrypoints/0.sh
       - ./entrypoints/tests.sh:/docker-entrypoints/1.sh
 
 volumes:

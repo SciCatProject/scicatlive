@@ -7,3 +7,6 @@ rules:
     required: only-when-needed
     quote-type: single
   document-start: disable
+  line-length:
+    max: 80
+    level: warning

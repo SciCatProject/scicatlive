@@ -58,6 +58,7 @@
    ],
    "logbookEnabled":false,
    "loginFormEnabled":true,
+   "oAuth2Endpoints": [],
    "maxDirectDownloadSize":5000000000,
    "metadataPreviewEnabled":true,
    "metadataStructure":"tree",

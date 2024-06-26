@@ -25,7 +25,19 @@ Docker compose will deploy
 
 ### Supported OS architectures
 
-Since some images are not built with multi-arch, in particular the SciCat ones, make sure to specify the platform of the service in the compose, when needed, to avoid possible issues when running `docker compose up` on different platforms, for example on MAC with arm64 architecture. See for example the [searchapi compose](./services/searchapi/compose.yaml#L3).
+Since some images are not built with multi-arch, in particular the SciCat ones, make sure to specify the platform of the service in the compose, when needed, to avoid possible issues when running `docker compose up` on different platforms, for example on MAC with arm64 architecture. See for example the `search-api` compose as you can see here:
+````
+services:
+  searchapi:
+    platform: linux/amd64
+    image: ghcr.io/scicatproject/panosc-search-api:latest
+    depends_on:
+      - backend
+    env_file:
+      - ./config/.env
+    profiles:
+      - search
+```
 
 ## General use of SciCat
 

@@ -4,6 +4,19 @@ SciCat with docker compose.
 
 ## Steps
 
+<details>
+<summary>Windows specific instructions (click to expand)</summary>
+<br>
+:warning: Running this project on Windows is not officialy supported, you should use Windows Subsystem for Linux (WSL).
+
+However, if you want to run it on Windows you have to be careful about:
+- This project makes use of symbolic links, Windows and git for Windows have to be [configured to handle them](https://stackoverflow.com/questions/5917249/git-symbolic-links-in-windows/59761201#59761201).
+- End of lines, specifically in shell scripts. If you have the git config parameter `auto.crlf` set to `true`, git will replace LF by CRLF causing shell scripts and maybe other things to fail.
+- This project uses the variable `${PWD}` to ease path resolution in bind mounts. In PowerShell/Command Prompt, the `PWD` environment variable doesn't exist so you would need to set in manually before running any `docker compose` command.
+
+</details>
+<br>
+
 1. Clone the repository
    ```sh
    git clone https://github.com/SciCatProject/scicatlive.git

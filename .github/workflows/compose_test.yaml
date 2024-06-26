@@ -64,11 +64,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Test compose.yaml
         run: |-
-          export JOBS_ENABLED=${{ matrix.ELASTIC_OR_JOBS_ENABLED }}
-          export ELASTIC_ENABLED=${{ matrix.ELASTIC_OR_JOBS_ENABLED }}
-          export LDAP_ENABLED=${{ matrix.LDAP_ENABLED }}
-          export OIDC_ENABLED=${{ matrix.OIDC_ENABLED }}
-          export BE_VERSION=${{ matrix.BE_VERSION }}
+          echo "JOBS_ENABLED=${{ matrix.ELASTIC_OR_JOBS_ENABLED }}" >> $GITHUB_ENV
+          echo "ELASTIC_ENABLED=${{ matrix.ELASTIC_OR_JOBS_ENABLED }}" >> $GITHUB_ENV
+          echo "LDAP_ENABLED=${{ matrix.LDAP_ENABLED }}" >> $GITHUB_ENV
+          echo "OIDC_ENABLED=${{ matrix.OIDC_ENABLED }}" >> $GITHUB_ENV
+          echo "BE_VERSION=${{ matrix.BE_VERSION }}" >> $GITHUB_ENV
           docker compose --profile '*' up --wait --wait-timeout 300
   test-dev:
     runs-on: ${{ matrix.os }}
@@ -85,9 +85,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Test DEV compose.yaml
         run: |-
-          export BE_VERSION=${{ matrix.BE_VERSION }}
-          export JOBS_ENABLED=true
-          export ELASTIC_ENABLED=true
-          export LDAP_ENABLED=true
-          export DEV=true
+          echo "BE_VERSION=${{ matrix.BE_VERSION }}" >> $GITHUB_ENV
+          echo "JOBS_ENABLED=true" >> $GITHUB_ENV
+          echo "ELASTIC_ENABLED=true" >> $GITHUB_ENV
+          echo "LDAP_ENABLED=true" >> $GITHUB_ENV
+          echo "DEV=true" >> $GITHUB_ENV
           docker compose --profile '*' up --wait --wait-timeout 600

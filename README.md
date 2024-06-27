@@ -178,7 +178,7 @@ Make sure to check the [backend compatibility](#docker-compose-profiles-and-env-
 
 ### Basic
 
-To add a new service (see the [jupyter](./services/jupyter/) for a minimal example):
+To add a new service (see the [jupyter service](./services/jupyter/) for a minimal example):
 1. create a dedicated folder in the [services](./services/) one
 2. name it as the service
 3. create the `compose.yaml` file
@@ -195,7 +195,7 @@ Since some images are not built with multi-arch, in particular the SciCat ones, 
 <details>
  <summary>(click to expand)</summary>
 
-To add a new service, with advanced configuration (see the [frontend](./services/frontend/) for an extensive example):
+To add a new service, with advanced configuration (see the [frontend service](./services/frontend/) for an extensive example):
 1. follow the steps from the [basic section](#basic)
 2. eventually, include any service, in the service-specific folder which is specific to the service and not shared by other, more general services
 3. eventually, if the service supports [ENVs](#docker-compose-env-variables), leverage the [include override](https://docs.docker.com/compose/multiple-compose-files/include/#include-and-overrides) feature from docker compose. For this:

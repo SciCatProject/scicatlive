@@ -199,10 +199,10 @@ To add a new service, with advanced configuration (see the [frontend service](./
 1. follow the steps from the [basic section](#basic)
 2. eventually, include any service, in the service-specific folder which is specific to the service and not shared by other, more general services
 3. eventually, if the service supports [ENVs](#docker-compose-env-variables), leverage the [include override](https://docs.docker.com/compose/multiple-compose-files/include/#include-and-overrides) feature from docker compose. For this:
-   a. create a `compose.base.yaml` file, e.g. [here](./services/frontend/compose.base.yaml), which should contain the `base` configuration, i.e. the one where all ENVs are unset, i.e. the features are disabled
-   b. create the ENV-specific (e.g. `OIDC_ENABLED`) `compose.<ENV>.yaml` file, e.g. [frontend compose.oidc.yaml here](./services/frontend/compose.oidc.yaml), with the additional/override config, specific to the enabled feature
-   c. create a symlink from [.empty.yaml](./services/.empty.yaml) to `.compose.<ENV>.yaml`, e.g. [here](./services/frontend/.compose.oidc.yaml). This is used whenever the `ENV` is unset, as described in the next step
-   d. use `compose.yaml` to merge the `compose*.yaml` files together, making sure to default to `.compose.<ENV>.yaml` whenever the `ENV` is not set. See an example [here](./services/frontend/compose.yaml)
+   1. create a `compose.base.yaml` file, e.g. [here](./services/frontend/compose.base.yaml), which should contain the `base` configuration, i.e. the one where all ENVs are unset, i.e. the features are disabled
+   2. create the ENV-specific (e.g. `OIDC_ENABLED`) `compose.<ENV>.yaml` file, e.g. [frontend compose.oidc.yaml here](./services/frontend/compose.oidc.yaml), with the additional/override config, specific to the enabled feature
+   3. create a symlink from [.empty.yaml](./services/.empty.yaml) to `.compose.<ENV>.yaml`, e.g. [here](./services/frontend/.compose.oidc.yaml). This is used whenever the `ENV` is unset, as described in the next step
+   4. use `compose.yaml` to merge the `compose*.yaml` files together, making sure to default to `.compose.<ENV>.yaml` whenever the `ENV` is not set. See an example [here](./services/frontend/compose.yaml)
 4. eventually, add entrypoints for init logics, as described [here](#if-the-service-does-not-support-entrypoints-yet-one-needs-to)
 
 </details>

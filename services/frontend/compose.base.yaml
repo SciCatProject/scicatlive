@@ -6,7 +6,7 @@ services:
       backend:
         condition: service_healthy
     volumes:
-      - ./config/config.base.json:/config/0.json
+      - ./config/config.json:/config/0.json
       - ./config/config.${BE_VERSION:-v4}.json:/config/1.json
       - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
       # This is numbered 1 (and not 0) as in the DEV config, which

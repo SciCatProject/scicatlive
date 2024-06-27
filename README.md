@@ -56,13 +56,14 @@ They are used when adding new services or grouping services together (and do not
 | env     | `ELASTIC_ENABLED`  | `true`: elastic,elastic feature                                                 | `''`    | v4                    | Creates an elastic search service and sets the be to use it for full-text searches                                                                                     |                         |
 | env     | `LDAP_ENABLED`     | `true`: ldap auth                                                               | `''`    | *                     | Creates an LDAP service and sets the be to use it as authentication backend                                                                                            |                         |
 | env     | `OIDC_ENABLED`     | `true`: oidc auth                                                               | `''`    | *                     | Creates an OIDC identity provider and sets the be to use it as authentication backend                                                                                  |                         |
-| env     | `DEV`              | `true`: backend,frontend,searchapi,archivemock in DEV mode                      | `''`    | *                     | The SciCat services' environment is prepared to easy the [development in a standardized environment](#dev-conf)                                                        |                         |
+| env     | `DEV`              | `true`: backend,frontend,searchapi,archivemock in DEV mode                      | `''`    | *                     | The SciCat services' environment is prepared to easy the [development in a standardized environment](#dev-configuration)                                               |                         |
 
 
 After optionally setting any configuration option, one can still select the services to run as described [here](README.md#select-the-services).
 
+#### DEV configuration
 <details>
- <summary><a id="dev-conf"></a>#### DEV configuration (click to expand)</summary>
+ <summary>(click to expand)</summary>
 
 To provide a consistent environment where developers can work, the `DEV=true` option creates the SciCat services (see DEV from [here](#docker-compose-env-variables) for the list), but instead of running them, it just creates the base environment that each service requires. For example, for the `backend`, instead of running the web server, it creates a NODE environment with `git` where one can develop and run the unit tests. This is useful as often differences in environments create collaboration problems. It should also provide an example of the configuration for running tests. Please refer to the services' README for additional information, or to the Dockerfile `CMD` of the components' GitHub repo if not specified otherwise. The `DEV=true` affects the SciCat services only.
 
@@ -104,9 +105,9 @@ Sometimes, it is useful to run init scripts (entrypoints) before the service sta
 
 To ease the iterative execution of multiple init scripts, one can leverage the [loop_entrypoints](./entrypoints/loop_entrypoints.sh) utility, which loops alphabetically over `/docker-entrypoinst/*.sh` and executes each. This is in use in some services (e.g. in the [frontend](./services/frontend/compose.yaml)), so one can add additional init steps by mounting them, one by one, as volumes inside the container in the `/docker-entrypoints` folder and naming them depending on the desired order (eventually rename the existing ones as well).
 
-#### If the service does not support entrypoints yet, one needs to (click to expand):
+#### If the service does not support entrypoints yet, one needs to:
 <details>
- <summary><a id="add-entrypoints"></a>#### If the service does not support entrypoints yet, one needs to (click to expand):</summary>
+ <summary>(click to expand):</summary>
 
 1. mount the [loop_entrypoint.sh](./entrypoints/loop_entrypoints.sh) as a volume inside the container
 2. mount any service-specific init script as a volume in the container in the folder `/docker-entrypoints/*.sh`, naming them sequentially, depending on the desired execution order
@@ -190,8 +191,9 @@ To add a new service (see the [jupyter](./services/jupyter/) for a minimal examp
 
 Since some images are not built with multi-arch, in particular the SciCat ones, make sure to specify the platform of the service in the compose, when needed, to avoid possible issues when running `docker compose up` on different platforms, for example on MAC with arm64 architecture. See for example the [searchapi compose](./services/searchapi/compose.yaml#L3).
 
+### Advanced
 <details>
- <summary>### Advanced (click to expand)</summary>
+ <summary>(click to expand)</summary>
 
 To add a new service, with advanced configuration (see the [frontend](./services/frontend/) for an extensive example):
 1. follow the steps from the [basic section](#basic)
@@ -201,7 +203,7 @@ To add a new service, with advanced configuration (see the [frontend](./services
    b. create the ENV-specific (e.g. `OIDC_ENABLED`) `compose.<ENV>.yaml` file, e.g. [frontend compose.oidc.yaml here](./services/frontend/compose.oidc.yaml), with the additional/override config, specific to the enabled feature
    c. create a symlink from [.empty.yaml](./services/.empty.yaml) to `.compose.<ENV>.yaml`, e.g. [here](./services/frontend/.compose.oidc.yaml). This is used whenever the `ENV` is unset, as described in the next step
    d. use `compose.yaml` to merge the `compose*.yaml` files together, making sure to default to `.compose.<ENV>.yaml` whenever the `ENV` is not set. See an example [here](./services/frontend/compose.yaml)
-4. eventually, add entrypoints for init logics, as described [here](#add-entrypoints)
+4. eventually, add entrypoints for init logics, as described [here](#if-the-service-does-not-support-entrypoints-yet-one-needs-to)
 
 </details>
 

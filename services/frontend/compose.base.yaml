@@ -7,6 +7,7 @@ services:
         condition: service_healthy
     volumes:
       - ./config:/config
+      - ./config/config.${BE_VERSION:-v4}.json:/config/1.json
       - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
       # This is numbered 1 (and not 0) as in the DEV config, which
       # inherits from this, it must be run after the git_init

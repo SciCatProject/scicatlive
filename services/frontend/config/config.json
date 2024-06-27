@@ -1,5 +1,4 @@
 {
-   "accessTokenPrefix": "Bearer ",
    "addDatasetEnabled":false,
    "archiveWorkflowEnabled":false,
    "datasetReduceEnabled":true,
@@ -7,7 +6,6 @@
    "editMetadataEnabled":true,
    "editPublishedData":true,
    "editSampleEnabled":true,
-   "externalAuthEndpoint":"/api/v3/auth/ldap",
    "facility":"SAMPLE-SITE",
    "fileColorEnabled":true,
    "fileDownloadEnabled":true,

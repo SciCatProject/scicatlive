@@ -4,7 +4,7 @@ The SciCat frontend is the SciCat metadata catalogue web UI, built on top of the
 
 ## Configuration options
 
-The frontend configuration is set by the [config files](./config/). Files inside the [config](./config/) folder, with a `.json` extension are merged in alphabetical order, with [config.v3.json](./config/config.v3.json) applied depending on the [BE_VERSION](../../README.md#docker-compose-profiles-and-env-variables-configuration-options). 
+The frontend configuration is set by the [config files](./config/). Files inside the [config](./config/) folder, with a `.json` extension are merged respecting the alphabetical order of the files in the **container**, with [config.v3.json](./config/config.v3.json) applied depending on the [BE_VERSION](../../README.md#docker-compose-profiles-and-env-variables-configuration-options). 
 
 :warning: Please note that [merging the config files](./entrypoints/merge_json.sh) is a functionality provided by `SciCat Live` and is not supported natively by the `frontend`. 
 

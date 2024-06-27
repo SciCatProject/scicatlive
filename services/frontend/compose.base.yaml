@@ -6,16 +6,13 @@ services:
       backend:
         condition: service_healthy
     volumes:
-      - ./config:/config
+      - ./config/config.json:/config/0.json
+      - ./config/config.${BE_VERSION:-v4}.json:/config/1.json
       - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
       # This is numbered 1 (and not 0) as in the DEV config, which
       # inherits from this, it must be run after the git_init
       - ./entrypoints/merge_json.sh:/docker-entrypoints/1.sh
     entrypoint: loop_entrypoints.sh
     command: nginx -g "daemon off;"
-    environment:
-      BE_VERSION: ${BE_VERSION:-v4}
-      LDAP_ENABLED: ${LDAP_ENABLED:-}
-      OIDC_ENABLED: ${OIDC_ENABLED:-}
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)

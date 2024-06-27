@@ -1,4 +1,5 @@
 include:
   - path:
       - compose.base.yaml
+      - .${OIDC_ENABLED:+/}compose.oidc.yaml
       - .${DEV:+/}compose.dev.yaml

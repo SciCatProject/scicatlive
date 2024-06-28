@@ -176,7 +176,7 @@ Make sure to check the [backend compatibility](#docker-compose-profiles-and-env-
 
 ## Add a new service
 
-Please note that services should be defined by their responsibility, rather than by their underlying technology, and should be named so.
+Please note that services should, in general, be defined by their responsibility, rather than by their underlying technology, and should be named so.
 
 ### Basic
 

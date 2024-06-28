@@ -1,5 +1,5 @@
 services:
-  keycloak:
+  oidc:
     image: quay.io/keycloak/keycloak:25.0
     command: start-dev --import-realm --http-port=80
     env_file: ./config/.env
@@ -7,7 +7,7 @@ services:
       - ./healthcheck/healthcheck.sh:/healthcheck.sh
       - ./config/facility-realm.json:/opt/keycloak/data/import/facility-realm.json:ro
     labels:
-      - traefik.http.services.keycloak.loadbalancer.server.port=80
+      - traefik.http.services.oidc.loadbalancer.server.port=80
     healthcheck:
       test: bash /healthcheck.sh
       start_period: 5s

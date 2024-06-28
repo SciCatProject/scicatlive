@@ -27,7 +27,7 @@ Additionally, by setting the env variable `ELASTIC_ENABLED`, the [elastic search
 
 If `LDAP_ENABLED` is toggled, you can use LDAP to log in with a [LDAP user](../ldap/README.md#default-configuration).
 
-If `OIDC_ENABLED` is toggled, you can use OIDC to log in with a [OIDC user](../keycloak/README.md#default-configuration).
+If `OIDC_ENABLED` is toggled, you can use OIDC to log in with a [OIDC user](../oidc/README.md#default-configuration).
 
 With `DEV=true`, since the container might have limited memory, it is recommended to run unit tests with the option `--runInBand`, as [here](./entrypoints/tests.sh), which makes the tests run sequentially, avoiding to fill the RAM which makes them freeze.
 

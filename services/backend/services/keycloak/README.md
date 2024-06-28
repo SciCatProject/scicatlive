@@ -1,4 +1,4 @@
-# Keycloak (OIDC Identity provider)
+# OIDC (keycloak)
 
 OIDC is an authentication protocol that verifies user identities when they sign in to access digital resources.
 SciCat can use an OIDC service as third-party authentication provider.
@@ -13,7 +13,7 @@ For an extensive list of available options see [here](https://www.keycloak.org/g
 
 ## Default configuration
 The default configuration [.env file](./config/.env) creates the `admin` user with the `admin` password.
-Administration web UI is available at `http://keycloak.localhost`
+Administration web UI is available at `http://oidc.localhost`
 
 Also a realm called `facility` is created with the following user and group:
 

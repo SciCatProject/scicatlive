@@ -71,7 +71,7 @@ Additionally, by setting the env variable [ENABLE_JOBS](../../.env#L5), the [arc
 
 If `LDAP_ENABLED` is toggled, you can use LDAP to log in with a [LDAP user](../ldap/README.md#default-configuration).
 
-If `OIDC_ENABLED` is toggled, you can use OIDC to log in with a [OIDC user](../keycloak/README.md#default-configuration).
+If `OIDC_ENABLED` is toggled, you can use OIDC to log in with a [OIDC user](../oidc/README.md#default-configuration).
 
 With `DEV=true`, since the v3 tests are supposed to run with an empty DB, the set DB is [dacat_test](./config/datasources.dev.json) which is empty. If willing to use the seeded one later during development, just set `dacat` as database values in the file `/home/node/app/server/datasources.json` on the container.
 

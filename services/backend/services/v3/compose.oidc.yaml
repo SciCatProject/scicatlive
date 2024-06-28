@@ -1,13 +1,13 @@
 include:
-  - ../keycloak/compose.yaml
+  - ../oidc/compose.yaml
 
 services:
   backend:
     depends_on:
-      keycloak:
+      oidc:
         condition: service_healthy
     links:
-      - keycloak:keycloak.localhost
+      - oidc:oidc.localhost
     volumes:
       - ./config/providers.oidc.json:/config/providers.oidc.json
       - ./config/login-callbacks.js:/home/node/app/server/boot/login-callbacks.js

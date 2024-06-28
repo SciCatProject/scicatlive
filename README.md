@@ -176,16 +176,20 @@ Make sure to check the [backend compatibility](#docker-compose-profiles-and-env-
 
 ## Add a new service
 
+Please note that services should be defined by their responsibility, rather than by their underlying technology, and should be named so.
+
 ### Basic
 
 To add a new service (see the [jupyter service](./services/jupyter/) for a minimal example):
-1. create a dedicated folder in the [services](./services/) one
+1. create a dedicated folder in the [services](./services/) one *
 2. name it as the service
 3. create the `compose.yaml` file
 4. eventually, add a `README.md` file in the service
 5. eventually, add the platform field, as described [here](#supported-os-architectures)
-6. include the reference to (3) to the global [compose include list](compose.yaml)
+6. include the reference to (3) to the global [compose include list](compose.yaml) *
 7. eventually, update the main [README.md](README.md)
+
+\* if the service to add is not shared globally, but specific to one particular service or another implementation of the same component, add it to the `services` folder relative to the affected service, and in (6) add it to its inclusion list. See an example of a service relative [services folder here](./services/backend/services/) and a [relative inclusion list here](./services/backend/compose.yaml).
 
 #### Supported OS architectures
 
@@ -195,15 +199,16 @@ Since some images are not built with multi-arch, in particular the SciCat ones, 
 <details>
  <summary>(click to expand)</summary>
 
-To add a new service, with advanced configuration (see the [frontend service](./services/frontend/) for an extensive example):
+To add a new service, with advanced configuration (see the [backend](./services/backend/) for an extensive example):
 1. follow the steps from the [basic section](#basic)
-2. eventually, include any service, in the service-specific folder which is specific to the service and not shared by other, more general services
+2. eventually, include any service, in the service-specific folder which is specific to the service and not shared by other, more general services, e.g. [here](./services/backend/services/). This folder should also include different versions of the same service, e.g. v3 and v4 [here](./services/backend/services/)
 3. eventually, if the service supports [ENVs](#docker-compose-env-variables), leverage the [include override](https://docs.docker.com/compose/multiple-compose-files/include/#include-and-overrides) feature from docker compose. For this:
-   1. create a `compose.base.yaml` file, e.g. [here](./services/frontend/compose.base.yaml), which should contain the `base` configuration, i.e. the one where all ENVs are unset, i.e. the features are disabled
-   2. create the ENV-specific (e.g. `OIDC_ENABLED`) `compose.<ENV>.yaml` file, e.g. [frontend compose.oidc.yaml](./services/frontend/compose.oidc.yaml), with the additional/override config, specific to the enabled feature
-   3. create a symlink from [.empty.yaml](./services/.empty.yaml) to each `.compose.<ENV>.yaml`, e.g. [here](./services/frontend/.compose.oidc.yaml). This is used whenever the `ENV` is unset, as described in the next step
-   4. use `compose.yaml` to merge the `compose*.yaml` files together, making sure to default to `.compose.<ENV>.yaml` whenever the `ENV` is not set. See an example [here](./services/frontend/compose.yaml)
-4. eventually, add entrypoints for init logics, as described [here](#if-the-service-does-not-support-entrypoints-yet-one-needs-to)
+   1. create a `compose.base.yaml` file, e.g. [here](./services/backend/services/v4/compose.base.yaml), which should contain the `base` configuration, i.e. the one where all ENVs are unset, i.e. the features are disabled
+   2. create the ENV-specific (e.g. `ELASTIC_ENABLED`) `compose.<ENV>.yaml` file, e.g. [backend v4 compose.elastic.yaml](./services/backend/services/v4/compose.elastic.yaml), with the additional/override config, specific to the enabled feature
+   3. create a symlink from [.empty.yaml](./services/.empty.yaml) to each `.compose.<ENV>.yaml`, e.g. [here](./services/backend/services/v4/.compose.elastic.yaml). This is used whenever the `ENV` is unset, as described in the next step
+   4. use `compose.yaml` to merge the `compose*.yaml` files together, making sure to default to `.compose.<ENV>.yaml` whenever the `ENV` is not set. See an example [here](./services/backend/services/v4/compose.yaml)
+   5. if the service is another version of an existing one, e.g. v3 and v4 versions of the `backend` service, add the selective include in the parent compose.yaml, e.g. [here](./services/backend/compose.yaml)
+4. eventually, add entrypoints for init logics, as described [here](#if-the-service-does-not-support-entrypoints-yet-one-needs-to), e.g. like [here](./services/backend/services/v4/compose.base.yaml)
 
 </details>
 

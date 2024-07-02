@@ -11,3 +11,5 @@ services:
     volumes:
       - ./config/providers.oidc.json:/config/providers.oidc.json
       - ./config/login-callbacks.js:/home/node/app/server/boot/login-callbacks.js
+    environment:
+      OIDC_ENABLED: true

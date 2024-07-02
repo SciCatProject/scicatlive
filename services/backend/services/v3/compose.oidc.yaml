@@ -6,6 +6,8 @@ services:
     depends_on:
       keycloak:
         condition: service_healthy
+    environment:
+      - OIDC_ENABLED=${OIDC_ENABLED}
     links:
       - keycloak:keycloak.localhost
     volumes:

@@ -1,0 +1,33 @@
+name: Deploy docs
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: |
+            pip install mkdocs mkdocs-material \
+                mkdocs-awesome-pages-plugin beautifulsoup4 lxml
+
+      - name: Copy all to docs folder
+        run: |
+          mkdir -p docs
+          shopt -s extglob
+          mv !(docs) docs/
+      - name: Build and Deploy
+        run: mkdocs gh-deploy --force --config-file .github/mkdocs.yaml
+        env:
+          BASE_URL: https://github.com/SciCatProject/scicatlive/blob/main

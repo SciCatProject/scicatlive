@@ -4,6 +4,8 @@ on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - main
+    tags:
+      - v*
 
 jobs:
   build:
@@ -19,7 +21,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-            pip install mkdocs mkdocs-material \
+            pip install mkdocs mkdocs-material mike \
                 mkdocs-awesome-pages-plugin beautifulsoup4 lxml
 
       - name: Copy all to docs folder
@@ -27,7 +29,26 @@ jobs:
           mkdir -p docs
           shopt -s extglob
           mv !(docs) docs/
-      - name: Build and Deploy
-        run: mkdocs gh-deploy --force --config-file .github/mkdocs.yaml
+
+      - name: Deploy documentation
+        run: |
+          if [[ "${{ github.ref_type }}" == "tag" ]]; then
+            TAG=${{ github.ref_name }}
+            VERSION=$(echo ${TAG} | awk -F'.' '{print $1"."$2}')
+          fi
+
+          export BASE_URL=${BASE_URL}/${TAG:-main}
+
+          git fetch origin ${DOCS_BRANCH} --depth=1
+          mike deploy -F ${DOCS_CONFIG} \
+            --push --branch ${DOCS_BRANCH} \
+            --update-aliases ${VERSION:-main} latest
+          mike set-default -F ${DOCS_CONFIG} \
+            --push --branch ${DOCS_BRANCH} latest
         env:
-          BASE_URL: https://github.com/SciCatProject/scicatlive/blob/main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_COMMITTER_NAME: ci-bot
+          GIT_COMMITTER_EMAIL: ci-bot@example.com
+          BASE_URL: https://github.com/SciCatProject/scicatlive/blob
+          DOCS_BRANCH: gh-pages
+          DOCS_CONFIG: .github/mkdocs.yaml

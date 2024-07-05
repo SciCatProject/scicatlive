@@ -2,11 +2,17 @@ site_name: SciCatLive
 docs_dir: ../docs
 theme:
   name: material
+  custom_dir: overrides
+
+extra:
+  version:
+    provider: mike
 
 plugins:
   - search
   - awesome-pages:
       collapse_single_pages: true
+  - mike
 
 markdown_extensions:
   - admonition

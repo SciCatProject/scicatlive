@@ -6,6 +6,8 @@ on:  # yamllint disable-line rule:truthy
       - main
     paths-ignore:
       - '**/*.md'
+      - '**/mkdocs*'
+
 jobs:
   yaml-lint:
     runs-on: ubuntu-latest

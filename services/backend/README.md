@@ -8,7 +8,7 @@ The `BE_VERSION` value controls which version of the backend should be started, 
 
 ## Dependencies
 
-Here below we show the internal dependencies of the service, which are not already covered [here](../../../../README.md) (if `B` depends on `A`, then we visualize as `A --> B`). The same subdomain to service convention applies.
+Here below we show the internal dependencies of the service, which are not already covered [here](../../README.md) (if `B` depends on `A`, then we visualize as `A --> B`). The same subdomain to service convention applies.
 
 ```mermaid
 graph TD

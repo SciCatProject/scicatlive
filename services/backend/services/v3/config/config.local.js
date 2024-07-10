@@ -34,7 +34,7 @@ module.exports = {
     subject: "[SciCat " + process.env.NODE_ENV + "]",
     text: undefined, // can also set html key and this will override this
   },
-  queue: process.env.ENABLE_JOBS? "rabbitmq": undefined,
+  queue: process.env.JOBS_ENABLED? "rabbitmq": undefined,
   logbook: {
     enabled: false
   },

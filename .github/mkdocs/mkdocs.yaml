@@ -1,5 +1,9 @@
 site_name: SciCatLive
 docs_dir: ../../docs
+repo_url: !!python/object/apply:os.path.join [
+  !ENV [GITHUB_SERVER_URL],
+  !ENV [GITHUB_REPOSITORY]
+]
 theme:
   name: material
   custom_dir: overrides

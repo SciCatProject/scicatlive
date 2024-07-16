@@ -21,8 +21,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-            pip install mkdocs mkdocs-material mike \
-                mkdocs-awesome-pages-plugin beautifulsoup4 lxml
+            pip install -r .github/mkdocs/requirements.txt
 
       - name: Copy all to docs folder
         run: |
@@ -51,4 +50,4 @@ jobs:
           GIT_COMMITTER_EMAIL: ci-bot@example.com
           BASE_URL: https://github.com/SciCatProject/scicatlive/blob
           DOCS_BRANCH: gh-pages
-          DOCS_CONFIG: .github/mkdocs.yaml
+          DOCS_CONFIG: .github/mkdocs/mkdocs.yaml

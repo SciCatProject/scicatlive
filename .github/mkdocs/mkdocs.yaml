@@ -1,5 +1,5 @@
 site_name: SciCatLive
-docs_dir: ../docs
+docs_dir: ../../docs
 theme:
   name: material
   custom_dir: overrides
@@ -31,4 +31,4 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 hooks:
-  - mkdocs_relative_to.py
+  - relative_to.py

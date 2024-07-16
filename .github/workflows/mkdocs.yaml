@@ -42,7 +42,7 @@ jobs:
           git fetch origin ${DOCS_BRANCH} --depth=1
           mike deploy -F ${DOCS_CONFIG} \
             --push --branch ${DOCS_BRANCH} \
-            --update-aliases ${VERSION:-main} latest
+            --update-aliases ${VERSION:-main} ${VERSION:+latest}
           mike set-default -F ${DOCS_CONFIG} \
             --push --branch ${DOCS_BRANCH} latest
         env:

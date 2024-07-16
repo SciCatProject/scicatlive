@@ -16,5 +16,5 @@ def on_page_content(html, page, config, files):
         resolved_path = Path(ospath.normpath(page_path / path))
         if any(filter(lambda x: Path(x.src_uri.strip('README.md')) == resolved_path, docs)): # Exiting docs
             continue
-        element['href'] = urljoin(f"{environ['BASE_URL']}/", ospath.normpath(page_path / element['href']))
+        element['href'] = urljoin(f"{config.repo_url}/blob/{environ.get('TAG', 'main')}/", ospath.normpath(page_path / element['href']))
     return soup.prettify()

@@ -91,6 +91,7 @@ jobs:
         ELASTIC_OR_JOBS_ENABLED: ['', true]
         LDAP_ENABLED: ['', true]
         OIDC_ENABLED: ['', true]
+        DEV: ['', true]
         exclude:
           - BE_VERSION:
               ${{ (! contains(needs.get-changed-files.outputs.changed_files
@@ -118,35 +119,5 @@ jobs:
           export LDAP_ENABLED=${{ matrix.LDAP_ENABLED }}
           export OIDC_ENABLED=${{ matrix.OIDC_ENABLED }}
           export BE_VERSION=${{ matrix.BE_VERSION }}
-          docker compose --profile '*' up --wait --wait-timeout 300
-  test-dev:
-    runs-on: ubuntu-latest
-    needs:
-      - get-changed-files
-      - yaml-lint
-      - json-lint
-      - shell-lint
-      - javascript-lint
-    if: ${{ ! failure() && ! cancelled() }}
-    strategy:
-      matrix:
-        BE_VERSION: [v3, v4]
-        exclude:
-          - BE_VERSION:
-              ${{ (! contains(needs.get-changed-files.outputs.changed_files
-              , 'services/backend/services/v3')) && 'v3' || '' }}
-          - BE_VERSION:
-              ${{ (contains(needs.get-changed-files.outputs.changed_files
-              , 'services/backend/services/v3')) &&
-              (! contains(needs.get-changed-files.outputs.changed_files
-              , 'services/backend/services/v4')) && 'v4' || ''}}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Test DEV compose.yaml
-        run: |-
-          export BE_VERSION=${{ matrix.BE_VERSION }}
-          export JOBS_ENABLED=true
-          export ELASTIC_ENABLED=true
-          export LDAP_ENABLED=true
-          export DEV=true
+          export DEV=${{ matrix.DEV }}
           docker compose --profile '*' up --wait --wait-timeout 600

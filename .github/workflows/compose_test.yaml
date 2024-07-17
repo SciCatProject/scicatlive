@@ -104,7 +104,7 @@ jobs:
           - ELASTIC_OR_JOBS_ENABLED:
               ${{ (! contains(needs.get-changed-files.outputs.changed_files
               , 'backend/services/v3') && ! contains(
-              needs.get-changed-files.outputs.changed_files, 
+              needs.get-changed-files.outputs.changed_files,
               'backend/services/v4')) || 'nothing' }}
           - LDAP_ENABLED:
               ${{ (! contains(needs.get-changed-files.outputs.changed_files

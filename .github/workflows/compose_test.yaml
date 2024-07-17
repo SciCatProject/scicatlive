@@ -110,6 +110,9 @@ jobs:
           - OIDC_ENABLED:
               ${{ (! contains(needs.get-changed-files.outputs.changed_files
               , 'services/keycloak')) || 'nothing' }}
+          - DEV:
+              ${{ (! contains(needs.get-changed-files.outputs.changed_files
+              , 'dev')) || 'nothing' }}
     steps:
       - uses: actions/checkout@v4
       - name: Test compose.yaml

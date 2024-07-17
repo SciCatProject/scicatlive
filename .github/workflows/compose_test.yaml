@@ -111,7 +111,9 @@ jobs:
               , 'ldap')) || 'nothing' }}
           - OIDC_ENABLED:
               ${{ (! contains(needs.get-changed-files.outputs.changed_files
-              , 'keycloak')) || 'nothing' }}
+              , 'keycloak') && ! contains(
+              needs.get-changed-files.outputs.changed_files, 'oidc'))
+              || 'nothing' }}
           - DEV:
               ${{ (! contains(needs.get-changed-files.outputs.changed_files
               , 'dev')) || 'nothing' }}

@@ -95,21 +95,23 @@ jobs:
         exclude:
           - BE_VERSION:
               ${{ (! contains(needs.get-changed-files.outputs.changed_files
-              , 'services/backend/services/v3')) && 'v3' || '' }}
+              , 'v3')) && 'v3' || '' }}
           - BE_VERSION:
               ${{ (contains(needs.get-changed-files.outputs.changed_files
-              , 'services/backend/services/v3')) &&
+              , 'v3')) &&
               (! contains(needs.get-changed-files.outputs.changed_files
-              , 'services/backend/services/v4')) && 'v4' || ''}}
+              , 'v4')) && 'v4' || ''}}
           - ELASTIC_OR_JOBS_ENABLED:
               ${{ (! contains(needs.get-changed-files.outputs.changed_files
-              , 'backend/services')) || 'nothing' }}
+              , 'backend/services/v3') && ! contains(
+              needs.get-changed-files.outputs.changed_files, 
+              'backend/services/v4')) || 'nothing' }}
           - LDAP_ENABLED:
               ${{ (! contains(needs.get-changed-files.outputs.changed_files
-              , 'services/ldap')) || 'nothing' }}
+              , 'ldap')) || 'nothing' }}
           - OIDC_ENABLED:
               ${{ (! contains(needs.get-changed-files.outputs.changed_files
-              , 'services/keycloak')) || 'nothing' }}
+              , 'keycloak')) || 'nothing' }}
           - DEV:
               ${{ (! contains(needs.get-changed-files.outputs.changed_files
               , 'dev')) || 'nothing' }}

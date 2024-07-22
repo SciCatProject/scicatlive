@@ -1,0 +1,36 @@
+yaml:
+  - '**.yml'
+  - '**.yaml'
+js:
+  - '**.js'
+  - '**.ts'
+  - '**.cjs'
+  - '**.mjs'
+sh:
+  - '**.sh'
+json:
+  - '**.json'
+src:
+  - '!**.md'
+  - '!**/mkdocs*'
+ldap:
+  - '**/ldap/**'
+  - '**/*ldap*'
+oidc:
+  - '**/*oidc*'
+  - '**/keycloak/**'
+  - '**/*keycloak*'
+dev:
+  - '**/*dev*'
+v3:
+  - '**/v3/**'
+  - '**/*v3*'
+v4:
+  - '**/v4/**'
+  - '**/*v4*'
+ej:
+  - '**/archivemock/**'
+  - '**/rabbitmq/**'
+  - '**/*jobs*'
+  - '**/elastic/**'
+  - '**/*elastic*'

@@ -212,6 +212,7 @@ To add a new service, with advanced configuration (see the [backend](./services/
     3. create a symlink from [.empty.yaml](./services/.empty.yaml) to each `.compose.<ENV>.yaml`, e.g. [here](./services/backend/services/v4/.compose.elastic.yaml). This is used whenever the `ENV` is unset, as described in the next step
     4. use `compose.yaml` to merge the `compose*.yaml` files together, making sure to default to `.compose.<ENV>.yaml` whenever the `ENV` is not set. See an example [here](./services/backend/services/v4/compose.yaml)
     5. if the service is another version of an existing one, e.g. v3 and v4 versions of the `backend` service, add the selective include in the parent compose.yaml, e.g. [here](./services/backend/compose.yaml)
+    6. eventually, modify the [compose workflow](.github/workflows/compose_test.yaml) to add the toggle to the matrix. If the toggle depends on the changed files, remember to create the toggle configuration [here](.github/changed_files.yaml) and create the [exclude](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs#excluding-matrix-configurations) rule in the workflow.
 
 4. eventually, add entrypoints for init logics, as described [here](#if-the-service-does-not-support-entrypoints-yet-one-needs-to), e.g. like [here](./services/backend/services/v4/compose.base.yaml)
 

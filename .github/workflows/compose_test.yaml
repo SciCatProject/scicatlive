@@ -83,35 +83,34 @@ jobs:
     strategy:
       matrix:
         BE_VERSION: [v3, v4]
-        ELASTIC_OR_JOBS_ENABLED: ['', true]
-        LDAP_ENABLED: ['', true]
-        OIDC_ENABLED: ['', true]
-        DEV: ['', true]
+        ELASTIC_OR_JOBS_ENABLED: ['', ej]
+        LDAP_ENABLED: ['', ldap]
+        OIDC_ENABLED: ['', oidc]
+        DEV: ['', dev]
         exclude:
           - BE_VERSION: ${{
                 !fromJson(needs.changes.outputs.all).v3_all_modified_files
                 && 'v3'
-              }}
-          - BE_VERSION: ${{
-                fromJson(needs.changes.outputs.all).v3_all_modified_files
-                && !fromJson(needs.changes.outputs.all).v4_all_modified_files
-                && 'v4'
+                || (
+                  !fromJson(needs.changes.outputs.all).v4_all_modified_files
+                  && 'v4'
+                )
               }}
           - ELASTIC_OR_JOBS_ENABLED: ${{
                 !fromJson(needs.changes.outputs.all).ej_all_modified_files
-                || 'nothing'
+                && 'ej' || 'nothing'
               }}
           - LDAP_ENABLED: ${{
                 !fromJson(needs.changes.outputs.all).ldap_all_modified_files
-                || 'nothing'
+                && 'ldap' || 'nothing'
               }}
           - OIDC_ENABLED: ${{
                 !fromJson(needs.changes.outputs.all).oidc_all_modified_files
-                || 'nothing'
+                && 'oidc' || 'nothing'
               }}
           - DEV: ${{
                 !fromJson(needs.changes.outputs.all).dev_all_modified_files
-                || 'nothing'
+                && 'dev' || 'nothing'
               }}
     steps:
       - uses: actions/checkout@v4

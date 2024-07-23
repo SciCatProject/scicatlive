@@ -41,3 +41,7 @@ ej:
   - '**/elastic/**'
   - '**/*elastic*'
   - *src
+docs:
+  - '**.md'
+  - '**/mkdocs/**'
+  - '**/*mkdocs*'

@@ -12,7 +12,8 @@ json:
   - '**.json'
 src:
   - '!**.md'
-  - '!**/mkdocs*'
+  - '!**/mkdocs/*'
+  - '!**/*mkdocs*'
 ldap:
   - '**/ldap/**'
   - '**/*ldap*'

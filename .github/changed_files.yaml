@@ -34,7 +34,7 @@ v4:
   - '**/v4/**'
   - '**/*v4*'
   - *src
-ej:
+elastic_or_jobs:
   - '**/archivemock/**'
   - '**/rabbitmq/**'
   - '**/*jobs*'

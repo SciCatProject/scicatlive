@@ -11,40 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: SciCatProject/scicatlive/.github/actions/mike-pages@main
         with:
-          python-version: 3.x
-
-      - name: Install dependencies
-        run: |
-            pip install -r .github/mkdocs/requirements.txt
-
-      - name: Copy all to docs folder
-        run: |
-          mkdir -p docs
-          shopt -s extglob
-          mv !(docs) docs/
-
-      - name: Deploy documentation
-        run: |
-          if [[ "${{ github.ref_type }}" == "tag" ]]; then
-            export TAG=${{ github.ref_name }}
-            VERSION=$(echo ${TAG} | awk -F'.' '{print $1"."$2}')
-          fi
-
-          git fetch origin ${DOCS_BRANCH} --depth=1
-          mike deploy -F ${DOCS_CONFIG} \
-            --push --branch ${DOCS_BRANCH} \
-            --update-aliases ${VERSION:-main} ${VERSION:+latest}
-          mike set-default -F ${DOCS_CONFIG} \
-            --push --branch ${DOCS_BRANCH} latest
-        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_COMMITTER_NAME: ci-bot
-          GIT_COMMITTER_EMAIL: ci-bot@example.com
-          DOCS_BRANCH: gh-pages
-          DOCS_CONFIG: .github/mkdocs/mkdocs.yaml
+          push: true

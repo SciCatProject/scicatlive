@@ -92,26 +92,11 @@ jobs:
       && !cancelled()
       && fromJson(needs.changes.outputs.all).docs_all_modified_files
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: SciCatProject/scicatlive/.github/actions/mkdocs-pages@mike_action
         with:
-          python-version: 3.x
-      - name: Install dependencies
-        run: pip install -r .github/mkdocs/requirements.txt
-      - name: Copy all to docs folder
-        run: |
-          mkdir -p docs
-          shopt -s extglob
-          mv !(docs) docs/
-      - name: Check mkdocs links
-        run: mike deploy -F ${DOCS_CONFIG} test
-        env:
-          DOCS_CONFIG: .github/mkdocs/mkdocs.yaml
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCS_LINK_CHECK: true
           TAG: ${{ github.sha }}
-          GIT_COMMITTER_NAME: ci-bot
-          GIT_COMMITTER_EMAIL: ci-bot@example.com
   test:
     runs-on: ubuntu-latest
     needs:

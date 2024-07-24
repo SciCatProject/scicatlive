@@ -14,7 +14,7 @@ python:
   - '**.py'
 src: &src
   - '!**/*.md'
-  - '!**/mkdocs/*'
+  - '!**/*mkdocs*/**'
   - '!**/*mkdocs*'
 ldap:
   - '**/ldap/**'
@@ -45,5 +45,5 @@ elastic_or_jobs:
   - *src
 docs:
   - '**.md'
-  - '**/mkdocs/**'
+  - '**/*mkdocs*/**'
   - '**/*mkdocs*'

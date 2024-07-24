@@ -41,3 +41,7 @@ elastic_or_jobs:
   - '**/elastic/**'
   - '**/*elastic*'
   - *src
+docs:
+  - '**.md'
+  - '**/mkdocs/**'
+  - '**/*mkdocs*'

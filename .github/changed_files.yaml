@@ -10,6 +10,8 @@ sh:
   - '**.sh'
 json:
   - '**.json'
+python:
+  - '**.py'
 src: &src
   - '!**/*.md'
   - '!**/mkdocs/*'

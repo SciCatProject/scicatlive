@@ -67,7 +67,7 @@ In the default configuration folder [config](./config), the backend is set to us
 
 ## Enable additional features
 
-Additionally, by setting the env variable [ENABLE_JOBS](../../.env#L5), the [archive mock](./services/archivemock/) and [rabbitmq](./services/rabbitmq/) services are started and the backend is configured to connect to them.
+Additionally, by setting the env variable `JOBS_ENABLED`, the [archive mock](./services/archivemock/) and [rabbitmq](./services/rabbitmq/) services are started and the backend is configured to connect to them.
 
 If `LDAP_ENABLED` is toggled, you can use LDAP to log in with a [LDAP user](../ldap/README.md#default-configuration).
 

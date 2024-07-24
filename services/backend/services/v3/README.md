@@ -63,7 +63,7 @@ There are a few functional accounts available for handling data:
 
 ## Default configuration
 
-In the default configuration folder [config](./config), the backend is set to use the [mongo container](../mongodb/)
+In the default configuration folder [config](./config), the backend is set to use the [mongo container](../../../mongodb/).
 
 ## Enable additional features
 

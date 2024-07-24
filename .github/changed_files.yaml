@@ -6,6 +6,7 @@ js:
   - '**.ts'
   - '**.cjs'
   - '**.mjs'
+  - '**.html'
 sh:
   - '**.sh'
 json:

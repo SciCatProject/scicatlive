@@ -83,7 +83,7 @@ jobs:
     strategy:
       matrix:
         BE_VERSION: [v3, v4]
-        ELASTIC_OR_JOBS_ENABLED: ['', ej]
+        ELASTIC_OR_JOBS_ENABLED: ['', elastic_or_jobs]
         LDAP_ENABLED: ['', ldap]
         OIDC_ENABLED: ['', oidc]
         DEV: ['', dev]
@@ -97,8 +97,8 @@ jobs:
                 )
               }}
           - ELASTIC_OR_JOBS_ENABLED: ${{
-                !fromJson(needs.changes.outputs.all).ej_all_modified_files
-                && 'ej' || 'nothing'
+                !fromJson(needs.changes.outputs.all).elastic_or_jobs_all_modified_files
+                && 'elastic_or_jobs' || 'nothing'
               }}
           - LDAP_ENABLED: ${{
                 !fromJson(needs.changes.outputs.all).ldap_all_modified_files

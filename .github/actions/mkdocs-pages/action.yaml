@@ -46,7 +46,7 @@ runs:
           VERSION=${VERSION%.}
         fi
 
-        git fetch origin ${DOCS_BRANCH} --depth=1
+        git fetch origin gh-pages --depth=1
         PUSH=${{ inputs.push }}
         mike deploy -F ${DOCS_CONFIG} ${PUSH:+--push} \
           --update-aliases ${VERSION:-main} ${VERSION:+latest}

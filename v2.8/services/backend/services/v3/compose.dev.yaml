@@ -1,0 +1,14 @@
+services:
+  backend:
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./config/settings.json:/home/node/app/test/config/settings.json
+      - ./config/datasources.dev.json:/config/datasources.1.json
+      - v3_dev:/home/node/app
+      - ${PWD}/entrypoints/npm_ci.sh:/docker-entrypoints/1.sh
+      - ./entrypoints/tests.sh:/docker-entrypoints/2.sh
+
+volumes:
+  v3_dev:
+    driver: local

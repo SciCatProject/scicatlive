@@ -1,0 +1,15 @@
+include:
+  - ../keycloak/compose.yaml
+
+services:
+  backend:
+    depends_on:
+      keycloak:
+        condition: service_healthy
+    links:
+      - keycloak:keycloak.localhost
+    volumes:
+      - ./config/providers.oidc.json:/config/providers.oidc.json
+      - ./config/login-callbacks.js:/home/node/app/server/boot/login-callbacks.js
+    environment:
+      OIDC_ENABLED: true

@@ -12,8 +12,8 @@ inputs:
     default: ${{ github.ref_name }}
   DOCS_LINK_CHECK:
     description: string to trigger the links check
-    type: boolean
-    default: false
+    type: string
+    default: ''
   push:
     description: if to publish docs to gh-pages
     type: string

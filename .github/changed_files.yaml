@@ -10,28 +10,34 @@ sh:
   - '**.sh'
 json:
   - '**.json'
-src:
-  - '!**.md'
+src: &src
+  - '!**/*.md'
   - '!**/mkdocs/*'
   - '!**/*mkdocs*'
 ldap:
   - '**/ldap/**'
   - '**/*ldap*'
+  - *src
 oidc:
   - '**/*oidc*'
   - '**/keycloak/**'
   - '**/*keycloak*'
+  - *src
 dev:
   - '**/*dev*'
+  - *src
 v3:
   - '**/v3/**'
   - '**/*v3*'
+  - *src
 v4:
   - '**/v4/**'
   - '**/*v4*'
+  - *src
 ej:
   - '**/archivemock/**'
   - '**/rabbitmq/**'
   - '**/*jobs*'
   - '**/elastic/**'
   - '**/*elastic*'
+  - *src

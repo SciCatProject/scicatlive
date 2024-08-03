@@ -38,5 +38,5 @@ soupsieve==2.5
 urllib3==2.2.2
 verspec==0.1.0
 watchdog==4.0.1
-wcmatch==8.5.2
+wcmatch==9.0
 zipp==3.19.2

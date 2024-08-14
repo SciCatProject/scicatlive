@@ -10,10 +10,10 @@
       
       
       
-        <link rel="prev" href="../jupyter/">
+        <link rel="prev" href="../mongodb/">
       
       
-        <link rel="next" href="../proxy/">
+        <link rel="next" href="../searchapi/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Mongodb - SciCatLive</title>
+        <title>Proxy - SciCatLive</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mongodb" class="md-skip">
+        <a href="#proxy" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mongodb
+              Proxy
             
           </span>
         </div>
@@ -583,6 +583,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../mongodb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongodb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -599,7 +620,7 @@
           
   
   <span class="md-ellipsis">
-    Mongodb
+    Proxy
   </span>
   
 
@@ -610,7 +631,7 @@
         
   
   <span class="md-ellipsis">
-    Mongodb
+    Proxy
   </span>
   
 
@@ -632,27 +653,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration-options" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration options
+      Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#env-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      .env file
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#default-configuration" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#tlsenv-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Default configuration
+      .tls.env file
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#dependency-on-be_version" class="md-nav__link">
+  <a href="#enable-tls" class="md-nav__link">
     <span class="md-ellipsis">
-      Dependency on BE_VERSION
+      Enable TLS
     </span>
   </a>
   
@@ -662,27 +698,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../proxy/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Proxy
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -743,27 +758,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration-options" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration options
+      Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#env-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      .env file
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#default-configuration" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#tlsenv-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Default configuration
+      .tls.env file
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#dependency-on-be_version" class="md-nav__link">
+  <a href="#enable-tls" class="md-nav__link">
     <span class="md-ellipsis">
-      Dependency on BE_VERSION
+      Enable TLS
     </span>
   </a>
   
@@ -789,135 +819,106 @@
 
 <html>
  <body>
-  <h1 id="mongodb">
-   Mongodb
-   <a class="headerlink" href="#mongodb" title="Permanent link">
+  <h1 id="proxy">
+   <a href="https://doc.traefik.io/traefik/">
+    Proxy
+   </a>
+   <a class="headerlink" href="#proxy" title="Permanent link">
     ¶
    </a>
   </h1>
   <p>
-   The
-   <code>
-    mongodb
-   </code>
-   container is responsible of creating a mongodb container with initial metadata.
+   The proxy acts as a reverse proxy to the SciCat Live containers.
   </p>
-  <h2 id="configuration-options">
-   Configuration options
-   <a class="headerlink" href="#configuration-options" title="Permanent link">
+  <h2 id="configuration">
+   Configuration
+   <a class="headerlink" href="#configuration" title="Permanent link">
     ¶
    </a>
   </h2>
-  <p>
-   All files collection created with relative data are in the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/mongodb/config/seed">
-    seed folder
+  <h3 id="env-file">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/proxy/config/.env">
+    .env file
    </a>
-   and the init script
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/mongodb/config/init.js">
-    here
-   </a>
-  </p>
-  <p>
-   To add more collections during the creation of the database:
-1. add the corresponding file(s)
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/mongodb/config/seed">
-    here
-   </a>
-   , keeping the convention:
-   <code>
-    filename := collectionname.json
-   </code>
-   .
-2. Restart the docker container.
-  </p>
-  <p>
-   These files are ingested into the database using mongo funcionalities and bypassing the backend, i.e. they are not to be taken as examples to use the backend API.
-  </p>
-  <h2 id="default-configuration">
-   Default configuration
-   <a class="headerlink" href="#default-configuration" title="Permanent link">
+   <a class="headerlink" href="#env-file" title="Permanent link">
     ¶
    </a>
-  </h2>
+  </h3>
   <p>
-   In the default configuration
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/mongodb/config/init.js">
-    init.js
+   It sets proxy options which are rarely changed, for example, the default configuration with the docker network.
+  </p>
+  <h3 id="tlsenv-file">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/proxy/config/.tls.env">
+    .tls.env file
    </a>
-   , the seeding creates data in the mongodb database used by the
-   <code>
-    backend
-   </code>
-   service (either
-   <a href="../backend/services/v4/">
-    v4
+   <a class="headerlink" href="#tlsenv-file" title="Permanent link">
+    ¶
    </a>
-   , by default, or
-   <a href="../backend/services/v3/">
-    v3
-   </a>
-   if specified otherwise by setting
-   <code>
-    BE_VERSION
-   </code>
-   ).
+  </h3>
+  <p>
+   It can be customized to set the TLS options. This has an effect only if the service URLs exposed by traefik are reachable from the public web.
   </p>
   <p>
-   For an explanation of how setting
-   <code>
-    BE_VERSION
-   </code>
-   changes the environment creation see
-   <a href="../../#docker-compose-profiles-and-env-variables-configuration-options">
+   You need to set the letsencrypt options
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/proxy/config/.tls.env">
     here
    </a>
    .
   </p>
-  <h2 id="dependency-on-be_version">
-   Dependency on
-   <code>
-    BE_VERSION
-   </code>
-   <a class="headerlink" href="#dependency-on-be_version" title="Permanent link">
+  <h2 id="enable-tls">
+   Enable TLS
+   <a class="headerlink" href="#enable-tls" title="Permanent link">
     ¶
    </a>
   </h2>
   <p>
-   Since
-   <a href="../backend/services/v3/">
-    v3
-   </a>
-   and
-   <a href="../backend/services/v4/">
-    v4
-   </a>
-   connect to two different DBs, the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/mongodb/compose.yaml#L9">
-    BE_VERSION
-   </a>
-   environment variable controls
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/mongodb/config/init.js#L1">
-    which DB
-   </a>
-   should be seeded (
-   <code>
-    dacat
-   </code>
-   for
-   <a href="../backend/services/v3/">
-    v3
-   </a>
-   and
-   <code>
-    dacat-next
-   </code>
-   for
-   <a href="../backend/services/v4/">
-    v4
-   </a>
-   ).
+   The proxy sets a default certificate resolver, using letsencrypt. To use it, you should:
   </p>
+  <ol>
+   <li>
+    change the
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/proxy/config/.tls.env">
+     resolver settings
+    </a>
+    . If the docker volume
+    <code>
+     letsencrypt_proxy_data
+    </code>
+    already exists, you might need to remove it to apply changes from the
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/proxy/config/.tls.env">
+     .tls.env file
+    </a>
+   </li>
+   <li>
+    add dedicated labels to each service to expose, making sure that the URLs are reachable by letsencrypt. You should set: the service public URL and the certificate resolver annotation and set the entrypoint to
+    <code>
+     websecure
+    </code>
+    to use port 443 only. For example, for the
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.base.yaml">
+     frontend service
+    </a>
+    :
+   </li>
+  </ol>
+  <div class="highlight">
+   <pre><span></span><code><span class="w"> </span>   labels:
+<span class="gd">-     - traefik.http.routers.frontend.rule=Host(`localhost`)</span>
+<span class="gi">+     - traefik.http.routers.frontend.rule=Host(`&lt;YOUR_PUBLIC_HOST&gt;`)</span>
+<span class="gi">+     - traefik.http.routers.frontend.entrypoints=websecure</span>
+</code></pre>
+  </div>
+  <ol>
+   <li>
+    Change any other service that referenced the changed host
+   </li>
+   <li>
+    rerun
+    <code>
+     docker compose up -d
+    </code>
+   </li>
+  </ol>
  </body>
 </html>
 

@@ -17,3 +17,5 @@ services:
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)
     restart: on-failure
+    environment:
+      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}

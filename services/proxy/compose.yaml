@@ -7,12 +7,24 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - letsencrypt_proxy_data:/letsencrypt
+      - ./healthcheck/https_services.sh:/https_services.sh
+      - ./config/tls.yaml:/config/traefik.pre.yaml
     env_file:
       - ./config/.env
       - ./config/.tls.env
+      - ${PWD}/.env
     labels:
       - traefik.http.services.proxy.loadbalancer.server.port=8080
     restart: on-failure
+    command: sh -c 'touch /config/traefik.yaml; traefik'
+    environment:
+      - COMPOSE_PROJECT_NAME
+    healthcheck:
+      test: /https_services.sh
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 5s
 
 volumes:
   letsencrypt_proxy_data:

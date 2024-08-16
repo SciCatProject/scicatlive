@@ -12,6 +12,7 @@ services:
       - ./config/.tls.env
     labels:
       - traefik.http.services.proxy.loadbalancer.server.port=8080
+    restart: on-failure
 
 volumes:
   letsencrypt_proxy_data:

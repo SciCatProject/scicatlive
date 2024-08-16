@@ -16,6 +16,7 @@ services:
       retries: 15
     env_file:
       - ./config/.env
+    restart: on-failure
 
 volumes:
   esdata:

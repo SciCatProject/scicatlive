@@ -2,6 +2,10 @@
 
 SciCat with docker compose.
 
+## Latest stable version
+
+[v3](https://github.com/SciCatProject/scicatlive/tree/v3) is the latest stable and reviewed version of SciCatLive. 
+
 ## Steps
 
 <details markdown="1">

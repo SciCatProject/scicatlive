@@ -8,3 +8,4 @@ services:
       - ./config/.env
     profiles:
       - search
+    restart: on-failure

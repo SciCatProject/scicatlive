@@ -16,3 +16,4 @@ services:
     command: nginx -g "daemon off;"
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)
+    restart: on-failure

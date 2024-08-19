@@ -899,16 +899,14 @@
      frontend service
     </a>
     :
-   </li>
-  </ol>
-  <div class="highlight">
-   <pre><span></span><code><span class="w"> </span>   labels:
+    <div class="highlight">
+     <pre><span></span><code><span class="w"> </span>   labels:
 <span class="gd">-     - traefik.http.routers.frontend.rule=Host(`localhost`)</span>
 <span class="gi">+     - traefik.http.routers.frontend.rule=Host(`&lt;YOUR_PUBLIC_HOST&gt;`)</span>
 <span class="gi">+     - traefik.http.routers.frontend.entrypoints=websecure</span>
 </code></pre>
-  </div>
-  <ol>
+    </div>
+   </li>
    <li>
     Change any other service that referenced the changed host
    </li>

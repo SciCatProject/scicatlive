@@ -5,5 +5,11 @@
   ],
   "reviewers": [
     "team:release-scicatlive"
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    }
   ]
 }

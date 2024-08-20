@@ -3,7 +3,7 @@ services:
     image: mongo:7.0
     volumes:
       - backend${BE_VERSION:-v4}_mongodb_data:/data/db
-      - ./config/init.js:/docker-entrypoint-initdb.d/init.js
+      - ./config/init.sh:/docker-entrypoint-initdb.d/init.sh
       - ./config/seed:/seed
     environment:
       BE_VERSION: ${BE_VERSION:-v4}

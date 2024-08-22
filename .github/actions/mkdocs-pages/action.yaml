@@ -41,15 +41,21 @@ runs:
     - name: Deploy documentation
       shell: bash
       run: |
+        git fetch origin gh-pages --depth=1
+        
         if [[ "${{ github.ref_type }}" == "tag" ]]; then
           VERSION=$(echo ${TAG} | awk -F'.' '{print $1"."$2}')
           VERSION=${VERSION%.}
+          MAJOR=$(echo ${TAG} | awk -F'.' '{print $1}')
+
+          mike deploy -F ${DOCS_CONFIG} --push \
+            --update-aliases ${MAJOR:-main} ${MAJOR:+latest}
         fi
 
-        git fetch origin gh-pages --depth=1
         PUSH=${{ inputs.push }}
         mike deploy -F ${DOCS_CONFIG} ${PUSH:+--push} \
-          --update-aliases ${VERSION:-main} ${VERSION:+latest}
+          --update-aliases ${VERSION:-main}
+
         mike set-default -F ${DOCS_CONFIG} --push latest
       env:
         GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}

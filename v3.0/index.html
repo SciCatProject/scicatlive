@@ -1286,11 +1286,11 @@
   </h3>
   <p>
    They are used to modify existing services where whenever enabling the feature requires changes in multiple services. They also have the advantage, compared to docker profiles, of not needing to define a new profile when a new combination of features becomes available. To set an env variable for docker compose, either assign it in the shell or change the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/.env">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/.env">
     .env
    </a>
    file. To later unset it, either unset it from the shell or assign it an empty value, either in the shell or in the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/.env">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/.env">
     .env
    </a>
    file.
@@ -1670,7 +1670,7 @@
    <p>
     <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/26a0.svg" title=":warning:"/>
     As the DEV containers pull from upstream/latest, there is no guarantee of their functioning outside of releases. If they fail to start, try, as a first option, to build the image from a tag (e.g.
-    <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/frontend/compose.dev.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/frontend/compose.dev.yaml">
      build context
     </a>
     ) using the
@@ -1678,7 +1678,7 @@
      TAG
     </a>
     and then git checkout to that tag (e.g. set
-    <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/frontend/compose.dev.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/frontend/compose.dev.yaml">
      GITHUB_REPO
     </a>
     including the branch using the same syntax and value as the build context).
@@ -1714,7 +1714,7 @@
   </p>
   <p>
    Every service folder (inside the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services">
     services
    </a>
    parent directory) contains its configuration and some instructions, at least for the non-third-party containers.
@@ -1725,7 +1725,7 @@
     frontend
    </a>
    , the user can change any file in the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/frontend/config">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/frontend/config">
     frontend config
    </a>
    folder, for which instructions are available in the
@@ -1753,7 +1753,7 @@
     frontend
    </code>
    composability, it is useful to specify its configuration through multiple JSON files, with different scopes, which are then merged by a
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/frontend/entrypoints/merge_json.sh">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/frontend/entrypoints/merge_json.sh">
     init script
    </a>
    . For this reason, one can define service-specific
@@ -1761,7 +1761,7 @@
     entrypoints
    </code>
    (e.g.
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/frontend/entrypoints">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/frontend/entrypoints">
     frontend ones
    </a>
    ) which can be run inside the container, before the service starts (i.e. before the docker compose
@@ -1773,14 +1773,14 @@
     entrypoints
    </code>
    folder below the outermost service (e.g.
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/entrypoints">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/entrypoints">
     this one
    </a>
    ).
   </p>
   <p>
    To ease the iterative execution of multiple init scripts, one can leverage the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/entrypoints/loop_entrypoints.sh">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/entrypoints/loop_entrypoints.sh">
     loop_entrypoints
    </a>
    utility, which loops alphabetically over
@@ -1788,7 +1788,7 @@
     /docker-entrypoinst/*.sh
    </code>
    and executes each. This is in use in some services (e.g. in the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/frontend/compose.yaml">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/frontend/compose.yaml">
     frontend
    </a>
    ), so one can add additional init steps by mounting them, one by one, as volumes inside the container in the
@@ -1810,7 +1810,7 @@
    <ol>
     <li>
      mount the
-     <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/entrypoints/loop_entrypoints.sh">
+     <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/entrypoints/loop_entrypoints.sh">
       loop_entrypoint.sh
      </a>
      as a volume inside the container
@@ -1838,7 +1838,7 @@
    </ol>
    <p>
     See for example
-    <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/frontend/compose.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/frontend/compose.yaml">
      here
     </a>
     .
@@ -1896,7 +1896,7 @@
   </h2>
   <p>
    The user can selectively decide the containers to spin up and the dependencies will be resolved accordingly. The available services are in the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services">
     services
    </a>
    folder and are called consistently.
@@ -2004,7 +2004,7 @@
   <ol>
    <li>
     create a dedicated folder in the
-    <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services">
      services
     </a>
     one *
@@ -2034,7 +2034,7 @@
    </li>
    <li>
     include the reference to (3) to the global
-    <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/compose.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/compose.yaml">
      compose include list
     </a>
     *
@@ -2052,11 +2052,11 @@
     services
    </code>
    folder relative to the affected service, and in (6) add it to its inclusion list. See an example of a service relative
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/backend/services">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/backend/services">
     services folder here
    </a>
    and a
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/backend/compose.yaml">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/backend/compose.yaml">
     relative inclusion list here
    </a>
    .
@@ -2073,7 +2073,7 @@
     docker compose up
    </code>
    on different platforms, for example on MAC with arm64 architecture. See for example the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/searchapi/compose.yaml#L3">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/searchapi/compose.yaml#L3">
     searchapi compose
    </a>
    .
@@ -2104,11 +2104,11 @@
     </li>
     <li>
      eventually, include any service, in the service-specific folder which is specific to the service and not shared by other, more general services, e.g.
-     <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/backend/services">
+     <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/backend/services">
       here
      </a>
      . This folder should also include different versions of the same service, e.g. v3 and v4
-     <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/backend/services">
+     <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/backend/services">
       here
      </a>
     </li>
@@ -2131,7 +2131,7 @@
         compose.base.yaml
        </code>
        file, e.g.
-       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/backend/services/v4/compose.base.yaml">
+       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/backend/services/v4/compose.base.yaml">
         here
        </a>
        , which should contain the
@@ -2150,14 +2150,14 @@
         compose.&lt;ENV&gt;.yaml
        </code>
        file, e.g.
-       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/backend/services/v4/compose.elastic.yaml">
+       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/backend/services/v4/compose.elastic.yaml">
         backend v4 compose.elastic.yaml
        </a>
        , with the additional/override config, specific to the enabled feature
       </li>
       <li>
        create a symlink from
-       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/.empty.yaml">
+       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/.empty.yaml">
         .empty.yaml
        </a>
        to each
@@ -2165,7 +2165,7 @@
         .compose.&lt;ENV&gt;.yaml
        </code>
        , e.g.
-       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/backend/services/v4/.compose.elastic.yaml">
+       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/backend/services/v4/.compose.elastic.yaml">
         here
        </a>
        . This is used whenever the
@@ -2192,7 +2192,7 @@
         ENV
        </code>
        is not set. See an example
-       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/backend/services/v4/compose.yaml">
+       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/backend/services/v4/compose.yaml">
         here
        </a>
       </li>
@@ -2202,17 +2202,17 @@
         backend
        </code>
        service, add the selective include in the parent compose.yaml, e.g.
-       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/backend/compose.yaml">
+       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/backend/compose.yaml">
         here
        </a>
       </li>
       <li>
        eventually, modify the
-       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/.github/workflows/compose_test.yaml">
+       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/.github/workflows/compose_test.yaml">
         compose workflow
        </a>
        to add the toggle to the matrix. If the toggle depends on the changed files, remember to create the toggle configuration
-       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/.github/changed_files.yaml">
+       <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/.github/changed_files.yaml">
         here
        </a>
        and create the
@@ -2230,7 +2230,7 @@
        here
       </a>
       , e.g. like
-      <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0/services/backend/services/v4/compose.base.yaml">
+      <a href="https://github.com/SciCatProject/scicatlive/blob/v3.0.1/services/backend/services/v4/compose.base.yaml">
        here
       </a>
      </p>

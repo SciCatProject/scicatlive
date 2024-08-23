@@ -372,9 +372,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#dependency-on-be_version" class="md-nav__link">
+  <a href="#enable-additional-features" class="md-nav__link">
     <span class="md-ellipsis">
-      Dependency on BE_VERSION
+      Enable additional features
     </span>
   </a>
   
@@ -736,9 +736,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#dependency-on-be_version" class="md-nav__link">
+  <a href="#enable-additional-features" class="md-nav__link">
     <span class="md-ellipsis">
-      Dependency on BE_VERSION
+      Enable additional features
     </span>
   </a>
   
@@ -782,12 +782,9 @@
   <p>
    The SciCat backend HTTP service.
   </p>
-  <h2 id="dependency-on-be_version">
-   Dependency on
-   <code>
-    BE_VERSION
-   </code>
-   <a class="headerlink" href="#dependency-on-be_version" title="Permanent link">
+  <h2 id="enable-additional-features">
+   Enable additional features
+   <a class="headerlink" href="#enable-additional-features" title="Permanent link">
     ¶
    </a>
   </h2>
@@ -805,6 +802,25 @@
     v4
    </a>
    (default).
+  </p>
+  <p>
+   Setting the
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
+    BACKEND_HTTPS_URL and OIDC_ENABLED env variables
+   </a>
+   requires changing the OIDC configuration, either in the v3
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/compose.oidc.yaml">
+    compose.oidc.yaml
+   </a>
+   and
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/providers.oidc.json">
+    providers.oidc.json
+   </a>
+   , or the v4
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/config/.oidc.env">
+    env file
+   </a>
+   .
   </p>
   <h2 id="dependencies">
    Dependencies
@@ -825,11 +841,31 @@
    <code>
     A
    </code>
-   , then we visualize as
+   , then we visualize it as
    <code>
     A --&gt; B
    </code>
    ). The same subdomain to service convention applies.
+  </p>
+  <p>
+   <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/26a0.svg" title=":warning:"/>
+   When setting
+   <code>
+    BACKEND_HTTPS_URL
+   </code>
+   and
+   <code>
+    OIDC_ENABLED
+   </code>
+   , you might need to also set
+   <code>
+    KEYCLOAK_HTTPS_URL
+   </code>
+   to correctly resolve the login flow redirects. A more detailed explanation for
+   <a href="https://scicatproject.github.io/documentation/Development/v3.x/OIDC.html">
+    v3
+   </a>
+   can be found here, and it is similar for v4.
   </p>
   <pre class="mermaid"><code>graph TD
     ldap --&gt; backend

@@ -349,6 +349,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#tls-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      TLS configuration
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -977,6 +986,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#tls-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      TLS configuration
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1395,7 +1413,7 @@
        analysis: enables additional jupyter notebook with python SciCat SDK installed and example notebooks
       </li>
       <li>
-       search: enables a SciCat interface for standardised search
+       search: enables a SciCat interface for standardized search
       </li>
      </td>
      <td>
@@ -1433,7 +1451,7 @@
       as set
      </td>
      <td>
-      Sets the be version to use in (2) of
+      Sets the BE version to use in (2) of
       <a href="#default-setup">
        default setup
       </a>
@@ -1467,7 +1485,7 @@
       v3
      </td>
      <td>
-      Creates a rabbitmq message broker which the be posts to and the archivemock listens to. It emulates the data long-term archive/retrieve workflow
+      Creates a RabbitMQ message broker which the BE posts to and the archivemock listens to. It emulates the data long-term archive/retrieve workflow
      </td>
      <td>
      </td>
@@ -1496,7 +1514,7 @@
       v4
      </td>
      <td>
-      Creates an elastic search service and sets the be to use it for full-text searches
+      Creates an elastic search service and sets the BE to use it for full-text searches
      </td>
      <td>
      </td>
@@ -1525,7 +1543,7 @@
       *
      </td>
      <td>
-      Creates an LDAP service and sets the be to use it as authentication backend
+      Creates an LDAP service and sets the BE to use it as authentication backend
      </td>
      <td>
      </td>
@@ -1554,7 +1572,7 @@
       *
      </td>
      <td>
-      Creates an OIDC identity provider and sets the be to use it as authentication backend
+      Creates an OIDC identity provider and sets the BE to use it as authentication backend
      </td>
      <td>
      </td>
@@ -1583,9 +1601,41 @@
       *
      </td>
      <td>
-      The SciCat services' environment is prepared to easy the
+      The SciCat services' environment is prepared to ease the
       <a href="#dev-configuration">
        development in a standardized environment
+      </a>
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      env
+     </td>
+     <td>
+      <code>
+       &lt;SERVICE&gt;_HTTPS_URL
+      </code>
+     </td>
+     <td>
+      <code>
+       &lt;URL&gt;
+      </code>
+      : HTTPS termination
+     </td>
+     <td>
+      <code>
+       ''
+      </code>
+     </td>
+     <td>
+      *
+     </td>
+     <td>
+      Requests the TLS certificate for the URL to LetsEncrypt through the
+      <a href="#tls-configuration">
+       proxy
       </a>
      </td>
      <td>
@@ -1703,6 +1753,55 @@
     .
    </p>
   </details>
+  <h4 id="tls-configuration">
+   TLS configuration
+   <a class="headerlink" href="#tls-configuration" title="Permanent link">
+    ¶
+   </a>
+  </h4>
+  <p>
+   You can enable TLS termination of desired services by setting the
+   <code>
+    &lt;SERVICE&gt;_HTTPS_URL
+   </code>
+   , by setting the full URL, including
+   <code>
+    https://
+   </code>
+   . The specified HTTPS URL will get a
+   <code>
+    letsencrypt
+   </code>
+   generated certificate through the proxy setting. For more details see the
+   <a href="services/proxy/">
+    proxy instructions
+   </a>
+   . After setting some URLs, the required changes in dependent services are automatically resolved, as explained for example
+   <a href="services/frontend/">
+    here
+   </a>
+   . Whenever possible, we use either the docker internal network or the localhost subdomains.
+  </p>
+  <p>
+   <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/26a0.svg" title=":warning:"/>
+   Please make sure to set all required
+   <code>
+    &lt;SERVICE&gt;_HTTPS_URL
+   </code>
+   whenever enabling one, as mixing public URLs and
+   <code>
+    localhost
+   </code>
+   ones might be tricky. See, for example, what is described in the
+   <a href="services/frontend/#enable-additional-features">
+    frontend documentation
+   </a>
+   and the
+   <a href="services/backend/#enable-additional-features">
+    backend documentation
+   </a>
+   .
+  </p>
   <h3 id="service-specific-config">
    Service-specific config
    <a class="headerlink" href="#service-specific-config" title="Permanent link">
@@ -2233,6 +2332,19 @@
       <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.base.yaml">
        here
       </a>
+      , including any
+      <a href="#docker-compose-env-variables">
+       ENVs
+      </a>
+      specific logic. Remember to set the environment variable in the compose.yaml file. See, for example, the frontend
+      <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/entrypoints/merge_json.sh">
+       entrypoint
+      </a>
+      and
+      <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.base.yaml">
+       compose file
+      </a>
+      .
      </p>
     </li>
    </ol>

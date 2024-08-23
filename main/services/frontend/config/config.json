@@ -15,7 +15,7 @@
    "jsonMetadataEnabled":true,
    "jupyterHubUrl":"",
    "landingPage":"",
-   "lbBaseURL":"http://backend.localhost",
+   "lbBaseURL":"${BACKEND_URL}",
    "localColumns":[
       {
          "name":"datasetName",

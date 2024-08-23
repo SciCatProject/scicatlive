@@ -1,0 +1,5 @@
+services:
+  backend:
+    volumes:
+      # wait for kecyloak to get certificate
+      - ./entrypoints/sleep.sh:/docker-entrypoints/1.sh

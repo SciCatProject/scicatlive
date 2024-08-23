@@ -872,51 +872,28 @@
    </a>
   </h2>
   <p>
-   The proxy sets a default certificate resolver, using letsencrypt. To use it, you should:
+   To enable TLS on specific services, you can set the
+   <code>
+    &lt;SERVICE&gt;_HTTPS_URL
+   </code>
+   env var to the desired URL, including the
+   <code>
+    https://
+   </code>
+   prefix, making sure that the URLs are reachable by
+   <code>
+    letsencrypt
+   </code>
+   . See
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
+    here
+   </a>
+   for an example. This will request the certificate from
+   <code>
+    letsencrypt
+   </code>
+   .
   </p>
-  <ol>
-   <li>
-    change the
-    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/proxy/config/.tls.env">
-     resolver settings
-    </a>
-    . If the docker volume
-    <code>
-     letsencrypt_proxy_data
-    </code>
-    already exists, you might need to remove it to apply changes from the
-    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/proxy/config/.tls.env">
-     .tls.env file
-    </a>
-   </li>
-   <li>
-    add dedicated labels to each service to expose, making sure that the URLs are reachable by letsencrypt. You should set: the service public URL and the certificate resolver annotation and set the entrypoint to
-    <code>
-     websecure
-    </code>
-    to use port 443 only. For example, for the
-    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.base.yaml">
-     frontend service
-    </a>
-    :
-    <div class="highlight">
-     <pre><span></span><code><span class="w"> </span>   labels:
-<span class="gd">-     - traefik.http.routers.frontend.rule=Host(`localhost`)</span>
-<span class="gi">+     - traefik.http.routers.frontend.rule=Host(`&lt;YOUR_PUBLIC_HOST&gt;`)</span>
-<span class="gi">+     - traefik.http.routers.frontend.entrypoints=websecure</span>
-</code></pre>
-    </div>
-   </li>
-   <li>
-    Change any other service that referenced the changed host
-   </li>
-   <li>
-    rerun
-    <code>
-     docker compose up -d
-    </code>
-   </li>
-  </ol>
  </body>
 </html>
 

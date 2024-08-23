@@ -1,0 +1,24 @@
+services:
+  frontend:
+    image: !reset null
+    build:
+      context: https://github.com/SciCatProject/frontend.git
+      target: builder
+    command: infinite_loop.sh
+    environment:
+      CONFIG_DIR: /frontend/src/assets
+      GITHUB_REPO: https://github.com/SciCatProject/frontend.git
+      CHROME_BIN: /usr/bin/chromium
+    volumes:
+      - frontend_dev:/frontend
+      - ${PWD}/entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
+      - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/0.sh
+      - ./entrypoints/tests.sh:/docker-entrypoints/2.sh
+    labels:
+      - traefik.http.services.frontend.loadbalancer.server.port=4200
+    healthcheck:
+      test: pgrep -f "/bin/sh /usr/local/bin/infinite_loop.sh"
+
+volumes:
+  frontend_dev:
+    driver: local

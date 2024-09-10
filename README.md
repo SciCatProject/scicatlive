@@ -40,11 +40,21 @@ By running `docker compose up -d` these steps take place:
 1. a [mongodb](./services/mongodb/) container is created with some initial data.
 2. the SciCat [backend v4](./services/backend/services/v4/) container is created and connected to (1).
 3. the SciCat [frontend](./services/frontend/) container is created and connected to (2).
-4. a reverse [proxy](./services/proxy) container is created and routes traffic to (2) and (3) through localhost subdomains, in the form: `http://${service}.localhost`. The frontend is available at simply `http://localhost`.
+4. a reverse [proxy](./services/proxy) container is created and routes traffic to (2) and (3) through localhost subdomains, in the form: `http://${service}.localhost`. The frontend is available at simply `http://localhost`. Services names are `frontend`, `backend`, `proxy`, `mongodb`.
+5. You can explore the API endpoints through the Swagger UI which is available on `http://backend.localhost/explorer`
 
 ## Extra services and features
 
 Features and services can be enabled or configured by setting [docker compose env variables](https://docs.docker.com/compose/environment-variables/envvars-precedence/), using [docker compose profiles](https://docs.docker.com/compose/profiles/), modifying the [service-specific config](#service-specific-config) and adding [entrypoints](#entrypoints).
+
+Services that can be added are:
+* LDAP - authentication and authorization from an LDAP server
+* OIDC - authentication and authorization using an OIDC provider
+* ElasitcSearch - for better free text search in the metadata
+* JupyterHub - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using [pyscicat](https://scicatproject.github.io/pyscicat/).
+
+For more about how to set up the services see [here]
+(#Docker compose profiles and env variables configuration options)
 
 ### Docker compose env variables
 

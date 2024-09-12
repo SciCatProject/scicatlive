@@ -35,7 +35,7 @@ regex==2024.9.11
 requests==2.32.3
 six==1.16.0
 soupsieve==2.6
-urllib3==2.2.2
+urllib3==2.2.3
 verspec==0.1.0
 watchdog==5.0.2
 wcmatch==9.0

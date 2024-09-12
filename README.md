@@ -53,8 +53,16 @@ Services that can be added are:
 * ElasitcSearch - for better free text search in the metadata
 * JupyterHub - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using [pyscicat](https://scicatproject.github.io/pyscicat/).
 
-For more about how to set up the services see [here]
-(#Docker compose profiles and env variables configuration options)
+Services in their default config can be easily set up by running:
+
+```
+docker compose up -d {service_name}
+```
+e.g.
+```
+docker compose up -d jupyter 
+```
+will spin up the jupyter service and its related dependencies.
 
 ### Docker compose env variables
 

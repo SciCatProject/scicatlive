@@ -40,7 +40,7 @@ By running `docker compose up -d` these steps take place:
 1. a [mongodb](./services/mongodb/) container is created with some initial data.
 2. the SciCat [backend v4](./services/backend/services/v4/) container is created and connected to (1).
 3. the SciCat [frontend](./services/frontend/) container is created and connected to (2).
-4. a reverse [proxy](./services/proxy) container is created and routes traffic to (2) and (3) through localhost subdomains, in the form: `http://${service}.localhost`. The frontend is available at simply `http://localhost`. Services names are `frontend`, `backend`, `proxy`, `mongodb`.
+4. a reverse [proxy](./services/proxy) container is created and routes traffic to (2) and (3) through localhost subdomains, in the form: `http://${service}.localhost`. The frontend is available at simply `http://localhost`. 
 5. You can explore the API endpoints through the Swagger UI which is available on `http://backend.localhost/explorer`
 
 ## Extra services and features

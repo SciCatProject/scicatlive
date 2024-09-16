@@ -49,6 +49,7 @@ SciCat has extra features as part of its core as well as integrating with extern
 
 SciCat features that extend the backend are:
 * Jobs - this mechanism posts to a message broker, which can then trigger down stream processes. To use this a RabbitMQ server enabled.
+* Elasticsearch - creates an elasticsearch service to provide full text search in the backend.
 
 Services that can be integrated with SciCat are:
 * LDAP - authentication and authorization from an LDAP server

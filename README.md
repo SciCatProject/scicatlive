@@ -50,19 +50,10 @@ Features and services can be enabled or configured by setting [docker compose en
 Services that can be added are:
 * LDAP - authentication and authorization from an LDAP server
 * OIDC - authentication and authorization using an OIDC provider
-* ElasitcSearch - for better free text search in the metadata
+* SearchAPI- for better free text search in the metadata based on the PANOSC [search-api](https://github.com/SciCatProject/panosc-search-api/)
 * JupyterHub - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using [pyscicat](https://scicatproject.github.io/pyscicat/).
 
-Services in their default config can be easily set up by running:
 
-```
-docker compose up -d {service_name}
-```
-e.g.
-```
-docker compose up -d jupyter 
-```
-will spin up the jupyter service and its related dependencies.
 
 ### Docker compose env variables
 

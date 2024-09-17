@@ -313,6 +313,24 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-the-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Select the services
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#docker-compose-env-variables" class="md-nav__link">
     <span class="md-ellipsis">
       Docker compose env variables
@@ -398,24 +416,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dependencies
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#select-the-services" class="md-nav__link">
-    <span class="md-ellipsis">
-      Select the services
-    </span>
-  </a>
   
 </li>
       
@@ -950,6 +950,24 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-the-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Select the services
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#docker-compose-env-variables" class="md-nav__link">
     <span class="md-ellipsis">
       Docker compose env variables
@@ -1039,24 +1057,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dependencies
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#select-the-services" class="md-nav__link">
-    <span class="md-ellipsis">
-      Select the services
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#add-a-new-service" class="md-nav__link">
     <span class="md-ellipsis">
       Add a new service
@@ -1140,7 +1140,15 @@
    </a>
   </h1>
   <p>
-   SciCat with docker compose.
+   Get set up with an instance of SciCat to explore the metadata catalog. SciCatlive provides a flexible
+and easy way to learn about SciCat and its features for people who are looking to integrate SciCat into their environment. For a user guide please see
+   <a href="https://scicatproject.github.io/documentation/">
+    original documentation
+   </a>
+   .
+  </p>
+  <p>
+   This project requires docker and docker compose. The docker version must be later than 2.29.0 to support this project.
   </p>
   <h2 id="first-stable-version">
    First stable version
@@ -1270,6 +1278,17 @@
     </code>
     .
    </li>
+   <li>
+    Some services have additional endpoints that can be explored in SciCatLive which would follow
+    <code>
+     https://${service}.localhost/${prefix}
+    </code>
+    . For example, the backend API can be explored through a Swagger UI at
+    <code>
+     http://backend.localhost/explorer
+    </code>
+    .  For more information on the paths used by these routes see the original documentation for these services.
+   </li>
   </ol>
   <h2 id="extra-services-and-features">
    Extra services and features
@@ -1278,22 +1297,179 @@
    </a>
   </h2>
   <p>
-   Features and services can be enabled or configured by setting
+   SciCat has extra features as part of its core as well as integrating with external services.
+  </p>
+  <p>
+   SciCat features that extend the backend are:
+* Jobs - this mechanism posts to a message broker, which can then trigger down stream processes. To use this a RabbitMQ server enabled.
+* Elasticsearch - creates an elasticsearch service to provide full text search in the backend.
+  </p>
+  <p>
+   Services that can be integrated with SciCat are:
+* LDAP - authentication and authorization from an LDAP server
+* OIDC - authentication and authorization using an OIDC provider
+* SearchAPI- for better free text search in the metadata based on the PANOSC
+   <a href="https://github.com/SciCatProject/panosc-search-api/">
+    search-api
+   </a>
+   * JupyterHub - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using
+   <a href="https://scicatproject.github.io/pyscicat/">
+    pyscicat
+   </a>
+   .
+  </p>
+  <p>
+   To enable extra services configure them by:
+1. setting
    <a href="https://docs.docker.com/compose/environment-variables/envvars-precedence/">
     docker compose env variables
    </a>
-   , using
+   2. using
    <a href="https://docs.docker.com/compose/profiles/">
     docker compose profiles
    </a>
-   , modifying the
+   3. modifying the
    <a href="#service-specific-config">
     service-specific config
    </a>
-   and adding
+   4. adding
    <a href="#entrypoints">
     entrypoints
    </a>
+  </p>
+  <h3 id="dependencies">
+   Dependencies
+   <a class="headerlink" href="#dependencies" title="Permanent link">
+    ¶
+   </a>
+  </h3>
+  <p>
+   Here below we show the dependencies, including the ones of the
+   <a href="#extra-services-and-features">
+    extra services
+   </a>
+   (if
+   <code>
+    B
+   </code>
+   depends on
+   <code>
+    A
+   </code>
+   , then we visualize it as
+   <code>
+    A --&gt; B
+   </code>
+   ):
+  </p>
+  <pre class="mermaid"><code>graph TD
+   subgraph services
+      subgraph backend
+         backends[v3*/v4*]
+      end
+      mongodb --&gt; backend
+      backend --&gt; frontend
+      backend --&gt; searchapi
+      backend --&gt; jupyter
+   end
+
+   proxy -.- services</code></pre>
+  <p>
+   We flag with
+   <code>
+    *
+   </code>
+   the services which have extra internal dependencies, which are not shared.
+  </p>
+  <h3 id="select-the-services">
+   Select the services
+   <a class="headerlink" href="#select-the-services" title="Permanent link">
+    ¶
+   </a>
+  </h3>
+  <p>
+   The user can selectively decide the containers to spin up and the dependencies will be resolved accordingly. The available services are in the
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services">
+    services
+   </a>
+   folder and are called consistently.
+  </p>
+  <p>
+   For example, one could decide to only run the
+   <code>
+    backend
+   </code>
+   by running (be aware that this will not run the
+   <code>
+    proxy
+   </code>
+   , so the service will not be available at
+   <code>
+    backend.localhost
+   </code>
+   ):
+  </p>
+  <div class="highlight">
+   <pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>backend
+</code></pre>
+  </div>
+  <p>
+   (or a list of services, for example, with the proxy
+   <code>
+    docker compose up -d backend proxy
+   </code>
+   )
+  </p>
+  <p>
+   This will run, from the
+   <a href="#default-setup">
+    previous section
+   </a>
+   , (1) and (2) but skip the rest.
+  </p>
+  <details>
+   <summary>
+    Accordingly (click to expand)...
+   </summary>
+   <div class="highlight">
+    <pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>frontend
+</code></pre>
+   </div>
+   <p>
+    Will run, from the
+    <a href="#default-setup">
+     previous section
+    </a>
+    , (1), (2) and (4) but skip (5).
+   </p>
+   <p>
+    And
+   </p>
+   <div class="highlight">
+    <pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>--profile<span class="w"> </span>search<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>searchapi
+</code></pre>
+   </div>
+   <p>
+    Will run, from the
+    <a href="#default-setup">
+     previous section
+    </a>
+    , (1) and (2), skip (3) and (4), and add the
+    <code>
+     searchapi
+    </code>
+    service.
+   </p>
+  </details>
+  <p>
+   Make sure to check the
+   <a href="#docker-compose-profiles-and-env-variables-configuration-options">
+    backend compatibility
+   </a>
+   when choosing services and setting
+   <code>
+    docker compose env vars and profiles
+   </code>
    .
   </p>
   <h3 id="docker-compose-env-variables">
@@ -1312,6 +1488,20 @@
     .env
    </a>
    file.
+  </p>
+  <p>
+   For example, to use the Jobs functionality of SciCat change
+   <code>
+    JOBS_ENABLED
+   </code>
+   to true before running your
+   <code>
+    docker compose
+   </code>
+   command or simply export it in the shell. For all env configuration options see
+   <a href="### Docker compose profiles and env variables configuration options">
+    here
+   </a>
   </p>
   <h3 id="docker-compose-profiles">
    Docker compose profiles
@@ -1336,6 +1526,17 @@
    <code>
     --profile &lt;PROFILE1&gt; --profile &lt;PROFILE2&gt;
    </code>
+   .
+  </p>
+  <p>
+   For example
+   <code>
+    docker compose --profile analysis
+   </code>
+   sets up a jupyter hub with some notebooks for ingesting data into SciCat, as well as the related services (backend, mongodb, proxy). For more information on profiles available in SciCat live see the following
+   <a href="### Docker compose profiles and env variables configuration options">
+    table
+   </a>
    .
   </p>
   <h3 id="docker-compose-profiles-and-env-variables-configuration-options">
@@ -1943,141 +2144,6 @@
     .
    </p>
   </details>
-  <h2 id="dependencies">
-   Dependencies
-   <a class="headerlink" href="#dependencies" title="Permanent link">
-    ¶
-   </a>
-  </h2>
-  <p>
-   Here below we show the dependencies, including the ones of the
-   <a href="#extra-services-and-features">
-    extra services
-   </a>
-   (if
-   <code>
-    B
-   </code>
-   depends on
-   <code>
-    A
-   </code>
-   , then we visualize it as
-   <code>
-    A --&gt; B
-   </code>
-   ):
-  </p>
-  <pre class="mermaid"><code>graph TD
-   subgraph services
-      subgraph backend
-         backends[v3*/v4*]
-      end
-      mongodb --&gt; backend
-      backend --&gt; frontend
-      backend --&gt; searchapi
-      backend --&gt; jupyter
-   end
-
-   proxy -.- services</code></pre>
-  <p>
-   We flag with
-   <code>
-    *
-   </code>
-   the services which have extra internal dependencies, which are not shared.
-  </p>
-  <h2 id="select-the-services">
-   Select the services
-   <a class="headerlink" href="#select-the-services" title="Permanent link">
-    ¶
-   </a>
-  </h2>
-  <p>
-   The user can selectively decide the containers to spin up and the dependencies will be resolved accordingly. The available services are in the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services">
-    services
-   </a>
-   folder and are called consistently.
-  </p>
-  <p>
-   For example, one could decide to only run the
-   <code>
-    backend
-   </code>
-   by running (be aware that this will not run the
-   <code>
-    proxy
-   </code>
-   , so the service will not be available at
-   <code>
-    backend.localhost
-   </code>
-   ):
-  </p>
-  <div class="highlight">
-   <pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>backend
-</code></pre>
-  </div>
-  <p>
-   (or a list of services, for example, with the proxy
-   <code>
-    docker compose up -d backend proxy
-   </code>
-   )
-  </p>
-  <p>
-   This will run, from the
-   <a href="#default-setup">
-    previous section
-   </a>
-   , (1) and (2) but skip the rest.
-  </p>
-  <details>
-   <summary>
-    Accordingly (click to expand)...
-   </summary>
-   <div class="highlight">
-    <pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>frontend
-</code></pre>
-   </div>
-   <p>
-    Will run, from the
-    <a href="#default-setup">
-     previous section
-    </a>
-    , (1), (2) and (4) but skip (5).
-   </p>
-   <p>
-    And
-   </p>
-   <div class="highlight">
-    <pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>--profile<span class="w"> </span>search<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>searchapi
-</code></pre>
-   </div>
-   <p>
-    Will run, from the
-    <a href="#default-setup">
-     previous section
-    </a>
-    , (1) and (2), skip (3) and (4), and add the
-    <code>
-     searchapi
-    </code>
-    service.
-   </p>
-  </details>
-  <p>
-   Make sure to check the
-   <a href="#docker-compose-profiles-and-env-variables-configuration-options">
-    backend compatibility
-   </a>
-   when choosing services and setting
-   <code>
-    docker compose env vars and profiles
-   </code>
-   .
-  </p>
   <h2 id="add-a-new-service">
    Add a new service
    <a class="headerlink" href="#add-a-new-service" title="Permanent link">

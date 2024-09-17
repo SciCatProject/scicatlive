@@ -9,7 +9,8 @@ from bs4 import BeautifulSoup
 from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.structure.files import Files
 from mkdocs.structure.pages import Page
-from requests import get
+from requests import Session
+from requests.adapters import HTTPAdapter, Retry
 
 
 def on_page_content(html: str, page: Page, config: MkDocsConfig, files: Files) -> str:
@@ -38,6 +39,12 @@ def on_page_content(html: str, page: Page, config: MkDocsConfig, files: Files) -
     soup = BeautifulSoup(html, "lxml")
     docs = files.documentation_pages()
     page_path = Path(page.url)
+    session = Session()
+    retries = Retry(total=3,
+                    backoff_factor=10,
+                    status_forcelist=[429, 500, 502, 503, 504])
+    session.mount("http://", HTTPAdapter(max_retries=retries))
+    session.mount("https://", HTTPAdapter(max_retries=retries))
     for element in soup.find_all(href=True):
         base_url = repo_url
         replace_href = False
@@ -56,7 +63,7 @@ def on_page_content(html: str, page: Page, config: MkDocsConfig, files: Files) -
         )
         url = urljoin(base_url, relative_path)
         if check_links:
-            get(url, timeout=30).raise_for_status()
+            session.get(url, timeout=30).raise_for_status()
         if replace_href:
             element["href"] = url
     return soup.prettify()

@@ -1,6 +1,9 @@
 # SciCatLive
 
-SciCat with docker compose.
+Get set up with an instance of SciCat to explore the metadata catalog. SciCatlive provides a flexible
+and easy way to learn about SciCat and its features for people who are looking to integrate SciCat into their environment. For a user guide please see [original documentation](https://scicatproject.github.io/documentation/).
+
+This project requires docker and docker compose. The docker version must be later than 2.29.0 to support this project. 
 
 ## First stable version
 
@@ -37,19 +40,98 @@ By running `docker compose up -d` these steps take place:
 1. a [mongodb](./services/mongodb/) container is created with some initial data.
 2. the SciCat [backend v4](./services/backend/services/v4/) container is created and connected to (1).
 3. the SciCat [frontend](./services/frontend/) container is created and connected to (2).
-4. a reverse [proxy](./services/proxy) container is created and routes traffic to (2) and (3) through localhost subdomains, in the form: `http://${service}.localhost`. The frontend is available at simply `http://localhost`.
+4. a reverse [proxy](./services/proxy) container is created and routes traffic to (2) and (3) through localhost subdomains, in the form: `http://${service}.localhost`. The frontend is available at simply `http://localhost`. 
+5. Some services have additional endpoints that can be explored in SciCatLive which would follow `https://${service}.localhost/${prefix}`. For example, the backend API can be explored through a Swagger UI at `http://backend.localhost/explorer`.  For more information on the paths used by these routes see the original documentation for these services. 
 
 ## Extra services and features
 
-Features and services can be enabled or configured by setting [docker compose env variables](https://docs.docker.com/compose/environment-variables/envvars-precedence/), using [docker compose profiles](https://docs.docker.com/compose/profiles/), modifying the [service-specific config](#service-specific-config) and adding [entrypoints](#entrypoints).
+SciCat has extra features as part of its core as well as integrating with external services.
+
+SciCat features that extend the backend are:
+* Jobs - this mechanism posts to a message broker, which can then trigger down stream processes. To use this a RabbitMQ server enabled.
+* Elasticsearch - creates an elasticsearch service to provide full text search in the backend.
+
+Services that can be integrated with SciCat are:
+* LDAP - authentication and authorization from an LDAP server
+* OIDC - authentication and authorization using an OIDC provider
+* SearchAPI- for better free text search in the metadata based on the PANOSC [search-api](https://github.com/SciCatProject/panosc-search-api/)
+* JupyterHub - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using [pyscicat](https://scicatproject.github.io/pyscicat/).
+
+To enable extra services configure them by:
+1. setting [docker compose env variables](https://docs.docker.com/compose/environment-variables/envvars-precedence/)
+2. using [docker compose profiles](https://docs.docker.com/compose/profiles/)
+3. modifying the [service-specific config](#service-specific-config)
+4. adding [entrypoints](#entrypoints)
+
+### Dependencies
+
+Here below we show the dependencies, including the ones of the [extra services](#extra-services-and-features) (if `B` depends on `A`, then we visualize it as `A --> B`):
+
+```mermaid
+graph TD
+   subgraph services
+      subgraph backend
+         backends[v3*/v4*]
+      end
+      mongodb --> backend
+      backend --> frontend
+      backend --> searchapi
+      backend --> jupyter
+   end
+
+   proxy -.- services
+```
+
+We flag with `*` the services which have extra internal dependencies, which are not shared.
+
+### Select the services
+
+The user can selectively decide the containers to spin up and the dependencies will be resolved accordingly. The available services are in the [services](./services/) folder and are called consistently.
+
+For example, one could decide to only run the `backend` by running (be aware that this will not run the `proxy`, so the service will not be available at `backend.localhost`):
+
+```sh
+docker compose up -d backend
+```
+
+(or a list of services, for example, with the proxy `docker compose up -d backend proxy`)
+
+This will run, from the [previous section](#default-setup), (1) and (2) but skip the rest.
+
+<details markdown="1">
+ <summary>Accordingly (click to expand)...</summary>
+
+```sh
+docker compose up -d frontend
+```
+
+Will run, from the [previous section](#default-setup), (1), (2) and (4) but skip (5).
+
+And 
+
+```sh
+docker compose --profile search up -d searchapi
+```
+
+Will run, from the [previous section](#default-setup), (1) and (2), skip (3) and (4), and add the `searchapi` service.
+
+</details>
+
+Make sure to check the [backend compatibility](#docker-compose-profiles-and-env-variables-configuration-options) when choosing services and setting `docker compose env vars and profiles`.
+
+
 
 ### Docker compose env variables
 
 They are used to modify existing services where whenever enabling the feature requires changes in multiple services. They also have the advantage, compared to docker profiles, of not needing to define a new profile when a new combination of features becomes available. To set an env variable for docker compose, either assign it in the shell or change the [.env](./.env) file. To later unset it, either unset it from the shell or assign it an empty value, either in the shell or in the [.env](./.env) file.
 
+For example, to use the Jobs functionality of SciCat change `JOBS_ENABLED` to true before running your `docker compose` command or simply export it in the shell. For all env configuration options see [here](### Docker compose profiles and env variables configuration options)
+
 ### Docker compose profiles
 
 They are used when adding new services or grouping services together (and do not require changes in multiple services). To enable any, run `docker compose --profile <PROFILE> up -d`, or export the `COMPOSE_PROFILES` env variable as described [here](https://docs.docker.com/compose/environment-variables/envvars-precedence/). If needed, the user can specify more than one profile in the CLI by using the flag as `--profile <PROFILE1> --profile <PROFILE2>`. 
+
+For example `docker compose --profile analysis` sets up a jupyter hub with some notebooks for ingesting data into SciCat, as well as the related services (backend, mongodb, proxy). For more information on profiles available in SciCat live see the following [table](### Docker compose profiles and env variables configuration options). 
 
 ### Docker compose profiles and env variables configuration options
 
@@ -130,61 +212,7 @@ See for example [here](./services/frontend/compose.yaml).
 
 </details>
 
-## Dependencies
 
-Here below we show the dependencies, including the ones of the [extra services](#extra-services-and-features) (if `B` depends on `A`, then we visualize it as `A --> B`):
-
-```mermaid
-graph TD
-   subgraph services
-      subgraph backend
-         backends[v3*/v4*]
-      end
-      mongodb --> backend
-      backend --> frontend
-      backend --> searchapi
-      backend --> jupyter
-   end
-
-   proxy -.- services
-```
-
-We flag with `*` the services which have extra internal dependencies, which are not shared.
-
-## Select the services
-
-The user can selectively decide the containers to spin up and the dependencies will be resolved accordingly. The available services are in the [services](./services/) folder and are called consistently.
-
-For example, one could decide to only run the `backend` by running (be aware that this will not run the `proxy`, so the service will not be available at `backend.localhost`):
-
-```sh
-docker compose up -d backend
-```
-
-(or a list of services, for example, with the proxy `docker compose up -d backend proxy`)
-
-This will run, from the [previous section](#default-setup), (1) and (2) but skip the rest.
-
-<details markdown="1">
- <summary>Accordingly (click to expand)...</summary>
-
-```sh
-docker compose up -d frontend
-```
-
-Will run, from the [previous section](#default-setup), (1), (2) and (4) but skip (5).
-
-And 
-
-```sh
-docker compose --profile search up -d searchapi
-```
-
-Will run, from the [previous section](#default-setup), (1) and (2), skip (3) and (4), and add the `searchapi` service.
-
-</details>
-
-Make sure to check the [backend compatibility](#docker-compose-profiles-and-env-variables-configuration-options) when choosing services and setting `docker compose env vars and profiles`.
 
 ## Add a new service
 

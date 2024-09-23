@@ -58,7 +58,7 @@ Services that can be integrated with SciCat are:
 * JupyterHub - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using [pyscicat](https://scicatproject.github.io/pyscicat/).
 
 To enable extra services configure them by:
-1. setting [docker compose env variables](https://docs.docker.com/compose/environment-variables/envvars-precedence/)
+1. setting [docker compose env variables](https://docs.docker.com/compose/how-tos/environment-variables/envvars-precedence/)
 2. using [docker compose profiles](https://docs.docker.com/compose/profiles/)
 3. modifying the [service-specific config](#service-specific-config)
 4. adding [entrypoints](#entrypoints)
@@ -129,7 +129,7 @@ For example, to use the Jobs functionality of SciCat change `JOBS_ENABLED` to tr
 
 ### Docker compose profiles
 
-They are used when adding new services or grouping services together (and do not require changes in multiple services). To enable any, run `docker compose --profile <PROFILE> up -d`, or export the `COMPOSE_PROFILES` env variable as described [here](https://docs.docker.com/compose/environment-variables/envvars-precedence/). If needed, the user can specify more than one profile in the CLI by using the flag as `--profile <PROFILE1> --profile <PROFILE2>`. 
+They are used when adding new services or grouping services together (and do not require changes in multiple services). To enable any, run `docker compose --profile <PROFILE> up -d`, or export the `COMPOSE_PROFILES` env variable as described [here](https://docs.docker.com/compose/how-tos/environment-variables/envvars-precedence/). If needed, the user can specify more than one profile in the CLI by using the flag as `--profile <PROFILE1> --profile <PROFILE2>`. 
 
 For example `docker compose --profile analysis` sets up a jupyter hub with some notebooks for ingesting data into SciCat, as well as the related services (backend, mongodb, proxy). For more information on profiles available in SciCat live see the following [table](### Docker compose profiles and env variables configuration options). 
 

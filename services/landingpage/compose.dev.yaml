@@ -1,0 +1,29 @@
+services:
+  landingpage:
+    image: !reset null
+    build:
+      context: https://github.com/SciCatProject/LandingPageServer.git
+      target: builder
+    environment:
+      CONFIG_DIR: /home/node/app/src/assets
+      GITHUB_REPO: https://github.com/SciCatProject/LandingPageServer.git
+      CHROME_BIN: /usr/bin/chromium
+    volumes:
+      - landingpage_dev:/home/node/app
+      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
+      - ${PWD}/entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
+      - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/0.sh
+      - ./entrypoints/merge_json.sh:/docker-entrypoints/1.sh
+      - ./entrypoints/tests.sh:/docker-entrypoints/2.sh
+    entrypoint: loop_entrypoints.sh
+    command: infinite_loop.sh
+    labels:
+      - traefik.http.services.landingpage.loadbalancer.server.port=4200
+    healthcheck:
+      test: pgrep -f "/bin/sh /usr/local/bin/infinite_loop.sh"
+      retries: 5
+    user: root
+
+volumes:
+  landingpage_dev:
+    driver: local

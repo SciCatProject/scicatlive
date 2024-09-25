@@ -19,3 +19,5 @@ For an explanation of how setting `BE_VERSION` changes the environment creation 
 Setting the [BACKEND_HTTPS_URL and FRONTEND_HTTPS_URL env variables](../../.env) requires changing the `backend` and the `frontend` URL used by the `landingpage`. This is managed [here](./entrypoints/merge_json.sh).
 
 :warning: When setting `LANDINGPAGE_HTTPS_URL` it is likely you also want to set the `BACKEND_HTTPS_URL` and `FRONTEND_HTTPS_URL`, to allow the communication between the two wherever the browser is accessed.
+
+With `DEV=true`, please use `npm start -- --host 0.0.0.0`. This is to allow traffic from any IP to the `landingpage` component and it is necessary since the component runs in the docker network.

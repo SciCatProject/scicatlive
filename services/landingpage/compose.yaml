@@ -2,10 +2,14 @@ services:
   landingpage:
     image: ghcr.io/scicatproject/landingpageserver:v3.3
     volumes:
-      - ./config/config.json:/usr/share/nginx/html/assets/config.json
+      - ./config/config.json:/config/0.json
+      - ./entrypoints/merge_json.sh:/docker-entrypoint.d/0.sh
     profiles:
       - search
     restart: on-failure
     depends_on:
       backend:
         condition: service_healthy
+    environment:
+      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}
+      FRONTEND_URL: ${FRONTEND_HTTPS_URL:-http://localhost}

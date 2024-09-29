@@ -29,6 +29,7 @@ oidc:
 dev:
   - '**/*dev*'
   - *src
+  - '**/entrypoints/**'
 v3:
   - '**/v3/**'
   - '**/*v3*'

@@ -16,6 +16,7 @@ then
     git fetch
     DEFAULT_BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
     git reset --hard origin/"${DEFAULT_BRANCH}"
+    git clean -fd
 fi
 if [ -n "${TAG}" ] && [ "${TAG}" != "$(git describe --tags)" ]
 then

@@ -18,6 +18,7 @@ services:
       - traefik.http.services.frontend.loadbalancer.server.port=4200
     healthcheck:
       test: pgrep -f "/bin/sh /usr/local/bin/infinite_loop.sh"
+      retries: 5
 
 volumes:
   frontend_dev:

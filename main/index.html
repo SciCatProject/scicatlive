@@ -823,6 +823,27 @@
   
   
     <li class="md-nav__item">
+      <a href="services/landingpage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Landingpage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="services/mongodb/" class="md-nav__link">
         
   
@@ -1308,9 +1329,13 @@ and easy way to learn about SciCat and its features for people who are looking t
    Services that can be integrated with SciCat are:
 * LDAP - authentication and authorization from an LDAP server
 * OIDC - authentication and authorization using an OIDC provider
-* SearchAPI- for better free text search in the metadata based on the PANOSC
+* SearchAPI - for better free text search in the metadata based on the PANOSC
    <a href="https://github.com/SciCatProject/panosc-search-api/">
     search-api
+   </a>
+   * LandingPage - a public interface for published datasets
+   <a href="https://github.com/SciCatProject/LandingPageServer">
+    landingpage
    </a>
    * JupyterHub - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using
    <a href="https://scicatproject.github.io/pyscicat/">
@@ -1370,6 +1395,7 @@ and easy way to learn about SciCat and its features for people who are looking t
       mongodb --&gt; backend
       backend --&gt; frontend
       backend --&gt; searchapi
+      backend --&gt; landingpage
       backend --&gt; jupyter
    end
 
@@ -1592,13 +1618,13 @@ and easy way to learn about SciCat and its features for people who are looking t
        <code>
         search
        </code>
-       : searchapi
+       : searchapi,landingpage
       </li>
       <li>
        <code>
         '*'
        </code>
-       : jupyter,searchapi
+       : jupyter,searchapi,landingpage
       </li>
      </td>
      <td>
@@ -1614,7 +1640,7 @@ and easy way to learn about SciCat and its features for people who are looking t
        analysis: enables additional jupyter notebook with python SciCat SDK installed and example notebooks
       </li>
       <li>
-       search: enables a SciCat interface for standardized search
+       search: enables a SciCat interface for standardized search and a public interface for published datasets
       </li>
      </td>
      <td>

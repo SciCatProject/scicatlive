@@ -5,3 +5,4 @@ include:
   - services/searchapi/compose.yaml
   - services/proxy/compose.yaml
   - services/jupyter/compose.yaml
+  - services/landingpage/compose.yaml

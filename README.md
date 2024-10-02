@@ -48,15 +48,15 @@ By running `docker compose up -d` these steps take place:
 SciCat has extra features as part of its core as well as integrating with external services.
 
 SciCat features that extend the backend are:
-* Jobs - this mechanism posts to a message broker, which can then trigger down stream processes. To use this a RabbitMQ server enabled.
-* Elasticsearch - creates an elasticsearch service to provide full text search in the backend.
+* Jobs - this mechanism posts to a [message broker](./services/backend/services/v3/services/rabbitmq/), which can then trigger [down stream processes](./services/backend/services/v3/services/archivemock/). To use this a RabbitMQ server is enabled.
+* [Elasticsearch](./services/backend/services/v4/services/elastic/) - creates an elasticsearch service to provide full text search in the backend.
 
 Services that can be integrated with SciCat are:
-* LDAP - authentication and authorization from an LDAP server
-* OIDC - authentication and authorization using an OIDC provider
-* SearchAPI - for better free text search in the metadata based on the PANOSC [search-api](https://github.com/SciCatProject/panosc-search-api/)
-* LandingPage - a public interface for published datasets [landingpage](https://github.com/SciCatProject/LandingPageServer)
-* JupyterHub - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using [pyscicat](https://scicatproject.github.io/pyscicat/).
+* [LDAP](./services/backend/services/ldap/) - authentication and authorization from an LDAP server
+* [OIDC](./services/backend/services/keycloak/) - authentication and authorization using an OIDC provider
+* [SearchAPI](./services/searchapi/) - for better free text search in the metadata based on the PANOSC [search-api](https://github.com/SciCatProject/panosc-search-api/)
+* [LandingPage](./services/landingpage/) - a public interface for published datasets [landingpage](https://github.com/SciCatProject/LandingPageServer)
+* [JupyterHub](./services/jupyter/) - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using [pyscicat](https://scicatproject.github.io/pyscicat/).
 
 To enable extra services configure them by:
 1. setting [docker compose env variables](https://docs.docker.com/compose/environment-variables/envvars-precedence/)
@@ -82,6 +82,9 @@ graph TD
    end
 
    proxy -.- services
+   
+   %% CSS Styling
+   linkStyle 5 marker-end:none
 ```
 
 We flag with `*` the services which have extra internal dependencies, which are not shared.
@@ -242,7 +245,7 @@ Since some images are not built with multi-arch, in particular the SciCat ones, 
 <details markdown="1">
  <summary>(click to expand)</summary>
 
-To add a new service, with advanced configuration (see the [backend](./services/backend/) for an extensive example):
+To add a new service, with advanced configuration (see the [backend](./services/backend/) for an extensive example, or/and this [PR](https://github.com/SciCatProject/scicatlive/pull/325) which added the [landingpage](./services/landingpage/)):
 
 1. follow the steps from the [basic section](#basic)
 2. eventually, include any service, in the service-specific folder which is specific to the service and not shared by other, more general services, e.g. [here](./services/backend/services/). This folder should also include different versions of the same service, e.g. v3 and v4 [here](./services/backend/services/)

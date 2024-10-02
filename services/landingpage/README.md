@@ -6,7 +6,7 @@ The SciCat provides standardised search on published datasets via this LandingPa
 
 The landingpage configuration is set by the [config files](./config/). Files inside the [config](./config/) folder, with a `.json` extension are merged respecting the alphabetical order of the files in the **container**. 
 
-:warning: Please note that [merging the config files](./entrypoints/merge_json.sh) is a functionality provided by `SciCat Live` and is not supported natively by the `landingpage`. 
+:warning: Please note that [merging the config files](../../entrypoints/merge_json.sh) is a functionality provided by `SciCat Live` and is not supported natively by the `landingpage`. 
 
 ## Default configuration
 
@@ -16,7 +16,7 @@ For an explanation of how setting `BE_VERSION` changes the environment creation 
 
 ## Enable additional features
 
-Setting the [BACKEND_HTTPS_URL and FRONTEND_HTTPS_URL env variables](../../.env) requires changing the `backend` and the `frontend` URL used by the `landingpage`. This is managed [here](./entrypoints/merge_json.sh).
+Setting the [BACKEND_HTTPS_URL and FRONTEND_HTTPS_URL env variables](../../.env) requires changing the `backend` and the `frontend` URL used by the `landingpage`. This is managed [here](../../entrypoints/merge_json.sh).
 
 :warning: When setting `LANDINGPAGE_HTTPS_URL` it is likely you also want to set the `BACKEND_HTTPS_URL` and `FRONTEND_HTTPS_URL`, to allow the communication between the two wherever the browser is accessed.
 

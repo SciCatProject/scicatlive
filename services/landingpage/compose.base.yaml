@@ -5,7 +5,7 @@ services:
       - ./config/config.json:/config/0.json
       # docker-entrypoint.d is available only in the nginx layer
       # so it is neglected in DEV
-      - ./entrypoints/merge_json.sh:/docker-entrypoint.d/0.sh
+      - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoint.d/0.sh
     profiles:
       - search
     restart: on-failure

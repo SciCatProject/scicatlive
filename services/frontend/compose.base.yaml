@@ -1,7 +1,7 @@
 services:
   frontend:
     platform: linux/amd64
-    image: ghcr.io/scicatproject/frontend:v4.4.1
+    image: ghcr.io/scicatproject/frontend:v4.5.0
     depends_on:
       backend:
         condition: service_healthy

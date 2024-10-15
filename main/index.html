@@ -2079,16 +2079,16 @@ and easy way to learn about SciCat and its features for people who are looking t
     frontend
    </code>
    composability, it is useful to specify its configuration through multiple JSON files, with different scopes, which are then merged by a
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/entrypoints/merge_json.sh">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/entrypoints/merge_json.sh">
     init script
    </a>
-   . For this reason, one can define service-specific
-   <code>
-    entrypoints
-   </code>
-   (e.g.
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/entrypoints">
-    frontend ones
+   . For this reason, one can define
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/entrypoints">
+    common entrypoints
+   </a>
+   and service-specific ones (e.g.
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/entrypoints">
+    backend v4 ones
    </a>
    ) which can be run inside the container, before the service starts (i.e. before the docker compose
    <code>
@@ -2428,15 +2428,7 @@ and easy way to learn about SciCat and its features for people who are looking t
       <a href="#docker-compose-env-variables">
        ENVs
       </a>
-      specific logic. Remember to set the environment variable in the compose.yaml file. See, for example, the frontend
-      <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/entrypoints/merge_json.sh">
-       entrypoint
-      </a>
-      and
-      <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.base.yaml">
-       compose file
-      </a>
-      .
+      specific logic. Remember to set the environment variable in the compose.yaml file.
      </p>
     </li>
    </ol>

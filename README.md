@@ -48,10 +48,12 @@ By running `docker compose up -d` these steps take place:
 SciCat has extra features as part of its core as well as integrating with external services.
 
 SciCat features that extend the backend are:
+
 * Jobs - this mechanism posts to a [message broker](./services/backend/services/v3/services/rabbitmq/), which can then trigger [down stream processes](./services/backend/services/v3/services/archivemock/). To use this a RabbitMQ server is enabled.
 * [Elasticsearch](./services/backend/services/v4/services/elastic/) - creates an elasticsearch service to provide full text search in the backend.
 
 Services that can be integrated with SciCat are:
+
 * [LDAP](./services/backend/services/ldap/) - authentication and authorization from an LDAP server
 * [OIDC](./services/backend/services/keycloak/) - authentication and authorization using an OIDC provider
 * [SearchAPI](./services/searchapi/) - for better free text search in the metadata based on the PANOSC [search-api](https://github.com/SciCatProject/panosc-search-api/)
@@ -59,6 +61,7 @@ Services that can be integrated with SciCat are:
 * [JupyterHub](./services/jupyter/) - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using [pyscicat](https://scicatproject.github.io/pyscicat/).
 
 To enable extra services configure them by:
+
 1. setting [docker compose env variables](https://docs.docker.com/compose/environment-variables/envvars-precedence/)
 2. using [docker compose profiles](https://docs.docker.com/compose/profiles/)
 3. modifying the [service-specific config](#service-specific-config)

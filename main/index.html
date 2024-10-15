@@ -1322,22 +1322,54 @@ and easy way to learn about SciCat and its features for people who are looking t
   </p>
   <p>
    SciCat features that extend the backend are:
-* Jobs - this mechanism posts to a message broker, which can then trigger down stream processes. To use this a RabbitMQ server enabled.
-* Elasticsearch - creates an elasticsearch service to provide full text search in the backend.
+* Jobs - this mechanism posts to a
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/services/rabbitmq">
+    message broker
+   </a>
+   , which can then trigger
+   <a href="./services/backend/services/v3/services/archivemock/">
+    down stream processes
+   </a>
+   . To use this a RabbitMQ server is enabled.
+*
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/services/elastic">
+    Elasticsearch
+   </a>
+   - creates an elasticsearch service to provide full text search in the backend.
   </p>
   <p>
    Services that can be integrated with SciCat are:
-* LDAP - authentication and authorization from an LDAP server
-* OIDC - authentication and authorization using an OIDC provider
-* SearchAPI - for better free text search in the metadata based on the PANOSC
+*
+   <a href="./services/backend/services/ldap/">
+    LDAP
+   </a>
+   - authentication and authorization from an LDAP server
+*
+   <a href="./services/backend/services/keycloak/">
+    OIDC
+   </a>
+   - authentication and authorization using an OIDC provider
+*
+   <a href="./services/searchapi/">
+    SearchAPI
+   </a>
+   - for better free text search in the metadata based on the PANOSC
    <a href="https://github.com/SciCatProject/panosc-search-api/">
     search-api
    </a>
-   * LandingPage - a public interface for published datasets
+   *
+   <a href="./services/landingpage/">
+    LandingPage
+   </a>
+   - a public interface for published datasets
    <a href="https://github.com/SciCatProject/LandingPageServer">
     landingpage
    </a>
-   * JupyterHub - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using
+   *
+   <a href="./services/jupyter/">
+    JupyterHub
+   </a>
+   - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using
    <a href="https://scicatproject.github.io/pyscicat/">
     pyscicat
    </a>
@@ -1399,7 +1431,10 @@ and easy way to learn about SciCat and its features for people who are looking t
       backend --&gt; jupyter
    end
 
-   proxy -.- services</code></pre>
+   proxy -.- services
+
+   %% CSS Styling
+   linkStyle 5 marker-end:none</code></pre>
   <p>
    We flag with
    <code>
@@ -2284,7 +2319,15 @@ and easy way to learn about SciCat and its features for people who are looking t
     <a href="./services/backend/">
      backend
     </a>
-    for an extensive example):
+    for an extensive example, or/and this
+    <a href="https://github.com/SciCatProject/scicatlive/pull/325">
+     PR
+    </a>
+    which added the
+    <a href="./services/landingpage/">
+     landingpage
+    </a>
+    ):
    </p>
    <ol>
     <li>

@@ -1,0 +1,23 @@
+services:
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.2
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    mem_limit: 1073741824
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test: >-
+        curl -f localhost:9200 | grep -q '"tagline" : "You Know, for Search"'
+      interval: 10s
+      timeout: 10s
+      retries: 15
+    env_file:
+      - ./config/.env
+    restart: on-failure
+
+volumes:
+  esdata:
+    driver: local

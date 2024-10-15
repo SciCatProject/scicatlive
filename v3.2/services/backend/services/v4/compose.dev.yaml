@@ -1,0 +1,17 @@
+services:
+  backend:
+    image: !reset null
+    platform: !reset null
+    build:
+      context: https://github.com/SciCatProject/scicat-backend-next.git
+      target: dev
+    environment:
+      GITHUB_REPO: https://github.com/SciCatProject/scicat-backend-next.git
+    volumes:
+      - v4_dev:/home/node/app
+      - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/2.sh
+      - ./entrypoints/tests.sh:/docker-entrypoints/3.sh
+
+volumes:
+  v4_dev:
+    driver: local

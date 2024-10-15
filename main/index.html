@@ -1322,78 +1322,100 @@ and easy way to learn about SciCat and its features for people who are looking t
   </p>
   <p>
    SciCat features that extend the backend are:
-* Jobs - this mechanism posts to a
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/services/rabbitmq">
-    message broker
-   </a>
-   , which can then trigger
-   <a href="./services/backend/services/v3/services/archivemock/">
-    down stream processes
-   </a>
-   . To use this a RabbitMQ server is enabled.
-*
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/services/elastic">
-    Elasticsearch
-   </a>
-   - creates an elasticsearch service to provide full text search in the backend.
   </p>
+  <ul>
+   <li>
+    Jobs - this mechanism posts to a
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/services/rabbitmq">
+     message broker
+    </a>
+    , which can then trigger
+    <a href="./services/backend/services/v3/services/archivemock/">
+     down stream processes
+    </a>
+    . To use this a RabbitMQ server is enabled.
+   </li>
+   <li>
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/services/elastic">
+     Elasticsearch
+    </a>
+    - creates an elasticsearch service to provide full text search in the backend.
+   </li>
+  </ul>
   <p>
    Services that can be integrated with SciCat are:
-*
-   <a href="./services/backend/services/ldap/">
-    LDAP
-   </a>
-   - authentication and authorization from an LDAP server
-*
-   <a href="./services/backend/services/keycloak/">
-    OIDC
-   </a>
-   - authentication and authorization using an OIDC provider
-*
-   <a href="./services/searchapi/">
-    SearchAPI
-   </a>
-   - for better free text search in the metadata based on the PANOSC
-   <a href="https://github.com/SciCatProject/panosc-search-api/">
-    search-api
-   </a>
-   *
-   <a href="./services/landingpage/">
-    LandingPage
-   </a>
-   - a public interface for published datasets
-   <a href="https://github.com/SciCatProject/LandingPageServer">
-    landingpage
-   </a>
-   *
-   <a href="./services/jupyter/">
-    JupyterHub
-   </a>
-   - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using
-   <a href="https://scicatproject.github.io/pyscicat/">
-    pyscicat
-   </a>
-   .
   </p>
+  <ul>
+   <li>
+    <a href="./services/backend/services/ldap/">
+     LDAP
+    </a>
+    - authentication and authorization from an LDAP server
+   </li>
+   <li>
+    <a href="./services/backend/services/keycloak/">
+     OIDC
+    </a>
+    - authentication and authorization using an OIDC provider
+   </li>
+   <li>
+    <a href="./services/searchapi/">
+     SearchAPI
+    </a>
+    - for better free text search in the metadata based on the PANOSC
+    <a href="https://github.com/SciCatProject/panosc-search-api/">
+     search-api
+    </a>
+   </li>
+   <li>
+    <a href="./services/landingpage/">
+     LandingPage
+    </a>
+    - a public interface for published datasets
+    <a href="https://github.com/SciCatProject/LandingPageServer">
+     landingpage
+    </a>
+   </li>
+   <li>
+    <a href="./services/jupyter/">
+     JupyterHub
+    </a>
+    - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using
+    <a href="https://scicatproject.github.io/pyscicat/">
+     pyscicat
+    </a>
+    .
+   </li>
+  </ul>
   <p>
    To enable extra services configure them by:
-1. setting
-   <a href="https://docs.docker.com/compose/environment-variables/envvars-precedence/">
-    docker compose env variables
-   </a>
-   2. using
-   <a href="https://docs.docker.com/compose/profiles/">
-    docker compose profiles
-   </a>
-   3. modifying the
-   <a href="#service-specific-config">
-    service-specific config
-   </a>
-   4. adding
-   <a href="#entrypoints">
-    entrypoints
-   </a>
   </p>
+  <ol>
+   <li>
+    setting
+    <a href="https://docs.docker.com/compose/environment-variables/envvars-precedence/">
+     docker compose env variables
+    </a>
+   </li>
+   <li>
+    using
+    <a href="https://docs.docker.com/compose/profiles/">
+     docker compose profiles
+    </a>
+   </li>
+   <li>
+    modifying the
+    <a href="#service-specific-config">
+     service-specific config
+    </a>
+   </li>
+   <li>
+    adding
+    <a href="#entrypoints">
+     entrypoints
+    </a>
+   </li>
+  </ol>
   <h3 id="dependencies">
    Dependencies
    <a class="headerlink" href="#dependencies" title="Permanent link">

@@ -1,6 +1,6 @@
 # ruff: noqa: INP001,D100
 
-import logging
+from logging import StreamHandler
 from os import environ
 from os import path as ospath
 from pathlib import Path
@@ -8,12 +8,20 @@ from urllib.parse import urljoin, urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
 from mkdocs.config.defaults import MkDocsConfig
+from mkdocs.plugins import get_plugin_logger
 from mkdocs.structure.files import Files
 from mkdocs.structure.pages import Page
 from requests import Session
 from requests.adapters import HTTPAdapter, Retry
 
-log = logging.getLogger(f"mkdocs.plugins.{__name__}")
+class AnchorLogHandler(StreamHandler):
+    def emit(self, record):
+        if record.endswith("there is no such anchor on this page."):
+            raise Exception("Missing anchor")
+            
+anchorHandler = AnchorLogHandler()
+log = get_plugin_logger(__name__)
+log.addHandler(anchorHandler)
 
 
 def on_page_content(html: str, page: Page, config: MkDocsConfig, files: Files) -> str:

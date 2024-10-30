@@ -50,11 +50,11 @@ runs:
           VERSION=${VERSION%.}
         fi
 
-        git fetch origin gh-pages --depth=1 || echo 0
+        git fetch origin gh-pages --depth=1
         PUSH=${{ inputs.push }}
         mike deploy -F ${DOCS_CONFIG} ${PUSH:+--push} \
           --update-aliases ${VERSION:-main} ${VERSION:+latest}
-        mike set-default -F ${DOCS_CONFIG} --push latest
+        [[ ${VERSION} ]] && mike set-default -F ${DOCS_CONFIG} --push latest
       env:
         GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
         GIT_COMMITTER_NAME: ci-bot

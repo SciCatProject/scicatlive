@@ -1,7 +1,0 @@
-{
-    "directMongoAccess": true,
-    "doiBaseUrl": "http://landingpage.localhost/detail/",
-    "facility": "facility",
-    "scicatBaseUrl": "${FRONTEND_URL}",
-    "lbBaseUrl": "${BACKEND_URL}"
-}

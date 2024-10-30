@@ -1,8 +1,0 @@
-{
-  "oAuth2Endpoints": [
-    {
-      "authURL": "api/v3/auth/oidc",
-      "displayText": "Login with OIDC"
-    }
-  ]
-}

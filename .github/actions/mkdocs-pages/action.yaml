@@ -34,8 +34,6 @@ runs:
       uses: actions/checkout@v4
       with:
         path: ${{ inputs.path }}
-        sparse-checkout: .
-        clean: false
     - name: Set up Python
       uses: actions/setup-python@v5
       with:

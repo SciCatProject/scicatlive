@@ -1,4 +1,5 @@
 site_name: SciCatLive
+strict: true
 docs_dir: ../../docs
 repo_url: !!python/object/apply:os.path.join [
   !ENV [GITHUB_SERVER_URL],

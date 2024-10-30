@@ -54,7 +54,8 @@ runs:
         PUSH=${{ inputs.push }}
         mike deploy -F ${DOCS_CONFIG} ${PUSH:+--push} \
           --update-aliases ${VERSION:-main} ${VERSION:+latest}
-        [[ ${VERSION} ]] && mike set-default -F ${DOCS_CONFIG} --push latest
+        mike set-default -F ${DOCS_CONFIG} --push latest ||
+          mike set-default -F ${DOCS_CONFIG} --push main
       env:
         GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
         GIT_COMMITTER_NAME: ci-bot

@@ -18,12 +18,23 @@ inputs:
     description: if to publish docs to gh-pages
     type: string
     default: ''
+  path:
+    description: relative path under $GITHUB_WORKSPACE to checkout root
+    type: string
+    default: docs
 
 runs:
   using: composite
   steps:
-    - name: Checkout code
+    - name: Checkout CI
       uses: actions/checkout@v4
+      with:
+        sparse-checkout: .github
+    - name: Checkout root
+      uses: actions/checkout@v4
+      with:
+        path: ${{ inputs.path }}
+        sparse-checkout: .
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -32,12 +43,6 @@ runs:
       shell: bash
       run: |
           pip install -r .github/mkdocs/requirements.txt
-    - name: Copy all to docs folder
-      shell: bash
-      run: |
-        mkdir -p docs
-        shopt -s extglob
-        mv !(docs) docs/
     - name: Deploy documentation
       shell: bash
       run: |

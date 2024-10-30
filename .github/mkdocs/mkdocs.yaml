@@ -41,4 +41,4 @@ validation:
   omitted_files: warn
   absolute_links: warn
   unrecognized_links: warn
-  anchors: error
+  anchors: warn

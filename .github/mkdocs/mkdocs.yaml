@@ -38,7 +38,5 @@ hooks:
   - relative_to.py
 
 validation:
-  omitted_files: info
-  absolute_links: info
-  unrecognized_links: info
+  not_found: info
   anchors: warn

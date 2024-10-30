@@ -37,7 +37,7 @@ runs:
         path: ${{ inputs.path }}
         sparse-checkout: |
           .
-          ${{ inputs.path || '.github' }}
+          ${{ inputs.path && '' || '.github' }}
     - name: Set up Python
       uses: actions/setup-python@v5
       with:

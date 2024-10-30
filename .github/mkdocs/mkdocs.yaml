@@ -39,6 +39,6 @@ hooks:
 
 validation:
   omitted_files: info
-  absolute_links: warn
+  absolute_links: info
   unrecognized_links: info
   anchors: warn

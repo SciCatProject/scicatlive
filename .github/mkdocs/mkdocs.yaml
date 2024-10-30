@@ -36,3 +36,8 @@ markdown_extensions:
 
 hooks:
   - relative_to.py
+
+strict: true
+validation:
+  not_found: info
+  anchors: warn

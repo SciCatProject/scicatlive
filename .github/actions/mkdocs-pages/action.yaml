@@ -19,7 +19,7 @@ inputs:
     type: string
     default: ''
   path:
-    description: relative path under $GITHUB_WORKSPACE to action/checkout to
+    description: relative path under $GITHUB_WORKSPACE to checkout root
     type: string
     default: docs
 

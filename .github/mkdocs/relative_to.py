@@ -1,5 +1,6 @@
 # ruff: noqa: INP001,D100
 
+import logging
 from os import environ
 from os import path as ospath
 from pathlib import Path
@@ -11,7 +12,6 @@ from mkdocs.structure.files import Files
 from mkdocs.structure.pages import Page
 from requests import Session
 from requests.adapters import HTTPAdapter, Retry
-import logging
 
 log = logging.getLogger(f"mkdocs.plugins.{__name__}")
 
@@ -66,7 +66,7 @@ def on_page_content(html: str, page: Page, config: MkDocsConfig, files: Files) -
         )
         url = urljoin(base_url, relative_path)
         if check_links:
-            log.info(f'URL: ${url}')
+            log.info(url)
             session.get(url, timeout=30).raise_for_status()
         if replace_href:
             element["href"] = url

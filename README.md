@@ -133,13 +133,13 @@ Make sure to check the [backend compatibility](#docker-compose-profiles-and-env-
 
 They are used to modify existing services where whenever enabling the feature requires changes in multiple services. They also have the advantage, compared to docker profiles, of not needing to define a new profile when a new combination of features becomes available. To set an env variable for docker compose, either assign it in the shell or change the [.env](./.env) file. To later unset it, either unset it from the shell or assign it an empty value, either in the shell or in the [.env](./.env) file.
 
-For example, to use the Jobs functionality of SciCat change `JOBS_ENABLED` to true before running your `docker compose` command or simply export it in the shell. For all env configuration options see [here](### Docker compose profiles and env variables configuration options)
+For example, to use the Jobs functionality of SciCat change `JOBS_ENABLED` to true before running your `docker compose` command or simply export it in the shell. For all env configuration options see [here](#docker-compose-profiles-and-env-variables-configuration-options).
 
 ### Docker compose profiles
 
 They are used when adding new services or grouping services together (and do not require changes in multiple services). To enable any, run `docker compose --profile <PROFILE> up -d`, or export the `COMPOSE_PROFILES` env variable as described [here](https://docs.docker.com/compose/environment-variables/envvars-precedence/). If needed, the user can specify more than one profile in the CLI by using the flag as `--profile <PROFILE1> --profile <PROFILE2>`. 
 
-For example `docker compose --profile analysis` sets up a jupyter hub with some notebooks for ingesting data into SciCat, as well as the related services (backend, mongodb, proxy). For more information on profiles available in SciCat live see the following [table](### Docker compose profiles and env variables configuration options). 
+For example `docker compose --profile analysis` sets up a jupyter hub with some notebooks for ingesting data into SciCat, as well as the related services (backend, mongodb, proxy). For more information on profiles available in SciCat live see the following [table](#docker-compose-profiles-and-env-variables-configuration-options). 
 
 ### Docker compose profiles and env variables configuration options
 

@@ -1,4 +1,0 @@
-include:
-  - path:
-      - compose.base.yaml
-      - .${DEV:+/}compose.dev.yaml

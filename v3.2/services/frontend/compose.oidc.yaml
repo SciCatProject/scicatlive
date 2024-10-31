@@ -1,4 +1,0 @@
-services:
-  frontend:
-    volumes:
-      - ./config/config.oidc.json:/config/2.json

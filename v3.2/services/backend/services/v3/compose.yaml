@@ -1,5 +1,0 @@
-include:
-  - path:
-      - compose.base.yaml
-      - .${JOBS_ENABLED:+/}compose.jobs.yaml
-      - .${DEV:+/}compose.dev.yaml

@@ -60,12 +60,18 @@ Services that can be integrated with SciCat are:
 * [LandingPage](./services/landingpage/) - a public interface for published datasets [landingpage](https://github.com/SciCatProject/LandingPageServer)
 * [JupyterHub](./services/jupyter/) - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using [pyscicat](https://scicatproject.github.io/pyscicat/).
 
-To enable extra services configure them by:
+To simply enable one or more of these extra services configure them by setting the proper environment variable(s) and/or compose profile(s) from [this table](#docker-compose-profiles-and-env-variables-configuration-options).
 
-1. setting [docker compose env variables](https://docs.docker.com/compose/environment-variables/envvars-precedence/)
-2. using [docker compose profiles](https://docs.docker.com/compose/profiles/)
-3. modifying the [service-specific config](#service-specific-config)
-4. adding [entrypoints](#entrypoints)
+For a complete guide on how to customise or configure any service, including the default ones, please refer to these sections:
+
+* manually [select the services](#select-the-service)
+* use [docker compose env variables](#docker-compose-env-variables) (supported values from this [table](#docker-compose-profiles-and-env-variables-configuration-options))
+* use [docker compose profiles](#docker-compose-profiles) (supported values from this [table](#docker-compose-profiles-and-env-variables-configuration-options))
+* set [service-specific config](#service-specific-config)
+* add [entrypoints](#entrypoints)
+* modify the [service-specific config](#service-specific-config)
+
+For a guide on how to add a new service, please refer to [this section](#add-a-new-service).
 
 ### Dependencies
 
@@ -219,8 +225,6 @@ To ease the iterative execution of multiple init scripts, one can leverage the [
 See for example [here](./services/frontend/compose.yaml).
 
 </details>
-
-
 
 ## Add a new service
 

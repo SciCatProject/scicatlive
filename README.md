@@ -62,7 +62,7 @@ Services that can be integrated with SciCat are:
 
 To simply enable one or more of these extra services configure them by setting the proper environment variable(s) and/or compose profile(s) from [this table](#docker-compose-profiles-and-env-variables-configuration-options).
 
-For a complete guide on how to customise or configure any service, including the default ones, please refer to these sections:
+For a complete guide (more advanced) on how to customise or configure any service, including the default ones, please refer to these sections:
 
 * manually [select the services](#select-the-service)
 * use [docker compose env variables](#docker-compose-env-variables) (supported values from this [table](#docker-compose-profiles-and-env-variables-configuration-options))

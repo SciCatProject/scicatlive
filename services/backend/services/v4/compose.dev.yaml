@@ -1,7 +1,6 @@
 services:
   backend:
     image: !reset null
-    platform: !reset null
     build:
       context: https://github.com/SciCatProject/scicat-backend-next.git
       target: dev

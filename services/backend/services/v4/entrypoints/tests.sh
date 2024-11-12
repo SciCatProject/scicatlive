@@ -6,7 +6,7 @@ npm run test -- --runInBand
 
 npm start &
 PID="${!}"
-sleep 15
+sleep 30
 npm run test:api:mocha
 
 kill "${PID}"

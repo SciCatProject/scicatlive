@@ -1,0 +1,86 @@
+[
+  {
+    "username": "admin",
+    "email": "admin@scicat.project",
+    "password": "27f5fd86ae68fe740eef42b8bbd1d7d5",
+    "role": "admin",
+    "global": true
+  },
+  {
+    "username": "adminIngestor",
+    "email": "adminingestor@scicat.project",
+    "password": "13f4242dc691a3ee3bb5ca2006edcdf7",
+    "role": "adminingestor",
+    "global": false
+  },
+  {
+    "username": "archiveManager",
+    "email": "archivemanager@scicat.project",
+    "password": "6d3b76392e6f41b087c11f8b77e3f9de",
+    "role": "archivemanager",
+    "global": false
+  },
+  {
+    "username": "datasetIngestor",
+    "email": "datasetingestor@scicat.project",
+    "password": "bc35db76848cf9fbb7f40b6661644e97",
+    "role": "datasetingestor",
+    "global": false
+  },
+  {
+    "username": "proposalIngestor",
+    "email": "proposalingestor@scicat.project",
+    "password": "7d8cd858fb9d0e4f5d91c34fd4016167",
+    "role": "proposalingestor",
+    "global": false
+  },
+  {
+    "username": "sampleIngestor",
+    "email": "sampleingestor@scicat.project",
+    "password": "e4876cb39c7dc4fe957d7c4f6a34cdd8",
+    "role": "sampleingestor",
+    "global": false
+  },
+  {
+    "username": "user1",
+    "email": "user1@your.site",
+    "password": "a609316768619f154ef58db4d847b75e",
+    "role": "group1",
+    "global": false
+  },
+  {
+    "username": "user2",
+    "email": "user2@your.site",
+    "password": "f522d1d715970073a6413474ca0e0f63",
+    "role": "group2",
+    "global": false
+  },
+  {
+    "username": "user3",
+    "email": "user3@your.site",
+    "password": "70dc489e8ee823ae815e18d664424df2",
+    "role": "group3",
+    "global": false
+  },
+  {
+    "username": "user4",
+    "email": "user4@your.site",
+    "password": "0014890e7020f515b92b767227ef2dfa",
+    "role": "group4",
+    "global": false
+  },
+  {
+    "username": "user5.1",
+    "email": "user5.1@your.site",
+    "password": "359a5fda99bfe5dbc42ee9b3ede77fb7",
+    "role": "group5",
+    "global": false
+  },
+  {
+    "username": "user5.2",
+    "email": "user5.2@your.site",
+    "password": "f3ebd2e4def95db59ef95ee32ef45242",
+    "role": "group5",
+    "global": false
+  }
+]

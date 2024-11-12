@@ -16,6 +16,7 @@ services:
       - ./config/.dev.env
     healthcheck:
       start_period: 2m
+      retries: 10
 
 volumes:
   v4_dev:

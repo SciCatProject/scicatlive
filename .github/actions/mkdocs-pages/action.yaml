@@ -18,15 +18,15 @@ inputs:
     description: if to publish docs to gh-pages
     type: string
     default: ''
-  path:
-    description: relative path under $GITHUB_WORKSPACE to checkout root
+  docs_folder:
+    description: docs folder path. If empty, it checkouts all to a fresh 'docs'
     type: string
-    default: ''
+    default: docs
 
 runs:
   using: composite
   steps:
-    - if: ${{ inputs.path }}
+    - if: ${{ !inputs.docs_folder }}
       name: Checkout CI
       uses: actions/checkout@v4
       with:
@@ -34,8 +34,8 @@ runs:
     - name: Checkout root
       uses: actions/checkout@v4
       with:
-        path: ${{ inputs.path }}
-        sparse-checkout: ${{ inputs.path && '.' || '' }}
+        path: ${{ inputs.docs_folder && '' || 'docs' }}
+        sparse-checkout: ${{ inputs.docs_folder }}
     - name: Set up Python
       uses: actions/setup-python@v5
       with:

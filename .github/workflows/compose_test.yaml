@@ -97,7 +97,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCS_LINK_CHECK: true
           TAG: ${{ github.sha }}
-          path: docs
+          docs_folder: ''
   test:
     runs-on: ubuntu-latest
     needs:

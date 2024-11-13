@@ -2005,20 +2005,24 @@ and easy way to learn about SciCat and its features for people who are looking t
     affects the SciCat services only.
    </p>
    <p>
-    Please be patient when using DEV as each container runs unit tests as part of the init, which might take a little to finish. This is done to test the compatibility of upstream/latest with the
+    Please be patient when using DEV as each container sets the env for dev, including the requirements for testing, which might take a little to finish. To see if any special precaution is required to run the tests, refer to the
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/compose.dev.test.yaml">
+     compose.dev.test.yaml
+    </a>
+    file where tests files are referenced and refer to their content.
+    <strong>
+     When DEV=true
+    </strong>
+    , if you want to run tests when the containers start, you can do so by including the
     <code>
-     docker compose
+     compose.dev.test.yaml
     </code>
-    (see warning). To see if any special precaution is required to run the tests, refer to the
-    <code>
-     entrypoints/tests.sh
-    </code>
-    mounted by the volumes. To disable test execution, just comment the
-    <code>
-     entrypoints/tests.sh
-    </code>
-    mount on the respective service.
+    compose file.
    </p>
+   <div class="highlight">
+    <pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>compose.yaml<span class="w"> </span>-f<span class="w"> </span>.github/compose.dev.test.yaml<span class="w"> </span>...
+</code></pre>
+   </div>
    <p>
     It is very convenient if using
     <a href="https://code.visualstudio.com/docs/devcontainers/attach-container">
@@ -2032,7 +2036,7 @@ and easy way to learn about SciCat and its features for people who are looking t
     <code>
      ${COMPOSE_PROJECT_NAME}_&lt;service&gt;_dev
     </code>
-    . Make sure, before removing docker volumes to push the relevant changes.
+    . Make sure, to commit and push frequently, especially before removing docker volumes to push the relevant changes.
    </p>
    <p>
     <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/26a0.svg" title=":warning:"/>

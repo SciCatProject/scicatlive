@@ -1,24 +1,15 @@
 services:
   frontend:
-    image: !reset null
+    extends:
+      file: ${PWD}/services/compose.dev.yaml
+      service: node-app-from-remote
     build:
-      context: https://github.com/SciCatProject/frontend.git
       target: builder
-    command: infinite_loop.sh
     environment:
-      CONFIG_DIR: /frontend/src/assets
-      GITHUB_REPO: https://github.com/SciCatProject/frontend.git
+      CONFIG_DIR: ${WORKDIR}/src/assets
       CHROME_BIN: /usr/bin/chromium
     volumes:
-      - frontend_dev:/frontend
-      - ${PWD}/entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
-      - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/0.sh
       - ${PWD}/entrypoints/add_chrome.sh:/docker-entrypoints/2.sh
-    labels:
-      - traefik.http.services.frontend.loadbalancer.server.port=4200
-    healthcheck:
-      test: pgrep -f "/bin/sh /usr/local/bin/infinite_loop.sh"
-      retries: 5
 
 volumes:
   frontend_dev:

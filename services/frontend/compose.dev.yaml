@@ -13,7 +13,7 @@ services:
       - frontend_dev:/frontend
       - ${PWD}/entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
       - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/0.sh
-      - ${PWD}/entrypoints/karma_tests.sh:/docker-entrypoints/2.sh
+      - ${PWD}/entrypoints/add_chrome.sh:/docker-entrypoints/2.sh
     labels:
       - traefik.http.services.frontend.loadbalancer.server.port=4200
     healthcheck:

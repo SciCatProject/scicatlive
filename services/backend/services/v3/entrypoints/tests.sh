@@ -1,3 +1,1 @@
-#!/bin/sh
-
-npm run test
+../../../../../entrypoints/npm_tests.sh

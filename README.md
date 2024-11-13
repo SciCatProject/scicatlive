@@ -168,11 +168,15 @@ After optionally setting any configuration option, one can still select the serv
 
 To provide a consistent environment where developers can work, the `DEV=true` option creates the SciCat services (see DEV from [here](#docker-compose-env-variables) for the list), but instead of running them, it just creates the base environment that each service requires. For example, for the `backend`, instead of running the web server, it creates a NODE environment with `git` where one can develop and run the unit tests. This is useful as often differences in environments create collaboration problems. It should also provide an example of the configuration for running tests. Please refer to the services' README for additional information, or to the Dockerfile `CMD` of the components' GitHub repo if not specified otherwise. The `DEV=true` affects the SciCat services only.
 
-Please be patient when using DEV as each container runs unit tests as part of the init, which might take a little to finish. This is done to test the compatibility of upstream/latest with the `docker compose` (see warning). To see if any special precaution is required to run the tests, refer to the `entrypoints/tests.sh` mounted by the volumes. To disable test execution, just comment the `entrypoints/tests.sh` mount on the respective service.
+Please be patient when using DEV as each container sets the env for dev, including the requirements for testing, which might take a little to finish. To see if any special precaution is required to run the tests, refer to the [compose.dev.test.yaml](.github/compose.dev.test.yaml) file where tests files are referenced and refer to their content. **When DEV=true**, if you want to run tests when the containers start, you can do so by including the `compose.dev.test.yaml` compose file.
+```bash
+docker compose -f compose.yaml -f .github/compose.dev.test.yaml ...
+```
+
 
 It is very convenient if using [VSCode](https://code.visualstudio.com/docs/devcontainers/attach-container), as, after the docker services are running, one can attach to it and start developing using all VSCode features, including version control and debugging.
 
-:warning: To prevent git unpushed changes from being lost when a container is restarted, the work folder of each service, when in DEV mode, is mounted to a docker volume, with naming convention `${COMPOSE_PROJECT_NAME}_<service>_dev`. Make sure, before removing docker volumes to push the relevant changes.
+:warning: To prevent git unpushed changes from being lost when a container is restarted, the work folder of each service, when in DEV mode, is mounted to a docker volume, with naming convention `${COMPOSE_PROJECT_NAME}_<service>_dev`. Make sure, to commit and push frequently, especially before removing docker volumes to push the relevant changes.
 
 :warning: As the DEV containers pull from upstream/latest, there is no guarantee of their functioning outside of releases. If they fail to start, try, as a first option, to build the image from a tag (e.g. [build context](./services/frontend/compose.dev.yaml)) using the [TAG](https://docs.docker.com/reference/cli/docker/image/build/#git-repositories) and then git checkout to that tag (e.g. set [GITHUB_REPO](./services/frontend/compose.dev.yaml) including the branch using the same syntax and value as the build context).
 

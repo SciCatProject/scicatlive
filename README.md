@@ -186,7 +186,7 @@ e.g., for the frontend:
 +     GITHUB_REPO: https://github.com/SciCatProject/frontend.git#v4.4.1
 ```
 
-If you did not remove the volume, specified a new branch, and had any uncommited changes, they will be stashed to checkout to the selected branch. You can later reapply them by `git stash apply`.
+The repo is checkout at that particular commit only if the docker volume does not yet exist.
 
 </details>
 

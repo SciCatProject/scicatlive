@@ -154,4 +154,6 @@ jobs:
           export OIDC_ENABLED=${{ matrix.OIDC_ENABLED }}
           export BE_VERSION=${{ matrix.BE_VERSION }}
           export DEV=${{ matrix.DEV }}
-          docker compose --profile '*' up --wait --wait-timeout 600
+          docker compose --profile '*' \
+            -f compose.yaml ${DEV:+-f .github/compose.dev.test.yaml} \
+            up --wait --wait-timeout 600

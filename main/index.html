@@ -1388,34 +1388,66 @@ and easy way to learn about SciCat and its features for people who are looking t
    </li>
   </ul>
   <p>
-   To enable extra services configure them by:
+   To simply enable one or more of these extra services configure them by setting the proper environment variable(s) and/or compose profile(s) from
+   <a href="#docker-compose-profiles-and-env-variables-configuration-options">
+    this table
+   </a>
+   .
   </p>
-  <ol>
+  <p>
+   For a complete guide on how to customise or configure any service, including the default ones, please refer to these sections:
+  </p>
+  <ul>
    <li>
-    setting
-    <a href="https://docs.docker.com/compose/environment-variables/envvars-precedence/">
+    manually
+    <a href="#select-the-services">
+     select the services
+    </a>
+   </li>
+   <li>
+    use
+    <a href="#docker-compose-env-variables">
      docker compose env variables
     </a>
+    to enable features (supported values from this
+    <a href="#docker-compose-profiles-and-env-variables-configuration-options">
+     table
+    </a>
+    )
    </li>
    <li>
-    using
-    <a href="https://docs.docker.com/compose/profiles/">
+    use
+    <a href="#docker-compose-profiles">
      docker compose profiles
     </a>
+    to enable extra services (supported values from this
+    <a href="#docker-compose-profiles-and-env-variables-configuration-options">
+     table
+    </a>
+    )
    </li>
    <li>
-    modifying the
+    modify the
     <a href="#service-specific-config">
      service-specific config
     </a>
+    to customise specific services
    </li>
    <li>
-    adding
+    add
     <a href="#entrypoints">
      entrypoints
     </a>
+    to control startup logic
    </li>
-  </ol>
+  </ul>
+  <p>
+   For a guide on how to add a new service, please refer to
+   <a href="#add-a-new-service">
+    this section
+   </a>
+   .
+  </p>
   <h3 id="dependencies">
    Dependencies
    <a class="headerlink" href="#dependencies" title="Permanent link">

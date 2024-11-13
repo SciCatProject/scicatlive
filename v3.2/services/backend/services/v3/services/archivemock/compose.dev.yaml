@@ -1,0 +1,18 @@
+services:
+  archivemock:
+    environment:
+      GITHUB_REPO: https://github.com/SciCatProject/ScicatArchiveMock.git
+    volumes:
+      - archivemock_dev:/job_mock
+      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
+      - ${PWD}/entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
+      - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/0.sh
+    entrypoint: loop_entrypoints.sh
+    command: infinite_loop.sh
+    healthcheck:
+      test: pgrep -f "/bin/sh /usr/local/bin/infinite_loop.sh"
+    user: root
+
+volumes:
+  archivemock_dev:
+    driver: local

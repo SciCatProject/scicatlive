@@ -92,7 +92,7 @@ jobs:
       && !cancelled()
       && fromJson(needs.changes.outputs.all).docs_all_modified_files
     steps:
-      - uses: SciCatProject/scicatlive/.github/actions/mkdocs-pages@tree_files
+      - uses: SciCatProject/scicatlive/.github/actions/mkdocs-pages@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCS_LINK_CHECK: true

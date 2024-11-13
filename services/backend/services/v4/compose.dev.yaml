@@ -10,7 +10,13 @@ services:
     volumes:
       - v4_dev:/home/node/app
       - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/2.sh
+      - ./config/functionalAccounts.dev.json:/home/node/app/functionalAccounts.json
       - ./entrypoints/tests.sh:/docker-entrypoints/3.sh
+    env_file:
+      - ./config/.dev.env
+    healthcheck:
+      retries: 20
+      interval: 1m
 
 volumes:
   v4_dev:

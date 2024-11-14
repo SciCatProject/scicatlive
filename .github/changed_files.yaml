@@ -41,9 +41,10 @@ elastic_or_jobs: &elastic_or_jobs
   - '**/elastic/**'
   - '**/*elastic*'
   - *src
-search: &search
+other_scicat: &other_scicat
   - services/searchapi/**
   - services/landingpage/**
+  - services/frontend/**
 docs:
   - '**.md'
   - '**/*mkdocs*/**'
@@ -54,4 +55,4 @@ dev:
   - *v3
   - *v4
   - *elastic_or_jobs
-  - *search
+  - *other_scicat

@@ -1,0 +1,16 @@
+services:
+  backend:
+    build:
+      context:
+        https://github.com/SciCatProject/scicat-backend-next.git#release-jobs
+    environment:
+      GITHUB_REPO:
+        https://github.com/SciCatProject/scicat-backend-next.git#release-jobs
+    env_file:
+      - ./config/.jobs.env
+    volumes:
+      - v4_jobs_dev:${WORKDIR:-/home/node/app}
+
+volumes:
+  v4_jobs_dev:
+    driver: local

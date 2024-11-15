@@ -4,3 +4,4 @@ include:
       - .${OIDC_ENABLED:+/}compose.oidc.yaml
       - .${LDAP_ENABLED:+/}compose.ldap.yaml
       - .${DEV:+/}compose.dev.yaml
+      - .${DEV:+${JOBS_ENABLED:+/}}compose.jobs.yaml

@@ -173,21 +173,16 @@ Please be patient when using DEV as each container sets the env for dev, includi
 docker compose -f compose.yaml -f .github/compose.dev.test.yaml ...
 ```
 
-
 It is very convenient if using [VSCode](https://code.visualstudio.com/docs/devcontainers/attach-container), as, after the docker services are running, one can attach to it and start developing using all VSCode features, including version control and debugging.
+
+To ease writing DEV configuration, a dev template is provided [here](./services/compose.dev.yaml) and each component inhearits from it, as you can see [here](./services/frontend/compose.dev.yaml) setting the componenent specific variables from the relative [.env file](./services/frontend/.env). :warning: Docker compose applies a [precedence mechanism](https://docs.docker.com/compose/how-tos/environment-variables/variable-interpolation/#local-env-file-versus-project-directory-env-file) whenever the same variable is defined in `.env` files in nested folders, with precedence to the folder where the default `COMPOSE_FILE` lives. This means that the current template cannot be used in case of nested components, at least for the parts where local variables are used. There is no conflict with variables defined multiple times in `.env` files at the same level.
 
 :warning: To prevent git unpushed changes from being lost when a container is restarted, the work folder of each service, when in DEV mode, is mounted to a docker volume, with naming convention `${COMPOSE_PROJECT_NAME}_<service>_dev`. Make sure, to commit and push frequently, especially before removing docker volumes to push the relevant changes.
 
-:warning: As the DEV containers pull from upstream/latest, there is no guarantee of their functioning outside of releases. If they fail to start, try, as a first option, to build the image from a tag (e.g. [build context](./services/frontend/compose.dev.yaml)) using the [TAG](https://docs.docker.com/reference/cli/docker/image/build/#git-repositories) and then git checkout to that tag (e.g. set [GITHUB_REPO](./services/frontend/compose.dev.yaml) including the branch using the same syntax and value as the build context).
-
-e.g., for the frontend:
+:warning: As the DEV containers pull from upstream/latest, there is no guarantee of their functioning outside of releases. If they fail to start, try, as a first option, to build the image from a tag (e.g. [build context](./services/frontend/compose.dev.yaml)) using the [TAG](https://docs.docker.com/reference/cli/docker/image/build/#git-repositories) and then git checkout to that tag (e.g. set [GITHUB_REPO](./services/frontend/compose.dev.yaml) including the branch using the same syntax and value as the build context). You can achieve this, by setting the `GITHUB_REPO` env variable in the component `.env` file (e.g. the [frontend env file](./services/frontend/.env)) as follows:
 ```diff
-   build:
--     context: https://github.com/SciCatProject/frontend.git
-+     context: https://github.com/SciCatProject/frontend.git#v4.4.1
-   environment:
--     GITHUB_REPO: https://github.com/SciCatProject/frontend.git
-+     GITHUB_REPO: https://github.com/SciCatProject/frontend.git#v4.4.1
+-  GITHUB_REPO=https://github.com/SciCatProject/frontend.git
++  GITHUB_REPO=https://github.com/SciCatProject/frontend.git#v4.4.1
 ```
 
 The repo is checkout at that particular commit only if the docker volume does not yet exist.

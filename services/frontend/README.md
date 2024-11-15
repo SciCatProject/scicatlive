@@ -22,6 +22,11 @@ Since there was a small breaking change from `v3` to `v4`, when connecting to th
 
 With `DEV=true`, please use `npm start -- --host 0.0.0.0`. This is to allow traffic from any IP to the `frontend` component and it is necessary since the component runs in the docker network.
 
+With `DEV=true` and `JOBS_ENABLED=true` containers in `DEV` mode is created with code checkout out at `#release-jobs` branch, in a dedicated docker volume: `frontend_jobs_dev`. As docker caches images, it is recommended to run `npm install` whenever rerunning `docker compose up -d`, or rebuild the image without cache with:
+```bash
+docker compose up -d --build
+```
+
 Setting the [BACKEND_HTTPS_URL env variable](../../.env) requires changing the `backend` URL used by the `frontend`. This is managed [here](../../entrypoints/merge_json.sh).
 
 :warning: When setting `FRONTENT_HTTPS_URL` it is likely you also want to set the `BACKEND_HTTPS_URL`, to allow the communication between the two wherever the browser is accessed.

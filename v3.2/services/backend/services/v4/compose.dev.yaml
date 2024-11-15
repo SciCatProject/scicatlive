@@ -1,16 +1,12 @@
 services:
   backend:
-    image: !reset null
+    extends:
+      file: ${PWD}/services/compose.dev.yaml
+      service: node-app-from-remote
     build:
-      context: https://github.com/SciCatProject/scicat-backend-next.git
       target: dev
-    environment:
-      GITHUB_REPO: https://github.com/SciCatProject/scicat-backend-next.git
     volumes:
-      - v4_dev:/home/node/app
-      - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/2.sh
       - ./config/functionalAccounts.dev.json:/home/node/app/functionalAccounts.json
-      - ./entrypoints/tests.sh:/docker-entrypoints/3.sh
     env_file:
       - ./config/.dev.env
     healthcheck:

@@ -27,3 +27,4 @@ services:
     image: ''
     build:
       context: ${GITHUB_REPO:-}
+      no_cache: true

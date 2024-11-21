@@ -2,5 +2,5 @@ include:
   - path:
       - compose.base.yaml
       - .${ELASTIC_ENABLED:+/}compose.elastic.yaml
-      - .${DEV:+/}compose.dev.yaml
       - .${KEYCLOAK_HTTPS_URL:+/}compose.https.yaml
+      - .${DEV:+/}compose.dev.yaml

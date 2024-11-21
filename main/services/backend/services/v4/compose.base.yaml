@@ -7,7 +7,7 @@ services:
     volumes:
       - ./config/functionalAccounts.json:/home/node/app/functionalAccounts.json
       - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
-      - ./entrypoints/db_migration.sh:/docker-entrypoints/1.sh
+      - ./entrypoints/db_migration.sh:/docker-entrypoints/10.sh
     entrypoint:
       - loop_entrypoints.sh
       - docker-entrypoint.sh

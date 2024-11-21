@@ -9,6 +9,10 @@ This project requires docker and docker compose. The docker version must be late
 
 Release `v3.0` is the first stable and reviewed version of SciCatLive.
 
+## Create the release-jobs DEV environment
+
+To start the containers in DEV mode with JOBS settings, set the env variables `DEV=true` and `JOBS_ENABLED=true` [here](.env). This will start the backend and the frontend in development mode with code checkout out at `#release-jobs` branch, including the requirements to run tests.
+
 ## Steps
 
 <details markdown="1">

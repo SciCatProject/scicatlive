@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build:
+      context: https://github.com/SciCatProject/frontend.git#release-jobs
+    environment:
+      GITHUB_REPO: https://github.com/SciCatProject/frontend.git#release-jobs
+    volumes:
+      - frontend_jobs_dev:${WORKDIR:-/home/node/app}
+
+volumes:
+  frontend_jobs_dev:
+    driver: local

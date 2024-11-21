@@ -4,3 +4,4 @@ include:
       - .${ELASTIC_ENABLED:+/}compose.elastic.yaml
       - .${DEV:+/}compose.dev.yaml
       - .${KEYCLOAK_HTTPS_URL:+/}compose.https.yaml
+      - .${DEV:+${JOBS_ENABLED:+/}}compose.jobs.yaml

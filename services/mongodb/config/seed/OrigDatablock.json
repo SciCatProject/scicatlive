@@ -9,7 +9,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "psi_df1",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -20,7 +20,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/psi_ds1"
     },
@@ -34,7 +34,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "psi_df2",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -45,7 +45,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/psi_ds2"
     },
@@ -59,7 +59,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "psi_df3",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -70,7 +70,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/psi_ds3"
     },
@@ -84,7 +84,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "desy_df1",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -95,7 +95,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/desy_ds1"
     },
@@ -109,7 +109,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "desy_df2",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -120,7 +120,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/desy_ds2"
     },
@@ -134,7 +134,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "desy_df3",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -145,7 +145,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/desy_ds3"
     },
@@ -159,7 +159,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "dls_df1",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -170,7 +170,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/dls_ds1"
     },
@@ -184,7 +184,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "dls_df2",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -195,7 +195,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/dls_ds2"
     },
@@ -209,7 +209,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "hzdr_df1",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -220,7 +220,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/hzdr_ds1"
     },
@@ -234,7 +234,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "maxiv_df1",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -245,7 +245,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/maxiv_ds1"
     },
@@ -259,7 +259,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "maxiv_df2",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -270,7 +270,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/maxiv_ds2"
     },
@@ -284,7 +284,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "soleil_df1",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -295,7 +295,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/soleil_ds1"
     },
@@ -309,7 +309,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "soleil_df2",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -320,7 +320,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/soleil_ds2"
     },
@@ -334,7 +334,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "ukri_df1",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -345,7 +345,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/ukri_ds1"
     },
@@ -359,7 +359,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "ukri_df2",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -370,7 +370,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/ukri_ds2"
     },
@@ -384,7 +384,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "ukri_df3",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -395,7 +395,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/ukri_ds3"
     },
@@ -409,7 +409,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "ukri_df4",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -420,7 +420,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/ukri_ds4"
     },
@@ -434,7 +434,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "ukri_df5",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -445,7 +445,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/ukri_ds5"
     },
@@ -459,7 +459,7 @@
                     "$date": "2021-06-29T16:40:55.773Z"
                 },
                 "uid": "ukri_df6",
-                "gid": "aGroup",
+                "gid": "group1",
                 "perm": "-rw-rw----"
             }
         ],
@@ -470,7 +470,7 @@
             "$date": "2021-06-29T16:40:55.777Z"
         },
         "createdBy": "ingestor",
-        "ownerGroup": "aGroup",
+        "ownerGroup": "group1",
         "accessGroups": [],
         "datasetId": "PID.SAMPLE.PREFIX/ukri_ds6"
     }

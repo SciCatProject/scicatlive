@@ -9,7 +9,7 @@ services:
       CONFIG_DIR: ${WORKDIR}/src/assets
       CHROME_BIN: /usr/bin/chromium
     volumes:
-      - ${PWD}/entrypoints/add_chrome.sh:/docker-entrypoints/2.sh
+      - ${PWD}/entrypoints/add_chrome.sh:/docker-entrypoints/20.sh
 
 volumes:
   frontend_dev:

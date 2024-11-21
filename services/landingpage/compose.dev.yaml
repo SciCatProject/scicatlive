@@ -9,8 +9,8 @@ services:
       CONFIG_DIR: ${WORKDIR:-/home/node/app}/src/assets
       CHROME_BIN: /usr/bin/chromium
     volumes:
-      - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoints/1.sh
-      - ${PWD}/entrypoints/add_chrome.sh:/docker-entrypoints/2.sh
+      - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoints/10.sh
+      - ${PWD}/entrypoints/add_chrome.sh:/docker-entrypoints/20.sh
     user: root
 
 volumes:

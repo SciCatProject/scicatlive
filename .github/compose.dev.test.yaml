@@ -1,13 +1,13 @@
 services:
   frontend:
     volumes:
-      - ./entrypoints/npm_tests.sh:/docker-entrypoints/9.sh
+      - ./entrypoints/npm_tests.sh:/docker-entrypoints/90.sh
   searchapi:
     volumes:
-      - ./entrypoints/npm_tests.sh:/docker-entrypoints/9.sh
+      - ./entrypoints/npm_tests.sh:/docker-entrypoints/90.sh
   landingpage:
     volumes:
-      - ./entrypoints/npm_tests.sh:/docker-entrypoints/9.sh
+      - ./entrypoints/npm_tests.sh:/docker-entrypoints/90.sh
   backend:
     volumes:
-      - ./services/backend/services/${BE_VERSION}/entrypoints/tests.sh:/docker-entrypoints/9.sh
+      - ./services/backend/services/${BE_VERSION}/entrypoints/tests.sh:/docker-entrypoints/90.sh

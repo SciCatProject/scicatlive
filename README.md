@@ -175,6 +175,8 @@ docker compose -f compose.yaml -f .github/compose.dev.test.yaml ...
 
 It is very convenient if using [VSCode](https://code.visualstudio.com/docs/devcontainers/attach-container), as, after the docker services are running, one can attach to it and start developing using all VSCode features, including version control and debugging.
 
+Please note that [entrypoints](#entrypoints) when `DEV=true` are only run when the component's container is created for the first time. This is done to avoid clashes with local changes.
+
 To ease writing DEV configuration, a dev template is provided [here](./services/compose.dev.yaml) and each component inhearits from it, as you can see [here](./services/frontend/compose.dev.yaml) setting the componenent specific variables from the relative [.env file](./services/frontend/.env). :warning: Docker compose applies a [precedence mechanism](https://docs.docker.com/compose/how-tos/environment-variables/variable-interpolation/#local-env-file-versus-project-directory-env-file) whenever the same variable is defined in `.env` files in nested folders, with precedence to the folder where the default `COMPOSE_FILE` lives. This means that the current template cannot be used in case of nested components, at least for the parts where local variables are used. There is no conflict with variables defined multiple times in `.env` files at the same level.
 
 :warning: To prevent git unpushed changes from being lost when a container is restarted, the work folder of each service, when in DEV mode, is mounted to a docker volume, with naming convention `${COMPOSE_PROJECT_NAME}_<service>_dev`. Make sure, to commit and push frequently, especially before removing docker volumes to push the relevant changes.

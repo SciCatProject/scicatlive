@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ -e ".finished" ] && return 0
+
 apk update && apk add git
 
 git remote || INIT=true

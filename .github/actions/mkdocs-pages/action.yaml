@@ -18,12 +18,24 @@ inputs:
     description: if to publish docs to gh-pages
     type: string
     default: ''
+  docs_folder:
+    description: docs folder path. If empty, it checkouts all to a fresh 'docs'
+    type: string
+    default: docs
 
 runs:
   using: composite
   steps:
-    - name: Checkout code
+    - if: ${{ !inputs.docs_folder }}
+      name: Checkout CI
       uses: actions/checkout@v4
+      with:
+        sparse-checkout: .github
+    - name: Checkout root
+      uses: actions/checkout@v4
+      with:
+        path: ${{ inputs.docs_folder && '' || 'docs' }}
+        sparse-checkout: ${{ inputs.docs_folder }}
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -32,12 +44,6 @@ runs:
       shell: bash
       run: |
           pip install -r .github/mkdocs/requirements.txt
-    - name: Copy all to docs folder
-      shell: bash
-      run: |
-        mkdir -p docs
-        shopt -s extglob
-        mv !(docs) docs/
     - name: Deploy documentation
       shell: bash
       run: |
@@ -50,7 +56,8 @@ runs:
         PUSH=${{ inputs.push }}
         mike deploy -F ${DOCS_CONFIG} ${PUSH:+--push} \
           --update-aliases ${VERSION:-main} ${VERSION:+latest}
-        mike set-default -F ${DOCS_CONFIG} --push latest
+        mike set-default -F ${DOCS_CONFIG} --push latest ||
+          mike set-default -F ${DOCS_CONFIG} --push main
       env:
         GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
         GIT_COMMITTER_NAME: ci-bot

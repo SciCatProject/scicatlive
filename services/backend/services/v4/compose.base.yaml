@@ -1,14 +1,13 @@
 services:
   backend:
-    platform: linux/amd64
-    image: ghcr.io/scicatproject/backend-next:v4.5.1
+    image: ghcr.io/scicatproject/backend-next:v4.7.0
     depends_on:
       mongodb:
         condition: service_started
     volumes:
       - ./config/functionalAccounts.json:/home/node/app/functionalAccounts.json
       - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
-      - ./entrypoints/db_migration.sh:/docker-entrypoints/0.sh
+      - ./entrypoints/db_migration.sh:/docker-entrypoints/1.sh
     entrypoint:
       - loop_entrypoints.sh
       - docker-entrypoint.sh

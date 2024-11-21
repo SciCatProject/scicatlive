@@ -337,8 +337,8 @@
   },
   "groups" : [ {
     "id" : "397a50f3-8f47-4d05-8bbc-054e8160bb26",
-    "name" : "aGroup",
-    "path" : "/aGroup",
+    "name" : "group1",
+    "path" : "/group1",
     "subGroups" : [ ],
     "attributes" : { },
     "realmRoles" : [ ],
@@ -406,7 +406,7 @@
     "requiredActions" : [ ],
     "realmRoles" : [ "default-roles-facility" ],
     "notBefore" : 0,
-    "groups" : [ "/aGroup" ]
+    "groups" : [ "/group1" ]
   } ],
   "scopeMappings" : [ {
     "clientScope" : "offline_access",

@@ -26,26 +26,33 @@ oidc:
   - '**/keycloak/**'
   - '**/*keycloak*'
   - *src
-dev:
-  - '**/*dev*'
-  - *src
-  - '**/entrypoints/**'
-v3:
+v3: &v3
   - '**/v3/**'
   - '**/*v3*'
   - *src
-v4:
+v4: &v4
   - '**/v4/**'
   - '**/*v4*'
   - *src
-elastic_or_jobs:
+elastic_or_jobs: &elastic_or_jobs
   - '**/archivemock/**'
   - '**/rabbitmq/**'
   - '**/*jobs*'
   - '**/elastic/**'
   - '**/*elastic*'
   - *src
+other_scicat: &other_scicat
+  - services/searchapi/**
+  - services/landingpage/**
+  - services/frontend/**
 docs:
   - '**.md'
   - '**/*mkdocs*/**'
   - '**/*mkdocs*'
+dev:
+  - '**/*dev*'
+  - '**/entrypoints/**'
+  - *v3
+  - *v4
+  - *elastic_or_jobs
+  - *other_scicat

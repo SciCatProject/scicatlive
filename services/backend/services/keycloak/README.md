@@ -19,7 +19,7 @@ Also a realm called `facility` is created with the following user and group:
 
 | Username  | Password | Group |
 | --------- | -------- | ----- |
-| oidc-user | password | aGroup|
+| oidc-user | password | group1|
 
 The users' groups are passed to SciCat backend via the OIDC ID Token, in the claim named `accessGroups` (an array of strings).
 The name of the claim can be configured either in [login-callbacks.js](../v3/config/login-callbacks.js) for v3 or with [environment variables](../v4/config/.oidc.env) for v4.

@@ -10,7 +10,7 @@ services:
       - ./config/datasources.json:/config/datasources.0.json
       - ./config/providers.json:/config/providers.json
       - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
-      - ./entrypoints/merge_json.sh:/docker-entrypoints/0.sh
+      - ./entrypoints/merge_json.sh:/docker-entrypoints/10.sh
     entrypoint:
       - loop_entrypoints.sh
       - docker-entrypoint.sh

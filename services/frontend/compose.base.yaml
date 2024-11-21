@@ -10,7 +10,7 @@ services:
       - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
       # This is numbered 1 (and not 0) as in the DEV config, which
       # inherits from this, it must be run after the git_init
-      - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoints/1.sh
+      - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoints/10.sh
     entrypoint: loop_entrypoints.sh
     command: nginx -g "daemon off;"
     labels:

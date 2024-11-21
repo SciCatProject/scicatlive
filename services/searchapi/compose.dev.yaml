@@ -4,7 +4,7 @@ services:
       file: ${PWD}/services/compose.dev.yaml
       service: node-app-from-local
     volumes:
-      - ${PWD}/entrypoints/npm_ci.sh:/docker-entrypoints/1.sh
+      - ${PWD}/entrypoints/npm_ci.sh:/docker-entrypoints/10.sh
     user: root
     env_file:
       - ./config/.dev.env

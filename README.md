@@ -158,6 +158,7 @@ For example `docker compose --profile analysis` sets up a jupyter hub with some 
 | env     | `OIDC_ENABLED`              | `true`: oidc auth                                                                                             | `''`    | *                     | Creates an OIDC identity provider and sets the BE to use it as authentication backend                                                                                                                                       |                         |
 | env     | `DEV`                       | `true`: backend,frontend,searchapi,archivemock in DEV mode                                                    | `''`    | *                     | The SciCat services' environment is prepared to ease the [development in a standardized environment](#dev-configuration)                                                                                                    |                         |
 | env     | `<SERVICE>_HTTPS_URL`       | `<URL>`: HTTPS termination                                                                                    | `''`    | *                     | Requests the TLS certificate for the URL to LetsEncrypt through the [proxy](#tls-configuration)                                                                                                                             |                         |
+| env     | `DEV_BBACKUP`               | `true`: bidirectional synchronization of DEV volume                                                           | `''`    | *                     | Enables [DEV bidirectional synchronization](#dev-bidirectional-synchronization) between ${PWD}/bbackup/${APP} on the host and the dev volume                                                                                |                         |
 
 
 After optionally setting any configuration option, one can still select the services to run as described [here](#select-the-services).
@@ -188,6 +189,10 @@ To ease writing DEV configuration, a dev template is provided [here](./services/
 ```
 
 The repo is checkout at that particular commit only if the docker volume does not yet exist.
+
+##### DEV bidirectional synchronization
+
+Setting `DEV_BBACKUP=true` in the [.env](./.env) file enables bidirectional synchronization between the DEV volume of each component (e.g. `frontend_dev`) and a directory on the host placed at `${PWD}/bbackup/${APP}` (e.g. `${PWD}/bbackup/${APP}`). This is sometimes convenient both to have a backup of the volume and to enable the use of additional tools installed on the host, which require file access.
 
 </details>
 

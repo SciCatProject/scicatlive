@@ -6,6 +6,7 @@ services:
     labels: !reset null
     volumes:
       - archivemock_dev:/job_mock
+      - ${DEV_BBACKUP:+${PWD}/bbackup/archivemock:}/bbackup
     user: root
 
 volumes:

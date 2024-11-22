@@ -5,7 +5,7 @@ services:
       service: web-app
     labels: !reset null
     volumes:
-      - archivemock_dev:/job_mock
+      - ${DEV_BBACKUP:+${PWD}/bbackup/${COMPOSE_PROJECT_NAME}/archivemock:}/bbackup
 
 volumes:
   archivemock_dev:

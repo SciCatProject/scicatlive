@@ -29,11 +29,13 @@ oidc:
 v3: &v3
   - '**/v3/**'
   - '**/*v3*'
+  - services/compose.dev.yaml
   - *src
 v4: &v4
   - '**/v4/**'
   - '**/*v4*'
   - *src
+  - services/compose.dev.yaml
 elastic_or_jobs: &elastic_or_jobs
   - '**/archivemock/**'
   - '**/rabbitmq/**'

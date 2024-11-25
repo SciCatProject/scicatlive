@@ -21,7 +21,7 @@ services:
     extends: web-app
     volumes:
       # This prevents git unpushed changes from being lost on container restart
-      - ${DEV_VOLUME:-${APP}}_dev:/development
+      - ${DEV_LOCAL:+${PWD}/development/}${DEV_VOLUME:-${APP}}_dev:/development
   node-app-from-remote:
     extends: node-app-from-local
     image: ''

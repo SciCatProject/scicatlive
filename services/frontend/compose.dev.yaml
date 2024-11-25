@@ -6,7 +6,7 @@ services:
     build:
       target: builder
     environment:
-      CONFIG_DIR: ${WORKDIR}/src/assets
+      CONFIG_DIR: src/assets
       CHROME_BIN: /usr/bin/chromium
     volumes:
       - ${PWD}/entrypoints/add_chrome.sh:/docker-entrypoints/20.sh

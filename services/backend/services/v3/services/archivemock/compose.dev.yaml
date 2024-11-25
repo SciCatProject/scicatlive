@@ -5,7 +5,7 @@ services:
       service: web-app
     labels: !reset null
     volumes:
-      - archivemock_dev:/job_mock
+      - archivemock_dev:/development
     user: root
 
 volumes:

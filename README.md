@@ -168,6 +168,8 @@ After optionally setting any configuration option, one can still select the serv
 
 To provide a consistent environment where developers can work, the `DEV=true` option creates the SciCat services (see DEV from [here](#docker-compose-env-variables) for the list), but instead of running them, it just creates the base environment that each service requires. For example, for the `backend`, instead of running the web server, it creates a NODE environment with `git` where one can develop and run the unit tests. This is useful as often differences in environments create collaboration problems. It should also provide an example of the configuration for running tests. Please refer to the services' README for additional information, or to the Dockerfile `CMD` of the components' GitHub repo if not specified otherwise. The `DEV=true` affects the SciCat services only.
 
+For standardisation, the [WORKDIR](https://docs.docker.com/reference/dockerfile/#workdir) of the dev containers is set to `/development` and [this preprocessing step](./entrypoints/copy_to_development.sh) copies the files from the image original WORKDIR to `/development`.
+
 Please be patient when using DEV as each container sets the env for dev, including the requirements for testing, which might take a little to finish. To see if any special precaution is required to run the tests, refer to the [compose.dev.test.yaml](.github/compose.dev.test.yaml) file where tests files are referenced and refer to their content. **When DEV=true**, if you want to run tests when the containers start, you can do so by including the `compose.dev.test.yaml` compose file.
 ```bash
 docker compose -f compose.yaml -f .github/compose.dev.test.yaml ...

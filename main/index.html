@@ -2031,6 +2031,17 @@ and easy way to learn about SciCat and its features for people who are looking t
     , as, after the docker services are running, one can attach to it and start developing using all VSCode features, including version control and debugging.
    </p>
    <p>
+    Please note that
+    <a href="#entrypoints">
+     entrypoints
+    </a>
+    when
+    <code>
+     DEV=true
+    </code>
+    are only run when the component's container is created for the first time. This is done to avoid clashes with local changes.
+   </p>
+   <p>
     To ease writing DEV configuration, a dev template is provided
     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/compose.dev.yaml">
      here

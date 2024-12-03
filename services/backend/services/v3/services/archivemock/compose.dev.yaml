@@ -6,7 +6,6 @@ services:
     labels: !reset null
     volumes:
       - archivemock_dev:/job_mock
-    user: root
 
 volumes:
   archivemock_dev:

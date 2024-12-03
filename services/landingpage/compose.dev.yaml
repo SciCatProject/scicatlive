@@ -11,7 +11,6 @@ services:
     volumes:
       - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoints/10.sh
       - ${PWD}/entrypoints/add_chrome.sh:/docker-entrypoints/20.sh
-    user: root
 
 volumes:
   landingpage_dev:

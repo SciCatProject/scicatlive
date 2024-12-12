@@ -16,6 +16,7 @@ services:
     environment:
       GITHUB_REPO: ${GITHUB_REPO:-}
     user: root
+    restart: no
   node-app-from-local:
     extends: web-app
     volumes:

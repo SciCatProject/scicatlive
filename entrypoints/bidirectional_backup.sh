@@ -2,7 +2,7 @@
 
 apk add --no-cache unison
 
-[ -z "$(ls -A /bbackup)"] && cp -r "${WORKDIR}"/. /bbackup
+[ -z "$(ls -A /bbackup)" ] && cp -r "${WORKDIR}"/. /bbackup
 
 flock -n /bbackup/.unison \
     unison "${WORKDIR}" /bbackup \

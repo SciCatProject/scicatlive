@@ -365,6 +365,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="DEV configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dev-bidirectional-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      DEV bidirectional synchronization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1022,6 +1037,21 @@
       DEV configuration
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="DEV configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dev-bidirectional-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      DEV bidirectional synchronization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1958,6 +1988,39 @@ and easy way to learn about SciCat and its features for people who are looking t
      <td>
      </td>
     </tr>
+    <tr>
+     <td>
+      env
+     </td>
+     <td>
+      <code>
+       DEV_BBACKUP
+      </code>
+     </td>
+     <td>
+      <code>
+       true
+      </code>
+      : bidirectional synchronization of DEV volume
+     </td>
+     <td>
+      <code>
+       ''
+      </code>
+     </td>
+     <td>
+      *
+     </td>
+     <td>
+      Enables
+      <a href="#dev-bidirectional-synchronization">
+       DEV bidirectional synchronization
+      </a>
+      between ${PWD}/bbackup/${APP} on the host and the dev volume
+     </td>
+     <td>
+     </td>
+    </tr>
    </tbody>
   </table>
   <p>
@@ -2117,6 +2180,35 @@ and easy way to learn about SciCat and its features for people who are looking t
    </div>
    <p>
     The repo is checkout at that particular commit only if the docker volume does not yet exist.
+   </p>
+   <h5 id="dev-bidirectional-synchronization">
+    DEV bidirectional synchronization
+    <a class="headerlink" href="#dev-bidirectional-synchronization" title="Permanent link">
+     ¶
+    </a>
+   </h5>
+   <p>
+    Setting
+    <code>
+     DEV_BBACKUP=true
+    </code>
+    in the
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
+     .env
+    </a>
+    file enables bidirectional synchronization between the DEV volume of each component (e.g.
+    <code>
+     frontend_dev
+    </code>
+    ) and a directory on the host placed at
+    <code>
+     ${PWD}/bbackup/${APP}
+    </code>
+    (e.g.
+    <code>
+     ${PWD}/bbackup/${APP}
+    </code>
+    ). This is sometimes convenient both to have a backup of the volume and to enable the use of additional tools installed on the host, which require file access.
    </p>
   </details>
   <h4 id="tls-configuration">

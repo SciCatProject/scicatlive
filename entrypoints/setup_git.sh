@@ -14,8 +14,4 @@ REPO="${GITHUB_REPO%%#*}"
 git remote add origin "${REPO}"
 git fetch
 DEFAULT_BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
-git reset --hard origin/"${DEFAULT_BRANCH}"
-if [ -n "${TAG}" ]
-then
-    git checkout "${TAG}"
-fi
+git reset --hard origin/"${TAG:-$DEFAULT_BRANCH}"

@@ -1,6 +1,6 @@
 services:
   proxy:
-    image: traefik:v3.2
+    image: traefik:v3.3
     ports:
       - 80:80
       - 443:443

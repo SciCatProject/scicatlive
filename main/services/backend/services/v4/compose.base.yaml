@@ -1,6 +1,6 @@
 services:
   backend:
-    image: ghcr.io/scicatproject/backend-next:v4.12.0
+    image: ghcr.io/scicatproject/backend-next:v4.12.1
     depends_on:
       mongodb:
         condition: service_started

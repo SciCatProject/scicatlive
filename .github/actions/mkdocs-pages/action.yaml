@@ -38,7 +38,7 @@ runs:
       with:
         path: ${{ inputs.docs_folder && '' }}
         sparse-checkout: ${{ inputs.docs_folder }}
-        clean: false
+        clean: 'false'
     - name: tree after
       shell: bash
       run: tree -a

@@ -40,7 +40,7 @@ runs:
         path: ${{ inputs.docs_folder && '' || 'docs' }}        
         sparse-checkout: |
           ${{ inputs.docs_folder }}
-          ${{ inputs.docs_folder && .github }}
+          ${{ inputs.docs_folder && '.github' }}
     - name: tree after
       shell: bash
       run: tree -a

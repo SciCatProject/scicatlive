@@ -26,7 +26,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - if: ${{ inputs.docs_folder != 'docs' }}
       name: Checkout CI
       uses: actions/checkout@v4
       with:

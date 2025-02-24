@@ -31,11 +31,17 @@ runs:
       uses: actions/checkout@v4
       with:
         sparse-checkout: .github
+    - name: tree before
+      shell: bash
+      run: tree
     - name: Checkout root
       uses: actions/checkout@v4
       with:
         path: ${{ inputs.docs_folder && '' || 'docs' }}
         sparse-checkout: ${{ inputs.docs_folder }}
+    - name: tree after
+      shell: bash
+      run: tree
     - name: Set up Python
       uses: actions/setup-python@v5
       with:

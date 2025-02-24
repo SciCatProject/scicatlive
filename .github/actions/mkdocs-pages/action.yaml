@@ -26,12 +26,11 @@ inputs:
 runs:
   using: composite
   steps:
-    - if: ${{ !inputs.docs_folder }}
+    - if: ${{ inputs.docs_folder != 'docs' }}
       name: Checkout CI
       uses: actions/checkout@v4
       with:
-        sparse-checkout: |
-          .github
+        sparse-checkout: .github
     - name: tree before
       shell: bash
       run: tree

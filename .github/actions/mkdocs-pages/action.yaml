@@ -26,7 +26,7 @@ inputs:
 runs:
   using: composite
   steps:
-      name: Checkout CI
+    - name: Checkout CI
       uses: actions/checkout@v4
       with:
         sparse-checkout: .github

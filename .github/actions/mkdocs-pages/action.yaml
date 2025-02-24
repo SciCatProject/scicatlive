@@ -34,8 +34,10 @@ runs:
     - name: Checkout root
       uses: actions/checkout@v4
       with:
-        path: ${{ inputs.docs_folder && '' || 'docs' }}
-        sparse-checkout: ${{ inputs.docs_folder }}
+        path: ${{ !inputs.docs_folder && 'docs' || '' }}
+        sparse-checkout: |
+          ${{ inputs.docs_folder }}
+          ${{ inputs.docs_folder && '.github' }}
     - name: Set up Python
       uses: actions/setup-python@v5
       with:

@@ -32,7 +32,7 @@ runs:
         sparse-checkout: .github
     - name: tree before
       shell: bash
-      run: tree
+      run: tree -a
     - name: Checkout root
       uses: actions/checkout@v4
       with:
@@ -40,7 +40,7 @@ runs:
         sparse-checkout: ${{ inputs.docs_folder }}
     - name: tree after
       shell: bash
-      run: tree
+      run: tree -a
     - name: Set up Python
       uses: actions/setup-python@v5
       with:

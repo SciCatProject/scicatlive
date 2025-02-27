@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: ghcr.io/scicatproject/frontend:v4.7.0
+    image: ghcr.io/scicatproject/frontend:v5.1.0
     depends_on:
       backend:
         condition: service_healthy

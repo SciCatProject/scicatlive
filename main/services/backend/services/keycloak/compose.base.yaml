@@ -1,6 +1,6 @@
 services:
   keycloak:
-    image: quay.io/keycloak/keycloak:26.1
+    image: quay.io/keycloak/keycloak:26.2
     command: start-dev --import-realm --health-enabled=true --http-port=80
     env_file: ./config/.env
     volumes:

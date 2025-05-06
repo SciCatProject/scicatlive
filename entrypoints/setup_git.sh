@@ -1,12 +1,13 @@
 #!/bin/sh
 
+apk update && apk add git
+
 [ -e ".finished" ] && return 0
 
 ls .git && return 0
 
 echo "${GITHUB_REPO}" | grep -q "#" && TAG="${GITHUB_REPO#*#}" || TAG=
 
-apk update && apk add git
 git init
 chown -R "$(find . -maxdepth 1 -exec ls -ld {} + | awk '{print $3":"$4}' | tail -n1)" .git
 git config --global --add safe.directory "${PWD}"

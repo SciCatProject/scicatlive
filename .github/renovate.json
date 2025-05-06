@@ -21,7 +21,7 @@
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["rabbitmq"],
-      "matchUpdateTypes": ["major", "minor", "patch"],
+      "matchUpdateTypes": ["major", "minor"],
       "labels": ["v3 breaking change"],
       "draftPR": true
     }

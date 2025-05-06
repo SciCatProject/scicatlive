@@ -10,6 +10,20 @@
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/scicatproject/frontend"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["v3 breaking change"],
+      "draftPR": true
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["rabbitmq"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "labels": ["v3 breaking change"],
+      "draftPR": true
     }
   ]
 }

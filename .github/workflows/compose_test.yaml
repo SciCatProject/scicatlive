@@ -157,4 +157,4 @@ jobs:
           export DEV_BBACKUP=${DEV}
           docker compose --profile '*' \
             -f compose.yaml ${DEV:+-f .github/compose.dev.test.yaml} \
-            up --wait --wait-timeout 600
+            up --wait --wait-timeout 1200

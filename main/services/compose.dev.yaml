@@ -26,7 +26,6 @@ services:
       - ${DEV_VOLUME:-${APP}}_dev:${WORKDIR:-/home/node/app}
       - ${DEV_BBACKUP:+${PWD}/bbackup/${COMPOSE_PROJECT_NAME}/${DEV_VOLUME:-${APP}}:}/bbackup
       # These allow to keep changes from npm install/build from Dockerfile CMDs
-      - ${WORKDIR:-/home/node/app}/dist
       - ${WORKDIR:-/home/node/app}/node_modules
   node-app-from-remote:
     extends: node-app-from-local

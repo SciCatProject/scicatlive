@@ -3,4 +3,3 @@ include:
       - compose.base.yaml
       - .${ELASTIC_ENABLED:+/}compose.elastic.yaml
       - .${KEYCLOAK_HTTPS_URL:+/}compose.https.yaml
-      - .${DEV:+/}compose.dev.yaml

@@ -36,10 +36,12 @@ v4: &v4
   - '**/*v4*'
   - *src
   - services/compose.dev.yaml
-elastic_or_jobs: &elastic_or_jobs
-  - '**/archivemock/**'
+jobs: &jobs
   - '**/rabbitmq/**'
   - '**/*jobs*'
+  - '**/archivemock/**'
+  - *src
+elastic: &elastic
   - '**/elastic/**'
   - '**/*elastic*'
   - *src
@@ -56,5 +58,6 @@ dev:
   - '**/entrypoints/**'
   - *v3
   - *v4
-  - *elastic_or_jobs
+  - *elastic
+  - *jobs
   - *other_scicat

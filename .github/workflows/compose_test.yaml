@@ -115,7 +115,8 @@ jobs:
     strategy:
       matrix:
         BE_VERSION: [v3, v4]
-        ELASTIC_OR_JOBS_ENABLED: ['', elastic_or_jobs]
+        ELASTIC_ENABLED: ['', elastic]
+        JOBS_ENABLED: ['', jobs]
         LDAP_ENABLED: ['', ldap]
         OIDC_ENABLED: ['', oidc]
         DEV: ['', dev]
@@ -128,9 +129,13 @@ jobs:
                   && 'v4'
                 )
               }}
-          - ELASTIC_OR_JOBS_ENABLED: ${{
-                !fromJson(needs.changes.outputs.all).elastic_or_jobs_all_modified_files
-                && 'elastic_or_jobs' || 'nothing'
+          - ELASTIC_ENABLED: ${{
+                !fromJson(needs.changes.outputs.all).elastic_all_modified_files
+                && 'elastic' || 'nothing'
+              }}
+          - JOBS_ENABLED: ${{
+                !fromJson(needs.changes.outputs.all).jobs_all_modified_files
+                && 'jobs' || 'nothing'
               }}
           - LDAP_ENABLED: ${{
                 !fromJson(needs.changes.outputs.all).ldap_all_modified_files
@@ -144,12 +149,14 @@ jobs:
                 !fromJson(needs.changes.outputs.all).dev_all_modified_files
                 && 'dev' || 'nothing'
               }}
+          - ELASTIC_ENABLED: elastic
+            BE_VERSION: v3
     steps:
       - uses: actions/checkout@v4
       - name: Test compose.yaml
         run: |-
-          export JOBS_ENABLED=${{ matrix.ELASTIC_OR_JOBS_ENABLED }}
-          export ELASTIC_ENABLED=${{ matrix.ELASTIC_OR_JOBS_ENABLED }}
+          export JOBS_ENABLED=${{ matrix.JOBS_ENABLED }}
+          export ELASTIC_ENABLED=${{ matrix.ELASTIC_ENABLED }}
           export LDAP_ENABLED=${{ matrix.LDAP_ENABLED }}
           export OIDC_ENABLED=${{ matrix.OIDC_ENABLED }}
           export BE_VERSION=${{ matrix.BE_VERSION }}

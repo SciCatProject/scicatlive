@@ -12,6 +12,8 @@ services:
       - ./config/requirements.txt:/home/jovyan/requirements.txt
     env_file:
       - config/.env
+    environment:
+      BE_VERSION: ${BE_VERSION:-v4}
     profiles:
       - analysis
     restart: on-failure

@@ -7,8 +7,7 @@ services:
       target: dev
     volumes:
       - ./config/functionalAccounts.dev.json:/home/node/app/functionalAccounts.json
-    env_file:
-      - ./config/.dev.env
+      - ./config/.dev.env:/home/node/app/test/config/.env.override
     healthcheck:
       retries: 20
       interval: 1m

@@ -3,6 +3,7 @@
 from os import environ
 from os import path as ospath
 from pathlib import Path
+from re import match
 from urllib.parse import urljoin, urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
@@ -58,6 +59,11 @@ def on_page_content(html: str, page: Page, config: MkDocsConfig, files: Files) -
             resolved_path = resolved_path / doc_file
         else:
             replace_href = True
+        if netloc == "stackoverflow.com":
+            netloc = "api.stackexchange.com"
+            question_id = match(r"/questions/(\d+)", path).group(1)
+            resolved_path = f"/2.3/questions/{question_id}"
+            query = "site=stackoverflow"
         relative_path = urlunsplit(
             (scheme, netloc, str(resolved_path), query, fragment),
         )

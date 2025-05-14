@@ -6,18 +6,14 @@
   "reviewers": [
     "team:release-scicatlive"
   ],
+  "ignorePaths": [
+    "services/frontend/compose.v3.yaml"
+  ],
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
       "reviewers": []
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["ghcr.io/scicatproject/frontend"],
-      "matchUpdateTypes": ["major"],
-      "labels": ["v3 breaking change"],
-      "draftPR": true
     },
     {
       "matchDatasources": ["docker"],

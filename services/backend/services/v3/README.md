@@ -67,7 +67,7 @@ In the default configuration folder [config](./config), the backend is set to us
 
 ## Enable additional features
 
-Additionally, by setting the env variable `JOBS_ENABLED`, the [archive mock](./services/archivemock/) and [rabbitmq](./services/rabbitmq/) services are started and the backend is configured to connect to them.
+Additionally, by setting the env variable `JOBS_ENABLED`, the [archive mock](./services/archivemock/) service is started and configured to connect to v3  and [rabbitmq](../rabbitmq).
 
 If `LDAP_ENABLED` is toggled, you can use LDAP to log in with a [LDAP user](../ldap/README.md#default-configuration).
 
@@ -82,6 +82,5 @@ Here below we show the internal dependencies of the service, which are not alrea
 ```mermaid
 graph TD
     rabbitmq --> archivemock
-    rabbitmq --> backend
     backend --> archivemock
 ```

@@ -1400,10 +1400,10 @@ and easy way to learn about SciCat and its features for people who are looking t
   <ul>
    <li>
     Jobs - this mechanism posts to a
-    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/services/rabbitmq">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/rabbitmq">
      message broker
     </a>
-    , which can then trigger
+    . In v3 it can then trigger
     <a href="./services/backend/services/v3/services/archivemock/">
      down stream processes
     </a>
@@ -1865,7 +1865,7 @@ and easy way to learn about SciCat and its features for people who are looking t
       <code>
        true
       </code>
-      : rabbitmq,archivemock,jobs feature
+      : rabbitmq,archivemock (v3 only),jobs feature
      </td>
      <td>
       <code>
@@ -1873,7 +1873,7 @@ and easy way to learn about SciCat and its features for people who are looking t
       </code>
      </td>
      <td>
-      v3
+      *
      </td>
      <td>
       Creates a RabbitMQ message broker which the BE posts to and the archivemock listens to. It emulates the data long-term archive/retrieve workflow

@@ -887,6 +887,17 @@
    </a>
    .
   </p>
+  <p>
+   Additionally, by setting the env variable
+   <code>
+    JOBS_ENABLED
+   </code>
+   , the
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/rabbitmq">
+    rabbitmq
+   </a>
+   service is started and the backend configured to connect to it.
+  </p>
   <h2 id="dependencies">
    Dependencies
    <a class="headerlink" href="#dependencies" title="Permanent link">
@@ -934,7 +945,8 @@
   </p>
   <pre class="mermaid"><code>graph TD
     ldap --&gt; backend
-    keycloak --&gt; backend</code></pre>
+    keycloak --&gt; backend
+    rabbitmq --&gt; backend</code></pre>
  </body>
 </html>
 

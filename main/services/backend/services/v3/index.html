@@ -1442,11 +1442,11 @@ It consists of two blocks, the
    <a href="./services/archivemock/">
     archive mock
    </a>
-   and
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/services/rabbitmq">
+   service is started and configured to connect to v3  and
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/rabbitmq">
     rabbitmq
    </a>
-   services are started and the backend is configured to connect to them.
+   .
   </p>
   <p>
    If
@@ -1520,7 +1520,6 @@ It consists of two blocks, the
   </p>
   <pre class="mermaid"><code>graph TD
     rabbitmq --&gt; archivemock
-    rabbitmq --&gt; backend
     backend --&gt; archivemock</code></pre>
  </body>
 </html>

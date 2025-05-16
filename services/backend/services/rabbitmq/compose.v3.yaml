@@ -1,0 +1,8 @@
+services:
+  rabbitmq:
+    # pinned to 4.0 because rabbitmq>=4.1 is not compatible with BE v3
+    image: rabbitmq:4.0-management-alpine
+
+volumes:
+  backendv3_rabbitmq_data:
+    driver: local

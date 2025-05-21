@@ -3,7 +3,7 @@ beautifulsoup4==4.13.4
 bracex==2.5.post1
 certifi==2025.4.26
 charset-normalizer==3.4.2
-click==8.2.0
+click==8.2.1
 colorama==0.4.6
 ghp-import==2.1.0
 idna==3.10

@@ -1,0 +1,20 @@
+{
+  "name": "scicat-integration-tests",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node-fetch": "^2.6.12",
+    "jest": "^30.0.3",
+    "node-fetch": "^3.3.2",
+    "testcontainers": "^11.0.3",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3"
+  }
+}

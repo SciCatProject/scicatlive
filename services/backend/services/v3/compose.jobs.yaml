@@ -1,5 +1,7 @@
 include:
-  - services/rabbitmq/compose.yaml
+  - path:
+      - ../rabbitmq/compose.yaml
+      - ../rabbitmq/compose.v3.yaml
   - services/archivemock/compose.yaml
 
 services:

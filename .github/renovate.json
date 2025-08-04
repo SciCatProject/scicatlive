@@ -6,24 +6,15 @@
   "reviewers": [
     "team:release-scicatlive"
   ],
+  "ignorePaths": [
+    "services/frontend/compose.v3.yaml",
+    "services/backend/services/rabbitmq/compose.v3.yaml"
+  ],
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["ghcr.io/scicatproject/frontend"],
-      "matchUpdateTypes": ["major"],
-      "labels": ["v3 breaking change"],
-      "draftPR": true
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["rabbitmq"],
-      "matchUpdateTypes": ["major", "minor"],
-      "labels": ["v3 breaking change"],
-      "draftPR": true
+      "automerge": true,
+      "reviewers": []
     }
   ]
 }

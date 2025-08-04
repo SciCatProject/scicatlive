@@ -8,6 +8,8 @@ The `BE_VERSION` value controls which version of the backend should be started, 
 
 Setting the [BACKEND_HTTPS_URL and OIDC_ENABLED env variables](../../.env) requires changing the OIDC configuration, either in the v3 [compose.oidc.yaml](./services/v3/compose.oidc.yaml) and [providers.oidc.json](./services/v3/config/providers.oidc.json), or the v4 [env file](./services/v4/config/.oidc.env).
 
+Additionally, by setting the env variable `JOBS_ENABLED`, the [rabbitmq](./services/rabbitmq/) service is started and the backend configured to connect to it.
+
 ## Dependencies
 
 Here below we show the internal dependencies of the service, which are not already covered [here](../../README.md) (if `B` depends on `A`, then we visualize it as `A --> B`). The same subdomain to service convention applies.
@@ -18,4 +20,5 @@ Here below we show the internal dependencies of the service, which are not alrea
 graph TD
     ldap --> backend
     keycloak --> backend
+    rabbitmq --> backend
 ```

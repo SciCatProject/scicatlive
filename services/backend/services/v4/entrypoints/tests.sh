@@ -4,7 +4,7 @@
 ## avoiding to fill the RAM which makes them freeze
 npm run test -- --runInBand
 
-npm start &
+npm run start:test &
 PID="${!}"
 sleep 30
 npm run test:api:mocha

@@ -15,6 +15,8 @@ services:
     command: nginx -g "daemon off;"
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)
+      # Adding a label for traefik to learn which port to look for a service on
+      - traefik.http.services.frontend.loadbalancer.server.port=8080
     restart: on-failure
     environment:
       BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}

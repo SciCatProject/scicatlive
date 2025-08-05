@@ -17,3 +17,8 @@ For an explanation of how setting `BE_VERSION` changes the environment creation 
 Setting the [BACKEND_HTTPS_URL env variables](./config/.env) requires changing the `backend` URL used by the `oaimph`. This is managed [here](./config/.env).
 
 :warning: When setting `OAIPMH_HTTPS_URL` it is likely you also want to set the `BACKEND_HTTPS_URL`, to allow the communication between the two wherever the browser is accessed.
+
+
+## DEV configuration
+
+Running the service in DEV mode is supported, but be aware that the upstream tests fail, so `npm run test` will fail in the scicatlive oaipmh container as well.

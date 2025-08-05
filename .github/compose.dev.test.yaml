@@ -11,3 +11,6 @@ services:
   backend:
     volumes:
       - ./services/backend/services/${BE_VERSION}/entrypoints/tests.sh:/docker-entrypoints/90.sh
+  # oaipmh:
+  # tests are not run as the upstream tests fail.
+  # See comment in the oaipmh readme

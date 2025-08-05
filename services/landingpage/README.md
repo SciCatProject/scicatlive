@@ -14,8 +14,6 @@ In the default configuration [config.json file](./config/config.json), the landi
 
 For an explanation of how setting `BE_VERSION` changes the environment creation see [here](../../README.md#docker-compose-profiles-and-env-variables-configuration-options).
 
-You can also add a footer with customizable `contactEmail` and a status banner with `statusCode = INFO | WARN | NONE` and a corresponding `statusMessage` as shown in [config.json](./config/config.json). All of these three settings are optional. 
-
 ## Enable additional features
 
 Setting the [BACKEND_HTTPS_URL and FRONTEND_HTTPS_URL env variables](../../.env) requires changing the `backend` and the `frontend` URL used by the `landingpage`. This is managed [here](../../entrypoints/merge_json.sh).

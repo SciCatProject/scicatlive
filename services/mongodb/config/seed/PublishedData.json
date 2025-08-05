@@ -1,6 +1,6 @@
 [
 	{
-		"_id": "DOI.SAMPLE.PREFIX/desy_pub1",
+		"_id": "10.9999/desy_pub1",
 		"creator": [
 			"Oleksandr Yefanov",
 			"al."
@@ -39,7 +39,7 @@
 		}
 	},
 	{
-		"_id": "DOI.SAMPLE.PREFIX/dls_pub1",
+		"_id": "10.9999/dls_pub1",
 		"creator": [
 			"Stephen Collins"
 		],
@@ -75,7 +75,7 @@
 		}
 	},
 	{
-		"_id": "DOI.SAMPLE.PREFIX/hzdr_pub1",
+		"_id": "10.9999/hzdr_pub1",
 		"creator": [
 			"Hao Chu",
 			"al."
@@ -112,7 +112,7 @@
 		}
 	},
 	{
-		"_id": "DOI.SAMPLE.PREFIX/maxiv_pub1",
+		"_id": "10.9999/maxiv_pub1",
 		"creator": [
 			"Rajmund Mokso",
 			"al."
@@ -150,7 +150,7 @@
 		}
 	},
 	{
-		"_id": "DOI.SAMPLE.PREFIX/maxiv_pub2",
+		"_id": "10.9999/maxiv_pub2",
 		"creator": [
 			"Maik Kahnt",
 			"al."
@@ -187,7 +187,7 @@
 		}
 	},
 	{
-		"_id": "DOI.SAMPLE.PREFIX/psi_pub1",
+		"_id": "10.9999/psi_pub1",
 		"creator": [
 			"Elena Borisova",
 			"Goran Lovric",
@@ -233,7 +233,7 @@
 		}
 	},
 	{
-		"_id": "DOI.SAMPLE.PREFIX/soleil_pub1",
+		"_id": "10.9999/soleil_pub1",
 		"creator": [
 			"Doru Constantin",
 			"al."
@@ -268,7 +268,7 @@
 		}
 	},
 	{
-		"_id": "DOI.SAMPLE.PREFIX/ukri_pub1",
+		"_id": "10.9999/ukri_pub1",
 		"creator": [
 			"Franz Lang"
 		],
@@ -305,7 +305,7 @@
 		}
 	},
 	{
-		"_id": "DOI.SAMPLE.PREFIX/ukri_pub3",
+		"_id": "10.9999/ukri_pub3",
 		"creator": [
 			"Chiara Triestino"
 		],
@@ -341,7 +341,7 @@
 		}
 	},
 	{
-		"_id": "DOI.SAMPLE.PREFIX/ukri_pub4",
+		"_id": "10.9999/ukri_pub4",
 		"creator": [
 			"Gabriel Bernardo"
 		],
@@ -378,7 +378,7 @@
 		}
 	},
 	{
-		"_id": "DOI.SAMPLE.PREFIX/dls_pub2",
+		"_id": "10.9999/dls_pub2",
 		"creator": [
 			"Duncan N. Johnstone",
 			"al."

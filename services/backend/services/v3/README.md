@@ -43,7 +43,7 @@ It allows setting backend-specific configurations. Here are the commonly changed
 Name | Description | Value
 --- | --- | ---
 pidPrefix | prefix of the internal IDs | "PID.SAMPLE.PREFIX"
-doiPrefix | prefix of the published DOIs | "DOI.SAMPLE.PREFIX"
+doiPrefix | prefix of the published DOIs | "10.9999"
 policyPublicationShiftInYears | number of years before the data should be made open access. This is only an annotation in the metadata and no action is triggered after expiration | 3
 policyRetentionShiftInYears | number of years by which the data should be kept. This is only an annotation in the metadata and no action is triggered after expiration | 10
 site | name of the facility runnin SciCat | "SAMPLE-SITE"

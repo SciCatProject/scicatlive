@@ -7,8 +7,8 @@ services:
     env_file:
       - ./config/.env
     labels:
-      # Adding a label to keep this service out of traefik
-      - traefik.enable=false
+      # Adding a label for traefik to learn which port to look for a service on
+      - traefik.http.services.searchapi.loadbalancer.server.port=3000
     profiles:
       - search
     restart: on-failure

@@ -1,6 +1,6 @@
 services:
   landingpage:
-    image: ghcr.io/scicatproject/landingpageserver:v3.3
+    image: ghcr.io/scicatproject/landingpageserver:v3.4
     volumes:
       - ./config/config.json:/config/0.json
       # docker-entrypoint.d is available only in the nginx layer

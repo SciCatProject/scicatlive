@@ -7,7 +7,7 @@ module.exports = {
   host: process.env.HOST || "0.0.0.0",
   port: process.env.PORT || 3000,
   pidPrefix: "PID.SAMPLE.PREFIX",
-  doiPrefix: "DOI.SAMPLE.PREFIX",
+  doiPrefix: "10.9999",
   policyPublicationShiftInYears: 3,
   policyRetentionShiftInYears: 10,
   metadataKeysReturnLimit:100,

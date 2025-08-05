@@ -6,6 +6,9 @@ services:
       - backend
     env_file:
       - ./config/.env
+    labels:
+      # Adding a label to keep this service out of traefik
+      - traefik.enable=false
     profiles:
       - search
     restart: on-failure

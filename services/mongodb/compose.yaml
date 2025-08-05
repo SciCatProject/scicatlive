@@ -6,8 +6,8 @@ services:
       - ./config/init.sh:/docker-entrypoint-initdb.d/init.sh
       - ./config/seed:/seed
     labels:
-      # Adding a label for traefik to learn which port to look for a service on
-      - traefik.http.services.mongodb.loadbalancer.server.port=27017
+      # Adding a label to keep this service out of traefik
+      - traefik.enable=false
     environment:
       BE_VERSION: ${BE_VERSION:-v4}
       DEV: ${DEV:+dev-}

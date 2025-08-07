@@ -164,4 +164,12 @@ jobs:
           export DEV_BBACKUP=${DEV}
           docker compose --profile '*' \
             -f compose.yaml ${DEV:+-f .github/compose.dev.test.yaml} \
-            up --wait --wait-timeout 1200
+            up --wait --wait-timeout 1200 \
+            || {
+              docker compose ps --status=exited --services \
+                | while read service; do
+                  echo "Logs for $service"
+                  docker compose logs "$service"
+                done
+              exit 1
+            }

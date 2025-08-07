@@ -1,0 +1,6 @@
+services:
+  frontend:
+  # pinned to v4.7.0 because FE>v5 is not compatible with BE v3
+    image: ghcr.io/scicatproject/frontend:v4.7.0
+    volumes:
+      - ./config/config.v3.json:/config/1.json

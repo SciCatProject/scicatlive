@@ -1,0 +1,16 @@
+services:
+  frontend:
+    extends:
+      file: ${PWD}/services/compose.dev.yaml
+      service: node-app-from-remote
+    build:
+      target: builder
+    environment:
+      CONFIG_DIR: ${WORKDIR}/src/assets
+      CHROME_BIN: /usr/bin/chromium
+    volumes:
+      - ${PWD}/entrypoints/add_chrome.sh:/docker-entrypoints/20.sh
+
+volumes:
+  frontend_dev:
+    driver: local

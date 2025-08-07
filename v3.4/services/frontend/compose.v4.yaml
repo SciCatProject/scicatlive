@@ -1,0 +1,4 @@
+services:
+  frontend:
+    volumes:
+      - ./config/config.v4.json:/config/1.json

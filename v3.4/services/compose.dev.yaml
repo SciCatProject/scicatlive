@@ -1,0 +1,35 @@
+services:
+  web-app:
+    entrypoint: loop_entrypoints.sh
+    command: infinite_loop.sh
+    healthcheck:
+      test: pgrep -f "/bin/sh /usr/local/bin/infinite_loop.sh"
+      retries: 10
+    labels:
+      - traefik.http.services.${APP}.loadbalancer.server.port=${DEV_PORT}
+    volumes:
+      # These volumes allow to run init scripts before running the service
+      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
+      - ${PWD}/entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
+      - ${PWD}/entrypoints/bidirectional_backup.sh:/docker-entrypoints/${DEV_BBACKUP:+1}00.sh
+      - ${PWD}/entrypoints/chown_root.sh:/docker-entrypoints/00.sh
+      - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/01.sh
+    environment:
+      GITHUB_REPO: ${GITHUB_REPO:-}
+      WORKDIR: ${WORKDIR:-/home/node/app}
+    user: root
+    restart: no
+  node-app-from-local:
+    extends: web-app
+    volumes:
+      # This prevents git unpushed changes from being lost on container restart
+      - ${DEV_VOLUME:-${APP}}_dev:${WORKDIR:-/home/node/app}
+      - ${DEV_BBACKUP:+${PWD}/bbackup/${COMPOSE_PROJECT_NAME}/${DEV_VOLUME:-${APP}}:}/bbackup
+      # These allow to keep changes from npm install/build from Dockerfile CMDs
+      - ${WORKDIR:-/home/node/app}/node_modules
+  node-app-from-remote:
+    extends: node-app-from-local
+    image: ''
+    build:
+      context: ${GITHUB_REPO:-}
+      no_cache: true

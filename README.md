@@ -37,11 +37,10 @@ However, if you want to run it on Windows you have to be careful about:
 
 By running `docker compose up -d` these steps take place:
 
-1. a [mongodb](./services/mongodb/) container is created with some initial data.
-2. the SciCat [backend v4](./services/backend/services/v4/) container is created and connected to (1).
-3. the SciCat [frontend](./services/frontend/) container is created and connected to (2).
-4. a reverse [proxy](./services/proxy) container is created and routes traffic to (2) and (3) through localhost subdomains, in the form: `http://${service}.localhost`. The frontend is available at simply `http://localhost`. 
-5. Some services have additional endpoints that can be explored in SciCatLive which would follow `http://${service}.localhost/${prefix}`. For example, the backend API can be explored through a Swagger UI at `http://backend.localhost/explorer`.  For more information on the paths used by these routes see the original documentation for these services. 
+1. the SciCat [backend v4](./services/backend/services/v4/) container is created and connected to a [mongo DB](./services/backend/services/mongodb/).
+2. the SciCat [frontend](./services/frontend/) container is created and connected to (1).
+3. a reverse [proxy](./services/proxy) container is created and routes traffic to (1) and (2) through localhost subdomains, in the form: `http://${service}.localhost`. The frontend is available at simply `http://localhost`. 
+4. Some services have additional endpoints that can be explored in SciCatLive which would follow `http://${service}.localhost/${prefix}`. For example, the backend API can be explored through a Swagger UI at `http://backend.localhost/explorer`.  For more information on the paths used by these routes see the original documentation for these services. 
 
 ## Extra services and features
 
@@ -82,7 +81,6 @@ graph TD
       subgraph backend
          backends[v3*/v4*]
       end
-      mongodb --> backend
       backend --> frontend
       backend --> searchapi
       backend --> landingpage
@@ -144,7 +142,7 @@ For example, to use the Jobs functionality of SciCat change `JOBS_ENABLED` to tr
 
 They are used when adding new services or grouping services together (and do not require changes in multiple services). To enable any, run `docker compose --profile <PROFILE> up -d`, or export the `COMPOSE_PROFILES` env variable as described [here](https://docs.docker.com/compose/environment-variables/envvars-precedence/). If needed, the user can specify more than one profile in the CLI by using the flag as `--profile <PROFILE1> --profile <PROFILE2>`. 
 
-For example `docker compose --profile analysis` sets up a jupyter hub with some notebooks for ingesting data into SciCat, as well as the related services (backend, mongodb, proxy). For more information on profiles available in SciCat live see the following [table](#docker-compose-profiles-and-env-variables-configuration-options). 
+For example `docker compose --profile analysis` sets up a jupyter hub with some notebooks for ingesting data into SciCat, as well as the related services (backend, proxy). For more information on profiles available in SciCat live see the following [table](#docker-compose-profiles-and-env-variables-configuration-options). 
 
 ### Docker compose profiles and env variables configuration options
 

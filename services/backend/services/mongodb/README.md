@@ -14,12 +14,12 @@ These files are ingested into the database using mongo funcionalities and bypass
 
 ## Default configuration
 
-In the default configuration [init.sh](./config/init.sh), the seeding creates data in the mongodb database used by the `backend` service (either [v4](../backend/services/v4/), by default, or [v3](../backend/services/v3/) if specified otherwise by setting `BE_VERSION`).
+In the default configuration [init.sh](./config/init.sh), the seeding creates data in the mongodb database used by the `backend` service (either [v4](../v4/), by default, or [v3](../v3/) if specified otherwise by setting `BE_VERSION`).
 
 When `DEV=true` and `BE_VERSION=v4` the seeding writes to `dev-dacat-next`.
 
-For an explanation of how setting `BE_VERSION` changes the environment creation see [here](../../README.md#docker-compose-profiles-and-env-variables-configuration-options).
+For an explanation of how setting `BE_VERSION` changes the environment creation see [here](../../../../README.md#docker-compose-profiles-and-env-variables-configuration-options).
 
 ## Dependency on `BE_VERSION`
 
-Since [v3](../backend/services/v3/) and [v4](../backend/services/v4/) connect to two different DBs, the [BE_VERSION](./compose.yaml#L9) environment variable controls [which DB](./config/init.sh#L5) should be seeded (`dacat` for [v3](../backend/services/v3/) and `dacat-next` for [v4](../backend/services/v4/)).
+Since [v3](../v3/) and [v4](../v4/) connect to two different DBs, the [BE_VERSION](./compose.yaml#L9) environment variable controls [which DB](./config/init.sh#L5) should be seeded (`dacat` for [v3](../v3/) and `dacat-next` for [v4](../v4/)).

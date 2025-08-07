@@ -5,6 +5,9 @@ services:
       - backend${BE_VERSION:-v4}_mongodb_data:/data/db
       - ./config/init.sh:/docker-entrypoint-initdb.d/init.sh
       - ./config/seed:/seed
+    labels:
+      # Adding a label to keep this service out of traefik
+      - traefik.enable=false
     environment:
       BE_VERSION: ${BE_VERSION:-v4}
       DEV: ${DEV:+dev-}

@@ -15,6 +15,9 @@ services:
       - loop_entrypoints.sh
       - docker-entrypoint.sh
     command: node .
+    labels:
+      # Adding a label for traefik to learn which port to look for a service on
+      - traefik.http.services.backend.loadbalancer.server.port=3000
     healthcheck:
       test: wget --spider 'http://127.0.0.1:3000/'
       start_period: 5s

@@ -8,6 +8,9 @@ services:
       memlock:
         soft: -1
         hard: -1
+    labels:
+      # Adding a label to keep this service out of traefik
+      - traefik.enable=false
     healthcheck:
       test: >-
         curl -f localhost:9200 | grep -q '"tagline" : "You Know, for Search"'

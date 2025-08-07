@@ -5,6 +5,9 @@ services:
       - ./config/ldifs:/ldifs:ro
     env_file:
       - ./config/.env
+    labels:
+      # Adding a label to keep this service out of traefik
+      - traefik.enable=false
     healthcheck:
       test: ldapwhoami -H ldap://ldap:389 -D 'cn=admin,dc=facility' -w 'admin'
       start_period: 5s

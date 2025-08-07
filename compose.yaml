@@ -1,5 +1,4 @@
 include:
-  - services/mongodb/compose.yaml
   - services/backend/compose.yaml
   - services/frontend/compose.yaml
   - services/searchapi/compose.yaml

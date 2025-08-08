@@ -18,6 +18,7 @@ Here below we show the internal dependencies of the service, which are not alrea
 
 ```mermaid
 graph TD
+    mongodb --> backend
     ldap --> backend
     keycloak --> backend
     rabbitmq --> backend

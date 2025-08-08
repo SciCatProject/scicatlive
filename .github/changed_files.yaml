@@ -49,6 +49,7 @@ other_scicat: &other_scicat
   - services/searchapi/**
   - services/landingpage/**
   - services/frontend/**
+  - services/oaipmh/**
 docs:
   - '**.md'
   - '**/*mkdocs*/**'

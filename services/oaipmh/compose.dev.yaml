@@ -1,0 +1,11 @@
+services:
+  oaipmh:
+    extends:
+      file: ${PWD}/services/compose.dev.yaml
+      service: node-app-from-remote
+    volumes:
+      - ./entrypoints/add_dev_deps.sh:/docker-entrypoints/01.sh
+
+volumes:
+  oaipmh_dev:
+    driver: local

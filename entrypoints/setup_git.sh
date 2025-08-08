@@ -1,7 +1,5 @@
 #!/bin/sh
 
-apk update && apk add git
-
 [ -e ".finished" ] && return 0
 
 ls .git && return 0

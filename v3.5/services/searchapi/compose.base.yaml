@@ -1,0 +1,14 @@
+services:
+  searchapi:
+    platform: linux/amd64
+    image: ghcr.io/scicatproject/panosc-search-api:latest
+    depends_on:
+      - backend
+    env_file:
+      - ./config/.env
+    labels:
+      # Adding a label for traefik to learn which port to look for a service on
+      - traefik.http.services.searchapi.loadbalancer.server.port=3000
+    profiles:
+      - search
+    restart: on-failure

@@ -1,0 +1,18 @@
+services:
+  rabbitmq:
+    image: rabbitmq:4.1-management-alpine
+    labels:
+      - traefik.http.services.rabbitmq.loadbalancer.server.port=15672
+    volumes:
+      - backend${BE_VERSION:-v4}_rabbitmq_data:/bitnami
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      start_period: 5s
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: on-failure
+
+volumes:
+  backendv4_rabbitmq_data:
+    driver: local

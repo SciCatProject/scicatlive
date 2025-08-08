@@ -695,6 +695,29 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="services/backend/services/mongodb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mongodb
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -704,10 +727,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_2_1_2_3" id="__nav_2_1_2_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_1_2_4" id="__nav_2_1_2_4_label" tabindex="0">
             
   
   
@@ -720,8 +743,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_1_2_3">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_4">
             <span class="md-nav__icon md-icon"></span>
             V3
           </label>
@@ -879,29 +902,6 @@
   
   <span class="md-ellipsis">
     Landingpage
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="services/mongodb/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Mongodb
     
   </span>
   
@@ -1361,32 +1361,29 @@ and easy way to learn about SciCat and its features for people who are looking t
   </p>
   <ol>
    <li>
-    a
-    <a href="./services/mongodb/">
-     mongodb
-    </a>
-    container is created with some initial data.
-   </li>
-   <li>
     the SciCat
     <a href="./services/backend/services/v4/">
      backend v4
     </a>
-    container is created and connected to (1).
+    container is created and connected to a
+    <a href="./services/backend/services/mongodb/">
+     mongo DB
+    </a>
+    .
    </li>
    <li>
     the SciCat
     <a href="./services/frontend/">
      frontend
     </a>
-    container is created and connected to (2).
+    container is created and connected to (1).
    </li>
    <li>
     a reverse
     <a href="./services/proxy">
      proxy
     </a>
-    container is created and routes traffic to (2) and (3) through localhost subdomains, in the form:
+    container is created and routes traffic to (1) and (2) through localhost subdomains, in the form:
     <code>
      http://${service}.localhost
     </code>
@@ -1588,7 +1585,6 @@ and easy way to learn about SciCat and its features for people who are looking t
       subgraph backend
          backends[v3*/v4*]
       end
-      mongodb --&gt; backend
       backend --&gt; frontend
       backend --&gt; searchapi
       backend --&gt; landingpage
@@ -1760,7 +1756,7 @@ and easy way to learn about SciCat and its features for people who are looking t
    <code>
     docker compose --profile analysis
    </code>
-   sets up a jupyter hub with some notebooks for ingesting data into SciCat, as well as the related services (backend, mongodb, proxy). For more information on profiles available in SciCat live see the following
+   sets up a jupyter hub with some notebooks for ingesting data into SciCat, as well as the related services (backend, proxy). For more information on profiles available in SciCat live see the following
    <a href="#docker-compose-profiles-and-env-variables-configuration-options">
     table
    </a>

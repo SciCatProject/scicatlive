@@ -1,4 +1,5 @@
 include:
+  - services/mongodb/compose.yaml
   - path:
       - services/${BE_VERSION:-v4}/compose.yaml
       - .${LDAP_ENABLED:+/services/${BE_VERSION:-v4}/}compose.ldap.yaml

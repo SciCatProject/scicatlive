@@ -919,6 +919,29 @@
   
   
     <li class="md-nav__item">
+      <a href="services/oaipmh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OAIPMH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="services/proxy/" class="md-nav__link">
         
   
@@ -1445,7 +1468,7 @@ and easy way to learn about SciCat and its features for people who are looking t
     <a href="./services/landingpage/">
      LandingPage
     </a>
-    - a public interface for published datasets
+    - a public interface for published datasets:
     <a href="https://github.com/SciCatProject/LandingPageServer">
      landingpage
     </a>
@@ -1459,6 +1482,19 @@ and easy way to learn about SciCat and its features for people who are looking t
      pyscicat
     </a>
     .
+   </li>
+   <li>
+    <a href="./services/oaipmh/">
+     OAIPMH
+    </a>
+    - a service for published metadata via the
+    <a href="https://www.openarchives.org/pmh/">
+     OAI-PMH protocol
+    </a>
+    :
+    <a href="https://github.com/SciCatProject/oai-provider-service">
+     oaipmh
+    </a>
    </li>
   </ul>
   <p>
@@ -1556,6 +1592,7 @@ and easy way to learn about SciCat and its features for people who are looking t
       backend --&gt; frontend
       backend --&gt; searchapi
       backend --&gt; landingpage
+      backend --&gt; oaipmh
       backend --&gt; jupyter
    end
 
@@ -1782,13 +1819,13 @@ and easy way to learn about SciCat and its features for people who are looking t
        <code>
         search
        </code>
-       : searchapi,landingpage
+       : searchapi,landingpage,oaipmh
       </li>
       <li>
        <code>
         '*'
        </code>
-       : jupyter,searchapi,landingpage
+       : jupyter,searchapi,landingpage,oaipmh
       </li>
      </td>
      <td>

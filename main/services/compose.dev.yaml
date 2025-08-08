@@ -13,10 +13,12 @@ services:
       - ${PWD}/entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
       - ${PWD}/entrypoints/bidirectional_backup.sh:/docker-entrypoints/${DEV_BBACKUP:+1}00.sh
       - ${PWD}/entrypoints/chown_root.sh:/docker-entrypoints/00.sh
-      - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/01.sh
+      - ${PWD}/entrypoints/add_dev_deps.sh:/docker-entrypoints/01.sh
+      - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/02.sh
     environment:
       GITHUB_REPO: ${GITHUB_REPO:-}
       WORKDIR: ${WORKDIR:-/home/node/app}
+      DEV_BBACKUP: ${DEV_BBACKUP:-}
     user: root
     restart: no
   node-app-from-local:

@@ -10,22 +10,22 @@
       
       
       
-        <link rel="prev" href="../v3/services/archivemock/">
+        <link rel="prev" href="../mongodb/">
       
       
-        <link rel="next" href="../../../frontend/">
+        <link rel="next" href="../proxy/">
       
       
-      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
     
     
       
-        <title>Backend v4 - SciCatLive</title>
+        <title>OAIPMH - SciCatLive</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
       
       
 
@@ -44,7 +44,7 @@
       
     
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#backend-v4" class="md-skip">
+        <a href="#oaipmh" class="md-skip">
           Skip to content
         </a>
       
@@ -78,12 +78,12 @@
             <div class="md-banner__inner md-grid md-typeset">
               
   You're not viewing the latest released version.
-  <a href="../../../../..">
+  <a href="../../..">
     <strong>Click here to go to latest release.</strong>
   </a>
 
             </div>
-            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL("../../../.."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL("../.."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
           </aside>
         
       </div>
@@ -95,7 +95,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="SciCatLive" class="md-header__button md-logo" aria-label="SciCatLive" data-md-component="logo">
+    <a href="../.." title="SciCatLive" class="md-header__button md-logo" aria-label="SciCatLive" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Backend v4
+              OAIPMH
             
           </span>
         </div>
@@ -205,7 +205,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="SciCatLive" class="md-nav__button md-logo" aria-label="SciCatLive" data-md-component="logo">
+    <a href="../.." title="SciCatLive" class="md-nav__button md-logo" aria-label="SciCatLive" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -235,7 +235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -294,20 +294,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
         
           
           <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
@@ -323,7 +321,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_1">
             <span class="md-nav__icon md-icon"></span>
             Backend
@@ -337,7 +335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../backend/" class="md-nav__link">
         
   
   
@@ -357,20 +355,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
         
           
           <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
@@ -386,7 +382,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_1_2">
             <span class="md-nav__icon md-icon"></span>
             Services
@@ -400,7 +396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../keycloak/" class="md-nav__link">
+      <a href="../backend/services/keycloak/" class="md-nav__link">
         
   
   
@@ -423,7 +419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ldap/" class="md-nav__link">
+      <a href="../backend/services/ldap/" class="md-nav__link">
         
   
   
@@ -484,7 +480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../v3/" class="md-nav__link">
+      <a href="../backend/services/v3/" class="md-nav__link">
         
   
   
@@ -507,7 +503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../v3/services/archivemock/" class="md-nav__link">
+      <a href="../backend/services/v3/services/archivemock/" class="md-nav__link">
         
   
   
@@ -535,6 +531,137 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend/services/v4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Backend v4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Frontend
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jupyter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jupyter Notebook
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../landingpage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Landingpage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mongodb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mongodb
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -552,7 +679,7 @@
   
   
   <span class="md-ellipsis">
-    Backend v4
+    OAIPMH
     
   </span>
   
@@ -565,7 +692,7 @@
   
   
   <span class="md-ellipsis">
-    Backend v4
+    OAIPMH
     
   </span>
   
@@ -594,21 +721,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Configuration options">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#functional-accounts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Functional Accounts
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -630,9 +742,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dependencies" class="md-nav__link">
+  <a href="#dev-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Dependencies
+      DEV configuration
     </span>
   </a>
   
@@ -647,22 +759,6 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
               
                 
   
@@ -670,122 +766,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../frontend/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Frontend
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../jupyter/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Jupyter Notebook
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../landingpage/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Landingpage
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../mongodb/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Mongodb
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../oaipmh/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    OAIPMH
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../proxy/" class="md-nav__link">
+      <a href="../proxy/" class="md-nav__link">
         
   
   
@@ -808,7 +789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../searchapi/" class="md-nav__link">
+      <a href="../searchapi/" class="md-nav__link">
         
   
   
@@ -864,21 +845,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Configuration options">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#functional-accounts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Functional Accounts
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -900,9 +866,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dependencies" class="md-nav__link">
+  <a href="#dev-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Dependencies
+      DEV configuration
     </span>
   </a>
   
@@ -929,16 +895,19 @@
 
 <html>
  <body>
-  <h1 id="backend-v4">
-   <a href="https://github.com/SciCatProject/scicat-backend-next">
-    Backend v4
+  <h1 id="oaipmh">
+   <a href="https://github.com/SciCatProject/oai-provider-service">
+    OAIPMH
    </a>
-   <a class="headerlink" href="#backend-v4" title="Permanent link">
+   <a class="headerlink" href="#oaipmh" title="Permanent link">
     ¶
    </a>
   </h1>
   <p>
-   The SciCat backend v4 is a rewrite of the original backend, built on top of the NestJS framework.
+   SciCat supports querying published metadata via the
+   <a href="https://www.openarchives.org/pmh/">
+    OAI-PMH protocol
+   </a>
   </p>
   <h2 id="configuration-options">
    Configuration options
@@ -947,82 +916,12 @@
    </a>
   </h2>
   <p>
-   The backend-next service is mainly configured via environment variables. For an extensive list of available options see
-   <a href="https://github.com/SciCatProject/scicat-backend-next/blob/master/README.md">
-    here
+   The oaipmh configuration is set by the
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/oaipmh/config">
+    config files
    </a>
    .
   </p>
-  <h3 id="functional-accounts">
-   Functional Accounts
-   <a class="headerlink" href="#functional-accounts" title="Permanent link">
-    ¶
-   </a>
-  </h3>
-  <p>
-   There are a few functional accounts available for handling data:
-  </p>
-  <table>
-   <thead>
-    <tr>
-     <th>
-      Username
-     </th>
-     <th>
-      Password
-     </th>
-     <th>
-      Usage
-     </th>
-    </tr>
-   </thead>
-   <tbody>
-    <tr>
-     <td>
-      admin
-     </td>
-     <td>
-      2jf70TPNZsS
-     </td>
-     <td>
-      Admin
-     </td>
-    </tr>
-    <tr>
-     <td>
-      ingestor
-     </td>
-     <td>
-      aman
-     </td>
-     <td>
-      Ingest datasets
-     </td>
-    </tr>
-    <tr>
-     <td>
-      archiveManager
-     </td>
-     <td>
-      aman
-     </td>
-     <td>
-      Manage archiving of datasets
-     </td>
-    </tr>
-    <tr>
-     <td>
-      proposalIngestor
-     </td>
-     <td>
-      aman
-     </td>
-     <td>
-      Ingest proposals
-     </td>
-    </tr>
-   </tbody>
-  </table>
   <h2 id="default-configuration">
    Default configuration
    <a class="headerlink" href="#default-configuration" title="Permanent link">
@@ -1030,13 +929,40 @@
    </a>
   </h2>
   <p>
-   In the default configuration folder
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/config">
-    config
+   In the default configuration
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/oaipmh/config/.env">
+    .env file
    </a>
-   , the backend is set to use the
-   <a href="../../../mongodb/">
-    mongo container
+   , the oaipmh is set to call the
+   <code>
+    backend service
+   </code>
+   available at
+   <code>
+    backend.localhost
+   </code>
+   (either
+   <a href="../backend/services/v4/">
+    v4
+   </a>
+   , by default, or
+   <a href="../backend/services/v3/">
+    v3
+   </a>
+   if specified otherwise by setting
+   <code>
+    BE_VERSION
+   </code>
+   ).
+  </p>
+  <p>
+   For an explanation of how setting
+   <code>
+    BE_VERSION
+   </code>
+   changes the environment creation see
+   <a href="../../#docker-compose-profiles-and-env-variables-configuration-options">
+    here
    </a>
    .
   </p>
@@ -1047,84 +973,49 @@
    </a>
   </h2>
   <p>
-   Additionally, by setting the env variable
-   <code>
-    ELASTIC_ENABLED
-   </code>
-   , the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/services/elastic">
-    elastic search
+   Setting the
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/oaipmh/config/.env">
+    BACKEND_HTTPS_URL env variables
    </a>
-   service is started and the backend is configured to connect to them.
-  </p>
-  <p>
-   If
+   requires changing the
    <code>
-    LDAP_ENABLED
+    backend
    </code>
-   is toggled, you can use LDAP to log in with a
-   <a href="../ldap/#default-configuration">
-    LDAP user
-   </a>
-   .
-  </p>
-  <p>
-   If
+   URL used by the
    <code>
-    OIDC_ENABLED
+    oaimph
    </code>
-   is toggled, you can use OIDC to log in with a
-   <a href="../keycloak/#default-configuration">
-    OIDC user
-   </a>
-   .
-  </p>
-  <p>
-   With
-   <code>
-    DEV=true
-   </code>
-   , since the container might have limited memory, it is recommended to run unit tests with the option
-   <code>
-    --runInBand
-   </code>
-   , as
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/entrypoints/tests.sh">
+   . This is managed
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/oaipmh/config/.env">
     here
    </a>
-   , which makes the tests run sequentially, avoiding to fill the RAM which makes them freeze.
+   .
   </p>
-  <h2 id="dependencies">
-   Dependencies
-   <a class="headerlink" href="#dependencies" title="Permanent link">
+  <p>
+   <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/26a0.svg" title=":warning:"/>
+   When setting
+   <code>
+    OAIPMH_HTTPS_URL
+   </code>
+   it is likely you also want to set the
+   <code>
+    BACKEND_HTTPS_URL
+   </code>
+   , to allow the communication between the two wherever the browser is accessed.
+  </p>
+  <h2 id="dev-configuration">
+   DEV configuration
+   <a class="headerlink" href="#dev-configuration" title="Permanent link">
     ¶
    </a>
   </h2>
   <p>
-   Here below we show the internal dependencies of the service, which are not already covered
-   <a href="../../../../">
-    here
-   </a>
-   and
-   <a href="../../">
-    here
-   </a>
-   (if
+   Running the service in DEV mode is supported, but be aware that the upstream tests fail, so
    <code>
-    B
+    npm run test
    </code>
-   depends on
-   <code>
-    A
-   </code>
-   , then we visualize as
-   <code>
-    A --&gt; B
-   </code>
-   ). The same subdomain to service convention applies.
+   will fail in the scicatlive oaipmh container as well.
   </p>
-  <pre class="mermaid"><code>graph TD
-    elasticsearch --&gt; backend</code></pre>
  </body>
 </html>
 
@@ -1176,10 +1067,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
       
     
   </body>

@@ -63,7 +63,7 @@ jobs:
       - name: Use Node.js v20
         uses: actions/setup-node@v4
         with:
-          node-version: v20
+          node-version: 22
       - name: install eslint and default rules
         run: npm install eslint @eslint/js --save-dev
       - name: Lint javascript files

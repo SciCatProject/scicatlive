@@ -28,11 +28,11 @@ runs:
   steps:
     - if: ${{ !inputs.docs_folder }}
       name: Checkout CI
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         sparse-checkout: .github
     - name: Checkout root
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         path: ${{ !inputs.docs_folder && 'docs' || '' }}
         sparse-checkout: |

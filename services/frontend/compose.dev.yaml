@@ -8,9 +8,15 @@ services:
     environment:
       CONFIG_DIR: ${WORKDIR}/src/assets
       CHROME_BIN: /usr/bin/chromium
+      SDK_MOUNT_PATH: ${COMPOSE_PROJECT_NAME}_frontend_sdk_dev
     volumes:
       - ${PWD}/entrypoints/add_chrome.sh:/docker-entrypoints/20.sh
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./entrypoints/add_docker.sh:/docker-entrypoints/21.sh
+      - frontend_sdk_dev:${WORKDIR}/
 
 volumes:
   frontend_dev:
+    driver: local
+  frontend_sdk_dev:
     driver: local

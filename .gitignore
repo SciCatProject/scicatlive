@@ -5,3 +5,4 @@ node_modules/
 *.ipynb
 .ruff_cache/
 bbackup/*
+!.github/semantic-release/package.json

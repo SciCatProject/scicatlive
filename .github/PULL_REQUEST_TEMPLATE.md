@@ -26,18 +26,11 @@ See https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-
 * changes made
 
 ### Changes checklist
-<details>
-<summary>* [ ] Modified Service</summary>
+
+#### Modified Service?
 
 * [ ] Steps from [features](../README.md#features) in README checked
 
-</details>
+#### New Service?
 
-<details>
-<summary>* [ ] New Service</summary>
-
-* [ ] Steps from [new service](../README.md#advanced) in README checked
-
-</details>
-
-* [ ] Other</summary>
+* [ ] Steps from [new service (advanced)](../README.md#advanced) in README checked

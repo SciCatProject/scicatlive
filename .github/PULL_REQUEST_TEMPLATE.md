@@ -27,17 +27,17 @@ See https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-
 
 ### Changes checklist
 <details>
-<summary>[ ] Modified Service</summary>
+<summary>* [ ] Modified Service</summary>
 
 * [ ] Steps from [features](../README.md#features) in README checked
 
 </details>
 
 <details>
-<summary>[ ] New Service</summary>
+<summary>* [ ] New Service</summary>
 
 * [ ] Steps from [new service](../README.md#advanced) in README checked
 
 </details>
 
-[ ] Other</summary>
+* [ ] Other</summary>

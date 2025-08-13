@@ -42,7 +42,7 @@ By running `docker compose up -d` these steps take place:
 3. a reverse [proxy](./services/proxy) container is created and routes traffic to (1) and (2) through localhost subdomains, in the form: `http://${service}.localhost`. The frontend is available at simply `http://localhost`. 
 4. Some services have additional endpoints that can be explored in SciCatLive which would follow `http://${service}.localhost/${prefix}`. For example, the backend API can be explored through a Swagger UI at `http://backend.localhost/explorer`.  For more information on the paths used by these routes see the original documentation for these services. 
 
-## Extra services and features
+## Extra services
 
 SciCat has extra features as part of its core as well as integrating with external services.
 
@@ -74,7 +74,7 @@ For a guide on how to add a new service, please refer to [this section](#add-a-n
 
 ### Dependencies
 
-Here below we show the dependencies, including the ones of the [extra services](#extra-services-and-features) (if `B` depends on `A`, then we visualize it as `A --> B`):
+Here below we show the dependencies, including the ones of the [extra services](#extra-services) (if `B` depends on `A`, then we visualize it as `A --> B`):
 
 ```mermaid
 graph TD
@@ -132,7 +132,7 @@ Will run, from the [previous section](#default-setup), (1) and (2), skip (3) and
 
 Make sure to check the [backend compatibility](#docker-compose-profiles-and-env-variables-configuration-options) when choosing services and setting `docker compose env vars and profiles`.
 
-
+## Features
 
 ### Docker compose env variables
 

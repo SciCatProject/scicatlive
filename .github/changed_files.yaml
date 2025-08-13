@@ -15,6 +15,7 @@ python:
   - '**.py'
 src: &src
   - '!**/*.md'
+  - '!CODEOWNERS'
   - '!**/*mkdocs*/**'
   - '!**/*mkdocs*'
 ldap:

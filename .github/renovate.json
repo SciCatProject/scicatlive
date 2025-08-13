@@ -3,9 +3,6 @@
   "extends": [
     "config:recommended"
   ],
-  "reviewers": [
-    "team:release-scicatlive"
-  ],
   "ignorePaths": [
     "services/frontend/compose.v3.yaml",
     "services/backend/services/rabbitmq/compose.v3.yaml"

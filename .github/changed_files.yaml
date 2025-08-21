@@ -53,7 +53,7 @@ other_scicat: &other_scicat
   - services/frontend/**
   - services/oaipmh/**
 docs:
-  - '**.md'
+  - '**/README.md'
   - '**/*mkdocs*/**'
   - '**/*mkdocs*'
 dev:

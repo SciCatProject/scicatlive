@@ -3,6 +3,9 @@
   "extends": [
     "config:recommended"
   ],
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps"
   "ignorePaths": [
     "services/frontend/compose.v3.yaml",
     "services/backend/services/rabbitmq/compose.v3.yaml"

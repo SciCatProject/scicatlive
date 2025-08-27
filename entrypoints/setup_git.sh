@@ -14,5 +14,6 @@ git remote add origin "${REPO}"
 git fetch
 DEFAULT_BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
 git reset --hard origin/"${TAG:-$DEFAULT_BRANCH}"
+git clean -fd
 
 echo ".finished" >> .git/info/exclude

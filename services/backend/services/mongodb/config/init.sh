@@ -2,7 +2,7 @@
 
 cd /seed || exit
 
-[ "${BE_VERSION}" = "v4" ] && DB="${DEV}dacat-next" || DB="dacat"
+[ "${BE_VERSION}" = "v4" ] && DB="${DEV}dacat-next" || DB="${DEV}dacat"
 
 for FILE_NAME in *.json
 do

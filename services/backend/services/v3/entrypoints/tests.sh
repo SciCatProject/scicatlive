@@ -1,8 +1,6 @@
 #!/bin/sh
 
-cp /home/node/app/server/datasources.json /home/node/app/server/datasources.json.bak
-
-echo '{"mongo": {"database": "dacat_dev"}}' > /home/node/app/server/datasources.json
+sed -i.bak 's/"database": "dev-dacat"/"database": "dacat_dev"/' /home/node/app/server/datasources.json
 
 npm run test
 

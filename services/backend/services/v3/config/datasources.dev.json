@@ -1,5 +1,5 @@
 {
     "mongo": {
-      "database": "dacat_dev"
+      "database": "dev-dacat"
     }
 }

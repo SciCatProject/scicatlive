@@ -87,10 +87,11 @@ jobs:
     if: fromJson(needs.changes.outputs.all).docs_all_modified_files
     steps:
       - uses: actions/checkout@v5
+      - run: cp -r .github/markdownlint/. .
       - uses: DavidAnson/markdownlint-cli2-action@v20
         with:
           globs: '**/*.md'
-          config: .github/.markdownlint.json
+          config: .markdownlint.yaml
   check-mkdocs:
     runs-on: ubuntu-latest
     needs:

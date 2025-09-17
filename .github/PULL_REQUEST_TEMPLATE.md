@@ -9,28 +9,33 @@ Title should follow the format `<type>(<scope>): <subject>`, where
 See https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines for more details.
 -->
 
+<!-- markdownlint-disable-next-line first-line-h1 -->
 ## Description
+
 <!-- Short description of the pull request -->
 
 ## Motivation
+
 <!-- Background on use case, changes needed -->
 
 ## Fixes
+
 <!-- Please provide a list of the issues fixed by this PR -->
 
-* Bug fixed (#X)
+- Bug fixed (#X)
 
-## Changes:
+## Changes
+
 <!-- Please provide a list of the changes implemented by this PR -->
 
-* changes made
+- changes made
 
 ### Changes checklist
 
 #### Modified Service?
 
-* [ ] Steps from [features](../README.md#features) in README checked
+- [ ] Steps from [features](../README.md#features) in README checked
 
 #### New Service?
 
-* [ ] Steps from [new service (advanced)](../README.md#advanced) in README checked
+- [ ] Steps from [new service (advanced)](../README.md#advanced) in README checked

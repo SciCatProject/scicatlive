@@ -4,7 +4,8 @@ The SciCat backend v4 is a rewrite of the original backend, built on top of the 
 
 ## Configuration options
 
-The backend-next service is mainly configured via environment variables. For an extensive list of available options see [here](https://github.com/SciCatProject/scicat-backend-next/blob/master/README.md).
+The backend-next service is mainly configured via environment variables. For an extensive list of available options see
+the [upstream documentation](https://github.com/SciCatProject/scicat-backend-next/blob/master/README.md).
 
 ### Functional Accounts
 
@@ -23,17 +24,23 @@ In the default configuration folder [config](./config), the backend is set to us
 
 ## Enable additional features
 
-Additionally, by setting the env variable `ELASTIC_ENABLED`, the [elastic search](./services/elastic/) service is started and the backend is configured to connect to them.
+Additionally, by setting the env variable `ELASTIC_ENABLED`, the [elastic search](./services/elastic/) service is
+started and the backend is configured to connect to them.
 
 If `LDAP_ENABLED` is toggled, you can use LDAP to log in with a [LDAP user](../ldap/README.md#default-configuration).
 
-If `OIDC_ENABLED` is toggled, you can use OIDC to log in with a [OIDC user](../keycloak/README.md#default-configuration).
+If `OIDC_ENABLED` is toggled, you can use OIDC to log in with a
+[OIDC user](../keycloak/README.md#default-configuration).
 
-With `DEV=true`, since the container might have limited memory, it is recommended to run unit tests with the option `--runInBand`, as [here](./entrypoints/tests.sh), which makes the tests run sequentially, avoiding to fill the RAM which makes them freeze.
+With `DEV=true`, since the container might have limited memory, it is recommended to run unit tests with the option
+`--runInBand`, as [./entrypoints/tests.sh](./entrypoints/tests.sh), which makes the tests run sequentially, avoiding to
+fill the RAM which makes them freeze.
 
-## Dependencies
+##  Dependencies
 
-Here below we show the internal dependencies of the service, which are not already covered [here](../../../../README.md) and [here](../../README.md) (if `B` depends on `A`, then we visualize as `A --> B`). The same subdomain to service convention applies.
+Here below we show the internal dependencies of the service, which are not already covered in
+[the root docs](../../README.md) and in the [common backend docs](../../README.md) (if `B` depends on `A`, then we
+visualize as `A --> B`). The same subdomain to service convention applies.
 
 ```mermaid
 graph TD

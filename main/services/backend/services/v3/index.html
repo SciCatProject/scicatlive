@@ -1093,7 +1093,9 @@
    </a>
   </h2>
   <p>
-   The v3 backend configuration is set through files. What follows is a list of available options. Some configurations are very verbose and could be simplified, but v3 has reached end of life in favour of v4, thus there is no active development.
+   The v3 backend configuration is set through files. What follows is a list of available options. Some configurations are
+very verbose and could be simplified, but v3 has reached end of life in favour of v4, thus there is no active
+development.
   </p>
   <h3 id="datasourcesjson">
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/datasources.json">
@@ -1104,8 +1106,8 @@
    </a>
   </h3>
   <p>
-   It allows setting the connection to the underlying mongo database. It consists of two blocks: 
-It consists of two blocks, the
+   It allows setting the connection to the underlying mongo database. It consists of two blocks: It consists of two blocks,
+the
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/datasources.json#L18-L21">
     transient one
    </a>
@@ -1237,7 +1239,8 @@ It consists of two blocks, the
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/entrypoints/merge_json.sh">
     merge_json.sh
    </a>
-   . This is done to allow better scoping of providers options.
+   . This is
+done to allow better scoping of providers options.
   </p>
   <h4 id="local">
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/providers.json#L2-L11">
@@ -1248,7 +1251,8 @@ It consists of two blocks, the
    </a>
   </h4>
   <p>
-   The only option available is to either enable or disable the local authentication. Remove the block if you want to disable that.
+   The only option available is to either enable or disable the local authentication. Remove the block if you want to
+disable that.
   </p>
   <h3 id="configlocaljs">
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/config.local.js">
@@ -1465,7 +1469,8 @@ It consists of two blocks, the
    <a href="./services/archivemock/">
     archive mock
    </a>
-   service is started and configured to connect to v3  and
+   service is started
+and configured to connect to v3 and
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/rabbitmq">
     rabbitmq
    </a>
@@ -1502,7 +1507,8 @@ It consists of two blocks, the
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/datasources.dev.json">
     dacat_test
    </a>
-   which is empty. If willing to use the seeded one later during development, just set
+   which is empty. If willing to use the seeded one later during development,
+just set
    <code>
     dacat
    </code>
@@ -1519,13 +1525,13 @@ It consists of two blocks, the
    </a>
   </h2>
   <p>
-   Here below we show the internal dependencies of the service, which are not already covered
-   <a href="../../../../">
-    here
-   </a>
-   and
+   Here below we show the internal dependencies of the service, which are not already covered in
    <a href="../../">
-    here
+    the root docs
+   </a>
+   and in the
+   <a href="../../">
+    common backend docs
    </a>
    (if
    <code>
@@ -1535,7 +1541,8 @@ It consists of two blocks, the
    <code>
     A
    </code>
-   , then we visualize as
+   , then we
+visualize as
    <code>
     A --&gt; B
    </code>

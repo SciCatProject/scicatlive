@@ -907,24 +907,31 @@
    </a>
    and the init script
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/mongodb/config/init.sh">
-    here
+    ./config/init.sh
    </a>
   </p>
   <p>
    To add more collections during the creation of the database:
-1. add the corresponding file(s)
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/mongodb/config/seed">
-    here
-   </a>
-   , keeping the convention:
-   <code>
-    filename := collectionname.json
-   </code>
-   .
-2. Restart the docker container.
   </p>
+  <ol>
+   <li>
+    add the corresponding file(s) in the folder
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/mongodb/config/seed">
+     ./config/seed/
+    </a>
+    , keeping the convention:
+    <code>
+     filename := collectionname.json
+    </code>
+    .
+   </li>
+   <li>
+    Restart the docker container.
+   </li>
+  </ol>
   <p>
-   These files are ingested into the database using mongo funcionalities and bypassing the backend, i.e. they are not to be taken as examples to use the backend API.
+   These files are ingested into the database using mongo funcionalities and bypassing the backend, i.e. they are not to be
+taken as examples to use the backend API.
   </p>
   <h2 id="default-configuration">
    Default configuration
@@ -975,9 +982,9 @@
    <code>
     BE_VERSION
    </code>
-   changes the environment creation see
+   changes the environment creation see the
    <a href="../../../../#docker-compose-profiles-and-env-variables-configuration-options">
-    here
+    configuration options in the root docs
    </a>
    .
   </p>
@@ -1003,7 +1010,8 @@
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/mongodb/compose.yaml#L9">
     BE_VERSION
    </a>
-   environment variable controls
+   environment
+variable controls
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/mongodb/config/init.sh#L5">
     which DB
    </a>

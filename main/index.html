@@ -440,7 +440,7 @@
           <li class="md-nav__item">
   <a href="#if-the-service-does-not-support-entrypoints-yet-one-needs-to" class="md-nav__link">
     <span class="md-ellipsis">
-      If the service does not support entrypoints yet, one needs to:
+      If the service does not support entrypoints yet, one needs to
     </span>
   </a>
   
@@ -1187,7 +1187,7 @@
           <li class="md-nav__item">
   <a href="#if-the-service-does-not-support-entrypoints-yet-one-needs-to" class="md-nav__link">
     <span class="md-ellipsis">
-      If the service does not support entrypoints yet, one needs to:
+      If the service does not support entrypoints yet, one needs to
     </span>
   </a>
   
@@ -1288,8 +1288,9 @@
    </a>
   </h1>
   <p>
-   Get set up with an instance of SciCat to explore the metadata catalog. SciCatlive provides a flexible
-and easy way to learn about SciCat and its features for people who are looking to integrate SciCat into their environment. For a user guide please see
+   Get set up with an instance of SciCat to explore the metadata catalog. SciCatlive provides a flexible and easy way to
+learn about SciCat and its features for people who are looking to integrate SciCat into their environment. For a user
+guide please see
    <a href="https://scicatproject.github.io/documentation/">
     original documentation
    </a>
@@ -1328,34 +1329,43 @@ and easy way to learn about SciCat and its features for people who are looking t
    </p>
    <p>
     However, if you want to run it on Windows you have to be careful about:
-- This project makes use of symbolic links, Windows and git for Windows have to be
-    <a href="https://stackoverflow.com/questions/5917249/git-symbolic-links-in-windows">
-     configured to handle them
-    </a>
-    .
-- End of lines, specifically in shell scripts. If you have the git config parameter
-    <code>
-     auto.crlf
-    </code>
-    set to
-    <code>
-     true
-    </code>
-    , git will replace LF by CRLF causing shell scripts and maybe other things to fail.
-- This project uses the variable
-    <code>
-     ${PWD}
-    </code>
-    to ease path resolution in bind mounts. In PowerShell/Command Prompt, the
-    <code>
-     PWD
-    </code>
-    environment variable doesn't exist so you would need to set in manually before running any
-    <code>
-     docker compose
-    </code>
-    command.
    </p>
+   <ul>
+    <li>
+     This project makes use of symbolic links, Windows and git for Windows have to be
+     <a href="https://stackoverflow.com/questions/5917249/git-symbolic-links-in-windows">
+      configured to handle them
+     </a>
+     .
+    </li>
+    <li>
+     End of lines, specifically in shell scripts. If you have the git config parameter
+     <code>
+      auto.crlf
+     </code>
+     set to
+     <code>
+      true
+     </code>
+     , git will
+  replace LF by CRLF causing shell scripts and maybe other things to fail.
+    </li>
+    <li>
+     This project uses the variable
+     <code>
+      ${PWD}
+     </code>
+     to ease path resolution in bind mounts. In PowerShell/Command Prompt, the
+     <code>
+      PWD
+     </code>
+     environment variable doesn't exist so you would need to set in manually before running any
+     <code>
+      docker compose
+     </code>
+     command.
+    </li>
+   </ul>
   </details>
   <p>
    <br/>
@@ -1363,19 +1373,21 @@ and easy way to learn about SciCat and its features for people who are looking t
   <ol>
    <li>
     Clone the repository
-    <div class="highlight">
-     <pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/SciCatProject/scicatlive.git
-</code></pre>
-    </div>
-   </li>
-   <li>
-    Run with the following command inside the directory
-    <div class="highlight">
-     <pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre>
-    </div>
    </li>
   </ol>
+  <div class="highlight">
+   <pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/SciCatProject/scicatlive.git
+</code></pre>
+  </div>
+  <ol>
+   <li>
+    Run with the following command inside the directory
+   </li>
+  </ol>
+  <div class="highlight">
+   <pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre>
+  </div>
   <h2 id="default-setup">
    Default setup
    <a class="headerlink" href="#default-setup" title="Permanent link">
@@ -1413,7 +1425,8 @@ and easy way to learn about SciCat and its features for people who are looking t
     <a href="./services/proxy">
      proxy
     </a>
-    container is created and routes traffic to (1) and (2) through localhost subdomains, in the form:
+    container is created and routes traffic to (1) and (2) through localhost
+   subdomains, in the form:
     <code>
      http://${service}.localhost
     </code>
@@ -1432,7 +1445,8 @@ and easy way to learn about SciCat and its features for people who are looking t
     <code>
      http://backend.localhost/explorer
     </code>
-    .  For more information on the paths used by these routes see the original documentation for these services.
+    . For more information on the paths used by these routes see the original
+   documentation for these services.
    </li>
   </ol>
   <h2 id="extra-services">
@@ -1457,13 +1471,15 @@ and easy way to learn about SciCat and its features for people who are looking t
     <a href="./services/backend/services/v3/services/archivemock/">
      down stream processes
     </a>
-    . To use this a RabbitMQ server is enabled.
+    . To use this a RabbitMQ server is
+  enabled.
    </li>
    <li>
     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/services/elastic">
      Elasticsearch
     </a>
-    - creates an elasticsearch service to provide full text search in the backend.
+    - creates an elasticsearch service to provide full
+  text search in the backend.
    </li>
   </ul>
   <p>
@@ -1504,7 +1520,8 @@ and easy way to learn about SciCat and its features for people who are looking t
     <a href="./services/jupyter/">
      JupyterHub
     </a>
-    - Adds an instance of JupyterHub which demonstrates ingestion and extraction of metadata using
+    - Adds an instance of JupyterHub which demonstrates ingestion and extraction of
+  metadata using
     <a href="https://scicatproject.github.io/pyscicat/">
      pyscicat
     </a>
@@ -1525,14 +1542,16 @@ and easy way to learn about SciCat and its features for people who are looking t
    </li>
   </ul>
   <p>
-   To simply enable one or more of these extra services configure them by setting the proper environment variable(s) and/or compose profile(s) from
+   To simply enable one or more of these extra services configure them by setting the proper environment variable(s) and/or
+compose profile(s) from
    <a href="#docker-compose-profiles-and-env-variables-configuration-options">
     this table
    </a>
    .
   </p>
   <p>
-   For a complete guide on how to customise or configure any service, including the default ones, please refer to these sections:
+   For a complete guide on how to customise or configure any service, including the default ones, please refer to these
+sections:
   </p>
   <ul>
    <li>
@@ -1604,7 +1623,8 @@ and easy way to learn about SciCat and its features for people who are looking t
    <code>
     A
    </code>
-   , then we visualize it as
+   ,
+then we visualize it as
    <code>
     A --&gt; B
    </code>
@@ -1640,7 +1660,8 @@ and easy way to learn about SciCat and its features for people who are looking t
    </a>
   </h3>
   <p>
-   The user can selectively decide the containers to spin up and the dependencies will be resolved accordingly. The available services are in the
+   The user can selectively decide the containers to spin up and the dependencies will be resolved accordingly. The
+available services are in the
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services">
     services
    </a>
@@ -1655,7 +1676,8 @@ and easy way to learn about SciCat and its features for people who are looking t
    <code>
     proxy
    </code>
-   , so the service will not be available at
+   , so the
+service will not be available at
    <code>
     backend.localhost
    </code>
@@ -1718,7 +1740,8 @@ and easy way to learn about SciCat and its features for people who are looking t
    <a href="#docker-compose-profiles-and-env-variables-configuration-options">
     backend compatibility
    </a>
-   when choosing services and setting
+   when
+choosing services and setting
    <code>
     docker compose env vars and profiles
    </code>
@@ -1737,11 +1760,14 @@ and easy way to learn about SciCat and its features for people who are looking t
    </a>
   </h3>
   <p>
-   They are used to modify existing services where whenever enabling the feature requires changes in multiple services. They also have the advantage, compared to docker profiles, of not needing to define a new profile when a new combination of features becomes available. To set an env variable for docker compose, either assign it in the shell or change the
+   They are used to modify existing services where whenever enabling the feature requires changes in multiple services.
+They also have the advantage, compared to docker profiles, of not needing to define a new profile when a new combination
+of features becomes available. To set an env variable for docker compose, either assign it in the shell or change the
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
     .env
    </a>
-   file. To later unset it, either unset it from the shell or assign it an empty value, either in the shell or in the
+   file. To later unset it, either unset it from the shell or assign it an empty value, either in the shell
+or in the
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
     .env
    </a>
@@ -1756,9 +1782,9 @@ and easy way to learn about SciCat and its features for people who are looking t
    <code>
     docker compose
    </code>
-   command or simply export it in the shell. For all env configuration options see
+   command or simply export it in the shell. For all env configuration options see this
    <a href="#docker-compose-profiles-and-env-variables-configuration-options">
-    here
+    section
    </a>
    .
   </p>
@@ -1769,7 +1795,8 @@ and easy way to learn about SciCat and its features for people who are looking t
    </a>
   </h3>
   <p>
-   They are used when adding new services or grouping services together (and do not require changes in multiple services). To enable any, run
+   They are used when adding new services or grouping services together (and do not require changes in multiple services).
+To enable any, run
    <code>
     docker compose --profile &lt;PROFILE&gt; up -d
    </code>
@@ -1777,11 +1804,13 @@ and easy way to learn about SciCat and its features for people who are looking t
    <code>
     COMPOSE_PROFILES
    </code>
-   env variable as described
+   env variable as
+described by the
    <a href="https://docs.docker.com/compose/environment-variables/envvars-precedence/">
-    here
+    docker docs
    </a>
-   . If needed, the user can specify more than one profile in the CLI by using the flag as
+   . If needed,
+the user can specify more than one profile in the CLI by using the flag as
    <code>
     --profile &lt;PROFILE1&gt; --profile &lt;PROFILE2&gt;
    </code>
@@ -1792,7 +1821,9 @@ and easy way to learn about SciCat and its features for people who are looking t
    <code>
     docker compose --profile analysis
    </code>
-   sets up a jupyter hub with some notebooks for ingesting data into SciCat, as well as the related services (backend, proxy). For more information on profiles available in SciCat live see the following
+   sets up a jupyter hub with some notebooks for ingesting data into
+SciCat, as well as the related services (backend, proxy). For more information on profiles available in SciCat live see
+the following
    <a href="#docker-compose-profiles-and-env-variables-configuration-options">
     table
    </a>
@@ -2137,11 +2168,11 @@ and easy way to learn about SciCat and its features for people who are looking t
    </tbody>
   </table>
   <p>
-   After optionally setting any configuration option, one can still select the services to run as described
+   After optionally setting any configuration option, one can still select the services to run as described by the
    <a href="#select-the-services">
-    here
+    select the services
    </a>
-   .
+   section.
   </p>
   <h4 id="dev-configuration">
    DEV configuration
@@ -2158,30 +2189,37 @@ and easy way to learn about SciCat and its features for people who are looking t
     <code>
      DEV=true
     </code>
-    option creates the SciCat services (see DEV from
+    option creates the SciCat services (see
+DEV from the
     <a href="#docker-compose-env-variables">
-     here
+     env vars section
     </a>
-    for the list), but instead of running them, it just creates the base environment that each service requires. For example, for the
+    for the list), but instead of running them, it just
+creates the base environment that each service requires. For example, for the
     <code>
      backend
     </code>
-    , instead of running the web server, it creates a NODE environment with
+    , instead of running the web
+server, it creates a NODE environment with
     <code>
      git
     </code>
-    where one can develop and run the unit tests. This is useful as often differences in environments create collaboration problems. It should also provide an example of the configuration for running tests. Please refer to the services' README for additional information, or to the Dockerfile
+    where one can develop and run the unit tests. This is useful as often
+differences in environments create collaboration problems. It should also provide an example of the configuration for
+running tests. Please refer to the services' README for additional information, or to the Dockerfile
     <code>
      CMD
     </code>
-    of the components' GitHub repo if not specified otherwise. The
+    of the
+components' GitHub repo if not specified otherwise. The
     <code>
      DEV=true
     </code>
     affects the SciCat services only.
    </p>
    <p>
-    Please be patient when using DEV as each container sets the env for dev, including the requirements for testing, which might take a little to finish. To see if any special precaution is required to run the tests, refer to the
+    Please be patient when using DEV as each container sets the env for dev, including the requirements for testing, which
+might take a little to finish. To see if any special precaution is required to run the tests, refer to the
     <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/compose.dev.test.yaml">
      compose.dev.test.yaml
     </a>
@@ -2204,7 +2242,9 @@ and easy way to learn about SciCat and its features for people who are looking t
     <a href="https://code.visualstudio.com/docs/devcontainers/attach-container">
      VSCode
     </a>
-    , as, after the docker services are running, one can attach to it and start developing using all VSCode features, including version control and debugging.
+    , as, after
+the docker services are running, one can attach to it and start developing using all VSCode features, including version
+control and debugging.
    </p>
    <p>
     Please note that
@@ -2215,18 +2255,21 @@ and easy way to learn about SciCat and its features for people who are looking t
     <code>
      DEV=true
     </code>
-    are only run when the component's container is created for the first time. This is done to avoid clashes with local changes.
+    are only run when the component's container is created for
+the first time. This is done to avoid clashes with local changes.
    </p>
    <p>
-    To ease writing DEV configuration, a dev template is provided
+    To ease writing DEV configuration, a dev template is provided at
     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/compose.dev.yaml">
-     here
+     ./services/compose.dev.yaml
     </a>
-    and each component inhearits from it, as you can see
+    and each component inhearits from it. As you can see in the
+file
     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.dev.yaml">
-     here
+     ./services/frontend/compose.dev.
     </a>
-    setting the componenent specific variables from the relative
+    , setting the componenent specific
+variables from the relative
     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/.env">
      .env file
     </a>
@@ -2244,23 +2287,28 @@ and easy way to learn about SciCat and its features for people who are looking t
     <code>
      COMPOSE_FILE
     </code>
-    lives. This means that the current template cannot be used in case of nested components, at least for the parts where local variables are used. There is no conflict with variables defined multiple times in
+    lives. This means that the current template cannot be used in case of nested components, at least for the
+parts where local variables are used. There is no conflict with variables defined multiple times in
     <code>
      .env
     </code>
-    files at the same level.
+    files at the
+same level.
    </p>
    <p>
     <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/26a0.svg" title=":warning:"/>
-    To prevent git unpushed changes from being lost when a container is restarted, the work folder of each service, when in DEV mode, is mounted to a docker volume, with naming convention
+    To prevent git unpushed changes from being lost when a container is restarted, the work folder of each
+service, when in DEV mode, is mounted to a docker volume, with naming convention
     <code>
      ${COMPOSE_PROJECT_NAME}_&lt;service&gt;_dev
     </code>
-    . Make sure, to commit and push frequently, especially before removing docker volumes to push the relevant changes.
+    . Make sure, to commit and push frequently, especially before removing docker
+volumes to push the relevant changes.
    </p>
    <p>
     <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/26a0.svg" title=":warning:"/>
-    As the DEV containers pull from upstream/latest, there is no guarantee of their functioning outside of releases. If they fail to start, try, as a first option, to build the image from a tag (e.g.
+    As the DEV containers pull from upstream/latest, there is no guarantee of their functioning outside of
+releases. If they fail to start, try, as a first option, to build the image from a tag (e.g.
     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.dev.yaml">
      build context
     </a>
@@ -2268,11 +2316,13 @@ and easy way to learn about SciCat and its features for people who are looking t
     <a href="https://docs.docker.com/reference/cli/docker/image/build/#git-repositories">
      TAG
     </a>
-    and then git checkout to that tag (e.g. set
+    and then git checkout to that tag
+(e.g. set
     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.dev.yaml">
      GITHUB_REPO
     </a>
-    including the branch using the same syntax and value as the build context). You can achieve this, by setting the
+    including the branch using the same syntax and value as
+the build context). You can achieve this, by setting the
     <code>
      GITHUB_REPO
     </code>
@@ -2280,7 +2330,8 @@ and easy way to learn about SciCat and its features for people who are looking t
     <code>
      .env
     </code>
-    file (e.g. the
+    file (e.g.
+the
     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/.env">
      frontend env file
     </a>
@@ -2309,7 +2360,8 @@ and easy way to learn about SciCat and its features for people who are looking t
     <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
      .env
     </a>
-    file enables bidirectional synchronization between the DEV volume of each component (e.g.
+    file enables bidirectional synchronization between the DEV volume of
+each component (e.g.
     <code>
      frontend_dev
     </code>
@@ -2321,7 +2373,8 @@ and easy way to learn about SciCat and its features for people who are looking t
     <code>
      ${PWD}/bbackup/${APP}
     </code>
-    ). This is sometimes convenient both to have a backup of the volume and to enable the use of additional tools installed on the host, which require file access.
+    ). This is sometimes convenient both to have a backup of the volume and to enable the use of
+additional tools installed on the host, which require file access.
    </p>
   </details>
   <h4 id="tls-configuration">
@@ -2335,7 +2388,8 @@ and easy way to learn about SciCat and its features for people who are looking t
    <code>
     &lt;SERVICE&gt;_HTTPS_URL
    </code>
-   , by setting the full URL, including
+   , by setting the full URL,
+including
    <code>
     https://
    </code>
@@ -2343,15 +2397,18 @@ and easy way to learn about SciCat and its features for people who are looking t
    <code>
     letsencrypt
    </code>
-   generated certificate through the proxy setting. For more details see the
+   generated certificate through the proxy setting.
+For more details see the
    <a href="services/proxy/">
     proxy instructions
    </a>
-   . After setting some URLs, the required changes in dependent services are automatically resolved, as explained for example
+   . After setting some URLs, the required changes
+in dependent services are automatically resolved, as explained for example in the
    <a href="services/frontend/">
-    here
+    frontend docs
    </a>
-   . Whenever possible, we use either the docker internal network or the localhost subdomains.
+   . Whenever possible, we use either the docker internal network or the
+localhost subdomains.
   </p>
   <p>
    <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/26a0.svg" title=":warning:"/>
@@ -2387,7 +2444,8 @@ and easy way to learn about SciCat and its features for people who are looking t
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services">
     services
    </a>
-   parent directory) contains its configuration and some instructions, at least for the non-third-party containers.
+   parent directory) contains its configuration and some
+instructions, at least for the non-third-party containers.
   </p>
   <p>
    For example, to configure the
@@ -2422,7 +2480,8 @@ and easy way to learn about SciCat and its features for people who are looking t
    <code>
     frontend
    </code>
-   composability, it is useful to specify its configuration through multiple JSON files, with different scopes, which are then merged by a
+   composability, it is useful to specify its configuration through multiple JSON files, with different scopes, which are
+then merged by a
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/entrypoints/merge_json.sh">
     init script
    </a>
@@ -2434,11 +2493,13 @@ and easy way to learn about SciCat and its features for people who are looking t
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/entrypoints">
     backend v4 ones
    </a>
-   ) which can be run inside the container, before the service starts (i.e. before the docker compose
+   ) which can be run inside the container, before the
+service starts (i.e. before the docker compose
    <code>
     command
    </code>
-   is executed). Whenever these entrypoints are shared between services, it is recommended to place them in an
+   is executed). Whenever these entrypoints are shared between
+services, it is recommended to place them in an
    <code>
     entrypoints
    </code>
@@ -2461,14 +2522,16 @@ and easy way to learn about SciCat and its features for people who are looking t
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.yaml">
     frontend
    </a>
-   ), so one can add additional init steps by mounting them, one by one, as volumes inside the container in the
+   ), so one can add additional init steps by mounting them, one by one, as
+volumes inside the container in the
    <code>
     /docker-entrypoints
    </code>
-   folder and naming them depending on the desired order (eventually rename the existing ones as well).
+   folder and naming them depending on the desired order
+(eventually rename the existing ones as well).
   </p>
   <h4 id="if-the-service-does-not-support-entrypoints-yet-one-needs-to">
-   If the service does not support entrypoints yet, one needs to:
+   If the service does not support entrypoints yet, one needs to
    <a class="headerlink" href="#if-the-service-does-not-support-entrypoints-yet-one-needs-to" title="Permanent link">
     ¶
    </a>
@@ -2490,7 +2553,8 @@ and easy way to learn about SciCat and its features for people who are looking t
      <code>
       /docker-entrypoints/*.sh
      </code>
-     , naming them sequentially, depending on the desired execution order
+     , naming
+   them sequentially, depending on the desired execution order
     </li>
     <li>
      override the
@@ -2507,9 +2571,9 @@ and easy way to learn about SciCat and its features for people who are looking t
     </li>
    </ol>
    <p>
-    See for example
+    See for example the
     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.yaml">
-     here
+     frontend compose file
     </a>
     .
    </p>
@@ -2521,7 +2585,8 @@ and easy way to learn about SciCat and its features for people who are looking t
    </a>
   </h2>
   <p>
-   Please note that services should, in general, be defined by their responsibility, rather than by their underlying technology, and should be named so.
+   Please note that services should, in general, be defined by their responsibility, rather than by their underlying
+technology, and should be named so.
   </p>
   <h3 id="basic">
    Basic
@@ -2562,9 +2627,9 @@ and easy way to learn about SciCat and its features for people who are looking t
     file in the service
    </li>
    <li>
-    eventually, add the platform field, as described
+    eventually, add the platform field, as described by the
     <a href="#supported-os-architectures">
-     here
+     supperted OSs
     </a>
    </li>
    <li>
@@ -2582,11 +2647,13 @@ and easy way to learn about SciCat and its features for people who are looking t
    </li>
   </ol>
   <p>
-   * if the service to add is not shared globally, but specific to one particular service or another implementation of the same component, add it to the
+   * if the service to add is not shared globally, but specific to one particular service or another implementation of the
+same component, add it to the
    <code>
     services
    </code>
-   folder relative to the affected service, and in (6) add it to its inclusion list. See an example of a service relative
+   folder relative to the affected service, and in (6) add it to its inclusion
+list. See an example of a service relative
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services">
     services folder here
    </a>
@@ -2603,11 +2670,13 @@ and easy way to learn about SciCat and its features for people who are looking t
    </a>
   </h4>
   <p>
-   Since some images are not built with multi-arch, in particular the SciCat ones, make sure to specify the platform of the service in the compose, when needed, to avoid possible issues when running
+   Since some images are not built with multi-arch, in particular the SciCat ones, make sure to specify the platform of the
+service in the compose, when needed, to avoid possible issues when running
    <code>
     docker compose up
    </code>
-   on different platforms, for example on MAC with arm64 architecture. See for example the
+   on different platforms,
+for example on MAC with arm64 architecture. See for example the
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/searchapi/compose.yaml#L3">
     searchapi compose
    </a>
@@ -2628,7 +2697,8 @@ and easy way to learn about SciCat and its features for people who are looking t
     <a href="./services/backend/">
      backend
     </a>
-    for an extensive example, or/and this
+    for an extensive example,
+or/and this
     <a href="https://github.com/SciCatProject/scicatlive/pull/325">
      PR
     </a>
@@ -2646,141 +2716,148 @@ and easy way to learn about SciCat and its features for people who are looking t
      </a>
     </li>
     <li>
-     eventually, include any service, in the service-specific folder which is specific to the service and not shared by other, more general services, e.g.
+     eventually, include any service, in the service-specific folder which is specific to the service and not shared by
+   other, more general services, e.g. here:
      <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services">
-      here
+      ./services/backend/services/
      </a>
-     . This folder should also include different versions of the same service, e.g. v3 and v4
+     . This folder
+   should also include different versions of the same service, e.g.
      <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services">
-      here
+      v3 and v4
+     </a>
+    </li>
+    <li>
+     eventually, if the service supports
+     <a href="#docker-compose-env-variables">
+      ENVs
+     </a>
+     , leverage the
+     <a href="https://docs.docker.com/compose/multiple-compose-files/include/#include-and-overrides">
+      include override
+     </a>
+     feature
+   from docker compose. For this:
+    </li>
+    <li>
+     create a
+     <code>
+      compose.base.yaml
+     </code>
+     file, e.g.
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.base.yaml">
+      ./services/backend/services/v4/compose.base.yaml
+     </a>
+     , which should
+      contain the
+     <code>
+      base
+     </code>
+     configuration, i.e. the one where all ENVs are unset, i.e. the features are disabled
+    </li>
+    <li>
+     create the ENV-specific (e.g.
+     <code>
+      ELASTIC_ENABLED
+     </code>
+     )
+     <code>
+      compose.&lt;ENV&gt;.yaml
+     </code>
+     file, e.g.
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.elastic.yaml">
+      backend v4 compose.elastic.yaml
+     </a>
+     , with the
+      additional/override config, specific to the enabled feature
+    </li>
+    <li>
+     create a symlink from
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/.empty.yaml">
+      .empty.yaml
+     </a>
+     to each
+     <code>
+      .compose.&lt;ENV&gt;.yaml
+     </code>
+     , e.g.
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/.compose.elastic.yaml">
+      ./services/backend/services/v4/.compose.elastic.yaml
+     </a>
+     . This
+      is used whenever the
+     <code>
+      ENV
+     </code>
+     is unset, as described in the next step
+    </li>
+    <li>
+     use
+     <code>
+      compose.yaml
+     </code>
+     to merge the
+     <code>
+      compose*.yaml
+     </code>
+     files together, making sure to default to
+     <code>
+      .compose.&lt;ENV&gt;.yaml
+     </code>
+     whenever the
+     <code>
+      ENV
+     </code>
+     is not set. See an example
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.yaml">
+      ./services/backend/services/v4/compose.yaml
+     </a>
+    </li>
+    <li>
+     if the service is another version of an existing one, e.g. v3 and v4 versions of the
+     <code>
+      backend
+     </code>
+     service, add the
+      selective include in the parent compose.yaml, e.g.
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/compose.yaml">
+      ./services/backend/compose.yaml
      </a>
     </li>
     <li>
      <p>
-      eventually, if the service supports
-      <a href="#docker-compose-env-variables">
-       ENVs
+      eventually, modify the
+      <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/workflows/compose_test.yaml">
+       compose workflow
       </a>
-      , leverage the
-      <a href="https://docs.docker.com/compose/multiple-compose-files/include/#include-and-overrides">
-       include override
+      to add the toggle to the matrix. If
+      the toggle depends on the changed files, remember to create the toggle configuration
+      <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/changed_files.yaml">
+       .github/changed_files.yaml
       </a>
-      feature from docker compose. For this:
+      and create the
+      <a href="https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs#excluding-matrix-configurations">
+       exclude
+      </a>
+      rule in the workflow.
      </p>
-     <ol>
-      <li>
-       create a
-       <code>
-        compose.base.yaml
-       </code>
-       file, e.g.
-       <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.base.yaml">
-        here
-       </a>
-       , which should contain the
-       <code>
-        base
-       </code>
-       configuration, i.e. the one where all ENVs are unset, i.e. the features are disabled
-      </li>
-      <li>
-       create the ENV-specific (e.g.
-       <code>
-        ELASTIC_ENABLED
-       </code>
-       )
-       <code>
-        compose.&lt;ENV&gt;.yaml
-       </code>
-       file, e.g.
-       <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.elastic.yaml">
-        backend v4 compose.elastic.yaml
-       </a>
-       , with the additional/override config, specific to the enabled feature
-      </li>
-      <li>
-       create a symlink from
-       <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/.empty.yaml">
-        .empty.yaml
-       </a>
-       to each
-       <code>
-        .compose.&lt;ENV&gt;.yaml
-       </code>
-       , e.g.
-       <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/.compose.elastic.yaml">
-        here
-       </a>
-       . This is used whenever the
-       <code>
-        ENV
-       </code>
-       is unset, as described in the next step
-      </li>
-      <li>
-       use
-       <code>
-        compose.yaml
-       </code>
-       to merge the
-       <code>
-        compose*.yaml
-       </code>
-       files together, making sure to default to
-       <code>
-        .compose.&lt;ENV&gt;.yaml
-       </code>
-       whenever the
-       <code>
-        ENV
-       </code>
-       is not set. See an example
-       <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.yaml">
-        here
-       </a>
-      </li>
-      <li>
-       if the service is another version of an existing one, e.g. v3 and v4 versions of the
-       <code>
-        backend
-       </code>
-       service, add the selective include in the parent compose.yaml, e.g.
-       <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/compose.yaml">
-        here
-       </a>
-      </li>
-      <li>
-       eventually, modify the
-       <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/workflows/compose_test.yaml">
-        compose workflow
-       </a>
-       to add the toggle to the matrix. If the toggle depends on the changed files, remember to create the toggle configuration
-       <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/changed_files.yaml">
-        here
-       </a>
-       and create the
-       <a href="https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs#excluding-matrix-configurations">
-        exclude
-       </a>
-       rule in the workflow.
-      </li>
-     </ol>
     </li>
     <li>
      <p>
-      eventually, add entrypoints for init logics, as described
+      eventually, add entrypoints for init logics, as described by the section to
       <a href="#if-the-service-does-not-support-entrypoints-yet-one-needs-to">
-       here
+       enable entrypoints
       </a>
       , e.g. like
       <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.base.yaml">
-       here
+       ./services/backend/services/v4/compose.base.yaml
       </a>
       , including any
       <a href="#docker-compose-env-variables">
        ENVs
       </a>
-      specific logic. Remember to set the environment variable in the compose.yaml file.
+      specific logic. Remember to set the environment variable in the compose.yaml
+   file.
      </p>
     </li>
    </ol>

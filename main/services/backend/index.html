@@ -896,7 +896,8 @@
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
     BACKEND_HTTPS_URL and OIDC_ENABLED env variables
    </a>
-   requires changing the OIDC configuration, either in the v3
+   requires changing the OIDC configuration,
+either in the v3
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/compose.oidc.yaml">
     compose.oidc.yaml
    </a>
@@ -919,7 +920,8 @@
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/rabbitmq">
     rabbitmq
    </a>
-   service is started and the backend configured to connect to it.
+   service is started and
+the backend configured to connect to it.
   </p>
   <h2 id="dependencies">
    Dependencies
@@ -928,9 +930,9 @@
    </a>
   </h2>
   <p>
-   Here below we show the internal dependencies of the service, which are not already covered
+   Here below we show the internal dependencies of the service, which are not already covered in
    <a href="../../">
-    here
+    the root docs
    </a>
    (if
    <code>
@@ -944,7 +946,8 @@
    <code>
     A --&gt; B
    </code>
-   ). The same subdomain to service convention applies.
+   ). The same subdomain to
+service convention applies.
   </p>
   <p>
    <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/26a0.svg" title=":warning:"/>
@@ -960,11 +963,13 @@
    <code>
     KEYCLOAK_HTTPS_URL
    </code>
-   to correctly resolve the login flow redirects. A more detailed explanation for
+   to
+correctly resolve the login flow redirects. A more detailed explanation for
    <a href="https://scicatproject.github.io/documentation/Development/v3.x/OIDC.html">
     v3
    </a>
-   can be found here, and it is similar for v4.
+   can be found here, and it is similar for
+v4.
   </p>
   <pre class="mermaid"><code>graph TD
     mongodb --&gt; backend

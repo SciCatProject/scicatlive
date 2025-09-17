@@ -944,14 +944,15 @@
    </a>
   </h3>
   <p>
-   It can be customized to set the TLS options. This has an effect only if the service URLs exposed by traefik are reachable from the public web.
+   It can be customized to set the TLS options. This has an effect only if the service URLs exposed by traefik are
+reachable from the public web.
   </p>
   <p>
-   You need to set the letsencrypt options
+   You need to set the letsencrypt options in the
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/proxy/config/.tls.env">
-    here
+    ./config/.tls.env
    </a>
-   .
+   file.
   </p>
   <h2 id="enable-tls">
    Enable TLS
@@ -972,9 +973,9 @@
    <code>
     letsencrypt
    </code>
-   . See
+   . See the root .env
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
-    here
+    ../../.env
    </a>
    for an example. This will request the certificate from
    <code>

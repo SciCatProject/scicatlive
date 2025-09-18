@@ -16,3 +16,9 @@ otherwise by setting `BE_VERSION`).
 
 For an explanation of how setting `BE_VERSION` changes the environment creation see the
 [configuration options in the root docs](../../README.md#docker-compose-profiles-and-env-variables-configuration-options).
+
+## Enable additional features
+
+`DEV=true` enables running the archivemock in DEV mode.
+
+`--profile 'search'` instructs docker compose to create this additional service.

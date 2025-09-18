@@ -1,4 +1,4 @@
-# [OAIPMH](https://github.com/SciCatProject/oai-provider-service)
+# [Oaipmh](https://github.com/SciCatProject/oai-provider-service)
 
 SciCat supports querying published metadata via the [OAI-PMH protocol](https://www.openarchives.org/pmh/)
 
@@ -22,6 +22,8 @@ This is managed in the env file [./config/.env](./config/.env).
 
 :warning: When setting `OAIPMH_HTTPS_URL` it is likely you also want to set the `BACKEND_HTTPS_URL`, to allow the
 communication between the two wherever the browser is accessed.
+
+`--profile 'search'` instructs docker compose to create this additional service.
 
 ## DEV configuration
 

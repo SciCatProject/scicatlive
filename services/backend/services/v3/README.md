@@ -1,4 +1,4 @@
-# [Backend v3](https://github.com/SciCatProject/backend)
+# [V3](https://github.com/SciCatProject/backend)
 
 The SciCat backend v3 is the SciCat metadata catalogue RESTful API layer, built on top of the Loopback framework.
 
@@ -84,7 +84,7 @@ With `DEV=true`, since the v3 tests are supposed to run with an empty DB, the se
 [dacat_test](./config/datasources.dev.json) which is empty. If willing to use the seeded one later during development,
 just set `dacat` as database values in the file `/home/node/app/server/datasources.json` on the container.
 
-##  Dependencies
+## Dependencies
 
 Here below we show the internal dependencies of the service, which are not already covered in
 [the root docs](../../README.md) and in the [common backend docs](../../README.md) (if `B` depends on `A`, then we

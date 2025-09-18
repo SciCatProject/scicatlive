@@ -31,3 +31,5 @@ Setting the [BACKEND_HTTPS_URL and FRONTEND_HTTPS_URL env variables](../../.env)
 
 With `DEV=true`, please use `npm start -- --host 0.0.0.0`. This is to allow traffic from any IP to the `landingpage`
 component and it is necessary since the component runs in the docker network.
+
+`--profile 'search'` instructs docker compose to create this additional service.

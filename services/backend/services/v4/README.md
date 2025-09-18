@@ -1,4 +1,4 @@
-# [Backend v4](https://github.com/SciCatProject/scicat-backend-next)
+# [V4](https://github.com/SciCatProject/scicat-backend-next)
 
 The SciCat backend v4 is a rewrite of the original backend, built on top of the NestJS framework.
 
@@ -36,7 +36,7 @@ With `DEV=true`, since the container might have limited memory, it is recommende
 `--runInBand`, as [./entrypoints/tests.sh](./entrypoints/tests.sh), which makes the tests run sequentially, avoiding to
 fill the RAM which makes them freeze.
 
-##  Dependencies
+## Dependencies
 
 Here below we show the internal dependencies of the service, which are not already covered in
 [the root docs](../../README.md) and in the [common backend docs](../../README.md) (if `B` depends on `A`, then we

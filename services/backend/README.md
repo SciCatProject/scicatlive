@@ -1,6 +1,15 @@
-# Backend service
+# Backend
 
 The SciCat backend HTTP service.
+
+## Configuration options
+
+For a list of configuration options, please look at [v3](./services/v3/README.md#configuration-options)
+or [v4](./services/v3/README.md#configuration-options) options.
+
+## Default configuration
+
+By default [v4](./services/v4/README.md) is used.
 
 ## Enable additional features
 
@@ -14,7 +23,7 @@ either in the v3 [compose.oidc.yaml](./services/v3/compose.oidc.yaml) and
 Additionally, by setting the env variable `JOBS_ENABLED`, the [rabbitmq](./services/rabbitmq/) service is started and
 the backend configured to connect to it.
 
-##  Dependencies
+## Dependencies
 
 Here below we show the internal dependencies of the service, which are not already covered in
 [the root docs](../../README.md) (if `B` depends on `A`, then we visualize it as `A --> B`). The same subdomain to

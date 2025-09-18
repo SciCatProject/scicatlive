@@ -1,4 +1,4 @@
-# LDAP (OpenLDAP)
+# Ldap (OpenLDAP)
 
 LDAP (Lightweight Directory Access Protocol) is a protocol used to access and manage directory information such as user
 credentials. SciCat can use LDAP as third-party authentication provider.
@@ -19,3 +19,7 @@ The default configuration [.env file](./config/.env) creates the `dc=facility` d
 | Username  | Password |
 | --------- | -------- |
 | ldap-user | password |
+
+## Enable additional features
+
+No additional features.

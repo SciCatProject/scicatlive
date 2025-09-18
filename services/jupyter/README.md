@@ -1,4 +1,4 @@
-# Jupyter
+# [Jupyter](https://jupyter.org/)
 
 This Jupyter Notebook instance is preconfigured with an example notebook that shows the usage of
 [Pyscicat](https://github.com/scicatproject/pyscicat).

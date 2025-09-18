@@ -1,4 +1,4 @@
-# Keycloak (OIDC Identity provider)
+# [Keycloak](https://www.keycloak.org/)
 
 OIDC is an authentication protocol that verifies user identities when they sign in to access digital resources. SciCat
 can use an OIDC service as third-party authentication provider.

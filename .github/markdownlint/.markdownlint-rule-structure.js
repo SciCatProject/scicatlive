@@ -13,7 +13,7 @@ const getRequiredSections = (params, parts) => {
   const hasDependencies = fs.existsSync(`${path.dirname(params.name)}/services`);
 
   const requiredSections = [
-    new RegExp(`^# \\[?${fileName[0].toUpperCase()}${fileName.slice(1)}\\]?`, "m"),
+    new RegExp(`^# \\[${fileName[0].toUpperCase()}${fileName.slice(1)}\\]\\(https?://[^)]+\\)`, "m"),
     /^## Configuration options$/m,
     /^## Default configuration$/m,
     /^## Enable additional features$/m,

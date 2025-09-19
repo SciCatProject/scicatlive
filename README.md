@@ -301,7 +301,7 @@ After any configuration change, `docker compose up -d` must be rerun, to allow l
 
 ### Entrypoints
 
-Sometimes, it is useful to run init scripts (entrypoints) before the service starts. For example, for the `frontend`
+Sometimes, it is useful to run init scripts (entrypoints) before the service starts. For example, for the `landingpage`
 composability, it is useful to specify its configuration through multiple JSON files, with different scopes, which are
 then merged by a [init script](./entrypoints/merge_json.sh). For this reason, one can define
 [common entrypoints](./entrypoints/) and service-specific ones (e.g.

@@ -9,9 +9,6 @@ The frontend configuration is set by the [config files](./config/). Files inside
 [config.v3.json](./config/config.v3.json) applied depending on the
 [BE_VERSION](../../README.md#docker-compose-profiles-and-env-variables-configuration-options).
 
-:warning: Please note that [merging the config files](../../entrypoints/merge_json.sh) is a functionality provided by
-`SciCat Live` and is not supported natively by the `frontend`.
-
 For an extensive list of available options see the
 [official SciCat documentation](https://scicatproject.github.io/documentation/Development/v3.x/Configuration.html#scicat-frontend)
 in the SciCat frontend section.
@@ -35,7 +32,7 @@ With `DEV=true`, please use `npm start -- --host 0.0.0.0`. This is to allow traf
 component and it is necessary since the component runs in the docker network.
 
 Setting the [BACKEND_HTTPS_URL env variable](../../.env) requires changing the `backend` URL used by the `frontend`.
-This is managed in the entrypoint [../../entrypoints/merge_json.sh](../../entrypoints/merge_json.sh).
+This is managed in the post_start of the frontend container [./compose.https.yaml](./compose.https.yaml).
 
 :warning: When setting `FRONTENT_HTTPS_URL` it is likely you also want to set the `BACKEND_HTTPS_URL`, to allow the
 communication between the two wherever the browser is accessed.

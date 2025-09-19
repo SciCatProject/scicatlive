@@ -21,7 +21,7 @@
     
     
       
-        <title>Archive Mock - SciCatLive</title>
+        <title>Archivemock - SciCatLive</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#archive-mock" class="md-skip">
+        <a href="#archivemock" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Archive Mock
+              Archivemock
             
           </span>
         </div>
@@ -342,7 +342,7 @@
   
   
   <span class="md-ellipsis">
-    Backend service
+    Backend
     
   </span>
   
@@ -428,7 +428,7 @@
   
   
   <span class="md-ellipsis">
-    LDAP (OpenLDAP)
+    Ldap (OpenLDAP)
     
   </span>
   
@@ -514,7 +514,7 @@
   
   
   <span class="md-ellipsis">
-    Backend v3
+    V3
     
   </span>
   
@@ -546,7 +546,7 @@
   
   
   <span class="md-ellipsis">
-    Archive Mock
+    Archivemock
     
   </span>
   
@@ -559,7 +559,7 @@
   
   
   <span class="md-ellipsis">
-    Archive Mock
+    Archivemock
     
   </span>
   
@@ -591,18 +591,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#config-environment-variables" class="md-nav__link">
+  <a href="#configuration-options" class="md-nav__link">
     <span class="md-ellipsis">
-      Config - Environment Variables
+      Configuration options
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#default-configuraiton" class="md-nav__link">
+  <a href="#default-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Default configuraiton
+      Default configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-additional-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable additional features
     </span>
   </a>
   
@@ -637,7 +646,7 @@
   
   
   <span class="md-ellipsis">
-    Backend v4
+    V4
     
   </span>
   
@@ -699,7 +708,7 @@
   
   
   <span class="md-ellipsis">
-    Jupyter Notebook
+    Jupyter
     
   </span>
   
@@ -745,7 +754,7 @@
   
   
   <span class="md-ellipsis">
-    OAIPMH
+    Oaipmh
     
   </span>
   
@@ -845,18 +854,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#config-environment-variables" class="md-nav__link">
+  <a href="#configuration-options" class="md-nav__link">
     <span class="md-ellipsis">
-      Config - Environment Variables
+      Configuration options
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#default-configuraiton" class="md-nav__link">
+  <a href="#default-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Default configuraiton
+      Default configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-additional-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable additional features
     </span>
   </a>
   
@@ -883,11 +901,11 @@
 
 <html>
  <body>
-  <h1 id="archive-mock">
+  <h1 id="archivemock">
    <a href="https://github.com/SwissOpenEM/ScicatArchiveMock">
-    Archive Mock
+    Archivemock
    </a>
-   <a class="headerlink" href="#archive-mock" title="Permanent link">
+   <a class="headerlink" href="#archivemock" title="Permanent link">
     ¶
    </a>
   </h1>
@@ -913,12 +931,9 @@
     (configured to use the RabbitMQ instance above for jobs)
    </li>
   </ul>
-  <h2 id="config-environment-variables">
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/services/archivemock/config/.env">
-    Config
-   </a>
-   - Environment Variables
-   <a class="headerlink" href="#config-environment-variables" title="Permanent link">
+  <h2 id="configuration-options">
+   Configuration options
+   <a class="headerlink" href="#configuration-options" title="Permanent link">
     ¶
    </a>
   </h2>
@@ -928,11 +943,14 @@
     environment variables
    </a>
    for
-configuration.
+configuration. These are set in
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/services/archivemock/config/.env">
+    ./config/.env
+   </a>
   </p>
-  <h2 id="default-configuraiton">
-   Default configuraiton
-   <a class="headerlink" href="#default-configuraiton" title="Permanent link">
+  <h2 id="default-configuration">
+   Default configuration
+   <a class="headerlink" href="#default-configuration" title="Permanent link">
     ¶
    </a>
   </h2>
@@ -955,6 +973,32 @@ configuration.
    </code>
    account. It will then handle all archival and retrieval jobs
 posted to RabbitMQ, and update the corresponding Datasets accordingly in Scicat.
+  </p>
+  <h2 id="enable-additional-features">
+   Enable additional features
+   <a class="headerlink" href="#enable-additional-features" title="Permanent link">
+    ¶
+   </a>
+  </h2>
+  <p>
+   <code>
+    DEV=true
+   </code>
+   enables running the archivemock in DEV mode.
+  </p>
+  <p>
+   <code>
+    JOBS_ENABLED
+   </code>
+   and
+   <code>
+    BE_VERSION=v3
+   </code>
+   creates the archivemock service which listens to messages submitted to
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/rabbitmq">
+    rabbitmq
+   </a>
+   .
   </p>
  </body>
 </html>

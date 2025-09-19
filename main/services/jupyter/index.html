@@ -21,7 +21,7 @@
     
     
       
-        <title>Jupyter Notebook - SciCatLive</title>
+        <title>Jupyter - SciCatLive</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#jupyter-notebook" class="md-skip">
+        <a href="#jupyter" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Jupyter Notebook
+              Jupyter
             
           </span>
         </div>
@@ -340,7 +340,7 @@
   
   
   <span class="md-ellipsis">
-    Backend service
+    Backend
     
   </span>
   
@@ -424,7 +424,7 @@
   
   
   <span class="md-ellipsis">
-    LDAP (OpenLDAP)
+    Ldap (OpenLDAP)
     
   </span>
   
@@ -508,7 +508,7 @@
   
   
   <span class="md-ellipsis">
-    Backend v3
+    V3
     
   </span>
   
@@ -531,7 +531,7 @@
   
   
   <span class="md-ellipsis">
-    Archive Mock
+    Archivemock
     
   </span>
   
@@ -562,7 +562,7 @@
   
   
   <span class="md-ellipsis">
-    Backend v4
+    V4
     
   </span>
   
@@ -633,7 +633,7 @@
   
   
   <span class="md-ellipsis">
-    Jupyter Notebook
+    Jupyter
     
   </span>
   
@@ -646,7 +646,7 @@
   
   
   <span class="md-ellipsis">
-    Jupyter Notebook
+    Jupyter
     
   </span>
   
@@ -669,6 +669,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#configuration-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#pyscicat-notebook" class="md-nav__link">
     <span class="md-ellipsis">
       Pyscicat Notebook
@@ -676,17 +686,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#env-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      .env file
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#thumbnail-image" class="md-nav__link">
     <span class="md-ellipsis">
       Thumbnail image
@@ -694,11 +695,25 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#default-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Default configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-additional-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable additional features
     </span>
   </a>
   
@@ -748,7 +763,7 @@
   
   
   <span class="md-ellipsis">
-    OAIPMH
+    Oaipmh
     
   </span>
   
@@ -839,6 +854,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#configuration-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#pyscicat-notebook" class="md-nav__link">
     <span class="md-ellipsis">
       Pyscicat Notebook
@@ -846,17 +871,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#env-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      .env file
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#thumbnail-image" class="md-nav__link">
     <span class="md-ellipsis">
       Thumbnail image
@@ -864,11 +880,25 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#default-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Default configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-additional-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable additional features
     </span>
   </a>
   
@@ -895,9 +925,9 @@
 
 <html>
  <body>
-  <h1 id="jupyter-notebook">
-   Jupyter Notebook
-   <a class="headerlink" href="#jupyter-notebook" title="Permanent link">
+  <h1 id="jupyter">
+   Jupyter
+   <a class="headerlink" href="#jupyter" title="Permanent link">
     ¶
    </a>
   </h1>
@@ -908,14 +938,28 @@
    </a>
    .
   </p>
-  <h2 id="pyscicat-notebook">
+  <h2 id="configuration-options">
+   Configuration options
+   <a class="headerlink" href="#configuration-options" title="Permanent link">
+    ¶
+   </a>
+  </h2>
+  <p>
+   The
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/jupyter/config/.env">
+    .env file
+   </a>
+   contains the environment variables for connecting to the backend service deployed by
+this project.
+  </p>
+  <h3 id="pyscicat-notebook">
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/jupyter/config/notebooks/pyscicat.ipynb">
     Pyscicat Notebook
    </a>
    <a class="headerlink" href="#pyscicat-notebook" title="Permanent link">
     ¶
    </a>
-  </h2>
+  </h3>
   <p>
    This notebook demonstrates all the major actions Pyscicat is capable of:
   </p>
@@ -933,25 +977,14 @@
     attachment upload
    </li>
   </ul>
-  <h2 id="env-file">
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/jupyter/config/.env">
-    .env file
-   </a>
-   <a class="headerlink" href="#env-file" title="Permanent link">
-    ¶
-   </a>
-  </h2>
-  <p>
-   It contains the environment variables for connecting to the backend service deployed by this project
-  </p>
-  <h2 id="thumbnail-image">
+  <h3 id="thumbnail-image">
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/jupyter/config/notebooks/example_files/thumbnail.png">
     Thumbnail image
    </a>
    <a class="headerlink" href="#thumbnail-image" title="Permanent link">
     ¶
    </a>
-  </h2>
+  </h3>
   <p>
    An example image that is used for the attachment upload demonstration
   </p>
@@ -984,6 +1017,18 @@ upstream changes to these notebooks, be sure to clear all the results from them.
     main readme
    </a>
    covers all dependencies of this package.
+  </p>
+  <h2 id="enable-additional-features">
+   Enable additional features
+   <a class="headerlink" href="#enable-additional-features" title="Permanent link">
+    ¶
+   </a>
+  </h2>
+  <p>
+   <code>
+    --profile 'analysis'
+   </code>
+   instructs docker compose to create this additional service.
   </p>
  </body>
 </html>

@@ -340,7 +340,7 @@
   
   
   <span class="md-ellipsis">
-    Backend service
+    Backend
     
   </span>
   
@@ -424,7 +424,7 @@
   
   
   <span class="md-ellipsis">
-    LDAP (OpenLDAP)
+    Ldap (OpenLDAP)
     
   </span>
   
@@ -508,7 +508,7 @@
   
   
   <span class="md-ellipsis">
-    Backend v3
+    V3
     
   </span>
   
@@ -531,7 +531,7 @@
   
   
   <span class="md-ellipsis">
-    Archive Mock
+    Archivemock
     
   </span>
   
@@ -562,7 +562,7 @@
   
   
   <span class="md-ellipsis">
-    Backend v4
+    V4
     
   </span>
   
@@ -624,7 +624,7 @@
   
   
   <span class="md-ellipsis">
-    Jupyter Notebook
+    Jupyter
     
   </span>
   
@@ -670,7 +670,7 @@
   
   
   <span class="md-ellipsis">
-    OAIPMH
+    Oaipmh
     
   </span>
   
@@ -738,13 +738,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
+  <a href="#configuration-options" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration
+      Configuration options
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Configuration">
+    <nav class="md-nav" aria-label="Configuration options">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -771,9 +771,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#enable-tls" class="md-nav__link">
+  <a href="#default-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Enable TLS
+      Default configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-additional-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable additional features
     </span>
   </a>
   
@@ -845,13 +854,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
+  <a href="#configuration-options" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration
+      Configuration options
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Configuration">
+    <nav class="md-nav" aria-label="Configuration options">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -878,9 +887,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#enable-tls" class="md-nav__link">
+  <a href="#default-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Enable TLS
+      Default configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-additional-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable additional features
     </span>
   </a>
   
@@ -918,9 +936,9 @@
   <p>
    The proxy acts as a reverse proxy to the SciCat Live containers.
   </p>
-  <h2 id="configuration">
-   Configuration
-   <a class="headerlink" href="#configuration" title="Permanent link">
+  <h2 id="configuration-options">
+   Configuration options
+   <a class="headerlink" href="#configuration-options" title="Permanent link">
     ¶
    </a>
   </h2>
@@ -954,9 +972,32 @@ reachable from the public web.
    </a>
    file.
   </p>
-  <h2 id="enable-tls">
-   Enable TLS
-   <a class="headerlink" href="#enable-tls" title="Permanent link">
+  <h2 id="default-configuration">
+   Default configuration
+   <a class="headerlink" href="#default-configuration" title="Permanent link">
+    ¶
+   </a>
+  </h2>
+  <p>
+   By default, all services are exposed on localhost with no TLS termination, and following the convention:
+  </p>
+  <ul>
+   <li>
+    frontend:
+    <code>
+     http://localhost
+    </code>
+   </li>
+   <li>
+    other services:
+    <code>
+     http://{service}.localhost
+    </code>
+   </li>
+  </ul>
+  <h2 id="enable-additional-features">
+   Enable additional features
+   <a class="headerlink" href="#enable-additional-features" title="Permanent link">
     ¶
    </a>
   </h2>

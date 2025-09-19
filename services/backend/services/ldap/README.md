@@ -1,4 +1,4 @@
-# Ldap (OpenLDAP)
+# [Ldap](https://www.openldap.org/)
 
 LDAP (Lightweight Directory Access Protocol) is a protocol used to access and manage directory information such as user
 credentials. SciCat can use LDAP as third-party authentication provider.

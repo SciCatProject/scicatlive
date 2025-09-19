@@ -9,14 +9,9 @@ Title should follow the format `<type>(<scope>): <subject>`, where
 See https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines for more details.
 -->
 
-<!-- markdownlint-disable-next-line first-line-h1 -->
-## Description
+# Description
 
 <!-- Short description of the pull request -->
-
-## Motivation
-
-<!-- Background on use case, changes needed -->
 
 ## Fixes
 

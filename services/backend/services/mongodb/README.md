@@ -26,6 +26,10 @@ When `DEV=true` and `BE_VERSION=v4` the seeding writes to `dev-dacat-next`.
 For an explanation of how setting `BE_VERSION` changes the environment creation see the
 [configuration options in the root docs](../../../../README.md#docker-compose-profiles-and-env-variables-configuration-options).
 
+## Enable additional features
+
+No additional features.
+
 ## Dependency on `BE_VERSION`
 
 Since [v3](../v3/) and [v4](../v4/) connect to two different DBs, the [BE_VERSION](./compose.yaml#L9) environment

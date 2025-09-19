@@ -56,6 +56,8 @@ docs:
   - '**/README.md'
   - '**/*mkdocs*/**'
   - '**/*mkdocs*'
+mds:
+  - '**/*.md'
   - '**/*markdownlint*'
   - '**/*markdownlint*/**'
 dev:

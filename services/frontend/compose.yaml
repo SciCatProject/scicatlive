@@ -5,3 +5,4 @@ include:
       - .${OIDC_ENABLED:+/}compose.oidc.yaml
       - .${LDAP_ENABLED:+/}compose.ldap.yaml
       - .${DEV:+/}compose.dev.yaml
+      - .${BACKEND_HTTPS_URL:+/}compose.https.yaml

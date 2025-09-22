@@ -6,3 +6,4 @@ node_modules/
 .ruff_cache/
 bbackup/*
 !.github/semantic-release/package.json
+!.github/markdownlint/package.json

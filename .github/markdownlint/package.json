@@ -1,0 +1,8 @@
+{
+  "name": "markdownlint",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "markdownlint-rule-relative-links": "4.2.0"
+  }
+}

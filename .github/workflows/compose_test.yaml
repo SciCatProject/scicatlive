@@ -87,9 +87,17 @@ jobs:
     if: fromJson(needs.changes.outputs.all).mds_all_modified_files
     steps:
       - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install --no-package-lock
+        working-directory: .github/markdownlint
       - uses: DavidAnson/markdownlint-cli2-action@v20
         with:
-          globs: '**/*.md'
+          globs: |
+            **/*.md
+            !**/node_modules/**
           config: .github/markdownlint/.markdownlint.yaml
   check-mkdocs:
     runs-on: ubuntu-latest

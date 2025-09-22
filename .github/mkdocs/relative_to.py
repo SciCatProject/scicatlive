@@ -3,7 +3,6 @@
 from os import environ
 from os import path as ospath
 from pathlib import Path
-from re import match
 from urllib.parse import urljoin, urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
@@ -47,29 +46,22 @@ def on_page_content(html: str, page: Page, config: MkDocsConfig, files: Files) -
     session.mount("http://", HTTPAdapter(max_retries=retries))
     session.mount("https://", HTTPAdapter(max_retries=retries))
     for element in soup.find_all(href=True):
-        base_url = repo_url
-        replace_href = False
         scheme, netloc, path, query, fragment = urlsplit(element["href"])
-        resolved_path = Path(ospath.normpath(page_path / path))
         if scheme or netloc:  # External link
-            base_url = ""
-        elif not path or any(
+            continue
+
+        resolved_path = Path(ospath.normpath(page_path / path))
+        if not path or any(
             filter(lambda x: Path(x.src_uri.strip(doc_file)) == resolved_path, docs),
         ):  # Self-link containing only query or anchor, or exiting md
-            resolved_path = resolved_path / doc_file
-        else:
-            replace_href = True
-        if netloc == "stackoverflow.com":
-            netloc = "api.stackexchange.com"
-            question_id = match(r"/questions/(\d+)", path).group(1)
-            resolved_path = f"/2.3/questions/{question_id}"
-            query = "site=stackoverflow"
+            continue
         relative_path = urlunsplit(
             (scheme, netloc, str(resolved_path), query, fragment),
         )
-        url = urljoin(base_url, relative_path)
+
+        url = urljoin(repo_url, relative_path)
+        element["href"] = url
         if check_links:
             session.get(url, timeout=30).raise_for_status()
-        if replace_href:
-            element["href"] = url
+
     return soup.prettify()

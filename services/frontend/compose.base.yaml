@@ -15,9 +15,9 @@ services:
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)
       # Adding a label for traefik to learn which port to look for a service on
-      - traefik.http.services.frontend.loadbalancer.server.port=80
+      - traefik.http.services.frontend.loadbalancer.server.port=8080
     healthcheck:
-      test: wget --spider -Y off 'http://127.0.0.1:80'
+      test: wget --spider -Y off 'http://127.0.0.1:8080'
       start_period: 5s
       interval: 30s
       timeout: 10s

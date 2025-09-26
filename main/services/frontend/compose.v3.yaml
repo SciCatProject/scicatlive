@@ -3,4 +3,17 @@ services:
   # pinned to v4.7.0 because FE>v5 is not compatible with BE v3
     image: ghcr.io/scicatproject/frontend:v4.7.0
     volumes:
-      - ./config/config.v3.json:/config/1.json
+      - ./config/config.v3.json:${CONFIG_DIR}/config.override.0.json
+      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
+      # This is numbered 1 (and not 0) as in the DEV config, which
+      # inherits from this, it must be run after the git_init
+      - ./entrypoints/move_config.sh:/docker-entrypoints/09.sh
+      - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoints/10.sh
+    labels:
+      - traefik.http.services.frontend.loadbalancer.server.port=80
+    entrypoint: loop_entrypoints.sh
+    command: nginx -g "daemon off;"
+    healthcheck:
+      test: wget --spider -Y off 'http://127.0.0.1:80'
+    environment:
+      CONFIG_DIR: ${CONFIG_DIR:-}

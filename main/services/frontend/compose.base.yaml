@@ -1,27 +1,19 @@
 services:
   frontend:
-    image: ghcr.io/scicatproject/frontend:v5.4.0
+    image: ghcr.io/scicatproject/frontend:v5.5.0
     depends_on:
       backend:
         condition: service_healthy
     volumes:
-      - ./config/config.json:/config/0.json
-      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
-      # This is numbered 1 (and not 0) as in the DEV config, which
-      # inherits from this, it must be run after the git_init
-      - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoints/10.sh
-    entrypoint: loop_entrypoints.sh
-    command: nginx -g "daemon off;"
+      - ./config/config.json:${CONFIG_DIR}/config.override.json
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)
       # Adding a label for traefik to learn which port to look for a service on
-      - traefik.http.services.frontend.loadbalancer.server.port=80
+      - traefik.http.services.frontend.loadbalancer.server.port=8080
     healthcheck:
-      test: wget --spider -Y off 'http://127.0.0.1:80'
+      test: curl -f 'http://127.0.0.1:8080'
       start_period: 5s
       interval: 30s
       timeout: 10s
       retries: 5
     restart: on-failure
-    environment:
-      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}

@@ -922,22 +922,6 @@
    .
   </p>
   <p>
-   <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/26a0.svg" title=":warning:"/>
-   Please note that
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/entrypoints/merge_json.sh">
-    merging the config files
-   </a>
-   is a functionality provided by
-   <code>
-    SciCat Live
-   </code>
-   and is not supported natively by the
-   <code>
-    frontend
-   </code>
-   .
-  </p>
-  <p>
    For an extensive list of available options see the
    <a href="https://scicatproject.github.io/documentation/Development/v3.x/Configuration.html#scicat-frontend">
     official SciCat documentation
@@ -1053,9 +1037,9 @@ the configs merge process.
     frontend
    </code>
    .
-This is managed in the entrypoint
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/entrypoints/merge_json.sh">
-    ../../entrypoints/merge_json.sh
+This is managed in the post_start of the frontend container
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.https.yaml">
+    ./compose.https.yaml
    </a>
    .
   </p>

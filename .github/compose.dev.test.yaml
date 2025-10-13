@@ -13,7 +13,8 @@ services:
       - ./services/backend/services/${BE_VERSION}/entrypoints/tests.sh:/docker-entrypoints/90.sh
     command: npm start
     healthcheck:
-      test: wget --spider -Y off 'http://127.0.0.1:3000/api/v3/publisheddata/count'
+      test: |
+        wget --spider -Y off 'http://127.0.0.1:3000/api/v3/publisheddata/count'
   # oaipmh:
   # tests are not run as the upstream tests fail.
   # See comment in the oaipmh readme

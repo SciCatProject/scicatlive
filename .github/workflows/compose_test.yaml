@@ -61,7 +61,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Use Node.js v20
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 22
       - name: install eslint and default rules
@@ -90,7 +90,7 @@ jobs:
       - uses: tcort/github-action-markdown-link-check@v1
         with:
           use-quiet-mode: 'yes'
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: 22
       - name: Install dependencies

@@ -1,7 +1,7 @@
 services:
   searchapi:
     platform: linux/amd64
-    image: ghcr.io/scicatproject/panosc-search-api:latest
+    image: ghcr.io/scicatproject/panosc-search-api:v2.0.1
     depends_on:
       backend:
         condition: service_healthy

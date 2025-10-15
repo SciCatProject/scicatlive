@@ -1,6 +1,8 @@
 services:
   searchapi:
-    # pinned to v1.2.19 because v2 onwards requires v4 api
-    image: ghcr.io/scicatproject/panosc-search-api:v1.2.19
+    # pinned to v1.2.18 because:
+    # - tests fail with v1.2.19
+    # - v2 onwards requires v4 api
+    image: ghcr.io/scicatproject/panosc-search-api:v1.2.18
     env_file:
       - ./config/.v3.env

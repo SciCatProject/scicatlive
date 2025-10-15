@@ -1,4 +1,5 @@
 include:
   - path:
       - compose.base.yaml
+      - compose.${BE_VERSION}.yaml
       - .${DEV:+/}compose.dev.yaml

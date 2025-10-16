@@ -6,6 +6,7 @@
   ],
   "ignorePaths": [
     "services/frontend/compose.v3.yaml",
+    "services/searchapi/compose.v3.yaml",
     "services/backend/services/rabbitmq/compose.v3.yaml"
   ],
   "packageRules": [

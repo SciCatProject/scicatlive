@@ -1,7 +1,7 @@
 services:
   backend:
     platform: linux/amd64
-    image: ghcr.io/scicatproject/backend:latest
+    image: ghcr.io/scicatproject/backend:3cf3d27f35b3adabdb6ae375be20122705b944d6
     depends_on:
       mongodb:
         condition: service_started

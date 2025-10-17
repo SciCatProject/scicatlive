@@ -4,5 +4,5 @@
 
 apk update && apk add jq gettext
 
-jq -s 'reduce .[] as $item ({}; . * $item)' /config/*.json | envsubst \
+jq -s 'reduce .[] as $item ({}; . * $item)' /config/config.override.json /config/config.override.*.json | envsubst \
     > "${CONFIG_DIR:-/usr/share/nginx/html/assets}"/config.json

@@ -12,7 +12,7 @@ services:
       - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
       - ./entrypoints/merge_json.sh:/docker-entrypoints/10.sh
     entrypoint:
-      - loop_entrypoints.sh
+      - /usr/local/bin/loop_entrypoints.sh
       - docker-entrypoint.sh
     command: node .
     labels:

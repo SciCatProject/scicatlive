@@ -17,7 +17,7 @@ services:
       - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoints/10.sh
     labels:
       - traefik.http.services.frontend.loadbalancer.server.port=80
-    entrypoint: loop_entrypoints.sh
+    entrypoint: /usr/local/bin/loop_entrypoints.sh
     command: nginx -g "daemon off;"
     healthcheck:
       test: wget -s -Y off 'http://127.0.0.1:80'

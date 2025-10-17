@@ -1,6 +1,6 @@
 services:
   web-app:
-    entrypoint: loop_entrypoints.sh
+    entrypoint: /usr/local/bin/loop_entrypoints.sh
     command: infinite_loop.sh
     healthcheck:
       test: pgrep -f "/bin/sh /usr/local/bin/infinite_loop.sh"

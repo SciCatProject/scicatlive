@@ -3,5 +3,5 @@
 [ -e ".finished" ] && return 0
 
 echo "MONGODB_URI=$MONGODB_URI" >.env
-npm run migrate:db:up
+node ./node_modules/migrate-mongo/bin/migrate-mongo.js up
 rm .env

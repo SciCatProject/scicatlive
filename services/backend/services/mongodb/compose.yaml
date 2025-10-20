@@ -10,7 +10,7 @@ services:
       - traefik.enable=false
     environment:
       BE_VERSION: ${BE_VERSION:-v4}
-      DEV: ${DEV:+dev-}
+      DEV: ${BACKEND_DEV:+dev-}
     restart: on-failure
 
 volumes:

@@ -10,6 +10,7 @@ services:
       - ./config/.dev.env:/home/node/app/test/config/.env.override
     environment:
       MONGODB_URI: mongodb://mongodb:27017/dev-dacat-next
+      DEV: ${DEV}
     healthcheck:
       retries: 20
       interval: 1m

@@ -9,7 +9,7 @@ services:
       context: ${GITHUB_REPO:-}#v.4.4.2
     platform: linux/amd64
     volumes:
-      - ./config/config.v3.json:${CONFIG_DIR}/config.override.0.json
+      - ./config/config.v3.json:${CONFIG_DIR}/config.override.1.json
       - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
       # This is numbered 1 (and not 0) as in the DEV config, which
       # inherits from this, it must be run after the git_init

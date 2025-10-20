@@ -215,6 +215,7 @@ server, it creates a NODE environment with `git` where one can develop and run t
 differences in environments create collaboration problems. It should also provide an example of the configuration for
 running tests. Please refer to the services' README for additional information, or to the Dockerfile `CMD` of the
 components' GitHub repo if not specified otherwise. The `DEV=true` affects the SciCat services only.
+It's also possible to only run some services in development mode by using their respective variables (eg. `BACKEND_DEV=true`)
 
 Please be patient when using DEV as each container sets the env for dev, including the requirements for testing, which
 might take a little to finish. To see if any special precaution is required to run the tests, refer to the

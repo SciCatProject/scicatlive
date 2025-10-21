@@ -32,7 +32,7 @@ If `LDAP_ENABLED` is toggled, you can use LDAP to log in with a [LDAP user](../l
 If `OIDC_ENABLED` is toggled, you can use OIDC to log in with a
 [OIDC user](../keycloak/README.md#default-configuration).
 
-With `BACKEND_DEV=true`, since the container might have limited memory, it is recommended to run unit tests with the option
+With `BACKEND_DEV=true` (or `DEV=true`), since the container might have limited memory, it is recommended to run unit tests with the option
 `--runInBand`, as [./entrypoints/tests.sh](./entrypoints/tests.sh), which makes the tests run sequentially, avoiding to
 fill the RAM which makes them freeze.
 

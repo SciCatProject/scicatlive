@@ -21,6 +21,6 @@ posted to RabbitMQ, and update the corresponding Datasets accordingly in Scicat.
 
 ## Enable additional features
 
-`BACKEND_DEV=true` enables running the archivemock in DEV mode.
+`BACKEND_DEV=true` (or `DEV=true`) enables running the archivemock in DEV mode.
 
 `JOBS_ENABLED` and `BE_VERSION=v3` creates the archivemock service which listens to messages submitted to [rabbitmq](../../../rabbitmq/).

@@ -28,8 +28,8 @@ Since there was a small breaking change from `v3` to `v4`, when connecting to th
 controls if [config.v3.json file](./config/config.v3.json), which is applied when `BE_VERSION=v3`, should be included in
 the configs merge process.
 
-With `DEV=true`, please use `npm start -- --host 0.0.0.0`. This is to allow traffic from any IP to the `frontend`
-component and it is necessary since the component runs in the docker network.
+With `FRONTEND_DEV=true` (or `DEV=true`), please use `npm start -- --host 0.0.0.0`. This is to allow traffic from any
+IP to the `frontend` component and it is necessary since the component runs in the docker network.
 
 Setting the [BACKEND_HTTPS_URL env variable](../../.env) requires changing the `backend` URL used by the `frontend`.
 This is managed in the post_start of the frontend container [./compose.https.yaml](./compose.https.yaml).

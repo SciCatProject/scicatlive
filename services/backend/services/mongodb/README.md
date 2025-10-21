@@ -21,7 +21,7 @@ taken as examples to use the backend API.
 In the default configuration [init.sh](./config/init.sh), the seeding creates data in the mongodb database used by the
 `backend` service (either [v4](../v4/), by default, or [v3](../v3/) if specified otherwise by setting `BE_VERSION`).
 
-When `DEV=true` and `BE_VERSION=v4` the seeding writes to `dev-dacat-next`.
+When `BACKEND_DEV=true` (or `DEV=true`) and `BE_VERSION=v4` the seeding writes to `dev-dacat-next`.
 
 For an explanation of how setting `BE_VERSION` changes the environment creation see the
 [configuration options in the root docs](../../../../README.md#docker-compose-profiles-and-env-variables-configuration-options).

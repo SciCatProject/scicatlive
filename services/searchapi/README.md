@@ -19,6 +19,6 @@ For an explanation of how setting `BE_VERSION` changes the environment creation 
 
 ## Enable additional features
 
-`DEV=true` enables running the archivemock in DEV mode.
+`SEARCHAPI_DEV=true` (or `DEV=true`) enables running the archivemock in DEV mode.
 
 `--profile 'search'` instructs docker compose to create this additional service.

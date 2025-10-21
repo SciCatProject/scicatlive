@@ -29,7 +29,7 @@ Setting the [BACKEND_HTTPS_URL and FRONTEND_HTTPS_URL env variables](../../.env)
 :warning: When setting `LANDINGPAGE_HTTPS_URL` it is likely you also want to set the `BACKEND_HTTPS_URL` and
 `FRONTEND_HTTPS_URL`, to allow the communication between the two wherever the browser is accessed.
 
-With `DEV=true`, please use `npm start -- --host 0.0.0.0`. This is to allow traffic from any IP to the `landingpage`
-component and it is necessary since the component runs in the docker network.
+With `LANDINGPAGE_DEV=true`  (or `DEV=true`), please use `npm start -- --host 0.0.0.0`. This is to allow traffic from
+any IP to the `landingpage` component and it is necessary since the component runs in the docker network.
 
 `--profile 'search'` instructs docker compose to create this additional service.

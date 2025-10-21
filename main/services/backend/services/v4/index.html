@@ -1084,9 +1084,14 @@ started and the backend is configured to connect to them.
   <p>
    With
    <code>
+    BACKEND_DEV=true
+   </code>
+   (or
+   <code>
     DEV=true
    </code>
-   , since the container might have limited memory, it is recommended to run unit tests with the option
+   ), since the container might have limited memory, it is recommended to run unit
+tests with the option
    <code>
     --runInBand
    </code>
@@ -1094,8 +1099,8 @@ started and the backend is configured to connect to them.
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/entrypoints/tests.sh">
     ./entrypoints/tests.sh
    </a>
-   , which makes the tests run sequentially, avoiding to
-fill the RAM which makes them freeze.
+   , which makes the tests run
+sequentially, avoiding to fill the RAM which makes them freeze.
   </p>
   <h2 id="dependencies">
    Dependencies

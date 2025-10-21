@@ -2081,7 +2081,7 @@ the following
       <code>
        true
       </code>
-      : backend,frontend,searchapi,archivemock in DEV mode
+      : backend,frontend,searchapi,archivemock,oaipmh,landingpage in DEV mode
      </td>
      <td>
       <code>
@@ -2096,6 +2096,171 @@ the following
       <a href="#dev-configuration">
        development in a standardized environment
       </a>
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      env
+     </td>
+     <td>
+      <code>
+       BACKEND_DEV
+      </code>
+     </td>
+     <td>
+      <code>
+       true
+      </code>
+      : backend,archivemock in DEV mode
+     </td>
+     <td>
+      <code>
+       ''
+      </code>
+     </td>
+     <td>
+      *
+     </td>
+     <td>
+      Same as
+      <code>
+       DEV=true
+      </code>
+      but limited to the backend service
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      env
+     </td>
+     <td>
+      <code>
+       FRONTEND_DEV
+      </code>
+     </td>
+     <td>
+      <code>
+       true
+      </code>
+      : frontend in DEV mode
+     </td>
+     <td>
+      <code>
+       ''
+      </code>
+     </td>
+     <td>
+      *
+     </td>
+     <td>
+      Same as
+      <code>
+       DEV=true
+      </code>
+      but limited to the frontend service
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      env
+     </td>
+     <td>
+      <code>
+       SEARCHAPI_DEV
+      </code>
+     </td>
+     <td>
+      <code>
+       true
+      </code>
+      : searchapi in DEV mode
+     </td>
+     <td>
+      <code>
+       ''
+      </code>
+     </td>
+     <td>
+      *
+     </td>
+     <td>
+      Same as
+      <code>
+       DEV=true
+      </code>
+      but limited to the searchapi service
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      env
+     </td>
+     <td>
+      <code>
+       LANDINGPAGE_DEV
+      </code>
+     </td>
+     <td>
+      <code>
+       true
+      </code>
+      : landingpage in DEV mode
+     </td>
+     <td>
+      <code>
+       ''
+      </code>
+     </td>
+     <td>
+      *
+     </td>
+     <td>
+      Same as
+      <code>
+       DEV=true
+      </code>
+      but limited to the landingpage service
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      env
+     </td>
+     <td>
+      <code>
+       OAIPMH_DEV
+      </code>
+     </td>
+     <td>
+      <code>
+       true
+      </code>
+      : oaipmh in DEV mode
+     </td>
+     <td>
+      <code>
+       ''
+      </code>
+     </td>
+     <td>
+      *
+     </td>
+     <td>
+      Same as
+      <code>
+       DEV=true
+      </code>
+      but limited to the oaipmh service
      </td>
      <td>
      </td>
@@ -2216,6 +2381,11 @@ components' GitHub repo if not specified otherwise. The
      DEV=true
     </code>
     affects the SciCat services only.
+It's also possible to only run some services in development mode by using their respective variables (eg.
+    <code>
+     BACKEND_DEV=true
+    </code>
+    )
    </p>
    <p>
     Please be patient when using DEV as each container sets the env for dev, including the requirements for testing, which

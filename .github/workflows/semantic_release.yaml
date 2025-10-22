@@ -27,6 +27,13 @@ jobs:
       - name: Install dependencies
         run: npm install --no-package-lock
       - name: Release
+        id: semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
+      - uses: SciCatProject/scicatlive/.github/actions/mkdocs-pages@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          push: true
+          docs_folder: ''
+          TAG: ${{ steps.semantic-release.outputs.tag }}

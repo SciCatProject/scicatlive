@@ -9,4 +9,4 @@ plugins:
   - '@semantic-release/github'
   -
     - '@semantic-release/exec'
-    - verifyConditionsCmd: echo "tag=${nextRelease.version}" >> $GITHUB_ENV
+    - successCmd: echo "tag=${nextRelease.gitTag}" >> $GITHUB_ENV

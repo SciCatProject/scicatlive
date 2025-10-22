@@ -1,23 +1,22 @@
-# [Ldap](https://www.openldap.org/)
+# [LDAP (GLAuth)](https://glauth.github.io/)
 
 LDAP (Lightweight Directory Access Protocol) is a protocol used to access and manage directory information such as user
 credentials. SciCat can use LDAP as third-party authentication provider.
 
 ## Configuration options
 
-The OpenLDAP configuration is set by the [.env file](./config/.env).
+The GLAUth configuration is defined in the [glauth.conf file](./config/glauth.conf).
 
-For an extensive list of available options see the [LDAP docker docs](https://hub.docker.com/r/bitnami/openldap).
+For an extensive list of available options see the [GLAuth docs](https://glauth.github.io/docs/).
 
-You can add other users by editing the [ldif file](./config/ldifs/02-users.ldif). :warning: User creation is only done
-once, when the container is created.
+You can add other users by editing the [configuration file](./config/glauth.conf).
 
 ## Default configuration
 
-The default configuration [.env file](./config/.env) creates the `dc=facility` domain with the following user:
+The default configuration creates the `dc=facility` domain with the following user:
 
 | Username  | Password |
-| --------- | -------- |
+|-----------|----------|
 | ldap-user | password |
 
 ## Enable additional features

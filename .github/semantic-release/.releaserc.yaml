@@ -9,4 +9,4 @@ plugins:
   - '@semantic-release/github'
   -
     - '@semantic-release/exec'
-    - successCmd: echo "tag=${nextRelease.gitTag}" >> $GITHUB_ENV
+    - successCmd: echo "tag=${nextRelease.gitTag}" >> $GITHUB_OUTPUT

@@ -4,7 +4,8 @@ services:
     volumes:
       - ./config/glauth.conf:/app/config/config.cfg:ro
     labels:
-      - traefik.http.services.ldap.loadbalancer.server.port=5555
+      # Adding a label to keep this service out of traefik
+      - traefik.enable=false
     post_start:
       # "Install" busybox netcat for healthchecks
       - command: /usr/bin/cp /bin/sh /bin/nc

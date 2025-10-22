@@ -1,0 +1,26 @@
+services:
+  backend:
+    image: ghcr.io/scicatproject/backend-next:v4.25.1
+    depends_on:
+      mongodb:
+        condition: service_started
+    volumes:
+      - ./config/functionalAccounts.json:/home/node/app/functionalAccounts.json
+      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
+      - ./entrypoints/db_migration.sh:/docker-entrypoints/10.sh
+    entrypoint:
+      - loop_entrypoints.sh
+      - docker-entrypoint.sh
+    command: node dist/main
+    labels:
+      # Adding a label for traefik to learn which port to look for a service on
+      - traefik.http.services.backend.loadbalancer.server.port=3000
+    env_file:
+      - ./config/.env
+    healthcheck:
+      test: wget --spider -Y off 'http://127.0.0.1:3000/api/v3/health'
+      start_period: 5s
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: on-failure

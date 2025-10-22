@@ -1,0 +1,13 @@
+services:
+  oaipmh:
+    image: ghcr.io/scicatproject/oai-provider-service:v1.1.5
+    labels:
+      - traefik.http.services.oaipmh.loadbalancer.server.port=3000
+    profiles:
+      - search
+    restart: on-failure
+    env_file:
+      - ./config/.env
+    depends_on:
+      backend:
+        condition: service_healthy

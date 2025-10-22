@@ -1,0 +1,13 @@
+services:
+  searchapi:
+    extends:
+      file: ${PWD}/services/compose.dev.yaml
+      service: node-app-from-local
+    volumes:
+      - ${PWD}/entrypoints/npm_ci.sh:/docker-entrypoints/10.sh
+    env_file:
+      - ./config/.dev.env
+
+volumes:
+  searchapi_dev:
+    driver: local

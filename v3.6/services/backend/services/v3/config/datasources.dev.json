@@ -1,0 +1,5 @@
+{
+    "mongo": {
+      "database": "dev-dacat"
+    }
+}

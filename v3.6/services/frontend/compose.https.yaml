@@ -1,0 +1,8 @@
+services:
+  frontend:
+    post_start:
+      - command: >-
+          sh -c
+          "echo '{\"lbBaseURL\": \"${BACKEND_HTTPS_URL}\"}'
+          > ${CONFIG_DIR}/config.override.4.json"
+        user: root

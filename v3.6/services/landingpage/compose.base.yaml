@@ -1,0 +1,20 @@
+services:
+  landingpage:
+    image: ghcr.io/scicatproject/landingpageserver:v3.4
+    volumes:
+      - ./config/config.json:/config/0.json
+      # docker-entrypoint.d is available only in the nginx layer
+      # so it is neglected in DEV
+      - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoint.d/00.sh
+    profiles:
+      - search
+    restart: on-failure
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}
+      FRONTEND_URL: ${FRONTEND_HTTPS_URL:-http://localhost}
+    labels:
+      # Adding a label for traefik to learn which port to look for a service on
+      - traefik.http.services.landingpage.loadbalancer.server.port=80

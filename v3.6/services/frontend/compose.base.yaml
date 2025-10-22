@@ -1,0 +1,19 @@
+services:
+  frontend:
+    image: ghcr.io/scicatproject/frontend:v5.6.0
+    depends_on:
+      backend:
+        condition: service_healthy
+    volumes:
+      - ./config/config.json:${CONFIG_DIR}/config.override.0.json
+    labels:
+      - traefik.http.routers.frontend.rule=Host(`localhost`)
+      # Adding a label for traefik to learn which port to look for a service on
+      - traefik.http.services.frontend.loadbalancer.server.port=8080
+    healthcheck:
+      test: curl -f 'http://127.0.0.1:8080'
+      start_period: 5s
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: on-failure

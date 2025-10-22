@@ -1,0 +1,26 @@
+services:
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.1.5
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    mem_limit: 1.5g
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    labels:
+      # Adding a label to keep this service out of traefik
+      - traefik.enable=false
+    healthcheck:
+      test: >-
+        curl -f localhost:9200 | grep -q '"tagline" : "You Know, for Search"'
+      interval: 10s
+      timeout: 10s
+      retries: 15
+    env_file:
+      - ./config/.env
+    restart: on-failure
+
+volumes:
+  esdata:
+    driver: local

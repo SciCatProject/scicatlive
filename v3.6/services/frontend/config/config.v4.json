@@ -1,0 +1,4 @@
+{
+    "accessTokenPrefix": "Bearer ",
+    "externalAuthEndpoint": "/api/v3/auth/ldap"
+}

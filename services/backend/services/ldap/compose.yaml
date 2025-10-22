@@ -1,8 +1,6 @@
 services:
   ldap:
     image: glauth/glauth:v2.4.0
-    ports:
-      - 3893:3893
     volumes:
       - ./config/glauth.conf:/app/config/config.cfg:ro
     labels:

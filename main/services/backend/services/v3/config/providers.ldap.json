@@ -14,10 +14,10 @@
       "email": "mail"
     },
     "server": {
-      "url": "ldap://ldap:389",
-      "bindDn": "cn=admin,dc=facility",
-      "bindCredentials": "admin",
-      "searchBase": "ou=users,dc=facility",
+      "url": "ldap://ldap:3893",
+      "bindDn": "cn=scicatlive-svc,ou=svc-acc,dc=facility",
+      "bindCredentials": "mysecret",
+      "searchBase": "dc=facility",
       "searchFilter": "(uid={{username}})"
     }
   }

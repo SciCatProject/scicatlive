@@ -1,15 +1,17 @@
 services:
   ldap:
-    image: bitnamilegacy/openldap:2.6
+    image: glauth/glauth:v2.4.0
+    ports:
+      - 3893:3893
     volumes:
-      - ./config/ldifs:/ldifs:ro
-    env_file:
-      - ./config/.env
+      - ./config/glauth.conf:/app/config/config.cfg:ro
     labels:
-      # Adding a label to keep this service out of traefik
-      - traefik.enable=false
+      - traefik.http.services.ldap.loadbalancer.server.port=5555
+    post_start:
+      # "Install" busybox netcat for healthchecks
+      - command: /usr/bin/cp /bin/sh /bin/nc
     healthcheck:
-      test: ldapwhoami -H ldap://ldap:389 -D 'cn=admin,dc=facility' -w 'admin'
+      test: /bin/nc -zv 127.0.0.1 3893
       start_period: 5s
       interval: 10s
       timeout: 10s

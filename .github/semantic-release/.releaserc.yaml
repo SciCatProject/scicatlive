@@ -7,3 +7,6 @@ plugins:
           release: patch
   - '@semantic-release/release-notes-generator'
   - '@semantic-release/github'
+  - 
+    - '@semantic-release/exec'
+    - verifyConditionsCmd: 'echo "tag=${nextRelease.version}" >> $GITHUB_ENV'

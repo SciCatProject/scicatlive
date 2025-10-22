@@ -21,7 +21,7 @@
     
     
       
-        <title>Ldap - SciCatLive</title>
+        <title>LDAP (GLAuth) - SciCatLive</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ldap" class="md-skip">
+        <a href="#ldap-glauth" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ldap
+              LDAP (GLAuth)
             
           </span>
         </div>
@@ -437,7 +437,7 @@
   
   
   <span class="md-ellipsis">
-    Ldap
+    LDAP (GLAuth)
     
   </span>
   
@@ -450,7 +450,7 @@
   
   
   <span class="md-ellipsis">
-    Ldap
+    LDAP (GLAuth)
     
   </span>
   
@@ -881,11 +881,11 @@
 
 <html>
  <body>
-  <h1 id="ldap">
-   <a href="https://www.openldap.org/">
-    Ldap
+  <h1 id="ldap-glauth">
+   <a href="https://glauth.github.io/">
+    LDAP (GLAuth)
    </a>
-   <a class="headerlink" href="#ldap" title="Permanent link">
+   <a class="headerlink" href="#ldap-glauth" title="Permanent link">
     ¶
    </a>
   </h1>
@@ -900,28 +900,25 @@ credentials. SciCat can use LDAP as third-party authentication provider.
    </a>
   </h2>
   <p>
-   The OpenLDAP configuration is set by the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.6.3/services/backend/services/ldap/config/.env">
-    .env file
+   The GLAUth configuration is defined in the
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.6.4/services/backend/services/ldap/config/glauth.conf">
+    glauth.conf file
    </a>
    .
   </p>
   <p>
    For an extensive list of available options see the
-   <a href="https://hub.docker.com/r/bitnami/openldap">
-    LDAP docker docs
+   <a href="https://glauth.github.io/docs/">
+    GLAuth docs
    </a>
    .
   </p>
   <p>
    You can add other users by editing the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.6.3/services/backend/services/ldap/config/ldifs/02-users.ldif">
-    ldif file
+   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.6.4/services/backend/services/ldap/config/glauth.conf">
+    configuration file
    </a>
    .
-   <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/26a0.svg" title=":warning:"/>
-   User creation is only done
-once, when the container is created.
   </p>
   <h2 id="default-configuration">
    Default configuration
@@ -930,11 +927,7 @@ once, when the container is created.
    </a>
   </h2>
   <p>
-   The default configuration
-   <a href="https://github.com/SciCatProject/scicatlive/blob/v3.6.3/services/backend/services/ldap/config/.env">
-    .env file
-   </a>
-   creates the
+   The default configuration creates the
    <code>
     dc=facility
    </code>

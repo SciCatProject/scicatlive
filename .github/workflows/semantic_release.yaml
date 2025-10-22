@@ -26,13 +26,14 @@ jobs:
           node-version: 22
       - name: Install dependencies
         run: npm install --no-package-lock
-      - name: Get workflow dispatcher app token
-        uses: actions/create-github-app-token@v2
-        id: app-token
-        with:
-          app-id: ${{ secrets.WORKFLOW_DISPATCHER_APP_ID }}
-          private-key: ${{ secrets.WORKFLOW_DISPATCHER_APP_PRIVATE_KEY }}
       - name: Release
+        id: semantic-release
         env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
+      - uses: SciCatProject/scicatlive/.github/actions/mkdocs-pages@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          push: true
+          docs_folder: ''
+          TAG: ${{ steps.semantic-release.outputs.tag }}

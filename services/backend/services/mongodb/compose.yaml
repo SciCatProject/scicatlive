@@ -3,7 +3,7 @@ services:
     image: mongo:8.0
     volumes:
       - backend${BE_VERSION:-v4}_mongodb_data:/data/db
-      - ./config/init.sh:/docker-entrypoint-initdb.d/init.sh
+      - ./config/init.sh:/seed/init.sh:ro
       - ./config/seed:/seed
     labels:
       # Adding a label to keep this service out of traefik
@@ -12,6 +12,8 @@ services:
       BE_VERSION: ${BE_VERSION:-v4}
       DEV: ${BACKEND_DEV:+dev-}
     restart: on-failure
+    post_start:
+      - command: ./seed/init.sh
 
 volumes:
   backendv3_mongodb_data:

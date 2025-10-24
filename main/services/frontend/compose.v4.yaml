@@ -1,4 +1,1 @@
-services:
-  frontend:
-    volumes:
-      - ./config/config.v4.json:${CONFIG_DIR}/config.override.1.json
+## empty file used when override configs are not enabled

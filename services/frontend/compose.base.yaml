@@ -21,7 +21,7 @@ services:
     environment:
       CONFIG_FILE: config.override.json
     post_start:
-      - command: ./post_start/merge_json.sh
+      - command: /post_start/merge_json.sh
         user: root
         environment:
           BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}

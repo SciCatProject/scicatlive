@@ -8,6 +8,9 @@ The frontend configuration is set by the [config files](./config/). Files inside
 `.json` extension are merged respecting the alphabetical order of the files in the **container**, with
 [config.v3.json](./config/config.v3.json) applied depending on the
 [BE_VERSION](../../README.md#docker-compose-profiles-and-env-variables-configuration-options).
+When using the frontend image >= [5.5.0](https://github.com/SciCatProject/frontend/releases/tag/v5.5.0), the values
+from [config.json in the upstream](https://github.com/SciCatProject/frontend/blob/master/src/assets/config.json)
+are used as defaults.
 
 For an extensive list of available options see the
 [official SciCat documentation](https://scicatproject.github.io/documentation/Development/v3.x/Configuration.html#scicat-frontend)

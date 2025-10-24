@@ -20,8 +20,7 @@ services:
     restart: on-failure
     environment:
       CONFIG_FILE: config.override.json
+      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}
     post_start:
       - command: /post_start/merge_json.sh
         user: root
-        environment:
-          BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}

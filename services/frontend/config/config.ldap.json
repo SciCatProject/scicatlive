@@ -1,4 +1,5 @@
 {
   "loginLdapEnabled": true,
-  "loginLdapLabel": "Connect with LDAP"
+  "loginLdapLabel": "Connect with LDAP",
+  "externalAuthEndpoint": "/api/v3/auth/ldap"
 }

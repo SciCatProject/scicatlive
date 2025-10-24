@@ -9,6 +9,7 @@ services:
       - ./config/config.json:/config/config.0.json
       - ./config/config.oidc.json:/config/${OIDC_ENABLED:-.}config.1.json
       - ./config/config.ldap.json:/config/${LDAP_ENABLED:-.}config.2.json
+      - ./config/config.jobs.json:/config/${JOBS_ENABLED:-.}config.3.json
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)
       # Adding a label for traefik to learn which port to look for a service on

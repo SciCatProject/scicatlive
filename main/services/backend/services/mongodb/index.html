@@ -946,9 +946,18 @@
     .
    </li>
    <li>
-    Restart the docker container.
+    Start the docker container.
    </li>
   </ol>
+  <p>
+   The seeding of the DB takes place only if the DB does not exist already.
+To rerun seeding, please drop the database from mongo,
+either removing the docker volume or by running:
+  </p>
+  <div class="highlight">
+   <pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-t<span class="w"> </span>mongodb<span class="w"> </span>mongosh<span class="w"> </span>--eval<span class="w"> </span><span class="s1">'use $DB; db.dropDatabase();'</span>
+</code></pre>
+  </div>
   <p>
    These files are ingested into the database using mongo funcionalities and bypassing the backend, i.e. they are not to be
 taken as examples to use the backend API.

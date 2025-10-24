@@ -1,5 +1,4 @@
 {
    "lbBaseURL": "${BACKEND_URL}",
-   "jobsEnabled": false,
-   "archiveWorkflowEnabled": false
+   "jobsEnabled": false
 }

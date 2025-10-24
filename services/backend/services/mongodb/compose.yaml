@@ -13,7 +13,7 @@ services:
       DEV: ${BACKEND_DEV:+dev-}
     restart: on-failure
     post_start:
-      - command: ./seed/init.sh
+      - command: /seed/init.sh
 
 volumes:
   backendv3_mongodb_data:

@@ -1,0 +1,10 @@
+include:
+  - services/elastic/compose.yaml
+
+services:
+  backend:
+    depends_on:
+      elastic:
+        condition: service_healthy
+    env_file:
+      - ./config/.elastic.env

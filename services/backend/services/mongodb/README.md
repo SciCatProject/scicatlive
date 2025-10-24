@@ -11,7 +11,15 @@ To add more collections during the creation of the database:
 
 1. add the corresponding file(s) in the folder [./config/seed/](./config/seed/), keeping the convention:
    `filename := collectionname.json`.
-2. Restart the docker container.
+2. Start the docker container.
+
+The seeding of the DB takes place only if the DB does not exist already.
+To rerun seeding, please drop the database from mongo,
+either removing the docker volume or by running:
+
+```bash
+docker compose exec -t mongodb mongosh --eval 'use $DB; db.dropDatabase();'
+```
 
 These files are ingested into the database using mongo funcionalities and bypassing the backend, i.e. they are not to be
 taken as examples to use the backend API.

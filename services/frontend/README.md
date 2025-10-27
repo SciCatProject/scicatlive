@@ -35,7 +35,6 @@ With `FRONTEND_DEV=true` (or `DEV=true`), please use `npm start -- --host 0.0.0.
 IP to the `frontend` component and it is necessary since the component runs in the docker network.
 
 Setting the [BACKEND_HTTPS_URL env variable](../../.env) requires changing the `backend` URL used by the `frontend`.
-This is managed in the post_start of the frontend container [./compose.https.yaml](./compose.https.yaml).
 
 :warning: When setting `FRONTENT_HTTPS_URL` it is likely you also want to set the `BACKEND_HTTPS_URL`, to allow the
 communication between the two wherever the browser is accessed.

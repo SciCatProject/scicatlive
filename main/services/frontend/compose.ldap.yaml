@@ -1,4 +1,0 @@
-services:
-  frontend:
-    volumes:
-      - ./config/config.ldap.json:/config/config.2.json

@@ -1,6 +1,5 @@
 {
-   "lbBaseURL": "http://backend.localhost",
+   "lbBaseURL": "${BACKEND_URL}",
    "jobsEnabled": false,
-   "archiveWorkflowEnabled": false,
    "oAuth2Endpoints": []
 }

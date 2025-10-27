@@ -2,7 +2,4 @@ include:
   - path:
       - compose.base.yaml
       - compose.${BE_VERSION}.yaml
-      - .${OIDC_ENABLED:+/}compose.oidc.yaml
-      - .${LDAP_ENABLED:+/}compose.ldap.yaml
       - .${FRONTEND_DEV:+/}compose.dev.yaml
-      - .${BACKEND_HTTPS_URL:+/}compose.https.yaml

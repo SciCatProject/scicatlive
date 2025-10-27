@@ -395,8 +395,8 @@ or/and this [PR](https://github.com/SciCatProject/scicatlive/pull/325) which add
    4. use `compose.yaml` to merge the `compose*.yaml` files together, making sure to default to `.compose.<ENV>.yaml`
       whenever the `ENV` is not set. See an example
       [./services/backend/services/v4/compose.yaml](./services/backend/services/v4/compose.yaml).
-      If the ENV overrides are simple, prefer reducing the `compose.*.yaml` files, as done in the
-      [frontend](./services/frontend/compose.base.yaml).
+      If the ENV overrides are simple, prefer limiting the `compose.*.yaml` files, as done in the
+      [frontend](./services/frontend/compose.base.yaml)
    5. if the service is another version of an existing one, e.g. v3 and v4 versions of the `backend` service, add the
       selective include in the parent compose.yaml, e.g.
       [./services/backend/compose.yaml](./services/backend/compose.yaml)

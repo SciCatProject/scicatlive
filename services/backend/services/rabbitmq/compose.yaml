@@ -1,6 +1,6 @@
 services:
   rabbitmq:
-    image: rabbitmq:4.1-management-alpine
+    image: rabbitmq:4.2-management-alpine
     labels:
       - traefik.http.services.rabbitmq.loadbalancer.server.port=15672
     volumes:

@@ -1,6 +1,6 @@
 services:
   mongodb:
-    image: mongo:8.0
+    image: mongo:8.2
     volumes:
       - backend${BE_VERSION:-v4}_mongodb_data:/data/db
       - ./config/init.sh:/init.sh:ro

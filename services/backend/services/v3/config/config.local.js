@@ -11,7 +11,7 @@ module.exports = {
   policyPublicationShiftInYears: 3,
   policyRetentionShiftInYears: 10,
   metadataKeysReturnLimit:100,
-  site: "SAMPLE-SITE",
+  site: "PSI",
   facilities: ["Facility1", "Facility2"],
   jobMessages: {
     jobSubmitted: "Submitted for immediate execution",

@@ -9,6 +9,8 @@ services:
       - ./config/config.local.js:/home/node/app/server/config.local.js
       - ./config/datasources.json:/config/datasources.0.json
       - ./config/providers.json:/config/providers.json
+      - ./config/functionalAccounts.json:/home/node/app/server/functionalAccounts.json
+      - ./config/middleware.json:/home/node/app/server/middleware.local.json
       - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
       - ./entrypoints/merge_json.sh:/docker-entrypoints/10.sh
     entrypoint:

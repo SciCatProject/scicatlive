@@ -102,7 +102,7 @@
     "jobParams": {
       "datasetList": [
         {
-          "pid": "PID.SAMPLE.PREFIX/dls_ds1",
+          "pid": "PID.SAMPLE.PREFIX/hzdr_ds1",
           "files": [ ]
         }
       ],
@@ -114,11 +114,11 @@
     "jobResultObject": {
       "result": [
         {
-          "datasetId": "PID.SAMPLE.PREFIX/dls_ds1",
+          "datasetId": "PID.SAMPLE.PREFIX/hzdr_ds1",
           "name": "137ac4e8-13fc-4702-92ad-99b2cd8768cb_0_2025-10-03-11-12-56.tar",
           "size": 223000000,
-          "archiveId": "/PID.SAMPLE.PREFIX/dls_ds1/_0_2025-10-03-11-12-56.tar",
-          "url": "https://example.com/PID.SAMPLE.PREFIX/dls_ds1.tar?X-Amz-Date=20200301T000000Z&X-Amz-Expires=3600"
+          "archiveId": "/PID.SAMPLE.PREFIX/hzdr_ds1/_0_2025-10-03-11-12-56.tar",
+          "url": "https://example.com/PID.SAMPLE.PREFIX/hzdr_ds1.tar?X-Amz-Date=20200301T000000Z&X-Amz-Expires=3600"
         }
       ]
     },

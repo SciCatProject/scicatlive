@@ -89,5 +89,12 @@
     "password": "f3ebd2e4def95db59ef95ee32ef45242",
     "role": "group5",
     "global": false
+  },
+  {
+    "username": "rocrate",
+    "email": "rocrate@your.site",
+    "password": "rocrate",
+    "role": "rocrate",
+    "global": false
   }
 ]

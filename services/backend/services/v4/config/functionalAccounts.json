@@ -22,5 +22,12 @@
     "password": "aman",
     "email": "scicatproposalingestor@your.site",
     "role": "proposalingestor"
+  },
+  {
+    "username": "rocrate",
+    "email": "rocrate@your.site",
+    "password": "rocrate",
+    "role": "rocrate",
+    "global": false
   }
 ]

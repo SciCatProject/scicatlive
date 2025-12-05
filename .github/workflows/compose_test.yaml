@@ -11,7 +11,7 @@ jobs:
     outputs:
       all: ${{ toJson(steps.changed-files.outputs) }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v47
@@ -23,7 +23,7 @@ jobs:
       - changes
     if: fromJson(needs.changes.outputs.all).yaml_all_modified_files
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install 'yamllint'
         run: sudo apt-get install -y yamllint
       - name: Lint YAML files
@@ -34,7 +34,7 @@ jobs:
       - changes
     if: fromJson(needs.changes.outputs.all).json_all_modified_files
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install 'jsonlint' and 'git'
         run: sudo apt install python3-demjson git
       - name: Lint JSON files
@@ -46,7 +46,7 @@ jobs:
       - changes
     if: fromJson(needs.changes.outputs.all).sh_all_modified_files
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install 'shellcheck' and 'git'
         run: sudo apt install shellcheck git
       - name: Lint shell files ([ba]sh scripts)
@@ -59,7 +59,7 @@ jobs:
       - changes
     if: fromJson(needs.changes.outputs.all).js_all_modified_files
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Use Node.js v20
         uses: actions/setup-node@v6
         with:
@@ -76,7 +76,7 @@ jobs:
       - changes
     if: fromJson(needs.changes.outputs.all).python_all_modified_files
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: chartboost/ruff-action@v1
         with:
           args: check --select ALL
@@ -86,7 +86,7 @@ jobs:
       - changes
     if: fromJson(needs.changes.outputs.all).mds_all_modified_files
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: tcort/github-action-markdown-link-check@v1
         with:
           use-quiet-mode: 'yes'
@@ -175,7 +175,7 @@ jobs:
           - ELASTIC_ENABLED: elastic
             BE_VERSION: v3
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Test compose.yaml
         run: |-
           export JOBS_ENABLED=${{ matrix.JOBS_ENABLED }}

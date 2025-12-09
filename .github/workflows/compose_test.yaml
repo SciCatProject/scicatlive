@@ -96,7 +96,7 @@ jobs:
       - name: Install dependencies
         run: npm install --no-package-lock
         working-directory: .github/markdownlint
-      - uses: DavidAnson/markdownlint-cli2-action@v21
+      - uses: DavidAnson/markdownlint-cli2-action@v22
         with:
           globs: |
             **/*.md

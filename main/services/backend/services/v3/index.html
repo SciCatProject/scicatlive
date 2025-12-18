@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
       
       
 
@@ -1256,7 +1256,7 @@ very verbose and could be simplified, but v3 has reached end of life in favour o
 development.
   </p>
   <h3 id="datasourcesjson">
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v3/config/datasources.json">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/datasources.json">
     datasources.json
    </a>
    <a class="headerlink" href="#datasourcesjson" title="Permanent link">
@@ -1266,17 +1266,17 @@ development.
   <p>
    It allows setting the connection to the underlying mongo database. It consists of two blocks: It consists of two blocks,
 the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v3/config/datasources.json#L18-L21">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/datasources.json#L18-L21">
     transient one
    </a>
    which should not be changed and the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v3/config/datasources.json#L6-L17">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/datasources.json#L6-L17">
     mongo one
    </a>
    for which we list the options that can be configured.
   </p>
   <h4 id="mongo">
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v3/config/datasources.json#L6-L17">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/datasources.json#L6-L17">
     mongo
    </a>
    <a class="headerlink" href="#mongo" title="Permanent link">
@@ -1378,7 +1378,7 @@ the
    </tbody>
   </table>
   <h3 id="providersjson">
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v3/config/providers.json">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/providers.json">
     providers.json
    </a>
    <a class="headerlink" href="#providersjson" title="Permanent link">
@@ -1394,14 +1394,14 @@ the
   </p>
   <p>
    Any file called providers*.json will be merged together by the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v3/entrypoints/merge_json.sh">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/entrypoints/merge_json.sh">
     merge_json.sh
    </a>
    . This is
 done to allow better scoping of providers options.
   </p>
   <h4 id="local">
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v3/config/providers.json#L2-L11">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/providers.json#L2-L11">
     local
    </a>
    <a class="headerlink" href="#local" title="Permanent link">
@@ -1413,7 +1413,7 @@ done to allow better scoping of providers options.
 disable that.
   </p>
   <h3 id="configlocaljs">
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v3/config/config.local.js">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/config.local.js">
     config.local.js
    </a>
    <a class="headerlink" href="#configlocaljs" title="Permanent link">
@@ -1424,7 +1424,7 @@ disable that.
    It allows setting backend-specific configurations. Here are the commonly changed options.
   </p>
   <h4 id="exports">
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v3/config/config.local.js#L3-L39">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/config.local.js#L3-L39">
     exports
    </a>
    <a class="headerlink" href="#exports" title="Permanent link">
@@ -1603,7 +1603,7 @@ disable that.
   </h2>
   <p>
    In the default configuration folder
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v3/config">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config">
     config
    </a>
    , the backend is set to use the
@@ -1629,7 +1629,7 @@ disable that.
    </a>
    service is started
 and configured to connect to v3 and
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/rabbitmq">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/rabbitmq">
     rabbitmq
    </a>
    .
@@ -1662,7 +1662,7 @@ and configured to connect to v3 and
     DEV=true
    </code>
    , since the v3 tests are supposed to run with an empty DB, the set DB is
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v3/config/datasources.dev.json">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/datasources.dev.json">
     dacat_test
    </a>
    which is empty. If willing to use the seeded one later during development,
@@ -1761,10 +1761,10 @@ visualize as
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

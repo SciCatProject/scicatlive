@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
-    "markdownlint-rule-relative-links": "4.2.0"
+    "markdownlint-rule-relative-links": "5.0.1"
   }
 }

@@ -1,11 +1,11 @@
-# [V4](https://github.com/SciCatProject/scicat-backend-next)
+# [V4](https://github.com/SciCatProject/backend)
 
 The SciCat backend v4 is a rewrite of the original backend, built on top of the NestJS framework.
 
 ## Configuration options
 
-The backend-next service is mainly configured via environment variables. For an extensive list of available options see
-the [upstream documentation](https://github.com/SciCatProject/scicat-backend-next/blob/master/README.md).
+The new backend service is mainly configured via environment variables. For an extensive list of available options see
+the [upstream documentation](https://github.com/SciCatProject/backend/blob/master/README.md).
 
 ### Functional Accounts
 

@@ -1,0 +1,2 @@
+include:
+  - services/s3-broker/compose.yaml

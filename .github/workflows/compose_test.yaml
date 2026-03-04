@@ -140,6 +140,7 @@ jobs:
         BE_VERSION: [v3, v4]
         ELASTIC_ENABLED: ['', elastic]
         JOBS_ENABLED: ['', jobs]
+        S3_BROKER_ENABLED: ['', s3-broker]
         LDAP_ENABLED: ['', ldap]
         OIDC_ENABLED: ['', oidc]
         DEV: ['', dev]
@@ -160,6 +161,10 @@ jobs:
                 !fromJson(needs.changes.outputs.all).jobs_all_modified_files
                 && 'jobs' || 'nothing'
               }}
+          - S3_BROKER_ENABLED: ${{
+                !fromJson(needs.changes.outputs.all).s3-broker_all_modified_files
+                && 's3-broker' || 'nothing'
+              }}
           - LDAP_ENABLED: ${{
                 !fromJson(needs.changes.outputs.all).ldap_all_modified_files
                 && 'ldap' || 'nothing'
@@ -179,6 +184,7 @@ jobs:
       - name: Test compose.yaml
         run: |-
           export JOBS_ENABLED=${{ matrix.JOBS_ENABLED }}
+          export S3_BROKER_ENABLED=${{ matrix.S3_BROKER_ENABLED }}
           export ELASTIC_ENABLED=${{ matrix.ELASTIC_ENABLED }}
           export LDAP_ENABLED=${{ matrix.LDAP_ENABLED }}
           export OIDC_ENABLED=${{ matrix.OIDC_ENABLED }}

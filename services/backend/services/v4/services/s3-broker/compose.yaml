@@ -1,0 +1,11 @@
+services:
+  s3-broker:
+    image: ghcr.io/paulscherrerinstitute/scicat-s3-broker:0.2.0-dev
+    labels:
+      - traefik.http.services.s3-broker.loadbalancer.server.port=8080
+    env_file:
+      - ./config/.env
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: on-failure

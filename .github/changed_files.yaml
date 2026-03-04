@@ -43,6 +43,9 @@ jobs: &jobs
   - '**/*jobs*'
   - '**/archivemock/**'
   - *src
+s3-broker:
+  - '**s3-broker**'
+  - *src
 elastic: &elastic
   - '**/elastic/**'
   - '**/*elastic*'

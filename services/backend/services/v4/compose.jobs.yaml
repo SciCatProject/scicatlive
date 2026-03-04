@@ -1,5 +1,6 @@
 include:
   - ../rabbitmq/compose.yaml
+  - .${S3_BROKER_ENABLED:+/}compose.s3-broker.yaml
 
 services:
   backend:

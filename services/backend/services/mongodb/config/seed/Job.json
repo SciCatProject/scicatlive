@@ -3,8 +3,8 @@
     "_id": "20afc200-de1c-4d01-81b9-2160f8f1635b",
     "createdBy": "archiveManager",
     "updatedBy": "archiveManager",
-    "createdAt": "2026-03-03T12:58:40.465Z",
-    "updatedAt": "2026-03-03T13:01:12.300Z",
+    "createdAt": { "$date": "2026-03-03T12:58:40.465Z" },
+    "updatedAt": { "$date": "2026-03-03T13:01:12.300Z" },
     "accessGroups": [ ],
     "isPublished": false,
     "id": "20afc200-de1c-4d01-81b9-2160f8f1635b",
@@ -20,7 +20,7 @@
         }
       ],
       "option": "URLs",
-      "executionTime": "2026-03-03T13:00:00.374Z"
+      "executionTime": { "$date": "2026-03-03T13:00:00.374Z" }
     },
     "contactEmail": "user@example.com",
     "configVersion": "v0.1.3 2025-05-14",
@@ -41,8 +41,8 @@
     "_id": "e52f1f71-d4b5-404d-8b23-66487d4c8f13",
     "createdBy": "archiveManager",
     "updatedBy": "archiveManager",
-    "createdAt": "2026-03-03T12:58:40.465Z",
-    "updatedAt": "2026-03-03T13:01:12.300Z",
+    "createdAt": { "$date": "2026-03-03T12:58:40.465Z" },
+    "updatedAt": { "$date": "2026-03-03T13:01:12.300Z" },
     "accessGroups": [ ],
     "isPublished": false,
     "id": "e52f1f71-d4b5-404d-8b23-66487d4c8f13",
@@ -62,7 +62,7 @@
         }
       ],
       "option": "URLs",
-      "executionTime": "2026-03-03T13:00:00.374Z"
+      "executionTime": { "$date": "2026-03-03T13:00:00.374Z" }
     },
     "contactEmail": "user@example.com",
     "configVersion": "v0.1.3 2025-05-14",
@@ -90,8 +90,8 @@
     "_id": "592f6358-5e53-443b-b86b-d6b77386b031",
     "createdBy": "archiveManager",
     "updatedBy": "archiveManager",
-    "createdAt": "2026-03-03T12:58:40.465Z",
-    "updatedAt": "2026-03-03T13:01:12.300Z",
+    "createdAt": { "$date": "2026-03-03T12:58:40.465Z" },
+    "updatedAt": { "$date": "2026-03-03T13:01:12.300Z" },
     "accessGroups": [ ],
     "isPublished": false,
     "id": "592f6358-5e53-443b-b86b-d6b77386b031",
@@ -107,7 +107,7 @@
         }
       ],
       "option": "URLs",
-      "executionTime": "2026-03-03T13:00:00.374Z"
+      "executionTime": { "$date": "2026-03-03T13:00:00.374Z" }
     },
     "contactEmail": "user@example.com",
     "configVersion": "v0.1.3 2025-05-14",

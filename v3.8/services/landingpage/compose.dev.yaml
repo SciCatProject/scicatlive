@@ -1,0 +1,17 @@
+services:
+  landingpage:
+    extends:
+      file: ${PWD}/services/compose.dev.yaml
+      service: node-app-from-remote
+    build:
+      target: builder
+    environment:
+      CONFIG_DIR: ${WORKDIR:-/home/node/app}/src/assets
+      CHROME_BIN: /usr/bin/chromium
+    volumes:
+      - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoints/10.sh
+      - ${PWD}/entrypoints/add_chrome.sh:/docker-entrypoints/20.sh
+
+volumes:
+  landingpage_dev:
+    driver: local

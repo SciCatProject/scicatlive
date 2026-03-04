@@ -1,0 +1,19 @@
+services:
+  frontend:
+  # pinned to v4.4.2 because
+  # FE>v4.4.2 breaks functional accounts login
+  # FE<v4.4.2 breaks OIDc login
+  # FE>v5 is not compatible with BE v3
+    image: ghcr.io/scicatproject/frontend:v.4.4.2
+    build:
+      context: ${GITHUB_REPO:-}#v.4.4.2
+    platform: linux/amd64
+    volumes:
+      - ./config/config.v3.json:/config/config.9.json
+    labels:
+      - traefik.http.services.frontend.loadbalancer.server.port=80
+    healthcheck:
+      test: wget -s -Y off 'http://127.0.0.1:80'
+    environment:
+      GITHUB_REPO: ${GITHUB_REPO:-}#v.4.4.2
+      CONFIG_FILE: config.json

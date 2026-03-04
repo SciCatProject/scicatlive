@@ -1,0 +1,9 @@
+{
+  "loginFacilityLabel": "Facility",
+  "oAuth2Endpoints": [
+    {
+      "authURL": "api/v3/auth/oidc",
+      "displayText": "OIDC"
+    }
+  ]
+}

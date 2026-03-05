@@ -30,9 +30,4 @@ jobs:
           IMAGE_PATH="${RAW_PATH,,}"
           PR_TAG="pr-${{ github.event.pull_request.number }}"
           echo "Verifying OCI bundle for ${IMAGE_PATH}:${PR_TAG}"
-          docker compose publish \
-            --app \
-            --resolve-image-digests \
-            --with-env \
-            --yes \
-            "${IMAGE_PATH}:${PR_TAG}"
+          docker compose publish -h

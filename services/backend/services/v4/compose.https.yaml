@@ -1,5 +1,11 @@
 services:
   backend:
-    volumes:
+    configs:
       # wait for kecyloak to get certificate
-      - ./entrypoints/sleep.sh:/docker-entrypoints/00.sh
+      - source: backend_v4_sleep_sh
+        target: /docker-entrypoints/00.sh
+        mode: 0555
+
+configs:
+  backend_v4_sleep_sh:
+    file: ./entrypoints/sleep.sh

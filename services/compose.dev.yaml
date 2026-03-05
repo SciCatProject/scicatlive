@@ -8,15 +8,30 @@ services:
     labels:
       - traefik.http.services.${APP}.loadbalancer.server.port=${DEV_PORT}
     volumes:
-      # These volumes allow to run init scripts before running the service
-      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
-      - ${PWD}/entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
-      - ${PWD}/entrypoints/bidirectional_backup.sh:/docker-entrypoints/${DEV_BBACKUP:+1}00.sh
-      - ${PWD}/entrypoints/chown_root.sh:/docker-entrypoints/00.sh
-      - ${PWD}/entrypoints/add_dev_deps.sh:/docker-entrypoints/01.sh
-      - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/02.sh
-      - ${PWD}/entrypoints/download_sdk.sh:/usr/local/bin/download_sdk.sh
       - openapigenerator:/openapigenerator
+    configs:
+      # These configs allow to run init scripts before running the service.
+      - source: entrypoints_loop_entrypoints_sh
+        target: /usr/local/bin/loop_entrypoints.sh
+        mode: 0555
+      - source: entrypoints_infinite_loop_sh
+        target: /usr/local/bin/infinite_loop.sh
+        mode: 0555
+      - source: entrypoints_bidirectional_backup_sh
+        target: /docker-entrypoints/${DEV_BBACKUP:+1}00.sh
+        mode: 0555
+      - source: entrypoints_chown_root_sh
+        target: /docker-entrypoints/00.sh
+        mode: 0555
+      - source: entrypoints_add_dev_deps_sh
+        target: /docker-entrypoints/01.sh
+        mode: 0555
+      - source: entrypoints_setup_git_sh
+        target: /docker-entrypoints/02.sh
+        mode: 0555
+      - source: entrypoints_download_sdk_sh
+        target: /usr/local/bin/download_sdk.sh
+        mode: 0555
     environment:
       GITHUB_REPO: ${GITHUB_REPO:-}
       WORKDIR: ${WORKDIR:-/home/node/app}

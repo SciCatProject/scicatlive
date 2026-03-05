@@ -5,12 +5,19 @@ services:
     depends_on:
       mongodb:
         condition: service_started
-    volumes:
-      - ./config/config.local.js:/home/node/app/server/config.local.js
-      - ./config/datasources.json:/config/datasources.0.json
-      - ./config/providers.json:/config/providers.json
-      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
-      - ./entrypoints/merge_json.sh:/docker-entrypoints/10.sh
+    configs:
+      - source: backend_v3_config_local_js
+        target: /home/node/app/server/config.local.js
+      - source: backend_v3_datasources_json
+        target: /config/datasources.0.json
+      - source: backend_v3_providers_json
+        target: /config/providers.json
+      - source: entrypoints_loop_entrypoints_sh
+        target: /usr/local/bin/loop_entrypoints.sh
+        mode: 0555
+      - source: backend_v3_merge_json_sh
+        target: /docker-entrypoints/10.sh
+        mode: 0555
     entrypoint:
       - loop_entrypoints.sh
       - docker-entrypoint.sh
@@ -25,3 +32,13 @@ services:
       timeout: 10s
       retries: 5
     restart: on-failure
+
+configs:
+  backend_v3_config_local_js:
+    file: ./config/config.local.js
+  backend_v3_datasources_json:
+    file: ./config/datasources.json
+  backend_v3_providers_json:
+    file: ./config/providers.json
+  backend_v3_merge_json_sh:
+    file: ./entrypoints/merge_json.sh

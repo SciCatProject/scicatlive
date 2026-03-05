@@ -5,11 +5,21 @@ services:
       service: node-app-from-local
     environment:
       NODE_ENV: development
-    volumes:
-      - ./config/settings.json:/home/node/app/test/config/settings.json
-      - ./config/datasources.dev.json:/config/datasources.1.json
-      - ${PWD}/entrypoints/npm_ci.sh:/docker-entrypoints/20.sh
+    configs:
+      - source: backend_v3_settings_json
+        target: /home/node/app/test/config/settings.json
+      - source: backend_v3_datasources_dev_json
+        target: /config/datasources.1.json
+      - source: entrypoints_npm_ci_sh
+        target: /docker-entrypoints/20.sh
+        mode: 0555
 
 volumes:
   v3_dev:
     driver: local
+
+configs:
+  backend_v3_settings_json:
+    file: ./config/settings.json
+  backend_v3_datasources_dev_json:
+    file: ./config/datasources.dev.json

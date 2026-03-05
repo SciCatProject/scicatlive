@@ -9,10 +9,16 @@ services:
       CONFIG_DIR: ${WORKDIR}/src/assets
       CHROME_BIN: /usr/bin/chromium
       SDK_LANG: typescript-angular
-    volumes:
-      - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoints/10.sh
-      - ${PWD}/entrypoints/add_chrome.sh:/docker-entrypoints/20.sh
-      - ${PWD}/entrypoints/npm_install_sdk.sh:/usr/local/bin/generate_sdk
+    configs:
+      - source: entrypoints_merge_json_sh
+        target: /docker-entrypoints/10.sh
+        mode: 0555
+      - source: entrypoints_add_chrome_sh
+        target: /docker-entrypoints/20.sh
+        mode: 0555
+      - source: entrypoints_npm_install_sdk_sh
+        target: /usr/local/bin/generate_sdk
+        mode: 0555
     post_start: !reset null
 
 volumes:

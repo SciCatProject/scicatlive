@@ -1,7 +1,7 @@
 name: Create release
 
 on:  # yamllint disable-line rule:truthy
-  push:
+  pull_request:
     branches:
       - main
 
@@ -30,16 +30,12 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24
-      - name: Install dependencies
-        run: npm install --no-package-lock
-      - name: Release
-        id: semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
-      - uses: SciCatProject/scicatlive/.github/actions/mkdocs-pages@main
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          push: true
-          docs_folder: ''
-          TAG: ${{ steps.semantic-release.outputs.tag }}
+      - name: Test OCI Bundle (PR Dry Run)
+        run: |
+          # Use your Bash substitution to lower the path
+          RAW_PATH="ghcr.io/${GITHUB_REPOSITORY}"
+          IMAGE_PATH="${RAW_PATH,,}"
+          PR_TAG="pr-${{ github.event.pull_request.number }}"
+          
+          echo "Verifying OCI bundle for ${IMAGE_PATH}:${PR_TAG}"
+          docker compose push-bundle "${IMAGE_PATH}:${PR_TAG}"

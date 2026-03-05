@@ -26,16 +26,11 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
       - name: Test OCI Bundle (PR Dry Run)
         run: |
           # Use your Bash substitution to lower the path
           RAW_PATH="ghcr.io/${GITHUB_REPOSITORY}"
           IMAGE_PATH="${RAW_PATH,,}"
           PR_TAG="pr-${{ github.event.pull_request.number }}"
-          
           echo "Verifying OCI bundle for ${IMAGE_PATH}:${PR_TAG}"
-          docker compose push-bundle "${IMAGE_PATH}:${PR_TAG}"
+          docker compose push "${IMAGE_PATH}:${PR_TAG}"

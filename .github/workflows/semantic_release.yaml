@@ -12,9 +12,6 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
-    defaults:
-      run:
-        working-directory: .github/semantic-release
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -33,4 +30,9 @@ jobs:
           IMAGE_PATH="${RAW_PATH,,}"
           PR_TAG="pr-${{ github.event.pull_request.number }}"
           echo "Verifying OCI bundle for ${IMAGE_PATH}:${PR_TAG}"
-          docker compose push "${IMAGE_PATH}:${PR_TAG}"
+          docker compose push \
+            --app \
+            --resolve-image-digests \
+            --with-env \
+            --yes \
+            "${IMAGE_PATH}:${nextRelease.version}""${IMAGE_PATH}:${PR_TAG}"

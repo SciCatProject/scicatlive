@@ -12,6 +12,6 @@ plugins:
     - publishCmd: |
         RAW_PATH="ghcr.io/${GITHUB_REPOSITORY}"
         IMAGE_PATH="${RAW_PATH,,}"
-        docker compose push-bundle ghcr.io/$IMAGE_PATH:${nextRelease.version} && \
-        docker compose push-bundle ghcr.io/$IMAGE_PATH:latest
+        docker compose push-bundle ghcr.io/$IMAGE_PATH:${nextRelease.version} \
+        && docker compose push-bundle ghcr.io/$IMAGE_PATH:latest
     - successCmd: echo "tag=${nextRelease.gitTag}" >> $GITHUB_OUTPUT

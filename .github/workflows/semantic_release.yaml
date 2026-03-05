@@ -35,4 +35,4 @@ jobs:
             --resolve-image-digests \
             --with-env \
             --yes \
-            "${IMAGE_PATH}:${nextRelease.version}""${IMAGE_PATH}:${PR_TAG}"
+            "${IMAGE_PATH}:${PR_TAG}"

@@ -5,9 +5,11 @@ services:
       service: node-app-from-remote
     build:
       target: dev
-    volumes:
-      - ./config/functionalAccounts.dev.json:/home/node/app/functionalAccounts.json
-      - ./config/.dev.env:/home/node/app/test/config/.env.override
+    configs:
+      - source: backend_v4_functional_accounts_dev_json
+        target: /home/node/app/functionalAccounts.json
+      - source: backend_v4_dev_env
+        target: /home/node/app/test/config/.env.override
     environment:
       MONGODB_URI: mongodb://mongodb:27017/dev-dacat-next
       DEV: ${BACKEND_DEV:+true}
@@ -18,3 +20,9 @@ services:
 volumes:
   v4_dev:
     driver: local
+
+configs:
+  backend_v4_functional_accounts_dev_json:
+    file: ./config/functionalAccounts.dev.json
+  backend_v4_dev_env:
+    file: ./config/.dev.env

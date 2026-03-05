@@ -7,14 +7,26 @@ services:
       retries: 10
     labels:
       - traefik.http.services.${APP}.loadbalancer.server.port=${DEV_PORT}
-    volumes:
-      # These volumes allow to run init scripts before running the service
-      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
-      - ${PWD}/entrypoints/infinite_loop.sh:/usr/local/bin/infinite_loop.sh
-      - ${PWD}/entrypoints/bidirectional_backup.sh:/docker-entrypoints/${DEV_BBACKUP:+1}00.sh
-      - ${PWD}/entrypoints/chown_root.sh:/docker-entrypoints/00.sh
-      - ${PWD}/entrypoints/add_dev_deps.sh:/docker-entrypoints/01.sh
-      - ${PWD}/entrypoints/setup_git.sh:/docker-entrypoints/02.sh
+    configs:
+      # These configs allow to run init scripts before running the service.
+      - source: web_app_loop_entrypoints_sh
+        target: /usr/local/bin/loop_entrypoints.sh
+        mode: 0555
+      - source: web_app_infinite_loop_sh
+        target: /usr/local/bin/infinite_loop.sh
+        mode: 0555
+      - source: web_app_bidirectional_backup_sh
+        target: /docker-entrypoints/${DEV_BBACKUP:+1}00.sh
+        mode: 0555
+      - source: web_app_chown_root_sh
+        target: /docker-entrypoints/00.sh
+        mode: 0555
+      - source: web_app_add_dev_deps_sh
+        target: /docker-entrypoints/01.sh
+        mode: 0555
+      - source: web_app_setup_git_sh
+        target: /docker-entrypoints/02.sh
+        mode: 0555
     environment:
       GITHUB_REPO: ${GITHUB_REPO:-}
       WORKDIR: ${WORKDIR:-/home/node/app}
@@ -31,7 +43,21 @@ services:
       - ${WORKDIR:-/home/node/app}/node_modules
   node-app-from-remote:
     extends: node-app-from-local
-    image: ''
+    image: ""
     build:
       context: ${GITHUB_REPO:-}
       no_cache: true
+
+configs:
+  web_app_loop_entrypoints_sh:
+    file: ${PWD}/entrypoints/loop_entrypoints.sh
+  web_app_infinite_loop_sh:
+    file: ${PWD}/entrypoints/infinite_loop.sh
+  web_app_bidirectional_backup_sh:
+    file: ${PWD}/entrypoints/bidirectional_backup.sh
+  web_app_chown_root_sh:
+    file: ${PWD}/entrypoints/chown_root.sh
+  web_app_add_dev_deps_sh:
+    file: ${PWD}/entrypoints/add_dev_deps.sh
+  web_app_setup_git_sh:
+    file: ${PWD}/entrypoints/setup_git.sh

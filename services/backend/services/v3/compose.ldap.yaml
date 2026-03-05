@@ -6,5 +6,10 @@ services:
     depends_on:
       ldap:
         condition: service_healthy
-    volumes:
-      - ./config/providers.ldap.json:/config/providers.ldap.json
+    configs:
+      - source: backend_v3_providers_ldap_json
+        target: /config/providers.ldap.json
+
+configs:
+  backend_v3_providers_ldap_json:
+    file: ./config/providers.ldap.json

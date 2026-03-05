@@ -3,9 +3,12 @@ services:
     image: quay.io/keycloak/keycloak:26.5
     command: start-dev --import-realm --health-enabled=true --http-port=80
     env_file: ./config/.env
-    volumes:
-      - ./healthcheck/healthcheck.sh:/healthcheck.sh
-      - ./config/facility-realm.json:/opt/keycloak/data/import/facility-realm.json:ro
+    configs:
+      - source: keycloak_healthcheck_sh
+        target: /healthcheck.sh
+        mode: 0555
+      - source: keycloak_facility_realm_json
+        target: /opt/keycloak/data/import/facility-realm.json
     labels:
       - traefik.http.services.keycloak.loadbalancer.server.port=80
     healthcheck:
@@ -15,3 +18,9 @@ services:
       timeout: 10s
       retries: 5
     restart: on-failure
+
+configs:
+  keycloak_healthcheck_sh:
+    file: ./healthcheck/healthcheck.sh
+  keycloak_facility_realm_json:
+    file: ./config/facility-realm.json

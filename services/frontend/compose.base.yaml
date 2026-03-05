@@ -4,12 +4,18 @@ services:
     depends_on:
       backend:
         condition: service_healthy
-    volumes:
-      - ${PWD}/entrypoints/merge_json.sh:/post_start/merge_json.sh
-      - ./config/config.json:/config/config.0.json
-      - ./config/config.oidc.json:/config/${OIDC_ENABLED:-.}config.1.json
-      - ./config/config.ldap.json:/config/${LDAP_ENABLED:-.}config.2.json
-      - ./config/config.jobs.json:/config/${JOBS_ENABLED:-.}config.3.json
+    configs:
+      - source: frontend_merge_json_sh
+        target: /post_start/merge_json.sh
+        mode: 0555
+      - source: frontend_config_json
+        target: /config/config.0.json
+      - source: frontend_config_oidc_json
+        target: /config/${OIDC_ENABLED:-.}config.1.json
+      - source: frontend_config_ldap_json
+        target: /config/${LDAP_ENABLED:-.}config.2.json
+      - source: frontend_config_jobs_json
+        target: /config/${JOBS_ENABLED:-.}config.3.json
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)
       # Adding a label for traefik to learn which port to look for a service on
@@ -27,3 +33,15 @@ services:
     post_start:
       - command: /post_start/merge_json.sh
         user: root
+
+configs:
+  frontend_merge_json_sh:
+    file: ${PWD}/entrypoints/merge_json.sh
+  frontend_config_json:
+    file: ./config/config.json
+  frontend_config_oidc_json:
+    file: ./config/config.oidc.json
+  frontend_config_ldap_json:
+    file: ./config/config.ldap.json
+  frontend_config_jobs_json:
+    file: ./config/config.jobs.json

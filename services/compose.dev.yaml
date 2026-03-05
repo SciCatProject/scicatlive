@@ -43,7 +43,7 @@ services:
       - ${WORKDIR:-/home/node/app}/node_modules
   node-app-from-remote:
     extends: node-app-from-local
-    image: ""
+    image: ''
     build:
       context: ${GITHUB_REPO:-}
       no_cache: true

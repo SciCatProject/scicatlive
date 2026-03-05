@@ -47,17 +47,3 @@ services:
     build:
       context: ${GITHUB_REPO:-}
       no_cache: true
-
-configs:
-  web_app_loop_entrypoints_sh:
-    file: ${PWD}/entrypoints/loop_entrypoints.sh
-  web_app_infinite_loop_sh:
-    file: ${PWD}/entrypoints/infinite_loop.sh
-  web_app_bidirectional_backup_sh:
-    file: ${PWD}/entrypoints/bidirectional_backup.sh
-  web_app_chown_root_sh:
-    file: ${PWD}/entrypoints/chown_root.sh
-  web_app_add_dev_deps_sh:
-    file: ${PWD}/entrypoints/add_dev_deps.sh
-  web_app_setup_git_sh:
-    file: ${PWD}/entrypoints/setup_git.sh

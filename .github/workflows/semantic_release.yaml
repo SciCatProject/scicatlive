@@ -12,6 +12,7 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -31,4 +32,8 @@ jobs:
           PR_TAG="pr-${{ github.event.pull_request.number }}"
           echo "Verifying OCI bundle for ${IMAGE_PATH}:${PR_TAG}"
           docker compose config > resolved-compose.yaml
-          yes | docker compose -f resolved-compose.yaml publish --yes "${IMAGE_PATH}:${PR_TAG}"
+          yes | docker compose publish \
+            --resolve-image-digests \
+            --with-env \
+            --yes \
+            "${IMAGE_PATH}:${PR_TAG}"

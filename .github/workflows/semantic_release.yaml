@@ -31,8 +31,4 @@ jobs:
           PR_TAG="pr-${{ github.event.pull_request.number }}"
           echo "Verifying OCI bundle for ${IMAGE_PATH}:${PR_TAG}"
           docker compose config > resolved-compose.yaml
-          docker compose -f resolved-compose.yaml publish \
-            -y \
-            --resolve-image-digests \
-            --with-env \
-            "${IMAGE_PATH}:${PR_TAG}"
+          docker compose -f resolved-compose.yaml publish --yes "${IMAGE_PATH}:${PR_TAG}"

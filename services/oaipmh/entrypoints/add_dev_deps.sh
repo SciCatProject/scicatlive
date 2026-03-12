@@ -1,6 +1,6 @@
 #!/bin/sh
 
-apt update && apt install -y git procps
+apt update && apt install -y git procps curl jq unzip
 
 if [ -n "${DEV_BBACKUP}" ]
 then

@@ -1,3 +1,6 @@
+include:
+  - services/openapigenerator/compose.yaml
+
 services:
   backend:
     extends:
@@ -8,6 +11,7 @@ services:
     volumes:
       - ./config/functionalAccounts.dev.json:/home/node/app/functionalAccounts.json
       - ./config/.dev.env:/home/node/app/test/config/.env.override
+      - openapigenerator:/home/node/app/.github/openapi
     environment:
       MONGODB_URI: mongodb://mongodb:27017/dev-dacat-next
       DEV: ${BACKEND_DEV:+true}

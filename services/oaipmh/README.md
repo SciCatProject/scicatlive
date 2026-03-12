@@ -29,3 +29,7 @@ communication between the two wherever the browser is accessed.
 
 Running the service in DEV mode is supported, but be aware that the upstream tests fail, so `npm run test` will fail in
 the scicatlive oaipmh container as well.
+
+When both backend and oaipmh are in DEV mode, and the backend is running v4, the openapigenerator is available in the
+DEV environment, and an SDK generation can be triggered from withing the oaipmh container by running
+`generate_sdk` in the shell.

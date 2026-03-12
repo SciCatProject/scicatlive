@@ -45,4 +45,5 @@ visualize as `A --> B`). The same subdomain to service convention applies.
 ```mermaid
 graph TD
     elasticsearch --> backend
+    openapigenerator --> backend
 ```

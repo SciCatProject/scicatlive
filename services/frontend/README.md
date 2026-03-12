@@ -31,10 +31,16 @@ Since there was a small breaking change from `v3` to `v4`, when connecting to th
 controls if [config.v3.json file](./config/config.v3.json), which is applied when `BE_VERSION=v3`, should be included in
 the configs merge process.
 
-With `FRONTEND_DEV=true` (or `DEV=true`), please use `npm start -- --host 0.0.0.0`. This is to allow traffic from any
-IP to the `frontend` component and it is necessary since the component runs in the docker network.
-
 Setting the [BACKEND_HTTPS_URL env variable](../../.env) requires changing the `backend` URL used by the `frontend`.
 
 :warning: When setting `FRONTENT_HTTPS_URL` it is likely you also want to set the `BACKEND_HTTPS_URL`, to allow the
 communication between the two wherever the browser is accessed.
+
+## DEV configuration
+
+With `FRONTEND_DEV=true` (or `DEV=true`), please use `npm start -- --host 0.0.0.0`. This is to allow traffic from any
+IP to the `frontend` component and it is necessary since the component runs in the docker network.
+
+When both backend and frontend are in DEV mode, and the backend is running v4, the openapigenerator is available in the
+DEV environment, and an SDK generation can be triggered from withing the frontend container by running
+`generate_sdk` in the shell.

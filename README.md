@@ -2,7 +2,7 @@
 
 Get set up with an instance of SciCat to explore the metadata catalog. SciCatlive provides a flexible and easy way to
 learn about SciCat and its features for people who are looking to integrate SciCat into their environment. For a user
-guide please see [original documentation](https://scicatproject.github.io/documentatio/).
+guide please see [original documentation](https://scicatproject.github.io/documentation/).
 
 This project requires docker and docker compose. The docker version must be later than 2.29.0 to support this project.
 
@@ -46,7 +46,7 @@ However, if you want to run it on Windows you have to be careful about:
 
 By running `docker compose up -d` these steps take place:
 
-1. the SciCat [backend v4](./services/backend/services/v/) container is created and connected to a
+1. the SciCat [backend v4](./services/backend/services/v4/) container is created and connected to a
    [mongo DB](./services/backend/services/mongodb/).
 2. the SciCat [frontend](./services/frontend/) container is created and connected to (1).
 3. a reverse [proxy](./services/proxy) container is created and routes traffic to (1) and (2) through localhost

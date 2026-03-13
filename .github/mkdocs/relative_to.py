@@ -9,8 +9,6 @@ from bs4 import BeautifulSoup
 from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.structure.files import Files
 from mkdocs.structure.pages import Page
-from requests import Session
-from requests.adapters import HTTPAdapter, Retry
 
 
 def on_page_content(html: str, page: Page, config: MkDocsConfig, files: Files) -> str:
@@ -35,16 +33,9 @@ def on_page_content(html: str, page: Page, config: MkDocsConfig, files: Files) -
     """
     repo_url = f"{config.repo_url}/blob/{environ.get('TAG', 'main')}/"
     doc_file = "README.md"
-    check_links = environ.get("DOCS_LINK_CHECK")
     soup = BeautifulSoup(html, "lxml")
     docs = files.documentation_pages()
     page_path = Path(page.url)
-    session = Session()
-    retries = Retry(total=3,
-                    backoff_factor=10,
-                    status_forcelist=[429, 500, 502, 503, 504])
-    session.mount("http://", HTTPAdapter(max_retries=retries))
-    session.mount("https://", HTTPAdapter(max_retries=retries))
     for element in soup.find_all(href=True):
         scheme, netloc, path, query, fragment = urlsplit(element["href"])
         if scheme or netloc:  # External link
@@ -61,7 +52,5 @@ def on_page_content(html: str, page: Page, config: MkDocsConfig, files: Files) -
 
         url = urljoin(repo_url, relative_path)
         element["href"] = url
-        if check_links:
-            session.get(url, timeout=30).raise_for_status()
 
     return soup.prettify()

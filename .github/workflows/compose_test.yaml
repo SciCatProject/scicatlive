@@ -1,6 +1,6 @@
 name: Docker Compose CI
 
-on:  # yamllint disable-line rule:truthy
+on: # yamllint disable-line rule:truthy
   pull_request:
     branches:
       - main
@@ -87,21 +87,18 @@ jobs:
     if: fromJson(needs.changes.outputs.all).mds_all_modified_files
     steps:
       - uses: actions/checkout@v6
-      - uses: tcort/github-action-markdown-link-check@v1
+      - name: Check markdown links
+        uses: lycheeverse/lychee-action@v2
         with:
-          use-quiet-mode: 'yes'
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 24
-      - name: Install dependencies
-        run: npm install --no-package-lock
-        working-directory: .github/markdownlint
+          args: >-
+            --no-progress --root-dir . '**/*.md'
+          fail: true
       - uses: DavidAnson/markdownlint-cli2-action@v22
         with:
           globs: |
             **/*.md
             !**/node_modules/**
-          config: .github/markdownlint/.markdownlint.yaml
+          config: .github/markdownlint/.markdownlint-cli2.yaml
   check-mkdocs:
     runs-on: ubuntu-latest
     needs:

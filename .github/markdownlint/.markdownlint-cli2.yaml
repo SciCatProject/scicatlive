@@ -1,3 +1,5 @@
+config:
+  extends: .markdownlint.yaml
+
 customRules:
   - .markdownlint-rule-structure.js
-  - markdownlint-rule-relative-links

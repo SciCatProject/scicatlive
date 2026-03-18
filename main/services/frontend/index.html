@@ -10,7 +10,7 @@
       
       
       
-        <link rel="prev" href="../backend/services/v4/">
+        <link rel="prev" href="../backend/services/v4/services/openapigenerator/">
       
       
         <link rel="next" href="../jupyter/">
@@ -629,6 +629,53 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_5" id="__nav_2_1_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    V4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../backend/services/v4/" class="md-nav__link">
         
@@ -646,6 +693,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend/services/v4/services/openapigenerator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Openapigenerator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -760,6 +843,17 @@
     <span class="md-ellipsis">
       
         Enable additional features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dev-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DEV configuration
       
     </span>
   </a>
@@ -981,6 +1075,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#dev-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DEV configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1022,11 +1127,11 @@
   </h2>
   <p>
    The frontend configuration is set by the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/config">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/config">
     config files
    </a>
    . Files inside the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/config">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/config">
     config
    </a>
    folder, with a
@@ -1038,7 +1143,7 @@
     container
    </strong>
    , with
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/config/config.v3.json">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/config/config.v3.json">
     config.v3.json
    </a>
    applied depending on the
@@ -1072,7 +1177,7 @@ from
   </h2>
   <p>
    In the default configuration
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/config">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/config">
     config
    </a>
    , the frontend is set to call the
@@ -1134,7 +1239,7 @@ otherwise by setting
    </code>
    value
 controls if
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/config/config.v3.json">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/config/config.v3.json">
     config.v3.json file
    </a>
    , which is applied when
@@ -1145,28 +1250,8 @@ controls if
 the configs merge process.
   </p>
   <p>
-   With
-   <code>
-    FRONTEND_DEV=true
-   </code>
-   (or
-   <code>
-    DEV=true
-   </code>
-   ), please use
-   <code>
-    npm start -- --host 0.0.0.0
-   </code>
-   . This is to allow traffic from any
-IP to the
-   <code>
-    frontend
-   </code>
-   component and it is necessary since the component runs in the docker network.
-  </p>
-  <p>
    Setting the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/.env">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
     BACKEND_HTTPS_URL env variable
    </a>
    requires changing the
@@ -1191,6 +1276,45 @@ IP to the
    </code>
    , to allow the
 communication between the two wherever the browser is accessed.
+  </p>
+  <h2 id="dev-configuration">
+   DEV configuration
+   <a class="headerlink" href="#dev-configuration" title="Permanent link">
+    ¶
+   </a>
+  </h2>
+  <p>
+   With
+   <code>
+    FRONTEND_DEV=true
+   </code>
+   (or
+   <code>
+    DEV=true
+   </code>
+   ), please use
+   <code>
+    npm start -- --host 0.0.0.0
+   </code>
+   . This is to allow traffic from any
+IP to the
+   <code>
+    frontend
+   </code>
+   component and it is necessary since the component runs in the docker network.
+  </p>
+  <p>
+   When both backend and frontend are in DEV mode, and the backend is running v4,
+the
+   <a href="../backend/services/v4/services/openapigenerator">
+    openapigenerator
+   </a>
+   is available
+in the DEV environment, and an SDK generation can be triggered from withing the frontend container by running
+   <code>
+    generate_sdk
+   </code>
+   in the shell.
   </p>
  </body>
 </html>

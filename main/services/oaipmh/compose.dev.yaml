@@ -3,8 +3,11 @@ services:
     extends:
       file: ${PWD}/services/compose.dev.yaml
       service: node-app-from-remote
+    environment:
+      SDK_LANG: typescript-fetch
     volumes:
       - ./entrypoints/add_dev_deps.sh:/docker-entrypoints/01.sh
+      - ${PWD}/entrypoints/npm_install_sdk.sh:/usr/local/bin/generate_sdk
 
 volumes:
   oaipmh_dev:

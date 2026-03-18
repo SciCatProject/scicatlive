@@ -1,0 +1,12 @@
+services:
+  openapigenerator:
+    image: openapitools/openapi-generator-online:v7.20.0
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: wget --spider -Y off 'http://127.0.0.1:8080'
+      start_period: 5s
+      interval: 30s
+      timeout: 10s
+      retries: 5

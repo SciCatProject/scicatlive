@@ -236,6 +236,16 @@ It is very convenient if using [VSCode](https://code.visualstudio.com/docs/devco
 the docker services are running, one can attach to it and start developing using all VSCode features, including version
 control and debugging.
 
+The [openapigenerator container](./services/backend/services/v4/services/openapigenerator) is used to generate SDKs
+for containers when in DEV mode and using the [V4 backend](./services/backend/services/v4).
+A script is provided to download the generated SDKs in the DEV environment, and each service that needs the SDKs has a
+script to install them as well, which can be executed running `generate_sdk` in the shell. The generation is based on
+the OpenAPI specification of the backend running in scicatlive (make sure to have the backend running whenever calling
+`generate_sdk`), so it is always up to date with the current state of the API, and it is generated in a way that allows
+to easily install it in the DEV environment. For more details see the
+[openapigenerator README](./services/backend/services/v4/services/openapigenerator/README.md), and for an example of how
+to use it, see the [frontend README](./services/frontend/README.md#dev-configuration).
+
 Please note that [entrypoints](#entrypoints) when `DEV=true` are only run when the component's container is created for
 the first time. This is done to avoid clashes with local changes.
 

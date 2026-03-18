@@ -1,0 +1,10 @@
+{
+    "directMongoAccess": true,
+    "doiBaseUrl": "http://landingpage.localhost/detail/",
+    "facility": "facility",
+    "scicatBaseUrl": "${FRONTEND_URL}",
+    "lbBaseUrl": "${BACKEND_URL}",
+    "statusCode": "INFO",
+    "statusMessage": "This is a customizable status message",
+    "contactEmail": "support@scicat.eu"
+}

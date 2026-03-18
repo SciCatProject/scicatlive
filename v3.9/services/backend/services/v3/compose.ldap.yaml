@@ -1,0 +1,10 @@
+include:
+  - ../ldap/compose.yaml
+
+services:
+  backend:
+    depends_on:
+      ldap:
+        condition: service_healthy
+    volumes:
+      - ./config/providers.ldap.json:/config/providers.ldap.json

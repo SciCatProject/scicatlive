@@ -12,6 +12,7 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
+      packages: write
     defaults:
       run:
         working-directory: .github/semantic-release
@@ -26,6 +27,12 @@ jobs:
           node-version: 24
       - name: Install dependencies
         run: npm install --no-package-lock
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Release
         id: semantic-release
         env:

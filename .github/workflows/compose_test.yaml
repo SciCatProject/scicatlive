@@ -140,6 +140,7 @@ jobs:
         LDAP_ENABLED: ['', ldap]
         OIDC_ENABLED: ['', oidc]
         DEV: ['', dev]
+        GENERATE_SDK: ['']
         exclude:
           - BE_VERSION: ${{
                 !fromJson(needs.changes.outputs.all).v3_all_modified_files
@@ -167,6 +168,10 @@ jobs:
               }}
           - ELASTIC_ENABLED: elastic
             BE_VERSION: v3
+        include:
+          - BE_VERSION: v4
+            DEV: dev
+            GENERATE_SDK: generate_sdk
     steps:
       - uses: actions/checkout@v6
       - name: Test compose.yaml
@@ -178,6 +183,7 @@ jobs:
           export BE_VERSION=${{ matrix.BE_VERSION }}
           export DEV=${{ matrix.DEV }}
           export DEV_BBACKUP=${DEV}
+          export GENERATE_SDK=${{ matrix.GENERATE_SDK }}
           docker compose --profile '*' \
             -f compose.yaml ${DEV:+-f .github/compose.dev.test.yaml} \
             up --wait --wait-timeout 1200 \

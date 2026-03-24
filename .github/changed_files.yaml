@@ -14,6 +14,7 @@ json:
 python:
   - '**.py'
 src: &src
+  - '**/**'
   - '!LICENSE'
   - '!**/*.md'
   - '!CODEOWNERS'
@@ -22,36 +23,35 @@ src: &src
 ldap:
   - '**/ldap/**'
   - '**/*ldap*'
-  - *src
+  - '!**/*.md'
 oidc:
   - '**/*oidc*'
   - '**/keycloak/**'
   - '**/*keycloak*'
-  - *src
+  - '!**/*.md'
 v3: &v3
   - '**/v3/**'
   - '**/*v3*'
-  - services/compose.dev.yaml
-  - *src
-v4: &v4
-  - '**/v4/**'
-  - '**/*v4*'
-  - *src
-  - services/compose.dev.yaml
+  - '!**/*.md'
+  - entrypoints/npm_ci.sh
+  - entrypoints/loop_entrypoints.sh
 jobs: &jobs
   - '**/rabbitmq/**'
   - '**/*jobs*'
   - '**/archivemock/**'
-  - *src
+  - '!**/*.md'
 elastic: &elastic
   - '**/elastic/**'
   - '**/*elastic*'
-  - *src
+  - '!**/*.md'
 other_scicat: &other_scicat
   - services/searchapi/**
   - services/landingpage/**
   - services/frontend/**
   - services/oaipmh/**
+  - '**/v4/**'
+  - '**/*v4*'
+  - '!**/*.md'
 docs:
   - '**/README.md'
   - '**/*mkdocs*/**'
@@ -64,7 +64,6 @@ dev:
   - '**/*dev*'
   - '**/entrypoints/**'
   - *v3
-  - *v4
   - *elastic
   - *jobs
   - *other_scicat

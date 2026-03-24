@@ -1,6 +1,6 @@
 services:
   openapigenerator:
-    image: openapitools/openapi-generator-online:v7.20.0
+    image: openapitools/openapi-generator-online:v7.21.0
     depends_on:
       backend:
         condition: service_healthy

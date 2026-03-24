@@ -172,10 +172,10 @@ jobs:
           - BE_VERSION: v4
             DEV: dev
             GENERATE_SDK: generate_sdk
-    continue-on-error: ${{ matrix.GENERATE_SDK == 'generate_sdk' }}
     steps:
       - uses: actions/checkout@v6
       - name: Test compose.yaml
+        continue-on-error: ${{ matrix.GENERATE_SDK == 'generate_sdk' }}
         run: |-
           export JOBS_ENABLED=${{ matrix.JOBS_ENABLED }}
           export ELASTIC_ENABLED=${{ matrix.ELASTIC_ENABLED }}

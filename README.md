@@ -12,6 +12,58 @@ Release `v3.0` is the first stable and reviewed version of SciCatLive.
 
 ## Steps
 
+### Installing via the OCI packages
+
+Starting from release `v3.10`, SciCatLive is published as OCI packages, which can be found on the GitHub [Container Registry](https://github.com/orgs/SciCatProject/packages?repo_name=scicatlive).
+
+For every new release, these tags are added to the registry:
+
+- `latest(|version)`: the latest release with default configuration;
+- `latest(|version)-full`: the latest release with all features enabled;
+- `latest(|version)-dev`: the latest release with containers prepared for development.
+- `latest(|version)-dev-full`: the latest release with all features enabled and containers prepared for development.
+- `latest(|version)-v3`: the latest release with the v3 backend and minimal configuration.
+- `latest(|version)-v3-full`: the latest release with the v3 backend and all features enabled.
+
+To use the OCI packages, simply pull the desired tag from the registry and run it with `docker compose`:
+
+```sh
+docker compose -f oci://ghcr.io/scicatproject/scicatlive:<tag> up -d
+```
+
+Please note that, when running the OCI packages, the configuration options are limited to the ones that do not require
+changes in the `compose.yaml` files, as these are included in the package as they are. For example, the `v3` backend
+is available as a separate tag, as it requires changes in the `compose.yaml` file to be used. For more information on
+the available configuration options, please refer to the
+[configuration options table](#docker-compose-profiles-and-env-variables-configuration-options).
+
+One can still select the services to run, as described in the [select the services](#select-the-services) section,
+and make use of the native [docker compose overrides](https://docs.docker.com/compose/extends/#multiple-compose-files)
+by including additional compose files in the command, for example, to only run the backend with modified configurations:
+
+```sh
+docker compose -f oci://ghcr.io/scicatproject/scicatlive:<tag> -f compose.override.yaml up -d backend
+```
+
+where `compose.override.yaml` contains the override configuration for example for the backend service:
+
+```yaml
+services:
+  backend:
+    environment:
+      SITE: <CUSTOM_SITE>
+configs:
+   backend_v4_functional_accounts_json:
+       file: <CUSTOM_PATH>/functional_accounts.json
+```
+
+For a more flexible configuration, please refer to the next section on running from the source code.
+
+### Running from the source code
+
+When running from the source code, the user has more flexibility in choosing the configuration and features to run,
+but they need to have a local copy of the repository. The following instructions are for Linux and MacOS users.
+
 <details markdown="1">
 <summary>Windows specific instructions (click to expand)</summary>
 <br>
@@ -189,7 +241,7 @@ the following [table](#docker-compose-profiles-and-env-variables-configuration-o
 ### Docker compose profiles and env variables configuration options
 
 | Type    | Env key               | Value: Service/Feature                                                                                                | Default | Backend Compatibility | Description                                                                                                                                                                                                          | Other impacted services |
-|---------|-----------------------|-----------------------------------------------------------------------------------------------------------------------|---------|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
+| ------- | --------------------- | --------------------------------------------------------------------------------------------------------------------- | ------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | profile | `COMPOSE_PROFILES`    | <li>`analysis`: jupyter<li>`search`: searchapi,landingpage,oaipmh<li>`'*'`: jupyter,searchapi,landingpage,oaipmh</li> | `''`    | \*                    | <li>analysis: enables additional jupyter notebook with python SciCat SDK installed and example notebooks<li>search: enables a SciCat interface for standardized search and a public interface for published datasets |                         |
 | env     | `BE_VERSION`          | <li>`v3`: backend/v3<li>`v4`: backend/v4                                                                              | `v4`    | as set                | Sets the BE version to use in (2) of [default setup](#default-setup) to v3                                                                                                                                           | mongodb,frontend        |
 | env     | `JOBS_ENABLED`        | `true`: rabbitmq,archivemock (v3 only),jobs feature                                                                   | `''`    | \*                    | Creates a RabbitMQ message broker which the BE posts to and the archivemock listens to and enables the frontend features. Archivemock emulates the data long-term archive/retrieve workflow                          |                         |
@@ -330,7 +382,7 @@ To ease the iterative execution of multiple init scripts, one can leverage the
 [loop_entrypoints](./entrypoints/loop_entrypoints.sh) utility, which loops alphabetically over
 `/docker-entrypoinst/*.sh` and executes each. This is in use in some services (e.g. in the
 [frontend](./services/frontend/compose.yaml)), so one can add additional init steps by mounting them, one by one, as
-volumes inside the container in the `/docker-entrypoints` folder and naming them depending on the desired order
+bind mounts inside the container in the `/docker-entrypoints` folder and naming them depending on the desired order
 (eventually rename the existing ones as well).
 
 #### If the service does not support entrypoints yet, one needs to
@@ -338,8 +390,10 @@ volumes inside the container in the `/docker-entrypoints` folder and naming them
 <details markdown="1">
  <summary>(click to expand):</summary>
 
-1. mount the [loop_entrypoint.sh](./entrypoints/loop_entrypoints.sh) as a volume inside the container
-2. mount any service-specific init script as a volume in the container in the folder `/docker-entrypoints/*.sh`, naming
+1. mount the [loop_entrypoint.sh](./entrypoints/loop_entrypoints.sh) as a
+[docker compose config](https://docs.docker.com/reference/compose-file/services/#configs) inside the container
+2. mount any service-specific init script as a [docker compose config](https://docs.docker.com/reference/compose-file/services/#configs)
+in the container in the folder `/docker-entrypoints/*.sh`, naming
    them sequentially, depending on the desired execution order
 3. override the `entrypoint` field in the service
 4. specify the service `command`
@@ -352,6 +406,12 @@ See for example the [frontend compose file](./services/frontend/compose.yaml).
 
 Please note that services should, in general, be defined by their responsibility, rather than by their underlying
 technology, and should be named so.
+
+:warning: When adding a new service, please use [docker compose configs](https://docs.docker.com/reference/compose-file/services/#configs)
+for mounting files inside the container, rather than bind mounts, as they are more robust and easier to maintain.
+This is mostly relevant for the published OCI packages, as bind mounts require the user to have specific files in
+their local environment, which might not be the case, while configs are included in the package itself as part
+of the [release workflow](./.github/semantic-release/publish-oci.js).
 
 ### Basic
 

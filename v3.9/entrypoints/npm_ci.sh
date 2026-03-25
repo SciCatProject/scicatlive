@@ -1,5 +1,5 @@
 #!/bin/sh
 
-[ -e ".finished" ] && return 0
+[ -e ".finished" ] && exit 0
 
 npm ci

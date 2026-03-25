@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -e ".finished" ] && return 0
+[ -e ".finished" ] && exit 0
 
 apk update && apk add jq gettext || echo "apk not available"
 apt update && apt install -y jq gettext-base || echo "apt not available"

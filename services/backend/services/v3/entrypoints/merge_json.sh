@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -e ".finished" ] && return 0
+[ -e ".finished" ] && exit 0
 
 for config in $(find /config -maxdepth 1 -type f -exec basename {} \; | cut -d '.' -f 1 | sort -u)
 do

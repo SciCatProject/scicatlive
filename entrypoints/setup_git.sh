@@ -1,8 +1,8 @@
 #!/bin/sh
 
-[ -e ".finished" ] && return 0
+[ -e ".finished" ] && exit 0
 
-ls .git && return 0
+ls .git && exit 0
 
 echo "${GITHUB_REPO}" | grep -q "#" && TAG="${GITHUB_REPO#*#}" || TAG=
 

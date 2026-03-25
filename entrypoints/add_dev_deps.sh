@@ -1,3 +1,3 @@
 #!/bin/sh
 
-apk update && apk add git ${DEV_BBACKUP:+--no-cache unison} openssh-client
+apk update && apk add git ${DEV_BBACKUP:+--no-cache unison} openssh-client curl jq

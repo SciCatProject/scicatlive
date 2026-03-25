@@ -143,11 +143,7 @@ jobs:
         exclude:
           - BE_VERSION: ${{
                 !fromJson(needs.changes.outputs.all).v3_all_modified_files
-                && 'v3'
-                || (
-                  !fromJson(needs.changes.outputs.all).v4_all_modified_files
-                  && 'v4'
-                )
+                && 'v3' || 'nothing'
               }}
           - ELASTIC_ENABLED: ${{
                 !fromJson(needs.changes.outputs.all).elastic_all_modified_files

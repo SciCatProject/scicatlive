@@ -199,7 +199,7 @@ jobs:
             }
       - name: Post PR Comment
         if: >-
-          steps.docker_up.outcome == 'failure' && 
+          steps.docker_up.outcome == 'failure' &&
           matrix.GENERATE_SDK == 'generate_sdk'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -20,8 +20,6 @@ For every new release, these tags are added to the registry:
 
 - `latest(|version)`: the latest release with default configuration;
 - `latest(|version)-full`: the latest release with all features enabled;
-- `latest(|version)-dev`: the latest release with containers prepared for development.
-- `latest(|version)-dev-full`: the latest release with all features enabled and containers prepared for development.
 - `latest(|version)-v3`: the latest release with the v3 backend and minimal configuration.
 - `latest(|version)-v3-full`: the latest release with the v3 backend and all features enabled.
 

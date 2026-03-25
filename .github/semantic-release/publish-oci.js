@@ -11,7 +11,7 @@ const version = process.env.VERSION.replace(/^v/, "");
 const repo = process.env.GITHUB_REPOSITORY.toLowerCase();
 const imagePath = `ghcr.io/${repo}`;
 
-const ociTypes = ["", "-full", "-dev", "-dev-full", "-v3", "-v3-full"];
+const ociTypes = ["", "-full", "-v3", "-v3-full"];
 
 ociTypes.forEach((ociType) => {
   const dockerEnv = {
@@ -21,7 +21,6 @@ ociTypes.forEach((ociType) => {
     LDAP_ENABLED: ociType.includes("-full") ? "true" : "",
     OIDC_ENABLED: ociType.includes("-full") ? "true" : "",
     COMPOSE_PROFILES: ociType.includes("-full") ? "*" : "",
-    DEV: ociType.includes("-dev") ? "true" : "",
     BE_VERSION: ociType.includes("-v3") ? "v3" : "v4",
   };
 

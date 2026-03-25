@@ -6,8 +6,7 @@ set -e
 
 for script in /docker-entrypoints/*.sh
 do
-    # shellcheck disable=SC1090
-    . "${script}"
+    sh "${script}"
 done
 
 exec "$@"

@@ -189,3 +189,12 @@ jobs:
                 done
               exit 1
             }
+
+  tests-status:
+    runs-on: ubuntu-latest
+    if: always()
+    needs: test
+    steps:
+      - name: Evaluate Results
+        run: |
+          [[ "${{ needs.test.result }}" == "success" ]] || exit 1

@@ -175,6 +175,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Test compose.yaml
+        id: docker_up
         continue-on-error: ${{ matrix.GENERATE_SDK == 'generate_sdk' }}
         run: |-
           export JOBS_ENABLED=${{ matrix.JOBS_ENABLED }}

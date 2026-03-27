@@ -197,7 +197,7 @@ jobs:
                 done
               exit 1
             }
-      - name: Post PR Comment
+      - name: Add Failure Label
         if: >-
           steps.docker_up.outcome == 'failure' &&
           matrix.GENERATE_SDK == 'generate_sdk'
@@ -208,8 +208,18 @@ jobs:
           "## ⚠️ SDK Generation Failed
           The SDK test failed. This is non-blocking, but please check \
           the logs before merging."
-          gh pr edit ${{ github.event.pull_request.number }} --add-label\
+          gh pr edit ${{ github.event.pull_request.number }} --add-label \
           "sdk-failed"
+      - name: Cleanup Failure Label
+        if: >-
+          steps.docker_up.outcome == 'success' &&
+          matrix.GENERATE_SDK == 'generate_sdk'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Remove the label if it exists (ignore error if it's already gone)
+          gh pr label remove ${{ github.event.pull_request.number }} \
+          --name "sdk-failed" || true
 
   tests-status:
     runs-on: ubuntu-latest

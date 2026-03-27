@@ -140,6 +140,7 @@ jobs:
         LDAP_ENABLED: ['', ldap]
         OIDC_ENABLED: ['', oidc]
         DEV: ['', dev]
+        GENERATE_SDK: ['']
         exclude:
           - BE_VERSION: ${{
                 !fromJson(needs.changes.outputs.all).v3_all_modified_files
@@ -167,9 +168,15 @@ jobs:
               }}
           - ELASTIC_ENABLED: elastic
             BE_VERSION: v3
+        include:
+          - BE_VERSION: v4
+            DEV: dev
+            GENERATE_SDK: generate_sdk
     steps:
       - uses: actions/checkout@v6
       - name: Test compose.yaml
+        id: docker_up
+        continue-on-error: ${{ matrix.GENERATE_SDK == 'generate_sdk' }}
         run: |-
           export JOBS_ENABLED=${{ matrix.JOBS_ENABLED }}
           export ELASTIC_ENABLED=${{ matrix.ELASTIC_ENABLED }}
@@ -178,6 +185,7 @@ jobs:
           export BE_VERSION=${{ matrix.BE_VERSION }}
           export DEV=${{ matrix.DEV }}
           export DEV_BBACKUP=${DEV}
+          export GENERATE_SDK=${{ matrix.GENERATE_SDK }}
           docker compose --profile '*' \
             -f compose.yaml ${DEV:+-f .github/compose.dev.test.yaml} \
             up --wait --wait-timeout 1200 \
@@ -189,6 +197,29 @@ jobs:
                 done
               exit 1
             }
+      - name: Add Failure Label
+        if: >-
+          steps.docker_up.outcome == 'failure' &&
+          matrix.GENERATE_SDK == 'generate_sdk'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} --body \
+          "## ⚠️ SDK Generation Failed
+          The SDK test failed. This is non-blocking, but please check \
+          the logs before merging."
+          gh pr edit ${{ github.event.pull_request.number }} --add-label \
+          "sdk-failed"
+      - name: Cleanup Failure Label
+        if: >-
+          steps.docker_up.outcome == 'success' &&
+          matrix.GENERATE_SDK == 'generate_sdk'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Remove the label if it exists (ignore error if it's already gone)
+          gh pr label remove ${{ github.event.pull_request.number }} \
+          --name "sdk-failed" || true
 
   tests-status:
     runs-on: ubuntu-latest

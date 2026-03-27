@@ -208,7 +208,8 @@ jobs:
           "## ⚠️ SDK Generation Failed
           The SDK test failed. This is non-blocking, but please check \
           the logs before merging."
-          gh pr edit ${{ github.event.pull_request.number }} --add-label "sdk-failed"
+          gh pr edit ${{ github.event.pull_request.number }} --add-label\
+          "sdk-failed"
 
   tests-status:
     runs-on: ubuntu-latest

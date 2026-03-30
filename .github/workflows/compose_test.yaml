@@ -220,12 +220,21 @@ jobs:
           # Remove the label if it exists (ignore error if it's already gone)
           gh pr label remove ${{ github.event.pull_request.number }} \
           --name "sdk-failed" || true
-
   tests-status:
     runs-on: ubuntu-latest
     if: always()
-    needs: test
+    needs:
+      - changes
+      - yaml-lint
+      - json-lint
+      - shell-lint
+      - javascript-lint
+      - python-lint
+      - markdown-lint
+      - check-mkdocs
+      - test
     steps:
       - name: Evaluate Results
         run: |
-          [[ "${{ needs.test.result }}" == "success" ]] || exit 1
+          RES="${{ join(needs.*.result, ' ') }}"
+          [[ $RES =~ "failure" || $RES =~ "cancelled" ]] && exit 1 || exit 0

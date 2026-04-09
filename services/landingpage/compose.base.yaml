@@ -1,6 +1,6 @@
 services:
   landingpage:
-    image: ghcr.io/scicatproject/landingpageserver:v3.4
+    image: ghcr.io/scicatproject/landingpageserver:v3.5
     configs:
       - source: landingpage_config_json
         target: /config/0.json

@@ -1,6 +1,7 @@
 services:
   frontend:
     volumes:
+      - ./entrypoints/npm_install_sdk.sh:/tmp/${GENERATE_SDK:+../docker-entrypoints/}80.sh
       - ./entrypoints/npm_tests.sh:/docker-entrypoints/90.sh
   searchapi:
     volumes:

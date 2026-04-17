@@ -2,4 +2,4 @@
 
 [ -e ".finished" ] && exit 0
 
-chown -R root:root .
+chown -R root:root . || true

@@ -7,9 +7,13 @@ services:
         condition: service_healthy
     labels:
       - traefik.http.services.jupyter.loadbalancer.server.port=8888
-    volumes:
-      - ./config/notebooks:/home/jovyan/notebooks
-      - ./config/requirements.txt:/home/jovyan/requirements.txt
+    configs:
+      - source: jupyter_requirements_txt
+        target: /home/jovyan/requirements.txt
+      - source: jupyter_notebook_pyscicat_ipynb
+        target: /home/jovyan/notebooks/pyscicat.ipynb
+      - source: jupyter_notebook_thumbnail_png
+        target: /home/jovyan/notebooks/example_files/thumbnail.png
     env_file:
       - config/.env
     environment:
@@ -17,3 +21,11 @@ services:
     profiles:
       - analysis
     restart: on-failure
+
+configs:
+  jupyter_requirements_txt:
+    file: ./config/requirements.txt
+  jupyter_notebook_pyscicat_ipynb:
+    file: ./config/notebooks/pyscicat.ipynb
+  jupyter_notebook_thumbnail_png:
+    file: ./config/notebooks/example_files/thumbnail.png

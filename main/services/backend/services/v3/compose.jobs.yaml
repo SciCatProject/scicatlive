@@ -9,7 +9,12 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
-    volumes:
-      - ./config/component-config.local.json:/home/node/app/server/component-config.local.json
+    configs:
+      - source: backend_v3_component_config_local_json
+        target: /home/node/app/server/component-config.local.json
     environment:
       JOBS_ENABLED: true
+
+configs:
+  backend_v3_component_config_local_json:
+    file: ./config/component-config.local.json

@@ -8,9 +8,13 @@ services:
     environment:
       CONFIG_DIR: ${WORKDIR:-/home/node/app}/src/assets
       CHROME_BIN: /usr/bin/chromium
-    volumes:
-      - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoints/10.sh
-      - ${PWD}/entrypoints/add_chrome.sh:/docker-entrypoints/20.sh
+    configs:
+      - source: entrypoints_merge_json_sh
+        target: /docker-entrypoints/10.sh
+        mode: 0555
+      - source: entrypoints_add_chrome_sh
+        target: /docker-entrypoints/20.sh
+        mode: 0555
 
 volumes:
   landingpage_dev:

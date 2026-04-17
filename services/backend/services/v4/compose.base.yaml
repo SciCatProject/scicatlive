@@ -4,10 +4,15 @@ services:
     depends_on:
       mongodb:
         condition: service_started
-    volumes:
-      - ./config/functionalAccounts.json:/home/node/app/functionalAccounts.json
-      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh
-      - ./entrypoints/db_migration.sh:/docker-entrypoints/10.sh
+    configs:
+      - source: backend_v4_functional_accounts_json
+        target: /home/node/app/functionalAccounts.json
+      - source: entrypoints_loop_entrypoints_sh
+        target: /usr/local/bin/loop_entrypoints.sh
+        mode: 0555
+      - source: backend_v4_db_migration_sh
+        target: /docker-entrypoints/10.sh
+        mode: 0555
     entrypoint:
       - loop_entrypoints.sh
       - docker-entrypoint.sh
@@ -24,3 +29,9 @@ services:
       timeout: 10s
       retries: 5
     restart: on-failure
+
+configs:
+  backend_v4_functional_accounts_json:
+    file: ./config/functionalAccounts.json
+  backend_v4_db_migration_sh:
+    file: ./entrypoints/db_migration.sh

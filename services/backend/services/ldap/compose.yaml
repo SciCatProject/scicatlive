@@ -1,8 +1,9 @@
 services:
   ldap:
     image: glauth/glauth:v2.4.0
-    volumes:
-      - ./config/glauth.conf:/app/config/config.cfg:ro
+    configs:
+      - source: ldap_glauth_conf
+        target: /app/config/config.cfg
     labels:
       # Adding a label to keep this service out of traefik
       - traefik.enable=false
@@ -16,3 +17,7 @@ services:
       timeout: 10s
       retries: 5
     restart: on-failure
+
+configs:
+  ldap_glauth_conf:
+    file: ./config/glauth.conf

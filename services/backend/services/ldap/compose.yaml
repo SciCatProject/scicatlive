@@ -1,6 +1,6 @@
 services:
   ldap:
-    image: glauth/glauth:v2.4.0
+    image: glauth/glauth:v2.5.0
     configs:
       - source: ldap_glauth_conf
         target: /app/config/config.cfg

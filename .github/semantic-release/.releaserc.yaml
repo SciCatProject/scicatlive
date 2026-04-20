@@ -10,4 +10,4 @@ plugins:
   -
     - '@semantic-release/exec'
     - publishCmd: VERSION=${nextRelease.version} node publish-oci.js
-    - successCmd: echo "tag=${nextRelease.gitTag}" >> $GITHUB_OUTPUT
+      successCmd: echo "tag=${nextRelease.gitTag}" >> $GITHUB_OUTPUT

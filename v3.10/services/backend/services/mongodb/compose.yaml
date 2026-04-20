@@ -1,0 +1,56 @@
+services:
+  mongodb:
+    image: mongo:8.2
+    volumes:
+      - backend${BE_VERSION:-v4}_mongodb_data:/data/db
+    configs:
+      - source: mongodb_init_sh
+        target: /init.sh
+        mode: 0555
+      - source: mongodb_seed_dataset_json
+        target: /seed/Dataset.json
+      - source: mongodb_seed_instrument_json
+        target: /seed/Instrument.json
+      - source: mongodb_seed_job_json
+        target: /seed/Job.json
+      - source: mongodb_seed_orig_datablock_json
+        target: /seed/OrigDatablock.json
+      - source: mongodb_seed_proposal_json
+        target: /seed/Proposal.json
+      - source: mongodb_seed_published_data_json
+        target: /seed/PublishedData.json
+      - source: mongodb_seed_sample_json
+        target: /seed/Sample.json
+    labels:
+      # Adding a label to keep this service out of traefik
+      - traefik.enable=false
+    environment:
+      BE_VERSION: ${BE_VERSION:-v4}
+      DEV: ${BACKEND_DEV:+dev-}
+    restart: on-failure
+    post_start:
+      - command: /init.sh
+
+configs:
+  mongodb_init_sh:
+    file: ./config/init.sh
+  mongodb_seed_dataset_json:
+    file: ./config/seed/Dataset.json
+  mongodb_seed_instrument_json:
+    file: ./config/seed/Instrument.json
+  mongodb_seed_job_json:
+    file: ./config/seed/Job.json
+  mongodb_seed_orig_datablock_json:
+    file: ./config/seed/OrigDatablock.json
+  mongodb_seed_proposal_json:
+    file: ./config/seed/Proposal.json
+  mongodb_seed_published_data_json:
+    file: ./config/seed/PublishedData.json
+  mongodb_seed_sample_json:
+    file: ./config/seed/Sample.json
+
+volumes:
+  backendv3_mongodb_data:
+    driver: local
+  backendv4_mongodb_data:
+    driver: local

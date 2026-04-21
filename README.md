@@ -115,7 +115,7 @@ SciCat features that extend the backend are:
 - Jobs - this mechanism posts to a [message broker](./services/backend/services/rabbitmq/). In v3 it can then trigger
   [down stream processes](./services/backend/services/v3/services/archivemock/). To use this a RabbitMQ server is
   enabled.
-- [Elasticsearch](./services/backend/services/v4/services/elastic/) - creates an elasticsearch service to provide full
+- [OpenSearch](./services/backend/services/v4/services/opensearch/) - creates an opensearch service to provide full
   text search in the backend.
 
 Services that can be integrated with SciCat are:
@@ -239,11 +239,11 @@ the following [table](#docker-compose-profiles-and-env-variables-configuration-o
 ### Docker compose profiles and env variables configuration options
 
 | Type    | Env key               | Value: Service/Feature                                                                                                | Default | Backend Compatibility | Description                                                                                                                                                                                                          | Other impacted services |
-| ------- | --------------------- | --------------------------------------------------------------------------------------------------------------------- | ------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+|---------|-----------------------|-----------------------------------------------------------------------------------------------------------------------|---------|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
 | profile | `COMPOSE_PROFILES`    | <li>`analysis`: jupyter<li>`search`: searchapi,landingpage,oaipmh<li>`'*'`: jupyter,searchapi,landingpage,oaipmh</li> | `''`    | \*                    | <li>analysis: enables additional jupyter notebook with python SciCat SDK installed and example notebooks<li>search: enables a SciCat interface for standardized search and a public interface for published datasets |                         |
 | env     | `BE_VERSION`          | <li>`v3`: backend/v3<li>`v4`: backend/v4                                                                              | `v4`    | as set                | Sets the BE version to use in (2) of [default setup](#default-setup) to v3                                                                                                                                           | mongodb,frontend        |
 | env     | `JOBS_ENABLED`        | `true`: rabbitmq,archivemock (v3 only),jobs feature                                                                   | `''`    | \*                    | Creates a RabbitMQ message broker which the BE posts to and the archivemock listens to and enables the frontend features. Archivemock emulates the data long-term archive/retrieve workflow                          |                         |
-| env     | `ELASTIC_ENABLED`     | `true`: elastic,elastic feature                                                                                       | `''`    | v4                    | Creates an elastic search service and sets the BE to use it for full-text searches                                                                                                                                   |                         |
+| env     | `OPENSEARCH_ENABLED`  | `true`: opensearch, opensearch feature                                                                                | `''`    | v4                    | Creates an opensearch service and sets the BE to use it for full-text searches                                                                                                                                       |                         |
 | env     | `LDAP_ENABLED`        | `true`: ldap auth                                                                                                     | `''`    | \*                    | Creates an LDAP service and sets the BE to use it as authentication backend                                                                                                                                          |                         |
 | env     | `OIDC_ENABLED`        | `true`: oidc auth                                                                                                     | `''`    | \*                    | Creates an OIDC identity provider and sets the BE to use it as authentication backend                                                                                                                                |                         |
 | env     | `DEV`                 | `true`: backend,frontend,searchapi,archivemock,oaipmh,landingpage in DEV mode                                         | `''`    | \*                    | The SciCat services' environment is prepared to ease the [development in a standardized environment](#dev-configuration)                                                                                             |                         |
@@ -454,12 +454,12 @@ or/and this [PR](https://github.com/SciCatProject/scicatlive/pull/325) which add
    1. create a `compose.base.yaml` file, e.g.
       [./services/backend/services/v4/compose.base.yaml](./services/backend/services/v4/compose.base.yaml), which should
       contain the `base` configuration, i.e. the one where all ENVs are unset, i.e. the features are disabled
-   2. create the ENV-specific (e.g. `ELASTIC_ENABLED`) `compose.<ENV>.yaml` file, e.g.
-      [backend v4 compose.elastic.yaml](./services/backend/services/v4/compose.elastic.yaml), with the
+   2. create the ENV-specific (e.g. `OPENSEARCH_ENABLED`) `compose.<ENV>.yaml` file, e.g.
+      [backend v4 compose.opensearch.yaml](./services/backend/services/v4/compose.opensearch.yaml), with the
       additional/override config, specific to the enabled feature
    3. create a symlink from [.empty.yaml](./services/.empty.yaml) to each `.compose.<ENV>.yaml`, e.g.
-      [./services/backend/services/v4/.compose.elastic.yaml](./services/backend/services/v4/.compose.elastic.yaml). This
-      is used whenever the `ENV` is unset, as described in the next step
+      [./services/backend/services/v4/.compose.opensearch.yaml](./services/backend/services/v4/.compose.opensearch.yaml)
+      . This is used whenever the `ENV` is unset, as described in the next step
    4. use `compose.yaml` to merge the `compose*.yaml` files together, making sure to default to `.compose.<ENV>.yaml`
       whenever the `ENV` is not set. See an example
       [./services/backend/services/v4/compose.yaml](./services/backend/services/v4/compose.yaml).

@@ -40,9 +40,9 @@ jobs: &jobs
   - '**/*jobs*'
   - '**/archivemock/**'
   - '!**/*.md'
-elastic: &elastic
-  - '**/elastic/**'
-  - '**/*elastic*'
+opensearch: &opensearch
+  - '**/opensearch/**'
+  - '**/*opensearch*'
   - '!**/*.md'
 other_scicat: &other_scicat
   - services/searchapi/**
@@ -64,6 +64,6 @@ dev:
   - '**/*dev*'
   - '**/entrypoints/**'
   - *v3
-  - *elastic
+  - *opensearch
   - *jobs
   - *other_scicat

@@ -1,0 +1,26 @@
+services:
+  opensearch:
+    image: opensearchproject/opensearch:3.5.0
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+    env_file:
+      - ./config/.env
+    labels:
+      - traefik.enable=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    restart: on-failure
+    healthcheck:
+      test: >
+        curl -fks
+        -u "admin:$$OPENSEARCH_INITIAL_ADMIN_PASSWORD"
+        https://localhost:9200/_cluster/health?wait_for_status=green
+      interval: 10s
+      timeout: 10s
+      retries: 15
+
+volumes:
+  opensearch-data:
+    driver: local

@@ -24,7 +24,7 @@ In the default configuration folder [config](./config), the backend is set to us
 
 ## Enable additional features
 
-Additionally, by setting the env variable `ELASTIC_ENABLED`, the [elastic search](./services/elastic/) service is
+Additionally, by setting the env variable `OPENSEARCH_ENABLED`, the [opensearch](./services/opensearch/) service is
 started and the backend is configured to connect to them.
 
 If `LDAP_ENABLED` is toggled, you can use LDAP to log in with a [LDAP user](../ldap/README.md#default-configuration).
@@ -44,6 +44,6 @@ visualize as `A --> B`). The same subdomain to service convention applies.
 
 ```mermaid
 graph TD
-    elasticsearch --> backend
+    opensearch --> backend
     openapigenerator --> backend
 ```

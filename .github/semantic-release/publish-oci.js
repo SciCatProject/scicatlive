@@ -17,7 +17,7 @@ ociTypes.forEach((ociType) => {
   const dockerEnv = {
     ...process.env,
     JOBS_ENABLED: ociType.includes("-full") ? "true" : "",
-    ELASTIC_ENABLED: ociType.includes("-full") ? "true" : "",
+    OPENSEARCH_ENABLED: ociType.includes("-full") ? "true" : "",
     LDAP_ENABLED: ociType.includes("-full") ? "true" : "",
     OIDC_ENABLED: ociType.includes("-full") ? "true" : "",
     COMPOSE_PROFILES: ociType.includes("-full") ? "*" : "",

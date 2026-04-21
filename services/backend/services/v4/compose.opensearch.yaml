@@ -1,10 +1,10 @@
 include:
-  - services/elastic/compose.yaml
+  - services/opensearch/compose.yaml
 
 services:
   backend:
     depends_on:
-      elastic:
+      opensearch:
         condition: service_healthy
     env_file:
-      - ./config/.elastic.env
+      - ./config/.opensearch.env

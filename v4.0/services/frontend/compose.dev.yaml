@@ -1,0 +1,26 @@
+services:
+  frontend:
+    extends:
+      file: ${PWD}/services/compose.dev.yaml
+      service: node-app-from-remote
+    build:
+      target: builder
+    environment:
+      CONFIG_DIR: ${WORKDIR}/src/assets
+      CHROME_BIN: /usr/bin/chromium
+      SDK_LANG: typescript-angular
+    configs:
+      - source: entrypoints_merge_json_sh
+        target: /docker-entrypoints/10.sh
+        mode: 0555
+      - source: entrypoints_add_chrome_sh
+        target: /docker-entrypoints/20.sh
+        mode: 0555
+      - source: entrypoints_npm_install_sdk_sh
+        target: /usr/local/bin/generate_sdk
+        mode: 0555
+    post_start: !reset null
+
+volumes:
+  frontend_dev:
+    driver: local

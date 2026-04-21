@@ -1,0 +1,41 @@
+services:
+  proxy:
+    image: traefik:v3.6.13
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - letsencrypt_proxy_data:/letsencrypt
+    configs:
+      - source: proxy_https_services_sh
+        target: /https_services.sh
+        mode: 0555
+      - source: proxy_tls_yaml
+        target: /config/traefik.pre.yaml
+    env_file:
+      - ./config/.env
+      - ./config/.tls.env
+      - ${PWD}/.env
+    labels:
+      - traefik.http.services.proxy.loadbalancer.server.port=8080
+    restart: on-failure
+    command: sh -c 'touch /config/traefik.yaml; traefik'
+    environment:
+      - COMPOSE_PROJECT_NAME
+    healthcheck:
+      test: /https_services.sh
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 5s
+
+configs:
+  proxy_https_services_sh:
+    file: ./healthcheck/https_services.sh
+  proxy_tls_yaml:
+    file: ./config/tls.yaml
+
+volumes:
+  letsencrypt_proxy_data:
+    driver: local

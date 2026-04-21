@@ -1,0 +1,17 @@
+include:
+  - ../rabbitmq/compose.yaml
+
+services:
+  backend:
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    configs:
+      - source: backend_v4_job_config_yaml
+        target: /home/node/app/jobConfig.yaml
+    env_file:
+      - ./config/.jobs.env
+
+configs:
+  backend_v4_job_config_yaml:
+    file: ./config/jobConfig.yaml

@@ -1937,10 +1937,10 @@ but they need to have a local copy of the repository. The following instructions
   enabled.
    </li>
    <li>
-    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/services/elastic">
-     Elasticsearch
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/services/opensearch">
+     OpenSearch
     </a>
-    - creates an elasticsearch service to provide full
+    - creates an opensearch service to provide full
   text search in the backend.
    </li>
   </ul>
@@ -2449,14 +2449,14 @@ the following
      </td>
      <td>
       <code>
-       ELASTIC_ENABLED
+       OPENSEARCH_ENABLED
       </code>
      </td>
      <td>
       <code>
        true
       </code>
-      : elastic,elastic feature
+      : opensearch, opensearch feature
      </td>
      <td>
       <code>
@@ -2467,7 +2467,7 @@ the following
       v4
      </td>
      <td>
-      Creates an elastic search service and sets the BE to use it for full-text searches
+      Creates an opensearch service and sets the BE to use it for full-text searches
      </td>
      <td>
      </td>
@@ -3446,15 +3446,15 @@ or/and this
     <li>
      create the ENV-specific (e.g.
      <code>
-      ELASTIC_ENABLED
+      OPENSEARCH_ENABLED
      </code>
      )
      <code>
       compose.&lt;ENV&gt;.yaml
      </code>
      file, e.g.
-     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.elastic.yaml">
-      backend v4 compose.elastic.yaml
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.opensearch.yaml">
+      backend v4 compose.opensearch.yaml
      </a>
      , with the
       additional/override config, specific to the enabled feature
@@ -3469,11 +3469,10 @@ or/and this
       .compose.&lt;ENV&gt;.yaml
      </code>
      , e.g.
-     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/.compose.elastic.yaml">
-      ./services/backend/services/v4/.compose.elastic.yaml
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/.compose.opensearch.yaml">
+      ./services/backend/services/v4/.compose.opensearch.yaml
      </a>
-     . This
-      is used whenever the
+     . This is used whenever the
      <code>
       ENV
      </code>

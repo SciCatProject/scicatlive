@@ -1269,11 +1269,11 @@ the
   <p>
    Additionally, by setting the env variable
    <code>
-    ELASTIC_ENABLED
+    OPENSEARCH_ENABLED
    </code>
    , the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/services/elastic">
-    elastic search
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/services/opensearch">
+    opensearch
    </a>
    service is
 started and the backend is configured to connect to them.
@@ -1352,7 +1352,7 @@ visualize as
    ). The same subdomain to service convention applies.
   </p>
   <pre class="mermaid"><code>graph TD
-    elasticsearch --&gt; backend
+    opensearch --&gt; backend
     openapigenerator --&gt; backend</code></pre>
  </body>
 </html>

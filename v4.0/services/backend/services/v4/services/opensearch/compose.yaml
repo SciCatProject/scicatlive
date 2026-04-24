@@ -1,6 +1,6 @@
 services:
   opensearch:
-    image: opensearchproject/opensearch:3.5.0
+    image: opensearchproject/opensearch:3.6.0
     volumes:
       - opensearch-data:/usr/share/opensearch/data
     env_file:

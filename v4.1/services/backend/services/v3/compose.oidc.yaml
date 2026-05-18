@@ -1,0 +1,26 @@
+include:
+  - ../keycloak/compose.yaml
+
+services:
+  backend:
+    depends_on:
+      keycloak:
+        condition: service_healthy
+    links:
+      - keycloak:keycloak.localhost
+    configs:
+      - source: backend_v3_providers_oidc_json
+        target: /config/providers.oidc.json
+      - source: backend_v3_login_callbacks_js
+        target: /home/node/app/server/boot/login-callbacks.js
+    environment:
+      OIDC_ENABLED: true
+      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}
+      FRONTEND_URL: ${FRONTEND_HTTPS_URL:-http://localhost}
+      KEYCLOAK_URL: ${KEYCLOAK_HTTPS_URL:-http://keycloak.localhost}
+
+configs:
+  backend_v3_providers_oidc_json:
+    file: ./config/providers.oidc.json
+  backend_v3_login_callbacks_js:
+    file: ./config/login-callbacks.js

@@ -1,0 +1,4 @@
+include:
+  - path:
+      - compose.base.yaml
+      - .${KEYCLOAK_HTTPS_URL:+/}compose.https.yaml

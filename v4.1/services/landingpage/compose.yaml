@@ -1,0 +1,4 @@
+include:
+  - path:
+      - compose.base.yaml
+      - .${LANDINGPAGE_DEV:+/}compose.dev.yaml

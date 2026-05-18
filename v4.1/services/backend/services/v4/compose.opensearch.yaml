@@ -1,0 +1,10 @@
+include:
+  - services/opensearch/compose.yaml
+
+services:
+  backend:
+    depends_on:
+      opensearch:
+        condition: service_healthy
+    env_file:
+      - ./config/.opensearch.env

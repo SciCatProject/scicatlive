@@ -1,0 +1,15 @@
+include:
+  - ../ldap/compose.yaml
+
+services:
+  backend:
+    depends_on:
+      ldap:
+        condition: service_healthy
+    configs:
+      - source: backend_v3_providers_ldap_json
+        target: /config/providers.ldap.json
+
+configs:
+  backend_v3_providers_ldap_json:
+    file: ./config/providers.ldap.json

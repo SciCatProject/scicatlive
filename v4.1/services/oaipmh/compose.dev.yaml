@@ -1,0 +1,22 @@
+services:
+  oaipmh:
+    extends:
+      file: ${PWD}/services/compose.dev.yaml
+      service: node-app-from-remote
+    environment:
+      SDK_LANG: typescript-fetch
+    configs:
+      - source: oaipmh_add_dev_deps_sh
+        target: /docker-entrypoints/01.sh
+        mode: 0555
+      - source: entrypoints_npm_install_sdk_sh
+        target: /usr/local/bin/generate_sdk
+        mode: 0555
+
+volumes:
+  oaipmh_dev:
+    driver: local
+
+configs:
+  oaipmh_add_dev_deps_sh:
+    file: ./entrypoints/add_dev_deps.sh

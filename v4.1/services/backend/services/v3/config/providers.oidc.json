@@ -1,0 +1,25 @@
+{
+  "oidc": {
+    "session": false,
+    "provider": "oidc",
+    "authScheme": "openid connect",
+    "module": "/home/node/app/server/boot/oidcCompatibleStrategy",
+    "authPath": "/api/v3/auth/oidc",
+    "successRedirect": "${FRONTEND_URL}/user",
+    "failureRedirect": "${FRONTEND_URL}/login",
+    "failureFlash": true,
+    "issuer": "${KEYCLOAK_URL}/realms/facility",
+    "authorizationURL": "${KEYCLOAK_URL}/realms/facility/protocol/openid-connect/auth",
+    "tokenURL": "${KEYCLOAK_URL}/realms/facility/protocol/openid-connect/token",
+    "userInfoURL": "${KEYCLOAK_URL}/realms/facility/protocol/openid-connect/userinfo",
+    "clientID": "scicat",
+    "clientSecret": "q0bOG6p616zHlz4nxvC6Ex8f6JwGY0NV",
+    "callbackURL": "${BACKEND_URL}/auth/oidc/callback",
+    "scope": [
+      "email",
+      "profile",
+      "openid"
+    ],
+    "loginCallback": "accessGroupsToProfile"
+  }
+}

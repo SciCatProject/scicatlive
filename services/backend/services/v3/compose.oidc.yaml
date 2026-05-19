@@ -15,9 +15,9 @@ services:
         target: /home/node/app/server/boot/login-callbacks.js
     environment:
       OIDC_ENABLED: true
-      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost:8080}
-      FRONTEND_URL: ${FRONTEND_HTTPS_URL:-http://localhost:8080}
-      KEYCLOAK_URL: ${KEYCLOAK_HTTPS_URL:-http://keycloak.localhost:8080}
+      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost${SCICATLIVE_HTTP_PORT:+:${SCICATLIVE_HTTP_PORT}}}
+      FRONTEND_URL: ${FRONTEND_HTTPS_URL:-http://localhost${SCICATLIVE_HTTP_PORT:+:${SCICATLIVE_HTTP_PORT}}}
+      KEYCLOAK_URL: ${KEYCLOAK_HTTPS_URL:-http://keycloak.localhost${SCICATLIVE_HTTP_PORT:+:${SCICATLIVE_HTTP_PORT}}}
 
 configs:
   backend_v3_providers_oidc_json:

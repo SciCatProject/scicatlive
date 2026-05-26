@@ -20,7 +20,7 @@ services:
       FRONTEND_URL: ${FRONTEND_HTTPS_URL:-http://localhost${SCICATLIVE_HTTP_PORT:+:${SCICATLIVE_HTTP_PORT}}}
     labels:
       # Adding a label for traefik to learn which port to look for a service on
-      - traefik.http.services.landingpage.loadbalancer.server.port=${SCICATLIVE_HTTP_PORT:-80}
+      - traefik.http.services.landingpage.loadbalancer.server.port=80
 
 configs:
   landingpage_config_json:

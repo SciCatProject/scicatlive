@@ -7,6 +7,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - letsencrypt_proxy_data:/letsencrypt
+    # selinux separation cannot be used w/ access to the hosts docker socket
+    security_opt:
+      - label=disable
     configs:
       - source: proxy_https_services_sh
         target: /https_services.sh

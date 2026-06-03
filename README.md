@@ -449,7 +449,8 @@ or/and this [PR](https://github.com/SciCatProject/scicatlive/pull/325) which add
    other, more general services, e.g. here: [./services/backend/services/](./services/backend/services/). This folder
    should also include different versions of the same service, e.g. [v3 and v4](./services/backend/services/)
 3. eventually, if the service supports [ENVs](#docker-compose-env-variables), leverage the
-   [include override](https://docs.docker.com/compose/how-tos/multiple-compose-files/include/#using-overrides-with-included-compose-files) feature
+[include override](https://docs.docker.com/compose/how-tos/multiple-compose-files/include/#using-overrides-with-included-compose-files)
+feature
    from docker compose. For this:
    1. create a `compose.base.yaml` file, e.g.
       [./services/backend/services/v4/compose.base.yaml](./services/backend/services/v4/compose.base.yaml), which should
@@ -474,7 +475,7 @@ or/and this [PR](https://github.com/SciCatProject/scicatlive/pull/325) which add
       [exclude](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs#excluding-matrix-configurations)
       rule in the workflow.
 
-4. eventually, add entrypoints for init logics, as described by the section to
+5. eventually, add entrypoints for init logics, as described by the section to
    [enable entrypoints](#if-the-service-does-not-support-entrypoints-yet-one-needs-to), e.g. like
    [./services/backend/services/v4/compose.base.yaml](./services/backend/services/v4/compose.base.yaml), including any
    [ENVs](#docker-compose-env-variables) specific logic. Remember to set the environment variable in the compose.yaml

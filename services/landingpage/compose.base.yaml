@@ -16,12 +16,8 @@ services:
       backend:
         condition: service_healthy
     environment:
-      BACKEND_URL: >-
-        ${BACKEND_HTTPS_URL:-http://backend.localhost
-        ${SCICATLIVE_HTTP_PORT:+:${SCICATLIVE_HTTP_PORT}}}
-      FRONTEND_URL: >-
-        ${FRONTEND_HTTPS_URL:-http://localhost
-        ${SCICATLIVE_HTTP_PORT:+:${SCICATLIVE_HTTP_PORT}}}
+      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}
+      FRONTEND_URL: ${FRONTEND_HTTPS_URL:-http://localhost}
     labels:
       # Adding a label for traefik to learn which port to look for a service on
       - traefik.http.services.landingpage.loadbalancer.server.port=80

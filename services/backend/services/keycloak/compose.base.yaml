@@ -1,7 +1,7 @@
 services:
   keycloak:
     image: quay.io/keycloak/keycloak:26.6
-    command: start-dev --import-realm --health-enabled=true --http-port=80
+    command: start-dev --import-realm --health-enabled=true --http-port=${SCICATLIVE_HTTP_PORT:-80}
     env_file: ./config/.env
     configs:
       - source: keycloak_healthcheck_sh
@@ -10,7 +10,7 @@ services:
       - source: keycloak_facility_realm_json
         target: /opt/keycloak/data/import/facility-realm.json
     labels:
-      - traefik.http.services.keycloak.loadbalancer.server.port=80
+      - traefik.http.services.keycloak.loadbalancer.server.port=${SCICATLIVE_HTTP_PORT:-80}
     healthcheck:
       test: bash /healthcheck.sh
       start_period: 5s

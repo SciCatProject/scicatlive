@@ -1,7 +1,11 @@
 services:
   keycloak:
     image: quay.io/keycloak/keycloak:26.6
-    command: start-dev --import-realm --health-enabled=true --http-port=${SCICATLIVE_HTTP_PORT:-80}
+    command: >
+      start-dev
+      --import-realm
+      --health-enabled=true
+      --http-port=${SCICATLIVE_HTTP_PORT:-80}
     env_file: ./config/.env
     configs:
       - source: keycloak_healthcheck_sh

@@ -449,7 +449,7 @@ or/and this [PR](https://github.com/SciCatProject/scicatlive/pull/325) which add
    other, more general services, e.g. here: [./services/backend/services/](./services/backend/services/). This folder
    should also include different versions of the same service, e.g. [v3 and v4](./services/backend/services/)
 3. eventually, if the service supports [ENVs](#docker-compose-env-variables), leverage the
-   [include override](https://docs.docker.com/compose/multiple-compose-files/include/#include-and-overrides) feature
+   [include override](https://docs.docker.com/compose/how-tos/multiple-compose-files/) feature
    from docker compose. For this:
    1. create a `compose.base.yaml` file, e.g.
       [./services/backend/services/v4/compose.base.yaml](./services/backend/services/v4/compose.base.yaml), which should

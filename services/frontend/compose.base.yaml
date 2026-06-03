@@ -29,9 +29,8 @@ services:
     restart: on-failure
     environment:
       CONFIG_FILE: config.override.json
-      BACKEND_URL: >-
-        ${BACKEND_HTTPS_URL:-http://backend.localhost
-        ${SCICATLIVE_HTTP_PORT:+:${SCICATLIVE_HTTP_PORT}}}
+      # yamllint disable-line rule:line-length
+      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost${SCICATLIVE_HTTP_PORT:+:${SCICATLIVE_HTTP_PORT}}}
     post_start:
       - command: /post_start/merge_json.sh
         user: root

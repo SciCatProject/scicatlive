@@ -1,0 +1,20 @@
+services:
+  ingestor:
+    image: ''
+    extends:
+      file: ${PWD}/services/compose.dev.yaml
+      service: web-app
+    build:
+      target: builder
+      context: ${GITHUB_REPO:-}
+      no_cache: true
+
+    volumes:
+      # This prevents git unpushed changes from being lost on container restart
+      - ${DEV_VOLUME:-${APP}}_dev:${WORKDIR:-/home/node/app}
+      - ${DEV_BBACKUP:+${PWD}/bbackup/${COMPOSE_PROJECT_NAME}/${DEV_VOLUME:-${APP}}:}/bbackup
+    
+volumes:
+  ingestor_dev:
+    driver: local
+

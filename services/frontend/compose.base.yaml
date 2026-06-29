@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: ghcr.io/scicatproject/frontend:v5.11.0
+    image: ghcr.io/scicatproject/frontend:v5.10.0
     depends_on:
       backend:
         condition: service_healthy
@@ -16,6 +16,8 @@ services:
         target: /config/${LDAP_ENABLED:-.}config.2.json
       - source: frontend_config_jobs_json
         target: /config/${JOBS_ENABLED:-.}config.3.json
+      - source: frontend_config_ingestor_json
+        target: /config/${INGESTOR_ENABLED:-.}config.4.json
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)
       # Adding a label for traefik to learn which port to look for a service on
@@ -43,3 +45,5 @@ configs:
     file: ./config/config.ldap.json
   frontend_config_jobs_json:
     file: ./config/config.jobs.json
+  frontend_config_ingestor_json:
+    file: ./config/config.ingestor.json

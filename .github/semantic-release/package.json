@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
-    "semantic-release": "25.0.5",
+    "semantic-release": "25.0.6",
     "@semantic-release/exec": "7.1.0",
     "yaml": "2.9.0"
   }

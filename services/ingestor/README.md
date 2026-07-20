@@ -38,13 +38,3 @@ configuration.
 
 With `INGESTOR_DEV=true` (or `DEV=true`), the ingestor uses [compose.dev.yaml](./compose.dev.yaml), extending
 [services/compose.dev.yaml](../compose.dev.yaml), and builds from source with target `builder`.
-
-## Dependencies
-
-Here below we show the internal dependencies of the service, which are not already covered in
-[the root docs](../../README.md) (if `B` depends on `A`, then we visualize it as `A --> B`).
-
-```mermaid
-graph TD
- backend --> ingestor
-```

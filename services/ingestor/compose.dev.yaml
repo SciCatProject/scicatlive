@@ -13,8 +13,7 @@ services:
       # This prevents git unpushed changes from being lost on container restart
       - ${DEV_VOLUME:-${APP}}_dev:${WORKDIR:-/home/node/app}
       - ${DEV_BBACKUP:+${PWD}/bbackup/${COMPOSE_PROJECT_NAME}/${DEV_VOLUME:-${APP}}:}/bbackup
-    
+
 volumes:
   ingestor_dev:
     driver: local
-

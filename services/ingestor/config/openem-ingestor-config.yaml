@@ -20,20 +20,25 @@ MetadataExtractors:
       Executable: oscem-extractor-life
       Checksum: a596ade8dd115b57fb8d5aad56b96b0e0ad2820bf57252443c21d4c80278ca6e
       ChecksumAlg: sha256
-      CommandLineTemplate: "-i '{{.SourceFolder}}' -o '{{.OutputFile}}' --cs 2.7 --folder_filter=^.*(?i)(metadata).*$"
+      CommandLineTemplate:
+        -i '{{.SourceFolder}}' -o '{{.OutputFile}}' ${EXTRACTOR_PARAMS}
       Methods:
         - Name: Single Particle
           Schema: oscem_schemas_spa.schema.json
-          Url: https://w3id.org/oscem-schemas/latest/spa/jsonschema/oscem_schemas_spa.schema.json
+          Url:
+            https://w3id.org/oscem-schemas/latest/spa/jsonschema/oscem_schemas_spa.schema.json
         - Name: Cellular Tomography
           Schema: oscem_cellular_tomo.json
-          Url: https://w3id.org/oscem-schemas/latest/cellular_tomo/jsonschema/oscem_schemas_cellular_tomo.schema.json
+          Url:
+            https://w3id.org/oscem-schemas/latest/cellular_tomo/jsonschema/oscem_schemas_cellular_tomo.schema.json
         - Name: Subtomogram Averaging
           Schema: oscem_tomo.json
-          Url: https://w3id.org/oscem-schemas/latest/subtomo/jsonschema/oscem_schemas_subtomo.schema.json
+          Url:
+            https://w3id.org/oscem-schemas/latest/subtomo/jsonschema/oscem_schemas_subtomo.schema.json
         - Name: Environmental Tomography
           Schema: oscem_env_tomo.json
-          Url: https://w3id.org/oscem-schemas/latest/env_tomo/jsonschema/oscem_schemas_env_tomo.schema.json
+          Url:
+            https://w3id.org/oscem-schemas/latest/env_tomo/jsonschema/oscem_schemas_env_tomo.schema.json
 
     - Name: MS
       GithubOrg: osc-em
@@ -42,35 +47,37 @@ MetadataExtractors:
       Executable: oscem-extractor-materials
       Checksum: 47dc7f1fcb4bd51b10ac22d017d69838b671babb45c12bef6c9008d98d47e9f1
       ChecksumAlg: sha256
-      CommandLineTemplate: -i '{{.SourceFolder}}' -o '{{.OutputFile}}' --cs 2.7 --folder_filter=^.*(?i)(metadata).*$"
+      CommandLineTemplate:
+        -i '{{.SourceFolder}}' -o '{{.OutputFile}}' ${EXTRACTOR_PARAMS}
       Methods:
         - Name: Material Science
           Schema: oscem_general.json
-          Url: https://w3id.org/oscem-schemas/latest/general/jsonschema/oscem_schemas_general.schema.json
+          Url:
+            https://w3id.org/oscem-schemas/latest/general/jsonschema/oscem_schemas_general.schema.json
 
 WebServer:
   Auth:
     Disable: ${AUTH_DISABLED}
     Frontend:
       Origin: ${FRONTEND_URL}
-      RedirectPath: "/ingestor"
+      RedirectPath: /ingestor
     SessionDuration: 28800
     OAuth2:
-      ClientID: "openem-ingestor-local"
-      RedirectURL: "${INGESTOR_URL}/callback"
+      ClientID: openem-ingestor-local
+      RedirectURL: ${INGESTOR_URL}/callback
       Scopes:
         - email
     OIDC:
-      IssuerURL: "${KEYCLOAK_URL}/realms/facility"
+      IssuerURL: ${KEYCLOAK_URL}/realms/facility
     JWT:
       UseJWKS: true
-      JwksURL: "${KEYCLOAK_URL}/realms/facility/protocol/openid-connect/certs"
+      JwksURL: ${KEYCLOAK_URL}/realms/facility/protocol/openid-connect/certs
       JwksSignatureMethods:
         - RS256
     RBAC:
-      AdminRole: "ingestor-admin"
-      CreateModifyTasksRole: "ingestor-write"
-      ViewTasksRole: "ingestor-read"
+      AdminRole: ingestor-admin
+      CreateModifyTasksRole: ingestor-write
+      ViewTasksRole: ingestor-read
   Paths:
     CollectionLocations:
       "Data Root": /data

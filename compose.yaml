@@ -6,7 +6,8 @@ include:
   - services/jupyter/compose.yaml
   - services/landingpage/compose.yaml
   - services/oaipmh/compose.yaml
-
+  - services/ingestor/compose.yaml
+  
 configs:
   entrypoints_loop_entrypoints_sh:
     file: ./entrypoints/loop_entrypoints.sh

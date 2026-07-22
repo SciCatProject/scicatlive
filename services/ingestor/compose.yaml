@@ -1,0 +1,4 @@
+include:
+  - path:
+      - .${INGESTOR_ENABLED:+/}compose.base.yaml
+      - .${INGESTOR_ENABLED:+${INGESTOR_DEV:+/}}compose.dev.yaml

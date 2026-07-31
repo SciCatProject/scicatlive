@@ -301,6 +301,35 @@
       ],
       "security-admin-console": [],
       "admin-cli": [],
+      "scicat-ingestor": [
+        {
+          "id": "41a64b61-df75-4768-ae60-04039d8702b9",
+          "name": "ingestor-write",
+          "description": "Create datasets",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "a7b27d3c-00c3-43c4-90f2-154ca6558cb8",
+          "attributes": {}
+        },
+        {
+          "id": "36f46fd7-dd0c-4387-ab8f-1185a36c95a4",
+          "name": "ingestor-admin",
+          "description": "Administrators",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "a7b27d3c-00c3-43c4-90f2-154ca6558cb8",
+          "attributes": {}
+        },
+        {
+          "id": "8b25e089-0753-4230-81b5-ae65a97f7575",
+          "name": "ingestor-read",
+          "description": "Browse data",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "a7b27d3c-00c3-43c4-90f2-154ca6558cb8",
+          "attributes": {}
+        }
+      ],
       "account-console": [],
       "broker": [
         {
@@ -491,6 +520,9 @@
       "realmRoles": [
         "default-roles-facility"
       ],
+      "clientRoles" : {
+        "scicat-ingestor" : [ "ingestor-read", "ingestor-write" ]
+      },
       "notBefore": 0,
       "groups": [
         "/group1"
@@ -798,6 +830,7 @@
             "full.path": "false",
             "introspection.token.claim": "true",
             "userinfo.token.claim": "true",
+            "multivalued": "true",
             "id.token.claim": "true",
             "lightweight.claim": "false",
             "access.token.claim": "true",
@@ -805,6 +838,64 @@
           }
         }
       ],
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "roles",
+        "profile",
+        "basic",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
+      "id": "a7b27d3c-00c3-43c4-90f2-154ca6558cb8",
+      "clientId": "scicat-ingestor",
+      "name": "SciCat Ingestor",
+      "description": "SciCat Web Ingestor Service",
+      "rootUrl": "${INGESTOR_URL}",
+      "adminUrl": "",
+      "baseUrl": "/version",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "redirectUris": [
+        "/callback"
+      ],
+      "webOrigins": [
+        "+"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "publicClient": true,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "realm_client": "false",
+        "oidc.ciba.grant.enabled": "false",
+        "backchannel.logout.session.required": "true",
+        "standard.token.exchange.enabled": "false",
+        "oauth2.jwt.authorization.grant.enabled": "false",
+        "post.logout.redirect.uris": "${FRONTEND_HTTPS_URL}/*",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "pkce.code.challenge.method": "S256",
+        "backchannel.logout.revoke.offline.tokens": "false",
+        "dpop.bound.access.tokens": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
       "defaultClientScopes": [
         "web-origins",
         "acr",

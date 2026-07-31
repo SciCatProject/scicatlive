@@ -63,7 +63,7 @@ WebServer:
       RedirectPath: /ingestor
     SessionDuration: 28800
     OAuth2:
-      ClientID: openem-ingestor-local
+      ClientID: scicat-ingestor
       RedirectURL: ${INGESTOR_URL}/callback
       Scopes:
         - email

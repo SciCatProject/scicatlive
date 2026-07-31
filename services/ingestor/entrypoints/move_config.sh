@@ -14,6 +14,16 @@ fi
 
 mkdir -p "$TARGET_DIR"
 
+# Invert AUTH_ENABLED boolean
+case "$AUTH_ENABLED" in
+  t|true|yes|on|1|y|T|TRUE)
+    export AUTH_DISABLED=false
+    ;;
+  *)
+    export AUTH_DISABLED=true
+    ;;
+esac
+
 envsubst < "$SOURCE_CONFIG" > "$TARGET_CONFIG"
 
 if [ "$1" = "--entrypoint" ]; then

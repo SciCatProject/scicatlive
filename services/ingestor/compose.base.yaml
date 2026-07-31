@@ -1,5 +1,6 @@
 services:
   ingestor:
+    platform: linux/amd64
     image: ghcr.io/swissopenem/ingestor:1.2.5
     depends_on:
       backend:
@@ -36,7 +37,7 @@ services:
       INGESTOR_SERVICE_USER_PASS: aman
 
       # Auth settings
-      AUTH_DISABLED: ${AUTH_DISABLED:-true}
+      AUTH_ENABLED: ${AUTH_ENABLED:-${OIDC_ENABLED:-false}}
       KEYCLOAK_URL: ${KEYCLOAK_HTTPS_URL:-http://keycloak.localhost}
     extra_hosts:
       - keycloak.localhost:host-gateway

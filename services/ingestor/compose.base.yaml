@@ -1,0 +1,51 @@
+services:
+  ingestor:
+    image: ghcr.io/swissopenem/ingestor:1.2.5
+    depends_on:
+      backend:
+        condition: service_healthy
+    user: root
+    configs:
+      - source: openem-ingestor-config.yaml
+        target: /config/openem-ingestor-config.yaml
+        mode: 0555
+      - source: move_config.sh
+        target: /docker-entrypoints/move_config.sh
+        mode: 0555
+    volumes:
+      - ${INGESTOR_DATA_DIR:? data directory for ingestor not set}:/data:ro
+    labels:
+      - traefik.http.services.ingestor.loadbalancer.server.port=8080
+    environment:
+      GIN_MODE: ${GIN_MODE:-release}
+      LOG_LEVEL: ${LOG_LEVEL:-Info}
+
+      # URL settings
+      INGESTOR_URL: ${INGESTOR_URL:-http://ingestor.localhost}
+      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}
+      FRONTEND_URL: ${FRONTEND_HTTPS_URL:-http://localhost}
+
+      # Transfer settings
+      TRANSFER_METHOD: ${TRANSFER_METHOD:-None}
+      GLOBUS_TRANSFER_PROXY_URL: ${GLOBUS_TRANSFER_PROXY_URL:-http://foo.ch}
+      GLOBUS_SOURCE_FACILITY: ${GLOBUS_SOURCE_FACILITY:-SRCFAC}
+      GLOBUS_DESTINATION_FACILITY: ${GLOBUS_DESTINATION_FACILITY:-DSTFAC}
+      GLOBUS_COLLECTION_ROOT_PATH: ${GLOBUS_COLLECTION_ROOT_PATH:-/mnt/data}
+      EXTRACTOR_PARAMS: ${EXTRACTOR_PARAMS:-}
+      INGESTOR_SERVICE_USER_NAME: ingestor
+      INGESTOR_SERVICE_USER_PASS: aman
+
+      # Auth settings
+      AUTH_DISABLED: ${AUTH_DISABLED:-true}
+      KEYCLOAK_URL: ${KEYCLOAK_HTTPS_URL:-http://keycloak.localhost}
+    extra_hosts:
+      - keycloak.localhost:host-gateway
+      - backend.localhost:host-gateway
+      - localhost:host-gateway
+    entrypoint: [/bin/sh, /docker-entrypoints/move_config.sh, --entrypoint]
+
+configs:
+  openem-ingestor-config.yaml:
+    file: ./config/openem-ingestor-config.yaml
+  move_config.sh:
+    file: ./entrypoints/move_config.sh

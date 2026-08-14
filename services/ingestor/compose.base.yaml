@@ -1,5 +1,6 @@
 services:
   ingestor:
+    platform: linux/amd64
     image: ghcr.io/swissopenem/ingestor:1.2.5
     depends_on:
       backend:

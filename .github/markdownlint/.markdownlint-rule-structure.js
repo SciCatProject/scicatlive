@@ -24,7 +24,7 @@ const getRequiredSections = (params, parts) => {
 
 const checkRequiredSections = (params, onError) => {
   const parts = getFileParts(params.name);
-  if (parts[0] !== "services") return;
+  if (parts[0] !== "services" || parts[parts.length - 1] !== "README.md") return;
   const requiredSections = getRequiredSections(params, parts);
   const content = params.lines.join("\n");
 
@@ -40,7 +40,7 @@ const checkRequiredSections = (params, onError) => {
 
 const checkSectionsOrder = (params, onError) => {
   const parts = getFileParts(params.name);
-  if (parts[0] !== "services") return;
+  if (parts[0] !== "services" || parts[parts.length - 1] !== "README.md") return;
   const requiredSections = getRequiredSections(params, parts);
   const content = params.lines.join("\n");
 

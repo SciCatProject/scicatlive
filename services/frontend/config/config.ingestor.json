@@ -1,0 +1,12 @@
+{
+"ingestorComponent": {
+    "ingestorEnabled": true,
+    "ingestorAutodiscoveryOptions": [
+      {
+        "mailDomain": "facility.com",
+        "description": "University/facility of Choice",
+        "facilityBackend": "http://ingestor.localhost"
+      }
+    ]
+  }
+}

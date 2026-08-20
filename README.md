@@ -298,8 +298,9 @@ to easily install it in the DEV environment. For more details see the
 to use it, see the [frontend README](./services/frontend/README.md#dev-configuration).
 
 When `DEV=true`, a [docs](./services/docs/) service also becomes available, rendering a live, combined view of every
-DEV-mode service's own upstream documentation (its `docs/` folder) using MkDocs. See the
-[docs README](./services/docs/README.md) for details, including how to add another service to it.
+DEV-mode service's own upstream documentation (its `docs/` folder), as well as this repository's own top-level
+documentation, using MkDocs. See the [docs README](./services/docs/README.md) for details, including how to add
+another service to it.
 
 Please note that [entrypoints](#entrypoints) when `DEV=true` are only run when the component's container is created for
 the first time. This is done to avoid clashes with local changes.

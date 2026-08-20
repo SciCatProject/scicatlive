@@ -1,31 +1,6 @@
-services:
-  docs:
-    image: squidfunk/mkdocs-material:9.7
-    depends_on:
-      backend:
-        condition: service_healthy
-      frontend:
-        condition: service_healthy
-    volumes:
-      - ${PWD}/.github/mkdocs/:/config/github-mkdocs
-      - ./entrypoints/serve.sh:/usr/local/bin/serve.sh
-      - ./config/index.md:/docs/index.md
-      - ./config/external-links.md:/docs/external-links.md
-      - ${PWD}:/docs/scicatlive
-      - type: volume
-        source: ${BE_VERSION:-v4}_dev
-        target: /docs/backend
-        read_only: true
-        volume:
-          subpath: docs
-      - type: volume
-        source: frontend_dev
-        target: /docs/frontend
-        read_only: true
-        volume:
-          subpath: docs
-    restart: on-failure
-    entrypoint: /usr/local/bin/serve.sh
-    environment:
-      CONFIG_DIR: /config/github-mkdocs
-      PYTHONDONTWRITEBYTECODE: 1
+include:
+  - path:
+      - .${DOCS_DEV:+/}compose.base.yaml
+      - .${BACKEND_DEV:+/}compose.backend.yaml
+      - .${FRONTEND_DEV:+/}compose.frontend.yaml
+      - .${SCICATLIVE_DEV:+/}compose.scicatlive.yaml

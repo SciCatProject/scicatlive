@@ -10,6 +10,8 @@ services:
       - ${PWD}/.github/mkdocs/:/config/github-mkdocs
       - ./entrypoints/serve.sh:/usr/local/bin/serve.sh
       - ./config/index.md:/docs/index.md
+      - ./config/external-links.md:/docs/external-links.md
+      - ${PWD}:/docs/scicatlive
       - type: volume
         source: ${BE_VERSION:-v4}_dev
         target: /docs/backend
@@ -25,7 +27,5 @@ services:
     restart: on-failure
     entrypoint: /usr/local/bin/serve.sh
     environment:
-      GITHUB_SERVER_URL: https://github.com
-      GITHUB_REPOSITORY: SciCatProject/scicatlive
       CONFIG_DIR: /config/github-mkdocs
       PYTHONDONTWRITEBYTECODE: 1

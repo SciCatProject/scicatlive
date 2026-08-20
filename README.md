@@ -380,8 +380,9 @@ To ease the iterative execution of multiple init scripts, one can leverage the
 [loop_entrypoints](./entrypoints/loop_entrypoints.sh) utility, which loops alphabetically over
 `/docker-entrypoinst/*.sh` and executes each. This is in use in some services (e.g. in the
 [frontend](./services/frontend/compose.yaml)), so one can add additional init steps by mounting them, one by one, as
-bind mounts inside the container in the `/docker-entrypoints` folder and naming them depending on the desired order
-(eventually rename the existing ones as well).
+[docker compose configs](https://docs.docker.com/reference/compose-file/services/#configs) inside the container in
+the `/docker-entrypoints` folder and naming them depending on the desired order (eventually rename the existing ones
+as well).
 
 #### If the service does not support entrypoints yet, one needs to
 
@@ -406,10 +407,15 @@ Please note that services should, in general, be defined by their responsibility
 technology, and should be named so.
 
 :warning: When adding a new service, please use [docker compose configs](https://docs.docker.com/reference/compose-file/services/#configs)
-for mounting files inside the container, rather than bind mounts, as they are more robust and easier to maintain.
-This is mostly relevant for the published OCI packages, as bind mounts require the user to have specific files in
-their local environment, which might not be the case, while configs are included in the package itself as part
-of the [release workflow](./.github/semantic-release/publish-oci.js).
+for mounting files inside the container, unless the mounted file needs to be modified from within the container, in
+which case use a bind-mount volume instead, since configs are always mounted read-only. This distinction is mostly
+relevant for the published OCI packages: bind mounts pointing at directories, or at files that no longer exist on
+disk, require the user to have those in their local environment, which might not be the case, so they are left
+untouched by the [release workflow](./.github/semantic-release/publish-oci.js); single-file bind mounts, however, are
+converted to configs by that same workflow, so they work in the published package too. The generated config is named
+`<service>_<target-path>`, with the mount's target path stripped of its leading slash and any remaining non-alphanumeric
+character replaced by `_` (e.g. a `proxy` service mount targeting `/config/traefik.yaml` becomes a config named
+`proxy_config_traefik.yaml`).
 
 ### Basic
 

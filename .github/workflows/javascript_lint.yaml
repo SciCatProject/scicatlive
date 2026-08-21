@@ -1,0 +1,28 @@
+name: JavaScript Lint
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.js'
+      - '**.ts'
+      - '**.cjs'
+      - '**.mjs'
+      - '**.html'
+
+jobs:
+  javascript-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Use Node.js v20
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: install eslint and default rules
+        run: npm install eslint @eslint/js --save-dev
+      - name: Lint javascript files
+        run: npx eslint --config .github/eslint.config.mjs
+      - name: Lint html files
+        run: find . -name "*.html" -o -name ".*.html" | xargs npx --yes htmlhint

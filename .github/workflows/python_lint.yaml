@@ -1,0 +1,17 @@
+name: Python Lint
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.py'
+
+jobs:
+  python-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: chartboost/ruff-action@v1
+        with:
+          args: check --select ALL

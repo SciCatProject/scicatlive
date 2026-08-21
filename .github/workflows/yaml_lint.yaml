@@ -1,0 +1,19 @@
+name: YAML Lint
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.yml'
+      - '**.yaml'
+
+jobs:
+  yaml-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install 'yamllint'
+        run: sudo apt-get install -y yamllint
+      - name: Lint YAML files
+        run: yamllint -c .github/yamllint_config.yaml .

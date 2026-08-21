@@ -1,0 +1,87 @@
+name: Lint
+
+on: # yamllint disable-line rule:truthy
+  workflow_call: {}
+
+jobs:
+  yaml-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install 'yamllint'
+        run: sudo apt-get install -y yamllint
+      - name: Lint YAML files
+        run: yamllint -c .github/yamllint_config.yaml .
+  json-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Lint JSON files
+        run: git ls-files -z '*.json' | xargs -0r -n1 jq empty
+  shell-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install 'shellcheck'
+        run: sudo apt install shellcheck
+      - name: Lint shell files
+        run: git ls-files -z '*.sh' | xargs -0r shellcheck
+  javascript-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Use Node.js v20
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: install eslint and default rules
+        run: npm install eslint @eslint/js --save-dev
+      - name: Lint javascript files
+        run: npx eslint --config .github/eslint.config.mjs
+      - name: Lint html files
+        run: find . -name "*.html" -o -name ".*.html" | xargs npx --yes htmlhint
+  python-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: chartboost/ruff-action@v1
+        with:
+          args: check --select ALL
+  markdown-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check markdown links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress --root-dir .
+            --accept '100..=103,200..=299,403,429'
+            --exclude-path 'services/docs/config'
+            '**/*.md'
+          fail: true
+      - uses: DavidAnson/markdownlint-cli2-action@v24
+        with:
+          globs: |
+            **/*.md
+            !**/node_modules/**
+          config: .github/markdownlint/.markdownlint-cli2.yaml
+  check-mkdocs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v47
+        with:
+          files: |
+            **/README.md
+            **/*mkdocs*/**
+            **/*mkdocs*
+      - if: steps.changed-files.outputs.any_changed == 'true'
+        uses: SciCatProject/scicatlive/.github/actions/mkdocs-pages@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCS_LINK_CHECK: true
+          TAG: ${{ github.sha }}
+          docs_folder: ''

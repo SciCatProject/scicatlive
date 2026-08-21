@@ -1,0 +1,19 @@
+name: JSON Lint
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.json'
+
+jobs:
+  json-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install 'jsonlint' and 'git'
+        run: sudo apt install python3-demjson git
+      - name: Lint JSON files
+        run: >-
+          git ls-files -z '*.json' | xargs -0r jsonlint -s --allow=non-portable

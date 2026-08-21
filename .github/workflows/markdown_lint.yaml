@@ -1,0 +1,30 @@
+name: Markdown Lint
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**/*.md'
+      - '**/*markdownlint*'
+      - '**/*markdownlint*/**'
+
+jobs:
+  markdown-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check markdown links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress --root-dir .
+            --accept '100..=103,200..=299,403,429'
+            '**/*.md'
+          fail: true
+      - uses: DavidAnson/markdownlint-cli2-action@v24
+        with:
+          globs: |
+            **/*.md
+            !**/node_modules/**
+          config: .github/markdownlint/.markdownlint-cli2.yaml

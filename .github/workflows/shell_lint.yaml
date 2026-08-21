@@ -1,0 +1,20 @@
+name: Shell Lint
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.sh'
+
+jobs:
+  shell-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install 'shellcheck' and 'git'
+        run: sudo apt install shellcheck git
+      - name: Lint shell files ([ba]sh scripts)
+        run: >-
+          git ls-files -z '*.sh' '*.bash' '*.ksh' '*.bashrc' '*.bash_profile'
+          '*.bash_login' '*.bash_logout' | xargs -0r shellcheck

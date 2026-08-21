@@ -253,6 +253,7 @@ the following [table](#docker-compose-profiles-and-env-variables-configuration-o
 | env     | `LANDINGPAGE_DEV`     | `true`: landingpage in DEV mode                                                                                       | `''`    | \*                    | Same as `DEV=true` but limited to the landingpage service                                                                                                                                                            |                         |
 | env     | `OAIPMH_DEV`          | `true`: oaipmh in DEV mode                                                                                            | `''`    | \*                    | Same as `DEV=true` but limited to the oaipmh service                                                                                                                                                                 |                         |
 | env     | `SCICATLIVE_DEV`      | `true`: this repo's own docs rendered in the [docs](./services/docs/) service                                         | `''`    | \*                    | Same as `DEV=true` but limited to mounting this repository's own documentation in the docs service                                                                                                                   |                         |
+| env     | `USER_DOCS_DEV`       | `true`: external user documentation rendered in the [docs](./services/docs/) service                                  | `''`    | \*                    | Same as `DEV=true` but limited to cloning and mounting the external user-documentation repo in the docs service                                                                                                      |                         |
 | env     | `<SERVICE>_HTTPS_URL` | `<URL>`: HTTPS termination                                                                                            | `''`    | \*                    | Requests the TLS certificate for the URL to LetsEncrypt through the [proxy](#tls-configuration)                                                                                                                      |                         |
 | env     | `DEV_BBACKUP`         | `true`: bidirectional synchronization of DEV volume                                                                   | `''`    | \*                    | Enables [DEV bidirectional synchronization](#dev-bidirectional-synchronization) between ${PWD}/bbackup/${APP} on the host and the dev volume                                                                         |                         |
 
@@ -297,10 +298,11 @@ to easily install it in the DEV environment. For more details see the
 [openapigenerator README](./services/backend/services/v4/services/openapigenerator/README.md), and for an example of how
 to use it, see the [frontend README](./services/frontend/README.md#dev-configuration).
 
-When `DEV=true` (or any of `BACKEND_DEV`, `FRONTEND_DEV`, `SCICATLIVE_DEV` individually), a
+When `DEV=true` (or any of `BACKEND_DEV`, `FRONTEND_DEV`, `SCICATLIVE_DEV`, `USER_DOCS_DEV` individually), a
 [docs](./services/docs/) service also becomes available, rendering a live view of the enabled DEV-mode services' own
-upstream documentation (their `docs/` folder), as well as this repository's own top-level documentation, using
-MkDocs. See the [docs README](./services/docs/README.md) for details, including how to add another service to it.
+upstream documentation (their `docs/` folder), this repository's own top-level documentation, and an external
+user-documentation repository, using MkDocs. See the [docs README](./services/docs/README.md) for details, including
+how to add another service to it.
 
 Please note that [entrypoints](#entrypoints) when `DEV=true` are only run when the component's container is created for
 the first time. This is done to avoid clashes with local changes.

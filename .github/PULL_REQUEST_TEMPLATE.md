@@ -29,8 +29,11 @@ See https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-
 
 #### Modified Service?
 
-- [ ] Steps from [features](https://github.com/SciCatProject/scicatlive/blob/master/README.md#features) in README checked
+- [ ] Steps from [features] in README checked
 
 #### New Service?
 
-- [ ] Steps from [new service (advanced)](https://github.com/SciCatProject/scicatlive/blob/master/README.md#advanced) in README checked
+- [ ] Steps from [new service (advanced)] in README checked
+
+[features]: https://github.com/SciCatProject/scicatlive/blob/master/README.md#features
+[new service (advanced)]: https://github.com/SciCatProject/scicatlive/blob/master/README.md#advanced

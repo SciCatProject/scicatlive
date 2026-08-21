@@ -1,7 +1,7 @@
 include:
   - path:
-      - .${DOCS_DEV:+/}compose.base.yaml
-      - .${BACKEND_DEV:+/}compose.backend.yaml
-      - .${FRONTEND_DEV:+/}compose.frontend.yaml
-      - .${SCICATLIVE_DEV:+/}compose.scicatlive.yaml
-      - .${USER_DOCS_DEV:+/}compose.userdocs.yaml
+      - .${_DOCS_DEV:+/}compose.base.yaml
+      - .${_BACKEND_DEV:+/}compose.backend.yaml
+      - .${_FRONTEND_DEV:+/}compose.frontend.yaml
+      - .${_SCICATLIVE_DEV:+/}compose.scicatlive.yaml
+      - .${_USER_DOCS_DEV:+/}compose.userdocs.yaml

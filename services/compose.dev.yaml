@@ -6,7 +6,7 @@ services:
       test: pgrep -f "/bin/sh /usr/local/bin/infinite_loop.sh"
       retries: 10
     labels:
-      - traefik.http.services.${APP}.loadbalancer.server.port=${DEV_PORT}
+      - traefik.http.services.${APP}.loadbalancer.server.port=${DEV_PORT:-}
     volumes:
       - openapigenerator:/openapigenerator
     configs:
@@ -52,7 +52,7 @@ services:
       # This preserves AI coding assistant conversation history/config across
       # container restarts, shared across all dev services so it's visible
       # from whichever one you use
-      - ai_state:${DEV_AI_STATE:-/root/.claude}
+      - ai_state:${_DEV_AI_STATE}
   node-app-from-remote:
     extends: node-app-from-local
     image: ''

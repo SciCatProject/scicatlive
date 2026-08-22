@@ -93,6 +93,7 @@ jobs:
           args: >-
             --no-progress --root-dir .
             --accept '100..=103,200..=299,403,429'
+            --exclude-path 'services/docs/config'
             '**/*.md'
           fail: true
       - uses: DavidAnson/markdownlint-cli2-action@v24

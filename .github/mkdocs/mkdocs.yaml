@@ -1,8 +1,8 @@
 site_name: SciCatLive
 docs_dir: ../../docs
 repo_url: !!python/object/apply:os.path.join [
-  !ENV [GITHUB_SERVER_URL],
-  !ENV [GITHUB_REPOSITORY]
+  !ENV [GITHUB_SERVER_URL, https://github.com],
+  !ENV [GITHUB_REPOSITORY, SciCatProject/scicatlive]
 ]
 theme:
   name: material

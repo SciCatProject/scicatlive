@@ -11,7 +11,7 @@ services:
       - ./entrypoints/npm_tests.sh:/docker-entrypoints/90.sh
   backend:
     volumes:
-      - ./services/backend/services/${BE_VERSION}/entrypoints/tests.sh:/docker-entrypoints/90.sh
+      - ./services/backend/services/${_BE_VERSION}/entrypoints/tests.sh:/docker-entrypoints/90.sh
     command: npm start
     healthcheck:
       test: |

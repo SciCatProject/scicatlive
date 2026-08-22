@@ -260,6 +260,19 @@ the following [table](#docker-compose-profiles-and-env-variables-configuration-o
 After optionally setting any configuration option, one can still select the services to run as described by the
 [select the services](#select-the-services) section.
 
+#### Computed environment variables
+
+Some of the env variables above have a default value that is computed from another one - for example `BACKEND_DEV`
+should also be enabled whenever `DEV=true`, and `BACKEND_HTTPS_URL` falls back to Traefik's local routing
+(`http://backend.localhost`) when left unset. Rather than duplicating that resolution logic at every place a compose
+file needs the final value, it is computed once, in a dedicated section at the bottom of [.env](./.env), into a
+`_`-prefixed variable of the same name (e.g. `_BACKEND_DEV`, `_BACKEND_HTTPS_URL`). Compose files read the
+`_`-prefixed variable, never the plain one.
+
+These `_`-prefixed variables are **computed automatically and must not be edited directly** - to change a value, set
+the plain variable above it instead (e.g. `BACKEND_DEV=true`, not `_BACKEND_DEV=true`); leaving the plain variable
+unset/commented keeps the documented default.
+
 #### DEV configuration
 
 <details markdown="1">
@@ -482,6 +495,9 @@ feature
       [.github/changed_files.yaml](.github/changed_files.yaml) and create the
       [exclude](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs#excluding-matrix-configurations)
       rule in the workflow.
+   7. if the ENV's default should fall back to another variable (e.g. to `DEV`, or to a `localhost` URL), compute it
+      once as a `_`-prefixed variable instead of duplicating the fallback at each usage site - see
+      [Computed environment variables](#computed-environment-variables)
 
 4. eventually, add entrypoints for init logics, as described by the section to
    [enable entrypoints](#if-the-service-does-not-support-entrypoints-yet-one-needs-to), e.g. like

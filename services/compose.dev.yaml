@@ -6,7 +6,7 @@ services:
       test: pgrep -f "/bin/sh /usr/local/bin/infinite_loop.sh"
       retries: 10
     labels:
-      - traefik.http.services.${APP}.loadbalancer.server.port=${DEV_PORT}
+      - traefik.http.services.${APP}.loadbalancer.server.port=${DEV_PORT:-}
     volumes:
       - openapigenerator:/openapigenerator
     configs:

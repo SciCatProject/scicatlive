@@ -4,9 +4,11 @@
 ## avoiding to fill the RAM which makes them freeze
 npm run test -- --runInBand
 
+set -m
 npm run start:test &
 PID="${!}"
 sleep 30
 npm run test:api:mocha
 
-kill "${PID}"
+kill -- -"${PID}"
+wait "${PID}" 2>/dev/null

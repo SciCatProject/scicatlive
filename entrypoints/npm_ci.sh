@@ -1,5 +1,8 @@
 #!/bin/sh
 
-[ -e ".finished" ] && exit 0
+MARKER=".finished-$(basename "$0")"
+[ -e "$MARKER" ] && exit 0
 
 npm ci
+
+touch "$MARKER"

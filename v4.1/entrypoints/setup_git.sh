@@ -1,6 +1,7 @@
 #!/bin/sh
 
-[ -e ".finished" ] && exit 0
+MARKER=".finished-$(basename "$0")"
+[ -e "$MARKER" ] && exit 0
 
 ls .git && exit 0
 
@@ -16,4 +17,5 @@ DEFAULT_BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
 git reset --hard origin/"${TAG:-$DEFAULT_BRANCH}"
 git clean -fd
 
-echo ".finished" >> .git/info/exclude
+echo ".finished-*" >> .git/info/exclude
+touch "$MARKER"

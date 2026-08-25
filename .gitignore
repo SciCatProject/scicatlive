@@ -7,4 +7,5 @@ node_modules/
 bbackup/*
 !.github/semantic-release/package.json
 !.github/markdownlint/package.json
+# default ingestor data
 data/

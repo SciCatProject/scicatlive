@@ -29,10 +29,21 @@ By default, transfer method is `None`. To enable Globus transfer, set `TRANSFER_
 - `GLOBUS_DESTINATION_FACILITY`
 - `GLOBUS_COLLECTION_ROOT_PATH`
 
-To enable authentication, set `AUTH_DISABLED=false` and `KEYCLOAK_HTTPS_URL`.
+## Authentication
 
-:warning: When setting `AUTH_DISABLED=false`, make sure the Keycloak realm and client match the ingestor
-configuration.
+The ingestor can authenticate users based on OIDC claims. If `OIDC_ENABLED` is true,
+this will be enabled by default. It can also specifically be enabled or disabled by
+setting `AUTH_ENABLED=true` in `.env`.
+
+When ingestor authentication is disabled any scicat user can access the ingestor and
+browse data. Otherwise, only users with the keycloak roles
+`scicat-ingestor/ingestor-read` and `scicat-ingestor/ingestor-write` will be able to use
+the ingestor. These roles are granted to the default `oidc-user`, but should be added to
+other users in keycloak with 'User > Role mapping > Assign role > Client roles'.
+
+## Jobs
+
+Setting `JOBS_ENABLED=true` is recommended to use the ingestor. An `archive` jobType should be configured to enable the 'autoArchive' feature of the ingestor. (This is provided in the default `jobConfig.yaml` configuration of scicatlive.)
 
 ## DEV configuration
 

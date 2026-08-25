@@ -1,7 +1,11 @@
 #!/bin/sh
 
-apk update && apk add jq gettext || echo "apk not available"
-apt update && apt install -y jq gettext-base || echo "apt not available"
+if command -v apk >/dev/null 2>&1; then 
+	apk update && apk add jq gettext 
+fi
+if command -v apt >/dev/null 2>&1; then 
+	apt update && apt install -y jq gettext-base
+fi
 
 SOURCE_CONFIG="/config/openem-ingestor-config.yaml"
 TARGET_DIR="/root/.config/openem-ingestor"
@@ -16,7 +20,8 @@ mkdir -p "$TARGET_DIR"
 
 envsubst < "$SOURCE_CONFIG" > "$TARGET_CONFIG"
 
-if [ "$1" = "--entrypoint" ]; then
-	shift
-	exec /app/ingestor "$@"
+echo "Start app?"
+if [ -e "/app/ingestor" ]; then
+	echo "Start app!"
+    exec /app/ingestor "$@"
 fi

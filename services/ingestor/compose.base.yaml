@@ -11,10 +11,16 @@ services:
         target: /config/openem-ingestor-config.yaml
         mode: 0555
       - source: move_config.sh
-        target: /docker-entrypoints/move_config.sh
+        target: /docker-entrypoints/20.sh
+        mode: 0555
+      - source: download_data.sh
+        target: /docker-entrypoints/10.sh
+        mode: 0555
+      - source: entrypoints_loop_entrypoints_sh
+        target: /usr/local/bin/loop_entrypoints.sh
         mode: 0555
     volumes:
-      - ${INGESTOR_DATA_DIR:? data directory for ingestor not set}:/data:ro
+      - ${INGESTOR_DATA_DIR:? data directory for ingestor not set}:/data
     labels:
       - traefik.http.services.ingestor.loadbalancer.server.port=8080
     environment:
@@ -43,10 +49,13 @@ services:
       - keycloak.localhost:host-gateway
       - backend.localhost:host-gateway
       - localhost:host-gateway
-    entrypoint: [/bin/sh, /docker-entrypoints/move_config.sh, --entrypoint]
+    entrypoint: 
+      - loop_entrypoints.sh
 
 configs:
   openem-ingestor-config.yaml:
     file: ./config/openem-ingestor-config.yaml
   move_config.sh:
     file: ./entrypoints/move_config.sh
+  download_data.sh:
+    file: ./entrypoints/download_data.sh

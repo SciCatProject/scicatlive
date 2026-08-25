@@ -10,7 +10,8 @@ The Keycloak configuration is set by the [.env file](./config/.env) and the real
 
 For an extensive list of available options see the [keycloak server docs](https://www.keycloak.org/guides#server).
 
-:warning: Realm creation is only done once, when the container is created. Configuration changes are not persisted across container restarts
+:warning: Realm creation is only done once, when the container is created.
+Configuration changes are not persisted across container restarts
 
 ## Default configuration
 

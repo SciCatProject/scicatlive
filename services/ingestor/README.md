@@ -43,7 +43,9 @@ other users in keycloak with 'User > Role mapping > Assign role > Client roles'.
 
 ## Jobs
 
-Setting `JOBS_ENABLED=true` is recommended to use the ingestor. An `archive` jobType should be configured to enable the 'autoArchive' feature of the ingestor. (This is provided in the default `jobConfig.yaml` configuration of scicatlive.)
+Setting `JOBS_ENABLED=true` is recommended to use the ingestor.
+An `archive` jobType should be configured to enable the 'autoArchive' feature of the ingestor.
+(This is provided in the default `jobConfig.yaml` configuration of scicatlive.)
 
 ## DEV configuration
 

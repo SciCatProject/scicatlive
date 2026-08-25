@@ -22,7 +22,7 @@ In the default setup in [compose.base.yaml](./compose.base.yaml), the ingestor:
 
 ## Enable additional features
 
-By default, transfer method is `None`. To enable Globus transfer, set `TRANSFER_METHOD=Globus` and configure:
+By default, transfer method is `None`. To enable Globus transfer, set `TRANSFER_METHOD=ExtGlobus` and configure:
 
 - `GLOBUS_TRANSFER_PROXY_URL`
 - `GLOBUS_SOURCE_FACILITY`

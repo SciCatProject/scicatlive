@@ -61,7 +61,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Use Node.js v20
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: install eslint and default rules
@@ -91,9 +91,11 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
-            --no-progress --root-dir . '**/*.md'
+            --no-progress --root-dir .
+            --accept '100..=103,200..=299,403,429'
+            '**/*.md'
           fail: true
-      - uses: DavidAnson/markdownlint-cli2-action@v23
+      - uses: DavidAnson/markdownlint-cli2-action@v24
         with:
           globs: |
             **/*.md

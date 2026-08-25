@@ -49,7 +49,7 @@ services:
       - keycloak.localhost:host-gateway
       - backend.localhost:host-gateway
       - localhost:host-gateway
-    entrypoint: 
+    entrypoint:
       - loop_entrypoints.sh
 
 configs:

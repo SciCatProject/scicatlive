@@ -199,17 +199,28 @@ jobs:
                 done
               exit 1
             }
-      - name: Add Failure Label
+      - name: Check if frontend broke on the new SDK
+        id: sdk_check
         if: >-
           steps.docker_up.outcome == 'failure' &&
           matrix.GENERATE_SDK == 'generate_sdk'
+        run: |
+          STATUS=$(docker compose ps --format '{{.Health}}' frontend)
+          [ "$STATUS" != "healthy" ] \
+            && echo "sdk_error=true" >> "$GITHUB_OUTPUT"
+      - name: Fail on non-SDK failure
+        if: >-
+          steps.docker_up.outcome == 'failure' &&
+          matrix.GENERATE_SDK == 'generate_sdk' &&
+          steps.sdk_check.outputs.sdk_error != 'true'
+        run: |
+          echo "compose up failed for a reason unrelated to SDK generation."
+          exit 1
+      - name: Add Failure Label
+        if: steps.sdk_check.outputs.sdk_error == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr comment ${{ github.event.pull_request.number }} --body \
-          "## ⚠️ SDK Generation Failed
-          The SDK test failed. This is non-blocking, but please check \
-          the logs before merging."
           gh pr edit ${{ github.event.pull_request.number }} --add-label \
           "sdk-failed"
       - name: Cleanup Failure Label
@@ -220,8 +231,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Remove the label if it exists (ignore error if it's already gone)
-          gh pr label remove ${{ github.event.pull_request.number }} \
-          --name "sdk-failed" || true
+          gh pr edit ${{ github.event.pull_request.number }} \
+          --remove-label "sdk-failed" || true
   tests-status:
     runs-on: ubuntu-latest
     if: always()

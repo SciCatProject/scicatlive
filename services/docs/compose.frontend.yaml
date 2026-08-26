@@ -1,8 +1,5 @@
 services:
   docs:
-    depends_on:
-      frontend:
-        condition: service_healthy
     volumes:
       - type: volume
         source: frontend_dev

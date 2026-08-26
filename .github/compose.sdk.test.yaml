@@ -1,0 +1,22 @@
+services:
+  frontend:
+    depends_on:
+      openapigenerator:
+        condition: service_healthy
+    volumes:
+      - ./entrypoints/npm_install_sdk.sh:/docker-entrypoints/80.sh
+    configs:
+      - source: frontend_verify_build_sh
+        target: /docker-entrypoints/90.sh
+        mode: 0555
+  backend:
+    command: npm start
+    healthcheck:
+      test: |
+        wget --spider -Y off 'http://127.0.0.1:3000/api/v3/publisheddata/count'
+
+configs:
+  frontend_verify_build_sh:
+    content: |
+      #!/bin/sh
+      npm run build

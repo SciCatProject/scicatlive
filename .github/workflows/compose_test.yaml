@@ -188,8 +188,12 @@ jobs:
           export DEV=${{ matrix.DEV }}
           export DEV_BBACKUP=${DEV}
           export GENERATE_SDK=${{ matrix.GENERATE_SDK }}
-          docker compose --profile '*' \
-            -f compose.yaml ${DEV:+-f .github/compose.dev.test.yaml} \
+          DEV_OVERLAY=${GENERATE_SDK:+.github/compose.sdk.test.yaml}
+          DEV_OVERLAY=${DEV_OVERLAY:-.github/compose.dev.test.yaml}
+          PROFILE=${GENERATE_SDK:+none}
+          PROFILE=${PROFILE:-'*'}
+          docker compose --profile "$PROFILE" \
+            -f compose.yaml ${DEV:+-f "$DEV_OVERLAY"} \
             up --wait --wait-timeout 1200 \
             || {
               docker compose ps --status=exited --services \

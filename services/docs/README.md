@@ -22,7 +22,7 @@ This service only exists once at least one of `DEV`, `BACKEND_DEV`, `FRONTEND_DE
 or each can be set independently to enable only that one mount:
 
 - `BACKEND_DEV`/`FRONTEND_DEV`: mounts that service's own `docs/` folder read-only from its `_dev` volume, at
-  `/docs/<service>`
+  `/docs/<service>` (the backend mount only applies to `BE_VERSION=v4` - the v3 backend has no `docs/` folder)
 - `SCICATLIVE_DEV`: mounts this whole repository (read-write, unlike the per-service mounts) at `/docs/scicatlive`,
   so its own top-level documentation (e.g. this README) is rendered too
 - `USER_DOCS_DEV`: clones an external documentation repository (not part of any SciCatLive service) and mounts it at

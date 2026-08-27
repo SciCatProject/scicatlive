@@ -4,3 +4,4 @@ include:
       - .${BACKEND_DEV:+/}compose.backend.yaml
       - .${FRONTEND_DEV:+/}compose.frontend.yaml
       - .${SCICATLIVE_DEV:+/}compose.scicatlive.yaml
+      - .${USER_DOCS_DEV:+/}compose.userdocs.yaml

@@ -38,13 +38,16 @@ services:
       DEV_BBACKUP: ${DEV_BBACKUP:-}
     user: root
     restart: no
-  node-app-from-local:
+  app-from-local:
     extends: web-app
     volumes:
       # This prevents git unpushed changes from being lost on container restart
       - ${DEV_VOLUME:-${APP}}_dev:${WORKDIR:-/home/node/app}
       - ${DEV_BBACKUP:+${PWD}/bbackup/${COMPOSE_PROJECT_NAME}/${DEV_VOLUME:-${APP}}:}/bbackup
-      # These allow to keep changes from npm install/build from Dockerfile CMDs
+  node-app-from-local:
+    extends: app-from-local
+    volumes:
+      # This allows to keep changes from npm install/build from Dockerfile CMDs
       - ${WORKDIR:-/home/node/app}/node_modules
       # This preserves AI coding assistant conversation history/config across
       # container restarts, shared across all dev services so it's visible

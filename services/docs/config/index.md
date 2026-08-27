@@ -3,9 +3,9 @@
 This site renders each service's own upstream documentation (its `docs/` folder), live from the checkout running in
 this DEV environment - not a separate, hand-written set of pages.
 
-It's only available when running with `DEV=true`: each service's documentation is only present once that service's
-own container has cloned its repository, so what you see here reflects whatever branch/commit is currently checked
-out in your local dev containers, not necessarily the latest released version.
+Each service's documentation is only present once its own DEV flag (or `DEV=true`) is enabled and its container has
+cloned its repository, so what you see here reflects whatever branch/commit is currently checked out in your local
+dev containers, not necessarily the latest released version.
 
 ## Configuration and adding a service
 

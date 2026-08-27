@@ -1,0 +1,12 @@
+services:
+  docs:
+    depends_on:
+      backend:
+        condition: service_healthy
+    volumes:
+      - type: volume
+        source: ${BE_VERSION:-v4}_dev
+        target: /docs/backend
+        read_only: true
+        volume:
+          subpath: docs

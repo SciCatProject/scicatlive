@@ -1,0 +1,9 @@
+{
+   "archiveWorkflowEnabled": true,
+   "jobsEnabled": true,
+   "mainMenu": {
+      "authenticatedUser": {
+         "jobs": true
+      }
+   }
+}

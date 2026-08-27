@@ -2792,6 +2792,35 @@ the following
      <td>
      </td>
     </tr>
+    <tr>
+     <td>
+      env
+     </td>
+     <td>
+      <code>
+       DEV_AI_STATE
+      </code>
+     </td>
+     <td>
+      <code>
+       &lt;path&gt;
+      </code>
+      : AI coding assistant (e.g. Claude Code) state directory, inside the container
+     </td>
+     <td>
+      <code>
+       /root/.claude
+      </code>
+     </td>
+     <td>
+      *
+     </td>
+     <td>
+      Path used to persist the state of the AI service (Claude Code) across container restarts, backed by a dedicated volume. It is shared across all DEV-mode node services so that the conversation history/config is preserved and visible from any of them
+     </td>
+     <td>
+     </td>
+    </tr>
    </tbody>
   </table>
   <p>

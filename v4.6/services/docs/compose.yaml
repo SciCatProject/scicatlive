@@ -1,0 +1,6 @@
+include:
+  - path:
+      - .${DOCS_DEV:+/}compose.base.yaml
+      - .${BACKEND_DEV:+/}compose.backend.yaml
+      - .${FRONTEND_DEV:+/}compose.frontend.yaml
+      - .${SCICATLIVE_DEV:+/}compose.scicatlive.yaml

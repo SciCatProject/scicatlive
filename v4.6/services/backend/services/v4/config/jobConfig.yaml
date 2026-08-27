@@ -1,0 +1,50 @@
+configVersion: v0.1.2 2025-04-17
+jobs:
+  - jobType: archive
+    create:
+      auth: '#datasetOwner'
+      actions:
+        - actionType: log
+        - &rabbitmq
+          actionType: rabbitmq
+          exchange: amqp.topic
+          queue: client.jobs.write.v4
+          key: jobqueuev4
+    update:
+      auth: archiveManager
+      actions:
+        - actionType: log
+        - *rabbitmq
+  - jobType: retrieve
+    create:
+      auth: '#datasetAccess'
+      actions:
+        - actionType: log
+        - *rabbitmq
+    update:
+      auth: archiveManager
+      actions:
+        - actionType: log
+        - *rabbitmq
+  - jobType: public
+    create:
+      auth: '#all'
+      actions:
+        - actionType: log
+        - *rabbitmq
+    update:
+      auth: archiveManager
+      actions:
+        - actionType: log
+        - *rabbitmq
+  - jobType: reset
+    create:
+      auth: archiveManager
+      actions:
+        - actionType: log
+        - *rabbitmq
+    update:
+      auth: archiveManager
+      actions:
+        - actionType: log
+        - *rabbitmq

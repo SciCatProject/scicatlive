@@ -196,8 +196,10 @@ jobs:
             -f compose.yaml ${DEV:+-f "$DEV_OVERLAY"} \
             up --wait --wait-timeout 1200 \
             || {
-              docker compose ps --status=exited --services \
-                | while read service; do
+              docker compose ps --format json \
+                | jq -r 'select((.Health != "" and .Health != "healthy")
+                    or .State != "running") | .Service' \
+                | while read -r service; do
                   echo "Logs for $service"
                   docker compose logs "$service"
                 done

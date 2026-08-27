@@ -926,6 +926,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1041,6 +1052,34 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="services/userdocs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Userdocs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1316,6 +1355,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1410,9 +1460,13 @@ documentation site.
    <code>
     FRONTEND_DEV
    </code>
-   or
+   ,
    <code>
     SCICATLIVE_DEV
+   </code>
+   or
+   <code>
+    USER_DOCS_DEV
    </code>
    is set (see
    <a href="../../#dev-configuration">
@@ -1422,8 +1476,8 @@ documentation site.
    <code>
     DEV=true
    </code>
-   enables all of them, or each can be set
-independently to enable only that one mount:
+   enables all of them,
+or each can be set independently to enable only that one mount:
   </p>
   <ul>
    <li>
@@ -1458,7 +1512,37 @@ independently to enable only that one mount:
     ,
   so its own top-level documentation (e.g. this README) is rendered too
    </li>
+   <li>
+    <code>
+     USER_DOCS_DEV
+    </code>
+    : clones an external documentation repository (not part of any SciCatLive service) and mounts it at
+    <code>
+     /docs/user-documentation
+    </code>
+    - see the
+    <a href="services/userdocs/">
+     user documentation README
+    </a>
+   </li>
   </ul>
+  <p>
+   It's served with MkDocs'
+   <code>
+    --no-strict
+   </code>
+   flag (see
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/entrypoints/serve.sh">
+    serve.sh
+   </a>
+   ), so a broken link or missing file
+anywhere above logs a warning instead of stopping the site from serving - check the container logs
+(
+   <code>
+    docker compose logs docs
+   </code>
+   ) if a page looks wrong.
+  </p>
   <h2 id="enable-additional-features">
    Enable additional features
    <a class="headerlink" href="#enable-additional-features" title="Permanent link">
@@ -1575,6 +1659,46 @@ independently to enable only that one mount:
    set
    </li>
   </ol>
+  <p>
+   If the source isn't an existing SciCatLive service (so there's no
+   <code>
+    _dev
+   </code>
+   volume already being populated by another
+container), a companion service needs to provide one instead - see
+   <a href="./services/userdocs/">
+    user documentation
+   </a>
+   for an
+example that clones an external repository purely to feed this one.
+  </p>
+  <h2 id="dependencies">
+   Dependencies
+   <a class="headerlink" href="#dependencies" title="Permanent link">
+    ¶
+   </a>
+  </h2>
+  <p>
+   Here below we show the internal dependencies of the service, which are not already covered in
+   <a href="../../">
+    the root docs
+   </a>
+   (if
+   <code>
+    B
+   </code>
+   depends on
+   <code>
+    A
+   </code>
+   , then we visualize it as
+   <code>
+    A --&gt; B
+   </code>
+   ).
+  </p>
+  <pre class="mermaid"><code>graph TD
+    userdocs --&gt; docs</code></pre>
  </body>
 </html>
 

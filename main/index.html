@@ -1280,6 +1280,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="services/docs/services/userdocs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Userdocs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2964,6 +2992,43 @@ the following
      </td>
      <td>
       <code>
+       USER_DOCS_DEV
+      </code>
+     </td>
+     <td>
+      <code>
+       true
+      </code>
+      : external user documentation rendered in the
+      <a href="./services/docs/">
+       docs
+      </a>
+      service
+     </td>
+     <td>
+      <code>
+       ''
+      </code>
+     </td>
+     <td>
+      *
+     </td>
+     <td>
+      Same as
+      <code>
+       DEV=true
+      </code>
+      but limited to cloning and mounting the external user-documentation repo in the docs service
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      env
+     </td>
+     <td>
+      <code>
        &lt;SERVICE&gt;_HTTPS_URL
       </code>
      </td>
@@ -3188,6 +3253,10 @@ to use it, see the
     <code>
      SCICATLIVE_DEV
     </code>
+    ,
+    <code>
+     USER_DOCS_DEV
+    </code>
     individually), a
     <a href="./services/docs/">
      docs
@@ -3197,12 +3266,13 @@ upstream documentation (their
     <code>
      docs/
     </code>
-    folder), as well as this repository's own top-level documentation, using
-MkDocs. See the
+    folder), this repository's own top-level documentation, and an external
+user-documentation repository, using MkDocs. See the
     <a href="services/docs/">
      docs README
     </a>
-    for details, including how to add another service to it.
+    for details, including
+how to add another service to it.
    </p>
    <p>
     Please note that

@@ -13,6 +13,8 @@ services:
       - source: entrypoints_npm_ci_sh
         target: /docker-entrypoints/20.sh
         mode: 0555
+    volumes:
+      - ./entrypoints/ensure_docs_folder.sh:/docker-entrypoints/03.sh
 
 volumes:
   v3_dev:

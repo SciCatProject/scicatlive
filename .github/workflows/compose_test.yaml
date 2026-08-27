@@ -209,8 +209,8 @@ jobs:
           steps.docker_up.outcome == 'failure' &&
           matrix.GENERATE_SDK == 'generate_sdk'
         run: |
-          STATUS=$(docker compose ps --format '{{.Health}}' frontend)
-          [ "$STATUS" != "healthy" ] \
+          docker compose logs frontend \
+            | grep -q "SDK_CHECK_RESULT=sdk_incompatible" \
             && echo "sdk_error=true" >> "$GITHUB_OUTPUT"
       - name: Fail on non-SDK failure
         if: >-

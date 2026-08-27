@@ -6,6 +6,9 @@ services:
     volumes:
       - ./entrypoints/npm_install_sdk.sh:/docker-entrypoints/80.sh
     configs:
+      - source: frontend_prebuild_sh
+        target: /docker-entrypoints/70.sh
+        mode: 0555
       - source: frontend_verify_build_sh
         target: /docker-entrypoints/90.sh
         mode: 0555
@@ -16,7 +19,28 @@ services:
         wget --spider -Y off 'http://127.0.0.1:3000/api/v3/publisheddata/count'
 
 configs:
+  frontend_prebuild_sh:
+    content: |
+      #!/bin/sh
+      npm run build > /tmp/prebuild.log 2>&1
+      echo $? > /tmp/prebuild_exit
   frontend_verify_build_sh:
     content: |
       #!/bin/sh
-      npm run build
+      npm run build > /tmp/postbuild.log 2>&1
+      post=$?
+      pre=$$(cat /tmp/prebuild_exit 2>/dev/null || echo 1)
+
+      if [ "$$pre" -eq 0 ] && [ "$$post" -ne 0 ]; then
+        echo "SDK_CHECK_RESULT=sdk_incompatible"
+        cat /tmp/postbuild.log
+        exit 1
+      fi
+
+      if [ "$$post" -ne 0 ]; then
+        echo "SDK_CHECK_RESULT=unrelated_failure"
+        cat /tmp/prebuild.log
+        exit 1
+      fi
+
+      echo "SDK_CHECK_RESULT=ok"

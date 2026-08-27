@@ -1,0 +1,5 @@
+{
+   "lbBaseURL": "${BACKEND_URL}",
+   "jobsEnabled": false,
+   "oAuth2Endpoints": []
+}

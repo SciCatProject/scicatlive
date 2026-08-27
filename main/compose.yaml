@@ -6,7 +6,7 @@ include:
   - services/jupyter/compose.yaml
   - services/landingpage/compose.yaml
   - services/oaipmh/compose.yaml
-  - services/docs/.${DEV:+/}compose.yaml
+  - services/docs/compose.yaml
 
 configs:
   entrypoints_loop_entrypoints_sh:

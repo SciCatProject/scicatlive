@@ -2927,6 +2927,43 @@ the following
      </td>
      <td>
       <code>
+       SCICATLIVE_DEV
+      </code>
+     </td>
+     <td>
+      <code>
+       true
+      </code>
+      : this repo's own docs rendered in the
+      <a href="./services/docs/">
+       docs
+      </a>
+      service
+     </td>
+     <td>
+      <code>
+       ''
+      </code>
+     </td>
+     <td>
+      *
+     </td>
+     <td>
+      Same as
+      <code>
+       DEV=true
+      </code>
+      but limited to mounting this repository's own documentation in the docs service
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      env
+     </td>
+     <td>
+      <code>
        &lt;SERVICE&gt;_HTTPS_URL
       </code>
      </td>
@@ -3139,22 +3176,33 @@ to use it, see the
     <code>
      DEV=true
     </code>
-    , a
+    (or any of
+    <code>
+     BACKEND_DEV
+    </code>
+    ,
+    <code>
+     FRONTEND_DEV
+    </code>
+    ,
+    <code>
+     SCICATLIVE_DEV
+    </code>
+    individually), a
     <a href="./services/docs/">
      docs
     </a>
-    service also becomes available, rendering a live, combined view of every
-DEV-mode service's own upstream documentation (its
+    service also becomes available, rendering a live view of the enabled DEV-mode services' own
+upstream documentation (their
     <code>
      docs/
     </code>
-    folder), as well as this repository's own top-level
-documentation, using MkDocs. See the
+    folder), as well as this repository's own top-level documentation, using
+MkDocs. See the
     <a href="services/docs/">
      docs README
     </a>
-    for details, including how to add
-another service to it.
+    for details, including how to add another service to it.
    </p>
    <p>
     Please note that

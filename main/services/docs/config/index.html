@@ -1277,13 +1277,13 @@
 this DEV environment - not a separate, hand-written set of pages.
   </p>
   <p>
-   It's only available when running with
+   Each service's documentation is only present once its own DEV flag (or
    <code>
     DEV=true
    </code>
-   : each service's documentation is only present once that service's
-own container has cloned its repository, so what you see here reflects whatever branch/commit is currently checked
-out in your local dev containers, not necessarily the latest released version.
+   ) is enabled and its container has
+cloned its repository, so what you see here reflects whatever branch/commit is currently checked out in your local
+dev containers, not necessarily the latest released version.
   </p>
   <h2 id="configuration-and-adding-a-service">
    Configuration and adding a service

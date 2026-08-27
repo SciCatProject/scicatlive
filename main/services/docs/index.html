@@ -1347,12 +1347,12 @@
    </a>
   </h1>
   <p>
-   Serves a live, combined rendering of every DEV-mode service's own upstream documentation (its
+   Serves a live, combined rendering of DEV-mode services' own upstream documentation (their
    <code>
     docs/
    </code>
-   folder) using
-MkDocs Material.
+   folder), together
+with this repository's own top-level documentation, using MkDocs Material.
   </p>
   <h2 id="configuration-options">
    Configuration options
@@ -1398,30 +1398,67 @@ documentation site.
    </a>
   </h2>
   <p>
-   Only available when running with
+   This service only exists once at least one of
    <code>
-    DEV=true
+    DEV
    </code>
-   (see
+   ,
+   <code>
+    BACKEND_DEV
+   </code>
+   ,
+   <code>
+    FRONTEND_DEV
+   </code>
+   or
+   <code>
+    SCICATLIVE_DEV
+   </code>
+   is set (see
    <a href="../../#dev-configuration">
     DEV configuration
    </a>
-   ). Each
-listed service's own
+   ) -
    <code>
-    docs/
+    DEV=true
    </code>
-   folder is mounted read-only from its
-   <code>
-    _dev
-   </code>
-   volume at
-   <code>
-    /docs/&lt;service&gt;
-   </code>
-   , and served
-together at the site root.
+   enables all of them, or each can be set
+independently to enable only that one mount:
   </p>
+  <ul>
+   <li>
+    <code>
+     BACKEND_DEV
+    </code>
+    /
+    <code>
+     FRONTEND_DEV
+    </code>
+    : mounts that service's own
+    <code>
+     docs/
+    </code>
+    folder read-only from its
+    <code>
+     _dev
+    </code>
+    volume, at
+    <code>
+     /docs/&lt;service&gt;
+    </code>
+   </li>
+   <li>
+    <code>
+     SCICATLIVE_DEV
+    </code>
+    : mounts this whole repository (read-write, unlike the per-service mounts) at
+    <code>
+     /docs/scicatlive
+    </code>
+    ,
+  so its own top-level documentation (e.g. this README) is rendered too
+   </li>
+  </ul>
   <h2 id="enable-additional-features">
    Enable additional features
    <a class="headerlink" href="#enable-additional-features" title="Permanent link">
@@ -1429,15 +1466,20 @@ together at the site root.
    </a>
   </h2>
   <p>
-   To render another service's documentation here, add both of the following to
-   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/compose.yaml">
-    compose.yaml
-   </a>
-   :
+   Each mount is gated independently, following the same pattern:
   </p>
-  <ul>
+  <ol>
    <li>
-    a volume mount from that service's own
+    add a
+    <code>
+     compose.&lt;service&gt;.yaml
+    </code>
+    file with a
+    <code>
+     services: docs: volumes: [...]
+    </code>
+    entry adding a volume mount from
+   that service's own
     <code>
      _dev
     </code>
@@ -1450,7 +1492,89 @@ together at the site root.
      /docs/&lt;service&gt;
     </code>
    </li>
-  </ul>
+   <li>
+    symlink
+    <code>
+     .compose.&lt;service&gt;.yaml
+    </code>
+    to
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/.empty.yaml">
+     ../.empty.yaml
+    </a>
+    , used when the service isn't enabled
+   </li>
+   <li>
+    add
+    <code>
+     .${&lt;SERVICE&gt;_DEV:+/}compose.&lt;service&gt;.yaml
+    </code>
+    to the
+    <code>
+     path:
+    </code>
+    list under
+    <code>
+     include:
+    </code>
+    in
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/compose.yaml">
+     compose.yaml
+    </a>
+   </li>
+   <li>
+    add
+    <code>
+     &lt;SERVICE&gt;_DEV=${DEV:-${&lt;SERVICE&gt;_DEV:-}}
+    </code>
+    to
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/.env">
+     .env
+    </a>
+    , so
+    <code>
+     DEV=true
+    </code>
+    also enables it - this defaulting
+   is normally already defined in that service's own
+    <code>
+     .env
+    </code>
+    (e.g.
+    <code>
+     services/backend/.env
+    </code>
+    ), but
+    <code>
+     .env
+    </code>
+    values are
+   scoped to the directory they're read from, so it needs to be redefined here too for
+    <code>
+     services/docs/compose.yaml
+    </code>
+    to see it
+   </li>
+   <li>
+    add
+    <code>
+     &lt;SERVICE&gt;_DEV
+    </code>
+    to the
+    <code>
+     DOCS_DEV
+    </code>
+    fallback chain in
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/.env">
+     .env
+    </a>
+    , so
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/compose.base.yaml">
+     compose.base.yaml
+    </a>
+    - and the docs service itself - gets pulled in once this flag alone is
+   set
+   </li>
+  </ol>
  </body>
 </html>
 

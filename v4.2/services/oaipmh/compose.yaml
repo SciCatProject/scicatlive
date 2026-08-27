@@ -1,0 +1,4 @@
+include:
+  - path:
+      - compose.base.yaml
+      - .${OAIPMH_DEV:+/}compose.dev.yaml

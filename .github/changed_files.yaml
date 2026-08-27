@@ -56,6 +56,9 @@ docs:
   - '**/README.md'
   - '**/*mkdocs*/**'
   - '**/*mkdocs*'
+docs_service: &docs_service
+  - services/docs/**
+  - '!services/docs/**/README.md'
 mds:
   - '**/*.md'
   - '**/*markdownlint*'
@@ -67,3 +70,4 @@ dev:
   - *opensearch
   - *jobs
   - *other_scicat
+  - *docs_service

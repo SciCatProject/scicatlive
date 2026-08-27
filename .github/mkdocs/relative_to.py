@@ -1,3 +1,4 @@
+# Copyright (c) 2025, SciCat Project
 # ruff: noqa: INP001,D100
 
 from os import environ
@@ -50,7 +51,13 @@ def on_page_content(html: str, page: Page, config: MkDocsConfig, files: Files) -
             (scheme, netloc, str(resolved_path), query, fragment),
         )
 
-        url = urljoin(repo_url, relative_path)
+        # In the official published site (built in CI) this resolves to the
+        # real file. Locally, docs from multiple repos are aggregated under
+        # one docs_dir, so which upstream repo a link like this really
+        # belongs to can't be reliably determined - point at an explanation
+        # of the rule instead of guessing (possibly wrong) resolved paths.
+        is_ci = "GITHUB_SERVER_URL" in environ
+        url = urljoin(repo_url, relative_path) if is_ci else "/external-links/"
         element["href"] = url
 
     return soup.prettify()

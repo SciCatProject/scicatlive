@@ -19,9 +19,7 @@ documentation site.
 
 Only available when running with `DEV=true` (see [DEV configuration](../../README.md#dev-configuration)). Each
 listed service's own `docs/` folder is mounted read-only from its `_dev` volume at `/docs/<service>`, and served
-together at the site root - the git-tracked files themselves are never touched.
-
-By default it serves the `backend` and `frontend` documentation.
+together at the site root.
 
 ## Enable additional features
 

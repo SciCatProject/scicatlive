@@ -13,7 +13,7 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../../frontend/">
+        <link rel="next" href="external-links/">
       
       
         
@@ -835,6 +835,55 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Config
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -894,21 +943,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#shared-styling-and-configuration" class="md-nav__link">
+  <a href="#configuration-and-adding-a-service" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Shared styling and configuration
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-or-changing-a-service-here" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Adding or changing a service here
+        Configuration and adding a service
       
     </span>
   </a>
@@ -929,6 +967,42 @@
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="external-links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External links
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -1145,21 +1219,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#shared-styling-and-configuration" class="md-nav__link">
+  <a href="#configuration-and-adding-a-service" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Shared styling and configuration
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-or-changing-a-service-here" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Adding or changing a service here
+        Configuration and adding a service
       
     </span>
   </a>
@@ -1222,69 +1285,19 @@ this DEV environment - not a separate, hand-written set of pages.
 own container has cloned its repository, so what you see here reflects whatever branch/commit is currently checked
 out in your local dev containers, not necessarily the latest released version.
   </p>
-  <h2 id="shared-styling-and-configuration">
-   Shared styling and configuration
-   <a class="headerlink" href="#shared-styling-and-configuration" title="Permanent link">
+  <h2 id="configuration-and-adding-a-service">
+   Configuration and adding a service
+   <a class="headerlink" href="#configuration-and-adding-a-service" title="Permanent link">
     ¶
    </a>
   </h2>
   <p>
-   Every service's docs are rendered using the same MkDocs configuration, theme and plugins:
-  </p>
-  <ul>
-   <li>
-    mkdocs.yaml:
-    <code>
-     ./.github/mkdocs/mkdocs.yaml
-    </code>
-   </li>
-   <li>
-    theme overrides:
-    <code>
-     ./.github/mkdocs/overrides
-    </code>
-   </li>
-   <li>
-    relative_to.py hook:
-    <code>
-     ./.github/mkdocs/relative_to.py
-    </code>
-   </li>
-   <li>
-    requirements.txt:
-    <code>
-     ./.github/mkdocs/requirements.txt
-    </code>
-   </li>
-  </ul>
-  <p>
-   These are the same files used to build the official published SciCatLive documentation site.
-  </p>
-  <h2 id="adding-or-changing-a-service-here">
-   Adding or changing a service here
-   <a class="headerlink" href="#adding-or-changing-a-service-here" title="Permanent link">
-    ¶
+   See the
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/config/scicatlive/services/docs/README.md">
+    docs README
    </a>
-  </h2>
-  <p>
-   Each service listed here is mounted explicitly, not discovered automatically: to add a new service, or change which
-one of an existing service's folders is served, edit the volume mounts in
-   <code>
-    services/docs/compose.yaml
-   </code>
-   adding a
-   <code>
-    subpath: docs
-   </code>
-   mount from that service's own
-   <code>
-    _dev
-   </code>
-   volume onto
-   <code>
-    /docs/&lt;service&gt;
-   </code>
-   .
+   for the shared MkDocs configuration this site uses, and for
+how to add or change which service's documentation is served here.
   </p>
   <h2 id="caveats">
    Caveats
@@ -1295,13 +1308,9 @@ one of an existing service's folders is served, edit the volume mounts in
   <p>
    Because every service is rendered with this shared configuration rather than whatever tooling (if any) it uses
 upstream, the result can differ from how that service renders or publishes its own docs elsewhere - available
-plugins, Markdown extensions and styling all follow this repo's setup, not the upstream project's. Links between two
-services' docs, or to files outside a given service's
-   <code>
-    docs/
-   </code>
-   folder, may also not resolve, since each service's
-documentation is normally authored assuming it is the root of its own site.
+plugins, Markdown extensions and styling all follow this repo's setup, not the upstream project's. Each service's
+documentation is also normally authored assuming it is the root of its own site, which no longer holds once
+aggregated here.
   </p>
  </body>
 </html>

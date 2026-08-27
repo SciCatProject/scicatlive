@@ -941,6 +941,53 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Config
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="config/" class="md-nav__link">
         
@@ -958,6 +1005,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="config/external-links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External links
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1278,7 +1361,7 @@ MkDocs Material.
    </a>
   </h2>
   <h3 id="indexmd">
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/docs/config">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/config">
     index.md
    </a>
    <a class="headerlink" href="#indexmd" title="Permanent link">
@@ -1289,7 +1372,7 @@ MkDocs Material.
    The landing page served at the site root. Explains what the site is and links to the shared MkDocs configuration.
   </p>
   <h3 id="githubmkdocs">
-   <a href="https://github.com/SciCatProject/scicatlive/blob/.github/mkdocs">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/mkdocs">
     ../../.github/mkdocs/
    </a>
    <a class="headerlink" href="#githubmkdocs" title="Permanent link">
@@ -1298,11 +1381,11 @@ MkDocs Material.
   </h3>
   <p>
    The shared MkDocs configuration (theme, plugins,
-   <a href="https://github.com/SciCatProject/scicatlive/blob/.github/mkdocs/relative_to.py">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/mkdocs/relative_to.py">
     hooks
    </a>
    and
-   <a href="https://github.com/SciCatProject/scicatlive/blob/.github/mkdocs/requirements.txt">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/mkdocs/requirements.txt">
     requirements
    </a>
    ), the same one used to build the official published SciCatLive
@@ -1337,18 +1420,7 @@ listed service's own
     /docs/&lt;service&gt;
    </code>
    , and served
-together at the site root - the git-tracked files themselves are never touched.
-  </p>
-  <p>
-   By default it serves the
-   <code>
-    backend
-   </code>
-   and
-   <code>
-    frontend
-   </code>
-   documentation.
+together at the site root.
   </p>
   <h2 id="enable-additional-features">
    Enable additional features
@@ -1358,7 +1430,7 @@ together at the site root - the git-tracked files themselves are never touched.
   </h2>
   <p>
    To render another service's documentation here, add both of the following to
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/docs/compose.yaml">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/compose.yaml">
     compose.yaml
    </a>
    :

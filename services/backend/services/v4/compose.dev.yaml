@@ -18,7 +18,6 @@ services:
     environment:
       MONGODB_URI: mongodb://mongodb:27017/dev-dacat-next
       DEV: ${_BACKEND_DEV:+true}
-      SDK_PACKAGE_SWAGGER_HELPERS_DISABLED: true
     healthcheck:
       retries: 20
       interval: 1m

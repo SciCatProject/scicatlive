@@ -1,11 +1,8 @@
 services:
   docs:
-    depends_on:
-      backend:
-        condition: service_healthy
     volumes:
       - type: volume
-        source: ${_BE_VERSION}_dev
+        source: v4_dev
         target: /docs/backend
         read_only: true
         volume:

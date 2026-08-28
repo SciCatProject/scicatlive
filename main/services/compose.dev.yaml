@@ -9,6 +9,7 @@ services:
       - traefik.http.services.${APP}.loadbalancer.server.port=${DEV_PORT:-}
     volumes:
       - openapigenerator:/openapigenerator
+      - ${PWD}/entrypoints/add_shell_tools.sh:/docker-entrypoints/03.sh
     configs:
       # These configs allow to run init scripts before running the service.
       - source: entrypoints_loop_entrypoints_sh

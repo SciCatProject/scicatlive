@@ -197,7 +197,7 @@ jobs:
             -f compose.yaml ${DEV:+-f "$DEV_OVERLAY"} \
             up --wait --wait-timeout 1200 \
             || {
-              docker compose ps --format json \
+              docker compose ps --all --format json \
                 | jq -r 'select((.Health != "" and .Health != "healthy")
                     or .State != "running") | .Service' \
                 | while read -r service; do

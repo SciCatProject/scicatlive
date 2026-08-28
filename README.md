@@ -513,9 +513,12 @@ feature
          rule if the new toggle is genuinely incompatible with another matrix value
 
       (linting is not part of this matrix: it lives in [.github/workflows/lint.yaml](.github/workflows/lint.yaml),
-      one job per file format - YAML, JSON, shell, JavaScript, Python, Markdown - plus the MkDocs link check, all
-      called as a single reusable workflow from the `lint` job. `test` `needs` that `lint` job, so the heavy compose
-      matrix never starts if any lint check fails)
+      called as a single reusable workflow from the `lint` job. It has two jobs: `static-lint` (YAML, JSON, shell,
+      Python, JavaScript and HTML - checks that only ever look at the repo's own committed files) and `docs-lint`
+      (Markdown link checking, Markdown style, and the MkDocs link check - kept separate so the `npm install` in
+      `static-lint` can never leak `node_modules` into a Markdown-file scan). `test` `needs` the `lint` job, so the
+      heavy compose matrix never starts if either lint job fails. If the new service introduces a file extension
+      none of these tools already cover, add a step for it to whichever job fits, or a new job if it doesn't)
    7. if the ENV's default should fall back to another variable (e.g. to `DEV`, or to a `localhost` URL), compute it
       once as a `_`-prefixed variable instead of duplicating the fallback at each usage site - see
       [Computed environment variables](#computed-environment-variables)

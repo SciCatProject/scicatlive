@@ -497,11 +497,28 @@ feature
    5. if the service is another version of an existing one, e.g. v3 and v4 versions of the `backend` service, add the
       selective include in the parent compose.yaml, e.g.
       [./services/backend/compose.yaml](./services/backend/compose.yaml)
-   6. eventually, modify the [compose workflow](.github/workflows/compose_test.yaml) to add the toggle to the matrix. If
-      the toggle depends on the changed files, remember to create the toggle configuration
-      [.github/changed_files.yaml](.github/changed_files.yaml) and create the
-      [exclude](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs#excluding-matrix-configurations)
-      rule in the workflow.
+   6. eventually, modify the [compose workflow](.github/workflows/compose_test.yaml) to add the toggle to the
+      matrix. If the toggle should only run when relevant files changed (as done for the existing `opensearch`,
+      `jobs`, `ldap`, `oidc` and `dev` toggles):
+      1. add a path group for it, e.g. `opensearch`, to
+         [.github/changed_files.yaml](.github/changed_files.yaml)
+      2. add a matching `<toggle>_values` output to the `changes` job, which turns that group's
+         `<group>_all_modified_files` output into the matrix values to test, e.g.:
+         `opensearch_values: ${{ steps.changed-files.outputs.opensearch_all_modified_files && '["", "opensearch"]'
+         || '[""]' }}`
+      3. reference that output as the matrix axis in the `test` job, e.g.:
+         `OPENSEARCH_ENABLED: ${{ fromJson(needs.changes.outputs.opensearch_values) }}`
+      4. only add an
+         [exclude](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs#excluding-matrix-configurations)
+         rule if the new toggle is genuinely incompatible with another matrix value
+
+      (linting is not part of this matrix: it lives in [.github/workflows/lint.yaml](.github/workflows/lint.yaml),
+      called as a single reusable workflow from the `lint` job. It has two jobs: `static-lint` (YAML, JSON, shell,
+      Python, JavaScript and HTML - checks that only ever look at the repo's own committed files) and `docs-lint`
+      (Markdown link checking, Markdown style, and the MkDocs link check - kept separate so the `npm install` in
+      `static-lint` can never leak `node_modules` into a Markdown-file scan). `test` `needs` the `lint` job, so the
+      heavy compose matrix never starts if either lint job fails. If the new service introduces a file extension
+      none of these tools already cover, add a step for it to whichever job fits, or a new job if it doesn't)
    7. if the ENV's default should fall back to another variable (e.g. to `DEV`, or to a `localhost` URL), compute it
       once as a `_`-prefixed variable instead of duplicating the fallback at each usage site - see
       [Computed environment variables](#computed-environment-variables)

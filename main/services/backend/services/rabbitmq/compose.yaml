@@ -4,7 +4,7 @@ services:
     labels:
       - traefik.http.services.rabbitmq.loadbalancer.server.port=15672
     volumes:
-      - backend${BE_VERSION:-v4}_rabbitmq_data:/bitnami
+      - backend${_BE_VERSION}_rabbitmq_data:/bitnami
     healthcheck:
       test: rabbitmq-diagnostics -q ping
       start_period: 5s

@@ -1411,7 +1411,7 @@ with this repository's own top-level documentation, using MkDocs Material.
    </a>
   </h2>
   <h3 id="indexmd">
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/docs/config">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/config">
     index.md
    </a>
    <a class="headerlink" href="#indexmd" title="Permanent link">
@@ -1422,7 +1422,7 @@ with this repository's own top-level documentation, using MkDocs Material.
    The landing page served at the site root. Explains what the site is and links to the shared MkDocs configuration.
   </p>
   <h3 id="githubmkdocs">
-   <a href="https://github.com/SciCatProject/scicatlive/blob/.github/mkdocs">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/mkdocs">
     ../../.github/mkdocs/
    </a>
    <a class="headerlink" href="#githubmkdocs" title="Permanent link">
@@ -1431,11 +1431,11 @@ with this repository's own top-level documentation, using MkDocs Material.
   </h3>
   <p>
    The shared MkDocs configuration (theme, plugins,
-   <a href="https://github.com/SciCatProject/scicatlive/blob/.github/mkdocs/relative_to.py">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/mkdocs/relative_to.py">
     hooks
    </a>
    and
-   <a href="https://github.com/SciCatProject/scicatlive/blob/.github/mkdocs/requirements.txt">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/mkdocs/requirements.txt">
     requirements
    </a>
    ), the same one used to build the official published SciCatLive
@@ -1532,7 +1532,7 @@ or each can be set independently to enable only that one mount:
     --no-strict
    </code>
    flag (see
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/docs/entrypoints/serve.sh">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/entrypoints/serve.sh">
     serve.sh
    </a>
    ), so a broken link or missing file
@@ -1582,7 +1582,7 @@ anywhere above logs a warning instead of stopping the site from serving - check 
      .compose.&lt;service&gt;.yaml
     </code>
     to
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/.empty.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/.empty.yaml">
      ../.empty.yaml
     </a>
     , used when the service isn't enabled
@@ -1590,7 +1590,7 @@ anywhere above logs a warning instead of stopping the site from serving - check 
    <li>
     add
     <code>
-     .${&lt;SERVICE&gt;_DEV:+/}compose.&lt;service&gt;.yaml
+     .${_&lt;SERVICE&gt;_DEV:+/}compose.&lt;service&gt;.yaml
     </code>
     to the
     <code>
@@ -1601,58 +1601,47 @@ anywhere above logs a warning instead of stopping the site from serving - check 
      include:
     </code>
     in
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/docs/compose.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/compose.yaml">
      compose.yaml
     </a>
    </li>
    <li>
     add
     <code>
-     &lt;SERVICE&gt;_DEV=${DEV:-${&lt;SERVICE&gt;_DEV:-}}
+     # &lt;SERVICE&gt;_DEV=true
     </code>
-    to
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/docs/.env">
+    and
+    <code>
+     _&lt;SERVICE&gt;_DEV=${DEV:-${&lt;SERVICE&gt;_DEV:-}}
+    </code>
+    to the root
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
      .env
     </a>
     , so
     <code>
      DEV=true
     </code>
-    also enables it - this defaulting
-   is normally already defined in that service's own
-    <code>
-     .env
-    </code>
-    (e.g.
-    <code>
-     services/backend/.env
-    </code>
-    ), but
-    <code>
-     .env
-    </code>
-    values are
-   scoped to the directory they're read from, so it needs to be redefined here too for
-    <code>
-     services/docs/compose.yaml
-    </code>
-    to see it
+    also enables it - see
+    <a href="../../#computed-environment-variables">
+     Computed environment variables
+    </a>
    </li>
    <li>
     add
     <code>
-     &lt;SERVICE&gt;_DEV
+     _&lt;SERVICE&gt;_DEV
     </code>
     to the
     <code>
-     DOCS_DEV
+     _DOCS_DEV
     </code>
     fallback chain in
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/docs/.env">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/.env">
      .env
     </a>
     , so
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/docs/compose.base.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/docs/compose.base.yaml">
      compose.base.yaml
     </a>
     - and the docs service itself - gets pulled in once this flag alone is

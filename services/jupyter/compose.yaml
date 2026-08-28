@@ -17,7 +17,7 @@ services:
     env_file:
       - config/.env
     environment:
-      BE_VERSION: ${BE_VERSION:-v4}
+      BE_VERSION: ${_BE_VERSION}
     profiles:
       - analysis
     restart: on-failure

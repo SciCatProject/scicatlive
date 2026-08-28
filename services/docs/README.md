@@ -39,13 +39,11 @@ Each mount is gated independently, following the same pattern:
 1. add a `compose.<service>.yaml` file with a `services: docs: volumes: [...]` entry adding a volume mount from
    that service's own `_dev` volume, using `subpath: docs`, targeting `/docs/<service>`
 2. symlink `.compose.<service>.yaml` to [../.empty.yaml](../.empty.yaml), used when the service isn't enabled
-3. add `.${<SERVICE>_DEV:+/}compose.<service>.yaml` to the `path:` list under `include:` in
+3. add `.${_<SERVICE>_DEV:+/}compose.<service>.yaml` to the `path:` list under `include:` in
    [compose.yaml](./compose.yaml)
-4. add `<SERVICE>_DEV=${DEV:-${<SERVICE>_DEV:-}}` to [.env](./.env), so `DEV=true` also enables it - this defaulting
-   is normally already defined in that service's own `.env` (e.g. `services/backend/.env`), but `.env` values are
-   scoped to the directory they're read from, so it needs to be redefined here too for `services/docs/compose.yaml`
-   to see it
-5. add `<SERVICE>_DEV` to the `DOCS_DEV` fallback chain in [.env](./.env), so
+4. add `# <SERVICE>_DEV=true` and `_<SERVICE>_DEV=${DEV:-${<SERVICE>_DEV:-}}` to the root [.env](../../.env), so
+   `DEV=true` also enables it - see [Computed environment variables](../../README.md#computed-environment-variables)
+5. add `_<SERVICE>_DEV` to the `_DOCS_DEV` fallback chain in [.env](./.env), so
    [compose.base.yaml](./compose.base.yaml) - and the docs service itself - gets pulled in once this flag alone is
    set
 

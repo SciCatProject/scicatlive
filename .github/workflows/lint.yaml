@@ -47,7 +47,9 @@ jobs:
       - name: Lint javascript files
         run: npx eslint --config .github/eslint.config.mjs
       - name: Lint html files
-        run: find . -name "*.html" -o -name ".*.html" | xargs npx --yes htmlhint
+        run: >-
+          find . \( -name "*.html" -o -name ".*.html" \) -print0
+          | xargs -0r npx --yes htmlhint
 
   docs-lint:
     runs-on: ubuntu-latest

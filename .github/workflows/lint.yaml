@@ -7,7 +7,7 @@ jobs:
   static-lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
 
       # yaml
       - name: Install 'yamllint'
@@ -17,7 +17,8 @@ jobs:
 
       # github actions
       - name: Lint GitHub Actions workflows
-        uses: reviewdog/action-actionlint@v1
+        # v1
+        uses: reviewdog/action-actionlint@dbe5299849118fd6f099ba563d263d770955a64a  # yamllint disable-line rule:line-length
         with:
           reporter: github-pr-check
           fail_level: error
@@ -33,13 +34,14 @@ jobs:
         run: git ls-files -z '*.sh' | xargs -0r shellcheck
 
       # python
-      - uses: chartboost/ruff-action@v1
+      # v1
+      - uses: chartboost/ruff-action@e18ae971ccee1b2d7bbef113930f00c670b78da4  # yamllint disable-line rule:line-length
         with:
           args: check --select ALL
 
       # javascript / html
       - name: Use Node.js v20
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020  # v7
         with:
           node-version: 24
       - name: install eslint and default rules
@@ -54,11 +56,12 @@ jobs:
   docs-lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
 
       # markdown
       - name: Check markdown links
-        uses: lycheeverse/lychee-action@v2
+        # v2
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8  # yamllint disable-line rule:line-length
         with:
           args: >-
             --no-progress --root-dir .
@@ -66,7 +69,8 @@ jobs:
             --exclude-path 'services/docs/config'
             '**/*.md'
           fail: true
-      - uses: DavidAnson/markdownlint-cli2-action@v24
+      # v24
+      - uses: DavidAnson/markdownlint-cli2-action@21c1be1b93ad9ed58fa840aacc3f279cde2a72ff  # yamllint disable-line rule:line-length
         with:
           globs: |
             **/*.md
@@ -76,7 +80,8 @@ jobs:
       # mkdocs
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v47
+        # v47
+        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62  # yamllint disable-line rule:line-length
         with:
           files: |
             **/README.md

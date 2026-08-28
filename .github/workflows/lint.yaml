@@ -9,23 +9,35 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # yaml
       - name: Install 'yamllint'
         run: sudo apt-get install -y yamllint
       - name: Lint YAML files
         run: yamllint -c .github/yamllint_config.yaml .
 
+      # github actions
+      - name: Lint GitHub Actions workflows
+        uses: reviewdog/action-actionlint@v1
+        with:
+          reporter: github-pr-check
+          fail_level: error
+
+      # json
       - name: Lint JSON files
         run: git ls-files -z '*.json' | xargs -0r -n1 jq empty
 
+      # shell
       - name: Install 'shellcheck'
         run: sudo apt install shellcheck
       - name: Lint shell files
         run: git ls-files -z '*.sh' | xargs -0r shellcheck
 
+      # python
       - uses: chartboost/ruff-action@v1
         with:
           args: check --select ALL
 
+      # javascript / html
       - name: Use Node.js v20
         uses: actions/setup-node@v7
         with:
@@ -42,6 +54,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # markdown
       - name: Check markdown links
         uses: lycheeverse/lychee-action@v2
         with:
@@ -58,6 +71,7 @@ jobs:
             !**/node_modules/**
           config: .github/markdownlint/.markdownlint-cli2.yaml
 
+      # mkdocs
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v47

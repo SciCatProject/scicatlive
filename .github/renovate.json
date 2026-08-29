@@ -15,5 +15,16 @@
       "automerge": true,
       "reviewers": []
     }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^\\.github/compose\\.lint\\.yaml$"],
+      "matchStrings": [
+        "(?<depName>ghcr\\.io/catthehacker/ubuntu):act-(?<currentValue>\\d+\\.\\d+-\\d{8})"
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "loose"
+    }
   ]
 }

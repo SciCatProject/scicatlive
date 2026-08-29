@@ -18,9 +18,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
       - id: run
         continue-on-error: true
-        run: |
-          docker compose -f .github/compose.lint.yaml up -d lintci lint
-          docker compose -f .github/compose.lint.yaml wait lintci lint
+        run: docker compose -f .github/compose.lint.yaml run --rm lintci
       - name: Add Failure Label
         if: steps.run.outcome == 'failure'
         env:

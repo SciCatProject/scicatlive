@@ -430,7 +430,9 @@ Some tooling to help while developing or contributing to SciCatLive.
 ### Running CI locally
 
 The full [CI workflow](.github/workflows/compose_test.yaml) - changed-file detection, [linting](.github/workflows/lint.yaml),
-and the `docker compose up` matrix - can be run locally with [nektos/act](https://github.com/nektos/act):
+and the `docker compose up` matrix - can be run locally with [nektos/act](https://github.com/nektos/act). `lintci`
+`depends_on` the `lint` service (see [Running linting locally](#running-linting-locally)), so running it also runs
+the local lint/test tools first:
 
 ```sh
 docker compose -f .github/compose.lint.yaml run --rm lintci
@@ -455,7 +457,8 @@ If it does, consider adding `--concurrent-jobs 1` to the `lintci` command in
 
 `lintci` (above) runs [lint.yaml](.github/workflows/lint.yaml)'s three jobs as a check, without fixing anything.
 The checks among them that support auto-fixing - `ruff`, `eslint` and `markdownlint-cli2` - can instead fix what
-they find, via the `lint` service in [compose.lint.yaml](.github/compose.lint.yaml):
+they find, via the `lint` service in [compose.lint.yaml](.github/compose.lint.yaml). The same service also runs
+[publish-oci.js](.github/semantic-release/publish-oci.js)'s unit tests (no fixing, just pass/fail):
 
 ```sh
 FIX=true docker compose -f .github/compose.lint.yaml run --rm lint
@@ -575,9 +578,10 @@ feature
       (linting is not part of this matrix: it lives in [.github/workflows/lint.yaml](.github/workflows/lint.yaml),
       called as a single reusable workflow from the `lint` job. It has three jobs: `static-lint` (YAML, JSON, shell,
       Python, JavaScript and HTML - checks that only ever look at the repo's own committed files), `docs-lint`
-      (Markdown link checking, Markdown style, and the MkDocs link check), and `release-lint` (dry-runs
-      [publish-oci.js](.github/semantic-release/publish-oci.js) and `semantic-release`, so a broken release pipeline
-      is caught on every PR instead of only when a real release runs). `test` `needs` the `lint` job, so the
+      (Markdown link checking, Markdown style, and the MkDocs link check), and `release-lint` (runs
+      [publish-oci.js](.github/semantic-release/publish-oci.js)'s unit tests, then dry-runs `publish-oci.js` and
+      `semantic-release`, so a broken release pipeline is caught on every PR instead of only when a real release
+      runs). `test` `needs` the `lint` job, so the
       heavy compose matrix never starts if any of the three lint jobs fails. If the new service introduces a file
       extension none of these tools already cover, add a step for it to whichever job fits, or a new job if it
       doesn't. If that tool supports auto-fixing, wire it up the way `ruff`, `eslint` and `markdownlint-cli2` are: a

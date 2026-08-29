@@ -3,6 +3,9 @@ services:
     image: efrecon/act:v0.2.89
     platform: linux/amd64
     working_dir: /repo
+    depends_on:
+      lint:
+        condition: service_completed_successfully
     volumes:
       - ${PWD}:/repo
       - /var/run/docker.sock:/var/run/docker.sock
@@ -29,6 +32,7 @@ services:
       - ./lint/ruff.sh:/docker-entrypoints/10.sh:ro
       - ./lint/eslint.sh:/docker-entrypoints/20.sh:ro
       - ./lint/markdownlint.sh:/docker-entrypoints/30.sh:ro
+      - ./lint/publish-oci-tests.sh:/docker-entrypoints/40.sh:ro
     environment:
       FIX_FLAG: ${FIX:+--fix}
     entrypoint:

@@ -105,6 +105,8 @@ jobs:
       - name: Install dependencies
         working-directory: .github/semantic-release
         run: npm install --no-package-lock
+      - name: Run unit tests
+        run: .github/lint/publish-oci-tests.sh
       - name: Dry-run OCI publish
         working-directory: .github/semantic-release
         env:

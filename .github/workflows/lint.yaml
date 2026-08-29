@@ -11,7 +11,9 @@ jobs:
 
       # yaml
       - name: Install 'yamllint'
-        run: sudo apt-get install -y yamllint
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yamllint
       - name: Lint YAML files
         run: yamllint -c .github/yamllint_config.yaml .
 
@@ -20,7 +22,8 @@ jobs:
         # v1
         uses: reviewdog/action-actionlint@dbe5299849118fd6f099ba563d263d770955a64a  # yamllint disable-line rule:line-length
         with:
-          reporter: github-pr-check
+          reporter: ${{ secrets.GITHUB_TOKEN && 'github-pr-check' || 'local' }}
+          filter_mode: nofilter
           fail_level: error
 
       # json
@@ -29,7 +32,9 @@ jobs:
 
       # shell
       - name: Install 'shellcheck'
-        run: sudo apt install shellcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
       - name: Lint shell files
         run: git ls-files -z '*.sh' | xargs -0r shellcheck
 

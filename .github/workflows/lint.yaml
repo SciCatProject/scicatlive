@@ -90,3 +90,31 @@ jobs:
           DOCS_LINK_CHECK: true
           TAG: ${{ github.sha }}
           docs_folder: ''
+
+  release-lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020  # v7
+        with:
+          node-version: 24
+      - name: Install dependencies
+        working-directory: .github/semantic-release
+        run: npm install --no-package-lock
+      - name: Dry-run OCI publish
+        working-directory: .github/semantic-release
+        env:
+          VERSION: 0.0.0-dryrun
+          DRY_RUN: 'true'
+        run: node publish-oci.js
+      - if: env.ACT != 'true'
+        name: Dry-run release
+        working-directory: .github/semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEAD_REF: ${{ github.head_ref }}
+        run: npx semantic-release --dry-run --branches "$HEAD_REF"

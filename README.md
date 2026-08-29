@@ -423,6 +423,65 @@ See for example the [frontend compose file](./services/frontend/compose.yaml).
 
 </details>
 
+## Development
+
+Some tooling to help while developing or contributing to SciCatLive.
+
+### Running CI locally
+
+The full [CI workflow](.github/workflows/compose_test.yaml) - changed-file detection, [linting](.github/workflows/lint.yaml),
+and the `docker compose up` matrix - can be run locally with [nektos/act](https://github.com/nektos/act):
+
+```sh
+docker compose -f .github/compose.lint.yaml run --rm lintci
+```
+
+This is handy for checking whether CI will pass without waiting on it. The `JOB` env var selects which top-level
+`compose_test.yaml` job it runs (defaults to `lint`); since `test` and `tests-status` both `need` `lint` (and `test`
+also needs `changes`), `JOB=tests-status` pulls in the whole workflow, including the heavy `docker compose up`
+matrix:
+
+```sh
+JOB=tests-status docker compose -f .github/compose.lint.yaml run --rm lintci
+```
+
+:warning: Use `JOB=tests-status` with caution: it runs the full `test` matrix - every combination of `BE_VERSION`,
+`OPENSEARCH_ENABLED`, `JOBS_ENABLED`, `LDAP_ENABLED`, `OIDC_ENABLED` and `DEV` - each spinning up its own
+`docker compose up` stack, so it is very resource-heavy (CPU, RAM, disk and network) and can overwhelm a laptop.
+If it does, consider adding `--concurrent-jobs 1` to the `lintci` command in
+[compose.lint.yaml](.github/compose.lint.yaml) to run the matrix one job at a time instead of in parallel.
+
+### Running linting locally
+
+`lintci` (above) runs [lint.yaml](.github/workflows/lint.yaml)'s three jobs as a check, without fixing anything.
+The checks among them that support auto-fixing - `ruff`, `eslint` and `markdownlint-cli2` - can instead fix what
+they find, via the `lint` service in [compose.lint.yaml](.github/compose.lint.yaml):
+
+```sh
+FIX=true docker compose -f .github/compose.lint.yaml run --rm lint
+```
+
+Omit `FIX` to only report issues without fixing them.
+
+### Developing services in DEV mode
+
+Setting `DEV=true` (or a per-service variant, e.g. `BACKEND_DEV=true`) boots the SciCat services into a development
+environment instead of running them normally, so you can develop and test against the same dependencies used in
+this project. See [DEV configuration](#dev-configuration) for the full list of `*_DEV` variables and how they behave.
+
+### Previewing documentation locally
+
+Setting `SCICATLIVE_DEV=true` and starting the [docs](./services/docs/) service renders a live, searchable preview
+of this repository's own documentation (including this README) using MkDocs:
+
+```sh
+SCICATLIVE_DEV=true docker compose up -d docs
+```
+
+See [DEV configuration](#dev-configuration) and the [docs README](./services/docs/README.md) for more, including
+previewing individual DEV-mode services' own documentation or the external user-documentation repository
+(`USER_DOCS_DEV`).
+
 ## Add a new service
 
 Please note that services should, in general, be defined by their responsibility, rather than by their underlying
@@ -498,8 +557,9 @@ feature
       selective include in the parent compose.yaml, e.g.
       [./services/backend/compose.yaml](./services/backend/compose.yaml)
    6. eventually, modify the [compose workflow](.github/workflows/compose_test.yaml) to add the toggle to the
-      matrix. If the toggle should only run when relevant files changed (as done for the existing `opensearch`,
-      `jobs`, `ldap`, `oidc` and `dev` toggles):
+      matrix (see [Running CI locally](#running-ci-locally) for how to exercise it without waiting on CI). If the
+      toggle should only run when relevant files changed (as done for the existing `opensearch`, `jobs`, `ldap`,
+      `oidc` and `dev` toggles):
       1. add a path group for it, e.g. `opensearch`, to
          [.github/changed_files.yaml](.github/changed_files.yaml)
       2. add a matching `<toggle>_values` output to the `changes` job, which turns that group's
@@ -513,19 +573,17 @@ feature
          rule if the new toggle is genuinely incompatible with another matrix value
 
       (linting is not part of this matrix: it lives in [.github/workflows/lint.yaml](.github/workflows/lint.yaml),
-      called as a single reusable workflow from the `lint` job. It has two jobs: `static-lint` (YAML, JSON, shell,
-      Python, JavaScript and HTML - checks that only ever look at the repo's own committed files) and `docs-lint`
-      (Markdown link checking, Markdown style, and the MkDocs link check - kept separate so the `npm install` in
-      `static-lint` can never leak `node_modules` into a Markdown-file scan). `test` `needs` the `lint` job, so the
-      heavy compose matrix never starts if either lint job fails. If the new service introduces a file extension
-      none of these tools already cover, add a step for it to whichever job fits, or a new job if it doesn't. If
-      that tool supports auto-fixing, wire it up the way `ruff`, `eslint` and `markdownlint-cli2` are: a shared
-      script under [.github/lint/](.github/lint/), referenced from both the workflow step and
-      [compose.lint.yaml](.github/compose.lint.yaml)'s `lint` service, so it can be applied locally with
-      `FIX=true docker compose -f .github/compose.lint.yaml run --rm lint`. Both jobs can also be run as a
-      check (no fixing) with `docker compose -f .github/compose.lint.yaml run --rm lintci`, which uses
-      [nektos/act](https://github.com/nektos/act) to run `lint.yaml` directly against your working tree - handy for
-      checking whether CI will pass without waiting on it)
+      called as a single reusable workflow from the `lint` job. It has three jobs: `static-lint` (YAML, JSON, shell,
+      Python, JavaScript and HTML - checks that only ever look at the repo's own committed files), `docs-lint`
+      (Markdown link checking, Markdown style, and the MkDocs link check), and `release-lint` (dry-runs
+      [publish-oci.js](.github/semantic-release/publish-oci.js) and `semantic-release`, so a broken release pipeline
+      is caught on every PR instead of only when a real release runs). `test` `needs` the `lint` job, so the
+      heavy compose matrix never starts if any of the three lint jobs fails. If the new service introduces a file
+      extension none of these tools already cover, add a step for it to whichever job fits, or a new job if it
+      doesn't. If that tool supports auto-fixing, wire it up the way `ruff`, `eslint` and `markdownlint-cli2` are: a
+      shared script under [.github/lint/](.github/lint/), referenced from both the workflow step and
+      [compose.lint.yaml](.github/compose.lint.yaml)'s `lint` service - see
+      [Running linting locally](#running-linting-locally) for how to use it)
    7. if the ENV's default should fall back to another variable (e.g. to `DEV`, or to a `localhost` URL), compute it
       once as a `_`-prefixed variable instead of duplicating the fallback at each usage site - see
       [Computed environment variables](#computed-environment-variables)

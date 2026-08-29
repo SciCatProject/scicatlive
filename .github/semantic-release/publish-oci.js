@@ -10,6 +10,8 @@ const COMPOSE_RESOLVED_FILE = path.resolve("resolved-compose.yaml");
 const version = process.env.VERSION.replace(/^v/, "");
 const repo = process.env.GITHUB_REPOSITORY.toLowerCase();
 const imagePath = `ghcr.io/${repo}`;
+const dryRun = process.env.DRY_RUN === "true" ? "--dry-run " : "";
+const resolveDigests = dryRun ? "" : "--resolve-image-digests ";
 
 const ociTypes = ["", "-full", "-v3", "-v3-full"];
 
@@ -219,7 +221,8 @@ ociTypes.forEach((ociType) => {
     ];
     ociTags.forEach((ociTag) => {
       execSync(
-        `yes | docker compose -f ${COMPOSE_RESOLVED_FILE} publish --resolve-image-digests --with-env --yes ${ociTag}`,
+        `yes | docker compose -f ${COMPOSE_RESOLVED_FILE} publish \\
+          ${dryRun}${resolveDigests}--with-env --yes ${ociTag}`,
         {
           env: dockerEnv,
           cwd: COMPOSE_BASE_DIR,
@@ -229,5 +232,7 @@ ociTypes.forEach((ociType) => {
     });
   } catch {
     process.exit(1);
+  } finally {
+    fs.rmSync(COMPOSE_RESOLVED_FILE, { force: true });
   }
 });

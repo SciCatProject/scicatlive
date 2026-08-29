@@ -17,14 +17,14 @@ services:
       - -j
       - ${JOB:-lint}
       - -P
-      - ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-latest
+      - ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-24.04-20260815
       - --local-repository
       - SciCatProject/scicatlive@main=/repo
       - --env-file
       - /dev/null
 
   lint:
-    image: ghcr.io/catthehacker/ubuntu:act-latest
+    image: ghcr.io/catthehacker/ubuntu:act-24.04-20260815
     working_dir: /repo
     volumes:
       - ${PWD}:/repo

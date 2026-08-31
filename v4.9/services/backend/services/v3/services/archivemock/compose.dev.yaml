@@ -1,0 +1,12 @@
+services:
+  archivemock:
+    extends:
+      file: ${PWD}/services/compose.dev.yaml
+      service: web-app
+    labels: !reset null
+    volumes:
+      - ${DEV_BBACKUP:+${PWD}/bbackup/${COMPOSE_PROJECT_NAME}/archivemock:}/bbackup
+
+volumes:
+  archivemock_dev:
+    driver: local

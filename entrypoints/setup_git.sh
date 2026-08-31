@@ -18,5 +18,4 @@ git reset --hard origin/"${TAG:-$DEFAULT_BRANCH}"
 git clean -fd
 
 echo ".finished-*" >> .git/info/exclude
-echo ".unison" >> .git/info/exclude
 touch "$MARKER"

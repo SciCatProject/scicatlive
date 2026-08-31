@@ -16,6 +16,20 @@ services:
       - --local-repository
       - SciCatProject/scicatlive@main=/repo
 
+  lint:
+    image: ghcr.io/catthehacker/ubuntu:act-latest
+    working_dir: /repo
+    volumes:
+      - ${PWD}:/repo
+      - ${PWD}/entrypoints/loop_entrypoints.sh:/usr/local/bin/loop_entrypoints.sh:ro
+      - ./lint/ruff.sh:/docker-entrypoints/10.sh:ro
+      - ./lint/eslint.sh:/docker-entrypoints/20.sh:ro
+      - ./lint/markdownlint.sh:/docker-entrypoints/30.sh:ro
+    environment:
+      FIX_FLAG: ${FIX:+--fix}
+    entrypoint:
+      - loop_entrypoints.sh
+
 volumes:
   act_cache:
     driver: local

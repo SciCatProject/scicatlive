@@ -39,20 +39,16 @@ jobs:
         run: git ls-files -z '*.sh' | xargs -0r shellcheck
 
       # python
-      # v1
-      - uses: chartboost/ruff-action@e18ae971ccee1b2d7bbef113930f00c670b78da4  # yamllint disable-line rule:line-length
-        with:
-          args: check --select ALL
+      - name: Lint python files
+        run: .github/lint/ruff.sh
 
       # javascript / html
       - name: Use Node.js v20
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020  # v7
         with:
           node-version: 24
-      - name: install eslint and default rules
-        run: npm install eslint @eslint/js --save-dev
       - name: Lint javascript files
-        run: npx eslint --config .github/eslint.config.mjs
+        run: .github/lint/eslint.sh
       - name: Lint html files
         run: >-
           find . \( -name "*.html" -o -name ".*.html" \) -print0
@@ -74,13 +70,8 @@ jobs:
             --exclude-path 'services/docs/config'
             '**/*.md'
           fail: true
-      # v24
-      - uses: DavidAnson/markdownlint-cli2-action@21c1be1b93ad9ed58fa840aacc3f279cde2a72ff  # yamllint disable-line rule:line-length
-        with:
-          globs: |
-            **/*.md
-            !**/node_modules/**
-          config: .github/markdownlint/.markdownlint-cli2.yaml
+      - name: Lint markdown files
+        run: .github/lint/markdownlint.sh
 
       # mkdocs
       - name: Get changed files

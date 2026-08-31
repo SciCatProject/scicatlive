@@ -518,10 +518,14 @@ feature
       (Markdown link checking, Markdown style, and the MkDocs link check - kept separate so the `npm install` in
       `static-lint` can never leak `node_modules` into a Markdown-file scan). `test` `needs` the `lint` job, so the
       heavy compose matrix never starts if either lint job fails. If the new service introduces a file extension
-      none of these tools already cover, add a step for it to whichever job fits, or a new job if it doesn't.
-      Both jobs can be run locally with `docker compose -f .github/compose.lintci.yaml run --rm lintci`, which uses
+      none of these tools already cover, add a step for it to whichever job fits, or a new job if it doesn't. If
+      that tool supports auto-fixing, wire it up the way `ruff`, `eslint` and `markdownlint-cli2` are: a shared
+      script under [.github/lint/](.github/lint/), referenced from both the workflow step and
+      [compose.lint.yaml](.github/compose.lint.yaml)'s `lint` service, so it can be applied locally with
+      `FIX=true docker compose -f .github/compose.lint.yaml run --rm lint`. Both jobs can also be run as a
+      check (no fixing) with `docker compose -f .github/compose.lint.yaml run --rm lintci`, which uses
       [nektos/act](https://github.com/nektos/act) to run `lint.yaml` directly against your working tree - handy for
-      iterating on a lint fix without waiting on CI)
+      checking whether CI will pass without waiting on it)
    7. if the ENV's default should fall back to another variable (e.g. to `DEV`, or to a `localhost` URL), compute it
       once as a `_`-prefixed variable instead of duplicating the fallback at each usage site - see
       [Computed environment variables](#computed-environment-variables)

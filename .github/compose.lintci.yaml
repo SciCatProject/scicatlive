@@ -1,0 +1,21 @@
+services:
+  lintci:
+    image: efrecon/act:v0.2.89
+    platform: linux/amd64
+    working_dir: /repo
+    volumes:
+      - ${PWD}:/repo
+      - /var/run/docker.sock:/var/run/docker.sock
+      - act_cache:/root/.cache/act
+    command:
+      - workflow_call
+      - -W
+      - .github/workflows/lint.yaml
+      - -P
+      - ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-latest
+      - --local-repository
+      - SciCatProject/scicatlive@main=/repo
+
+volumes:
+  act_cache:
+    driver: local

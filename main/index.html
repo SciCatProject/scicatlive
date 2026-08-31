@@ -4121,10 +4121,40 @@ or/and this
       </code>
       job, so the
   heavy compose matrix never starts if either lint job fails. If the new service introduces a file extension
-  none of these tools already cover, add a step for it to whichever job fits, or a new job if it doesn't.
-  Both jobs can be run locally with
+  none of these tools already cover, add a step for it to whichever job fits, or a new job if it doesn't. If
+  that tool supports auto-fixing, wire it up the way
       <code>
-       docker compose -f .github/compose.lintci.yaml run --rm lintci
+       ruff
+      </code>
+      ,
+      <code>
+       eslint
+      </code>
+      and
+      <code>
+       markdownlint-cli2
+      </code>
+      are: a shared
+  script under
+      <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/lint">
+       .github/lint/
+      </a>
+      , referenced from both the workflow step and
+      <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/compose.lint.yaml">
+       compose.lint.yaml
+      </a>
+      's
+      <code>
+       lint
+      </code>
+      service, so it can be applied locally with
+      <code>
+       FIX=true docker compose -f .github/compose.lint.yaml run --rm lint
+      </code>
+      . Both jobs can also be run as a
+  check (no fixing) with
+      <code>
+       docker compose -f .github/compose.lint.yaml run --rm lintci
       </code>
       , which uses
       <a href="https://github.com/nektos/act">
@@ -4135,7 +4165,7 @@ or/and this
        lint.yaml
       </code>
       directly against your working tree - handy for
-  iterating on a lint fix without waiting on CI)
+  checking whether CI will pass without waiting on it)
    7. if the ENV's default should fall back to another variable (e.g. to
       <code>
        DEV

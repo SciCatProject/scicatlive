@@ -11,11 +11,13 @@ services:
       - source: frontend_config_json
         target: /config/config.0.json
       - source: frontend_config_oidc_json
-        target: /config/${OIDC_ENABLED:-.}config.1.json
+        target: /config/config.1${OIDC_ENABLED:+.}json
       - source: frontend_config_ldap_json
-        target: /config/${LDAP_ENABLED:-.}config.2.json
+        target: /config/config.2${LDAP_ENABLED:+.}json
       - source: frontend_config_jobs_json
-        target: /config/${JOBS_ENABLED:-.}config.3.json
+        target: /config/config.3${JOBS_ENABLED:+.}json
+      - source: frontend_config_ingestor_json
+        target: /config/config.4${INGESTOR_ENABLED:+.}json
     labels:
       - traefik.http.routers.frontend.rule=Host(`localhost`)
       # Adding a label for traefik to learn which port to look for a service on
@@ -43,3 +45,5 @@ configs:
     file: ./config/config.ldap.json
   frontend_config_jobs_json:
     file: ./config/config.jobs.json
+  frontend_config_ingestor_json:
+    file: ./config/config.ingestor.json

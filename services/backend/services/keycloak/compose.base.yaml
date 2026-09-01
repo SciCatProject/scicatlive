@@ -3,6 +3,10 @@ services:
     image: quay.io/keycloak/keycloak:26.7
     command: start-dev --import-realm --health-enabled=true --http-port=80
     env_file: ./config/.env
+    environment:
+      JAVA_OPTS_APPEND: -Dkeycloak.migration.replace-placeholders=true
+      FRONTEND_HTTPS_URL: ${FRONTEND_HTTPS_URL:-http://localhost}
+      INGESTOR_URL: ${INGESTOR_URL:-http://ingestor.localhost}
     configs:
       - source: keycloak_healthcheck_sh
         target: /healthcheck.sh

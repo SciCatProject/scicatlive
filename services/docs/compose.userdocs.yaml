@@ -1,0 +1,15 @@
+include:
+  - ./services/userdocs/compose.yaml
+
+services:
+  docs:
+    volumes:
+      - type: volume
+        source: userdocs_dev
+        target: /docs/user-documentation
+        read_only: true
+        volume:
+          subpath: docs
+    depends_on:
+      userdocs:
+        condition: service_healthy

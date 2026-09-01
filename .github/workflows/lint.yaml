@@ -1,0 +1,92 @@
+name: Lint
+
+on: # yamllint disable-line rule:truthy
+  workflow_call: {}
+
+jobs:
+  static-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      # yaml
+      - name: Install 'yamllint'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yamllint
+      - name: Lint YAML files
+        run: yamllint -c .github/yamllint_config.yaml .
+
+      # github actions
+      - name: Lint GitHub Actions workflows
+        # v1
+        uses: reviewdog/action-actionlint@dbe5299849118fd6f099ba563d263d770955a64a  # yamllint disable-line rule:line-length
+        with:
+          reporter: ${{ secrets.GITHUB_TOKEN && 'github-pr-check' || 'local' }}
+          filter_mode: nofilter
+          fail_level: error
+
+      # json
+      - name: Lint JSON files
+        run: git ls-files -z '*.json' | xargs -0r -n1 jq empty
+
+      # shell
+      - name: Install 'shellcheck'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+      - name: Lint shell files
+        run: git ls-files -z '*.sh' | xargs -0r shellcheck
+
+      # python
+      - name: Lint python files
+        run: .github/lint/ruff.sh
+
+      # javascript / html
+      - name: Use Node.js v20
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020  # v7
+        with:
+          node-version: 24
+      - name: Lint javascript files
+        run: .github/lint/eslint.sh
+      - name: Lint html files
+        run: >-
+          find . \( -name "*.html" -o -name ".*.html" \) -print0
+          | xargs -0r npx --yes htmlhint
+
+  docs-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      # markdown
+      - name: Check markdown links
+        # v2
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8  # yamllint disable-line rule:line-length
+        with:
+          args: >-
+            --no-progress --root-dir .
+            --accept '100..=103,200..=299,403,429'
+            --exclude-path 'services/docs/config'
+            '**/*.md'
+          fail: true
+      - name: Lint markdown files
+        run: .github/lint/markdownlint.sh
+
+      # mkdocs
+      - name: Get changed files
+        id: changed-files
+        # v47
+        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62  # yamllint disable-line rule:line-length
+        with:
+          files: |
+            **/README.md
+            **/*mkdocs*/**
+            **/*mkdocs*
+      - if: steps.changed-files.outputs.any_changed == 'true'
+        uses: SciCatProject/scicatlive/.github/actions/mkdocs-pages@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCS_LINK_CHECK: true
+          TAG: ${{ github.sha }}
+          docs_folder: ''

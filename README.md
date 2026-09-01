@@ -258,9 +258,23 @@ the following [table](#docker-compose-profiles-and-env-variables-configuration-o
 | env     | `OAIPMH_DEV`          | `true`: oaipmh in DEV mode                                                                                            | `''`    | \*                    | Same as `DEV=true` but limited to the oaipmh service                                                                                                                                                                 |                         |
 | env     | `<SERVICE>_HTTPS_URL` | `<URL>`: HTTPS termination                                                                                            | `''`    | \*                    | Requests the TLS certificate for the URL to LetsEncrypt through the [proxy](#tls-configuration)                                                                                                                      |                         |
 | env     | `DEV_BBACKUP`         | `true`: bidirectional synchronization of DEV volume                                                                   | `''`    | \*                    | Enables [DEV bidirectional synchronization](#dev-bidirectional-synchronization) between ${PWD}/bbackup/${APP} on the host and the dev volume                                                                         |                         |
+| env     | `DEV_AI_STATE`        | `<path>`: AI coding assistant (e.g. Claude Code) state directory, inside the container                                | `/root/.claude` | \*                    | Path used to persist the state of the AI service (Claude Code) across container restarts, backed by a dedicated volume. It is shared across all DEV-mode node services so that the conversation history/config is preserved and visible from any of them |                         |
 
 After optionally setting any configuration option, one can still select the services to run as described by the
 [select the services](#select-the-services) section.
+
+#### Computed environment variables
+
+Some of the env variables above have a default value that is computed from another one - for example `BACKEND_DEV`
+should also be enabled whenever `DEV=true`, and `BACKEND_HTTPS_URL` falls back to Traefik's local routing
+(`http://backend.localhost`) when left unset. Rather than duplicating that resolution logic at every place a compose
+file needs the final value, it is computed once, in a dedicated section at the bottom of [.env](./.env), into a
+`_`-prefixed variable of the same name (e.g. `_BACKEND_DEV`, `_BACKEND_HTTPS_URL`). Compose files read the
+`_`-prefixed variable, never the plain one.
+
+These `_`-prefixed variables are **computed automatically and must not be edited directly** - to change a value, set
+the plain variable above it instead (e.g. `BACKEND_DEV=true`, not `_BACKEND_DEV=true`); leaving the plain variable
+unset/commented keeps the documented default.
 
 #### DEV configuration
 
@@ -299,6 +313,12 @@ the OpenAPI specification of the backend running in scicatlive (make sure to hav
 to easily install it in the DEV environment. For more details see the
 [openapigenerator README](./services/backend/services/v4/services/openapigenerator/README.md), and for an example of how
 to use it, see the [frontend README](./services/frontend/README.md#dev-configuration).
+
+When `DEV=true` (or any of `BACKEND_DEV`, `FRONTEND_DEV`, `SCICATLIVE_DEV`, `USER_DOCS_DEV` individually), a
+[docs](./services/docs/) service also becomes available, rendering a live view of the enabled DEV-mode services' own
+upstream documentation (their `docs/` folder), this repository's own top-level documentation, and an external
+user-documentation repository, using MkDocs. See the [docs README](./services/docs/README.md) for details, including
+how to add another service to it.
 
 Please note that [entrypoints](#entrypoints) when `DEV=true` are only run when the component's container is created for
 the first time. This is done to avoid clashes with local changes.
@@ -384,8 +404,9 @@ To ease the iterative execution of multiple init scripts, one can leverage the
 [loop_entrypoints](./entrypoints/loop_entrypoints.sh) utility, which loops alphabetically over
 `/docker-entrypoinst/*.sh` and executes each. This is in use in some services (e.g. in the
 [frontend](./services/frontend/compose.yaml)), so one can add additional init steps by mounting them, one by one, as
-bind mounts inside the container in the `/docker-entrypoints` folder and naming them depending on the desired order
-(eventually rename the existing ones as well).
+[docker compose configs](https://docs.docker.com/reference/compose-file/services/#configs) inside the container in
+the `/docker-entrypoints` folder and naming them depending on the desired order (eventually rename the existing ones
+as well).
 
 #### If the service does not support entrypoints yet, one needs to
 
@@ -410,10 +431,15 @@ Please note that services should, in general, be defined by their responsibility
 technology, and should be named so.
 
 :warning: When adding a new service, please use [docker compose configs](https://docs.docker.com/reference/compose-file/services/#configs)
-for mounting files inside the container, rather than bind mounts, as they are more robust and easier to maintain.
-This is mostly relevant for the published OCI packages, as bind mounts require the user to have specific files in
-their local environment, which might not be the case, while configs are included in the package itself as part
-of the [release workflow](./.github/semantic-release/publish-oci.js).
+for mounting files inside the container, unless the mounted file needs to be modified from within the container, in
+which case use a bind-mount volume instead, since configs are always mounted read-only. This distinction is mostly
+relevant for the published OCI packages: bind mounts pointing at directories, or at files that no longer exist on
+disk, require the user to have those in their local environment, which might not be the case, so they are left
+untouched by the [release workflow](./.github/semantic-release/publish-oci.js); single-file bind mounts, however, are
+converted to configs by that same workflow, so they work in the published package too. The generated config is named
+`<service>_<target-path>`, with the mount's target path stripped of its leading slash and any remaining non-alphanumeric
+character replaced by `_` (e.g. a `proxy` service mount targeting `/config/traefik.yaml` becomes a config named
+`proxy_config_traefik.yaml`).
 
 ### Basic
 
@@ -473,11 +499,38 @@ feature
    5. if the service is another version of an existing one, e.g. v3 and v4 versions of the `backend` service, add the
       selective include in the parent compose.yaml, e.g.
       [./services/backend/compose.yaml](./services/backend/compose.yaml)
-   6. eventually, modify the [compose workflow](.github/workflows/compose_test.yaml) to add the toggle to the matrix. If
-      the toggle depends on the changed files, remember to create the toggle configuration
-      [.github/changed_files.yaml](.github/changed_files.yaml) and create the
-      [exclude](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs#excluding-matrix-configurations)
-      rule in the workflow.
+   6. eventually, modify the [compose workflow](.github/workflows/compose_test.yaml) to add the toggle to the
+      matrix. If the toggle should only run when relevant files changed (as done for the existing `opensearch`,
+      `jobs`, `ldap`, `oidc` and `dev` toggles):
+      1. add a path group for it, e.g. `opensearch`, to
+         [.github/changed_files.yaml](.github/changed_files.yaml)
+      2. add a matching `<toggle>_values` output to the `changes` job, which turns that group's
+         `<group>_all_modified_files` output into the matrix values to test, e.g.:
+         `opensearch_values: ${{ steps.changed-files.outputs.opensearch_all_modified_files && '["", "opensearch"]'
+         || '[""]' }}`
+      3. reference that output as the matrix axis in the `test` job, e.g.:
+         `OPENSEARCH_ENABLED: ${{ fromJson(needs.changes.outputs.opensearch_values) }}`
+      4. only add an
+         [exclude](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs#excluding-matrix-configurations)
+         rule if the new toggle is genuinely incompatible with another matrix value
+
+      (linting is not part of this matrix: it lives in [.github/workflows/lint.yaml](.github/workflows/lint.yaml),
+      called as a single reusable workflow from the `lint` job. It has two jobs: `static-lint` (YAML, JSON, shell,
+      Python, JavaScript and HTML - checks that only ever look at the repo's own committed files) and `docs-lint`
+      (Markdown link checking, Markdown style, and the MkDocs link check - kept separate so the `npm install` in
+      `static-lint` can never leak `node_modules` into a Markdown-file scan). `test` `needs` the `lint` job, so the
+      heavy compose matrix never starts if either lint job fails. If the new service introduces a file extension
+      none of these tools already cover, add a step for it to whichever job fits, or a new job if it doesn't. If
+      that tool supports auto-fixing, wire it up the way `ruff`, `eslint` and `markdownlint-cli2` are: a shared
+      script under [.github/lint/](.github/lint/), referenced from both the workflow step and
+      [compose.lint.yaml](.github/compose.lint.yaml)'s `lint` service, so it can be applied locally with
+      `FIX=true docker compose -f .github/compose.lint.yaml run --rm lint`. Both jobs can also be run as a
+      check (no fixing) with `docker compose -f .github/compose.lint.yaml run --rm lintci`, which uses
+      [nektos/act](https://github.com/nektos/act) to run `lint.yaml` directly against your working tree - handy for
+      checking whether CI will pass without waiting on it)
+   7. if the ENV's default should fall back to another variable (e.g. to `DEV`, or to a `localhost` URL), compute it
+      once as a `_`-prefixed variable instead of duplicating the fallback at each usage site - see
+      [Computed environment variables](#computed-environment-variables)
 
 4. eventually, add entrypoints for init logics, as described by the section to
    [enable entrypoints](#if-the-service-does-not-support-entrypoints-yet-one-needs-to), e.g. like

@@ -1,0 +1,10 @@
+{
+  "name": "lint",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "eslint": "10.9.1",
+    "@eslint/js": "10.0.1",
+    "markdownlint-cli2": "0.23.2"
+  }
+}

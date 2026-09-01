@@ -5,169 +5,71 @@ on: # yamllint disable-line rule:truthy
     branches:
       - main
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
-      all: ${{ toJson(steps.changed-files.outputs) }}
+      src: ${{ steps.changed-files.outputs.src_all_modified_files }}
+      be_version_values: ${{
+          steps.changed-files.outputs.v3_all_modified_files
+          && '["v3","v4"]' || '["v4"]'
+        }}
+      opensearch_values: ${{
+          steps.changed-files.outputs.opensearch_all_modified_files
+          && '["","opensearch"]' || '[""]'
+        }}
+      jobs_values: ${{
+          steps.changed-files.outputs.jobs_all_modified_files
+          && '["","jobs"]' || '[""]'
+        }}
+      ldap_values: ${{
+          steps.changed-files.outputs.ldap_all_modified_files
+          && '["","ldap"]' || '[""]'
+        }}
+      oidc_values: ${{
+          steps.changed-files.outputs.oidc_all_modified_files
+          && '["","oidc"]' || '[""]'
+        }}
+      dev_values: ${{
+          steps.changed-files.outputs.dev_all_modified_files
+          && '["","dev"]' || '[""]'
+        }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v47
+        # v47
+        uses: >-
+          tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62
         with:
           files_yaml_from_source_file: .github/changed_files.yaml
-  yaml-lint:
-    runs-on: ubuntu-latest
-    needs:
-      - changes
-    if: fromJson(needs.changes.outputs.all).yaml_all_modified_files
-    steps:
-      - uses: actions/checkout@v7
-      - name: Install 'yamllint'
-        run: sudo apt-get install -y yamllint
-      - name: Lint YAML files
-        run: yamllint -c .github/yamllint_config.yaml .
-  json-lint:
-    runs-on: ubuntu-latest
-    needs:
-      - changes
-    if: fromJson(needs.changes.outputs.all).json_all_modified_files
-    steps:
-      - uses: actions/checkout@v7
-      - name: Install 'jsonlint' and 'git'
-        run: sudo apt install python3-demjson git
-      - name: Lint JSON files
-        run: >-
-          git ls-files -z '*.json' | xargs -0r jsonlint -s --allow=non-portable
-  shell-lint:
-    runs-on: ubuntu-latest
-    needs:
-      - changes
-    if: fromJson(needs.changes.outputs.all).sh_all_modified_files
-    steps:
-      - uses: actions/checkout@v7
-      - name: Install 'shellcheck' and 'git'
-        run: sudo apt install shellcheck git
-      - name: Lint shell files ([ba]sh scripts)
-        run: >-
-          git ls-files -z '*.sh' '*.bash' '*.ksh' '*.bashrc' '*.bash_profile'
-          '*.bash_login' '*.bash_logout' | xargs -0r shellcheck
-  javascript-lint:
-    runs-on: ubuntu-latest
-    needs:
-      - changes
-    if: fromJson(needs.changes.outputs.all).js_all_modified_files
-    steps:
-      - uses: actions/checkout@v7
-      - name: Use Node.js v20
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-      - name: install eslint and default rules
-        run: npm install eslint @eslint/js --save-dev
-      - name: Lint javascript files
-        run: npx eslint --config .github/eslint.config.mjs
-      - name: Lint html files
-        run: find . -name "*.html" -o -name ".*.html" | xargs npx --yes htmlhint
-  python-lint:
-    runs-on: ubuntu-latest
-    needs:
-      - changes
-    if: fromJson(needs.changes.outputs.all).python_all_modified_files
-    steps:
-      - uses: actions/checkout@v7
-      - uses: chartboost/ruff-action@v1
-        with:
-          args: check --select ALL
-  markdown-lint:
-    runs-on: ubuntu-latest
-    needs:
-      - changes
-    if: fromJson(needs.changes.outputs.all).mds_all_modified_files
-    steps:
-      - uses: actions/checkout@v7
-      - name: Check markdown links
-        uses: lycheeverse/lychee-action@v2
-        with:
-          args: >-
-            --no-progress --root-dir .
-            --accept '100..=103,200..=299,403,429'
-            '**/*.md'
-          fail: true
-      - uses: DavidAnson/markdownlint-cli2-action@v24
-        with:
-          globs: |
-            **/*.md
-            !**/node_modules/**
-          config: .github/markdownlint/.markdownlint-cli2.yaml
-  check-mkdocs:
-    runs-on: ubuntu-latest
-    needs:
-      - changes
-      - yaml-lint
-      - python-lint
-      - javascript-lint
-      - markdown-lint
-    if: >
-      !failure()
-      && !cancelled()
-      && fromJson(needs.changes.outputs.all).docs_all_modified_files
-    steps:
-      - uses: SciCatProject/scicatlive/.github/actions/mkdocs-pages@main
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DOCS_LINK_CHECK: true
-          TAG: ${{ github.sha }}
-          docs_folder: ''
+  lint:
+    uses: ./.github/workflows/lint.yaml
   test:
     runs-on: ubuntu-latest
     needs:
       - changes
-      - yaml-lint
-      - json-lint
-      - shell-lint
-      - javascript-lint
-      - python-lint
-      - check-mkdocs
+      - lint
     if: >
         ! failure()
         && ! cancelled()
-        && fromJson(needs.changes.outputs.all).src_all_modified_files
+        && needs.changes.outputs.src
     strategy:
       matrix:
-        BE_VERSION: [v3, v4]
-        OPENSEARCH_ENABLED: ['', opensearch]
-        JOBS_ENABLED: ['', jobs]
-        LDAP_ENABLED: ['', ldap]
-        OIDC_ENABLED: ['', oidc]
-        DEV: ['', dev]
+        BE_VERSION: ${{ fromJson(needs.changes.outputs.be_version_values) }}
+        OPENSEARCH_ENABLED: ${{
+            fromJson(needs.changes.outputs.opensearch_values)
+          }}
+        JOBS_ENABLED: ${{ fromJson(needs.changes.outputs.jobs_values) }}
+        LDAP_ENABLED: ${{ fromJson(needs.changes.outputs.ldap_values) }}
+        OIDC_ENABLED: ${{ fromJson(needs.changes.outputs.oidc_values) }}
+        DEV: ${{ fromJson(needs.changes.outputs.dev_values) }}
         GENERATE_SDK: ['']
         exclude:
-          - BE_VERSION: ${{
-                !fromJson(needs.changes.outputs.all).v3_all_modified_files
-                && 'v3' || 'nothing'
-              }}
-          - OPENSEARCH_ENABLED: ${{
-                !fromJson(needs.changes.outputs.all).opensearch_all_modified_files
-                && 'opensearch' || 'nothing'
-              }}
-          - JOBS_ENABLED: ${{
-                !fromJson(needs.changes.outputs.all).jobs_all_modified_files
-                && 'jobs' || 'nothing'
-              }}
-          - LDAP_ENABLED: ${{
-                !fromJson(needs.changes.outputs.all).ldap_all_modified_files
-                && 'ldap' || 'nothing'
-              }}
-          - OIDC_ENABLED: ${{
-                !fromJson(needs.changes.outputs.all).oidc_all_modified_files
-                && 'oidc' || 'nothing'
-              }}
-          - DEV: ${{
-                !fromJson(needs.changes.outputs.all).dev_all_modified_files
-                && 'dev' || 'nothing'
-              }}
           - OPENSEARCH_ENABLED: opensearch
             BE_VERSION: v3
         include:
@@ -175,7 +77,7 @@ jobs:
             DEV: dev
             GENERATE_SDK: generate_sdk
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
       - name: Test compose.yaml
         id: docker_up
         continue-on-error: ${{ matrix.GENERATE_SDK == 'generate_sdk' }}
@@ -188,28 +90,45 @@ jobs:
           export DEV=${{ matrix.DEV }}
           export DEV_BBACKUP=${DEV}
           export GENERATE_SDK=${{ matrix.GENERATE_SDK }}
-          docker compose --profile '*' \
-            -f compose.yaml ${DEV:+-f .github/compose.dev.test.yaml} \
+          DEV_OVERLAY=${GENERATE_SDK:+.github/compose.sdk.test.yaml}
+          DEV_OVERLAY=${DEV_OVERLAY:-.github/compose.dev.test.yaml}
+          PROFILE=${GENERATE_SDK:+none}
+          PROFILE=${PROFILE:-'*'}
+          docker compose --profile "$PROFILE" \
+            -f compose.yaml ${DEV:+-f "$DEV_OVERLAY"} \
             up --wait --wait-timeout 1200 \
             || {
-              docker compose ps --status=exited --services \
-                | while read service; do
+              docker compose ps --all --format json \
+                | jq -r 'select((.Health != "" and .Health != "healthy")
+                    or .State != "running") | .Service' \
+                | while read -r service; do
                   echo "Logs for $service"
                   docker compose logs "$service"
                 done
               exit 1
             }
-      - name: Add Failure Label
+      - name: Check if frontend broke on the new SDK
+        id: sdk_check
         if: >-
           steps.docker_up.outcome == 'failure' &&
           matrix.GENERATE_SDK == 'generate_sdk'
+        run: |
+          STATUS=$(docker compose ps --format '{{.Health}}' frontend)
+          [ "$STATUS" != "healthy" ] \
+            && echo "sdk_error=true" >> "$GITHUB_OUTPUT"
+      - name: Fail on non-SDK failure
+        if: >-
+          steps.docker_up.outcome == 'failure' &&
+          matrix.GENERATE_SDK == 'generate_sdk' &&
+          steps.sdk_check.outputs.sdk_error != 'true'
+        run: |
+          echo "compose up failed for a reason unrelated to SDK generation."
+          exit 1
+      - name: Add Failure Label
+        if: steps.sdk_check.outputs.sdk_error == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr comment ${{ github.event.pull_request.number }} --body \
-          "## ⚠️ SDK Generation Failed
-          The SDK test failed. This is non-blocking, but please check \
-          the logs before merging."
           gh pr edit ${{ github.event.pull_request.number }} --add-label \
           "sdk-failed"
       - name: Cleanup Failure Label
@@ -220,20 +139,14 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Remove the label if it exists (ignore error if it's already gone)
-          gh pr label remove ${{ github.event.pull_request.number }} \
-          --name "sdk-failed" || true
+          gh pr edit ${{ github.event.pull_request.number }} \
+          --remove-label "sdk-failed" || true
   tests-status:
     runs-on: ubuntu-latest
     if: always()
     needs:
       - changes
-      - yaml-lint
-      - json-lint
-      - shell-lint
-      - javascript-lint
-      - python-lint
-      - markdown-lint
-      - check-mkdocs
+      - lint
       - test
     steps:
       - name: Evaluate Results

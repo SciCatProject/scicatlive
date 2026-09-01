@@ -16,8 +16,8 @@ services:
       backend:
         condition: service_healthy
     environment:
-      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}
-      FRONTEND_URL: ${FRONTEND_HTTPS_URL:-http://localhost}
+      BACKEND_URL: ${_BACKEND_HTTPS_URL}
+      FRONTEND_URL: ${_FRONTEND_HTTPS_URL}
     labels:
       # Adding a label for traefik to learn which port to look for a service on
       - traefik.http.services.landingpage.loadbalancer.server.port=80

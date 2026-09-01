@@ -1,34 +1,10 @@
-yaml:
-  - '**.yml'
-  - '**.yaml'
-js:
-  - '**.js'
-  - '**.ts'
-  - '**.cjs'
-  - '**.mjs'
-  - '**.html'
-sh:
-  - '**.sh'
-json:
-  - '**.json'
-python:
-  - '**.py'
-src: &src
+src:
   - '**/**'
   - '!LICENSE'
   - '!**/*.md'
   - '!CODEOWNERS'
   - '!**/*mkdocs*/**'
   - '!**/*mkdocs*'
-ldap:
-  - '**/ldap/**'
-  - '**/*ldap*'
-  - '!**/*.md'
-oidc:
-  - '**/*oidc*'
-  - '**/keycloak/**'
-  - '**/*keycloak*'
-  - '!**/*.md'
 v3: &v3
   - '**/v3/**'
   - '**/*v3*'
@@ -44,6 +20,15 @@ opensearch: &opensearch
   - '**/opensearch/**'
   - '**/*opensearch*'
   - '!**/*.md'
+ldap:
+  - '**/ldap/**'
+  - '**/*ldap*'
+  - '!**/*.md'
+oidc:
+  - '**/*oidc*'
+  - '**/keycloak/**'
+  - '**/*keycloak*'
+  - '!**/*.md'
 other_scicat: &other_scicat
   - services/searchapi/**
   - services/landingpage/**
@@ -52,14 +37,9 @@ other_scicat: &other_scicat
   - '**/v4/**'
   - '**/*v4*'
   - '!**/*.md'
-docs:
-  - '**/README.md'
-  - '**/*mkdocs*/**'
-  - '**/*mkdocs*'
-mds:
-  - '**/*.md'
-  - '**/*markdownlint*'
-  - '**/*markdownlint*/**'
+docs_service: &docs_service
+  - services/docs/**
+  - '!services/docs/**/README.md'
 dev:
   - '**/*dev*'
   - '**/entrypoints/**'
@@ -67,3 +47,4 @@ dev:
   - *opensearch
   - *jobs
   - *other_scicat
+  - *docs_service

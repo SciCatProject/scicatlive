@@ -5,22 +5,17 @@ inputs:
   GITHUB_TOKEN:
     description: github token
     required: true
-    type: string
   TAG:
     description: commit or tag or branch for github links
-    type: string
     default: ${{ github.ref_name }}
   DOCS_LINK_CHECK:
     description: string to trigger the links check
-    type: string
     default: ''
   push:
     description: if to publish docs to gh-pages
-    type: string
     default: ''
   docs_folder:
     description: docs folder path. If empty, it checkouts all to a fresh 'docs'
-    type: string
     default: docs
 
 runs:
@@ -28,18 +23,18 @@ runs:
   steps:
     - if: ${{ !inputs.docs_folder }}
       name: Checkout CI
-      uses: actions/checkout@v7
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
       with:
         sparse-checkout: .github
     - name: Checkout root
-      uses: actions/checkout@v7
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
       with:
         path: ${{ !inputs.docs_folder && 'docs' || '' }}
         sparse-checkout: |
           ${{ inputs.docs_folder }}
           ${{ inputs.docs_folder && '.github' }}
     - name: Set up Python
-      uses: actions/setup-python@v7
+      uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7
       with:
         python-version: 3.x
     - name: Install dependencies
@@ -55,12 +50,18 @@ runs:
           VERSION=${VERSION%.}
         fi
 
-        git fetch origin gh-pages --depth=1
         PUSH=${{ inputs.push }}
-        mike deploy -F ${DOCS_CONFIG} ${PUSH:+--push} \
+        IGNORE_REMOTE=--ignore-remote-status
+        if [[ -n "$PUSH" ]]; then
+          git fetch origin gh-pages --depth=1
+          IGNORE_REMOTE=
+        fi
+        mike deploy -F ${DOCS_CONFIG} ${PUSH:+--push} $IGNORE_REMOTE \
           --update-aliases ${VERSION:-main} ${VERSION:+latest}
-        mike set-default -F ${DOCS_CONFIG} --push latest ||
-          mike set-default -F ${DOCS_CONFIG} --push main
+        mike set-default -F ${DOCS_CONFIG} ${PUSH:+--push} \
+          $IGNORE_REMOTE latest ||
+          mike set-default -F ${DOCS_CONFIG} ${PUSH:+--push} \
+            $IGNORE_REMOTE main
       env:
         GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
         GIT_COMMITTER_NAME: ci-bot

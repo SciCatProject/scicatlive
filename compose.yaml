@@ -7,6 +7,7 @@ include:
   - services/landingpage/compose.yaml
   - services/oaipmh/compose.yaml
   - services/ingestor/compose.yaml
+  - services/docs/compose.yaml
 
 configs:
   entrypoints_loop_entrypoints_sh:
@@ -31,3 +32,10 @@ configs:
     file: ./entrypoints/add_chrome.sh
   entrypoints_npm_install_sdk_sh:
     file: ./entrypoints/npm_install_sdk.sh
+
+volumes:
+  # Shared across all DEV-mode node services (see services/compose.dev.yaml)
+  # so the AI coding assistant's conversation history/config is preserved
+  # across restarts and visible from any of them.
+  ai_state:
+    driver: local

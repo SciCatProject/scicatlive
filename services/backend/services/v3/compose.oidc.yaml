@@ -15,9 +15,9 @@ services:
         target: /home/node/app/server/boot/login-callbacks.js
     environment:
       OIDC_ENABLED: true
-      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}
-      FRONTEND_URL: ${FRONTEND_HTTPS_URL:-http://localhost}
-      KEYCLOAK_URL: ${KEYCLOAK_HTTPS_URL:-http://keycloak.localhost}
+      BACKEND_URL: ${_BACKEND_HTTPS_URL}
+      FRONTEND_URL: ${_FRONTEND_HTTPS_URL}
+      KEYCLOAK_URL: ${_KEYCLOAK_HTTPS_URL}
 
 configs:
   backend_v3_providers_oidc_json:

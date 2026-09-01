@@ -7,12 +7,6 @@ const COMPOSE_FILE = path.resolve("../../compose.yaml");
 const COMPOSE_BASE_DIR = path.dirname(COMPOSE_FILE);
 const COMPOSE_RESOLVED_FILE = path.resolve("resolved-compose.yaml");
 
-const version = process.env.VERSION.replace(/^v/, "");
-const repo = process.env.GITHUB_REPOSITORY.toLowerCase();
-const imagePath = `ghcr.io/${repo}`;
-const dryRun = process.env.DRY_RUN === "true" ? "--dry-run " : "";
-const resolveDigests = dryRun ? "" : "--resolve-image-digests ";
-
 const ociTypes = ["", "-full", "-v3", "-v3-full"];
 
 // ---------------------------------------------------------------------------
@@ -175,64 +169,95 @@ function convertVolumesToConfigs(doc, baseDir) {
   }
 }
 
-ociTypes.forEach((ociType) => {
-  const dockerEnv = {
-    ...process.env,
-    JOBS_ENABLED: ociType.includes("-full") ? "true" : "",
-    OPENSEARCH_ENABLED: ociType.includes("-full") ? "true" : "",
-    LDAP_ENABLED: ociType.includes("-full") ? "true" : "",
-    OIDC_ENABLED: ociType.includes("-full") ? "true" : "",
-    COMPOSE_PROFILES: ociType.includes("-full") ? "*" : "",
-    BE_VERSION: ociType.includes("-v3") ? "v3" : "v4",
-  };
+// ---------------------------------------------------------------------------
+// Inline remaining file-based config content: a `configs:` entry declared
+// with `file:` has no equivalent in a published OCI artifact either (same
+// reasoning as above), so its content is read and embedded directly.
+// ---------------------------------------------------------------------------
+function inlineConfigFiles(doc, baseDir) {
+  const configs = doc.get("configs");
+  if (!configs) return;
 
-  try {
-    // 1. Resolve Compose
-    execSync(
-      `docker compose -f ${COMPOSE_FILE} config --no-path-resolution > ${COMPOSE_RESOLVED_FILE}`,
-      { env: dockerEnv, cwd: COMPOSE_BASE_DIR },
-    );
+  configs.items.forEach((item) => {
+    const node = item.value || item;
+    const fileNode = node.get("file", true);
+    if (!fileNode) return;
+    const filePath = path.join(baseDir, fileNode.value);
+    node.set("content", inlineFileContent(filePath));
+    node.delete("file");
+  });
+}
 
-    const doc = yaml.parseDocument(
-      fs.readFileSync(COMPOSE_RESOLVED_FILE, "utf8"),
-    );
+function main() {
+  const version = process.env.VERSION.replace(/^v/, "");
+  const repo = process.env.GITHUB_REPOSITORY.toLowerCase();
+  const imagePath = `ghcr.io/${repo}`;
+  const dryRun = process.env.DRY_RUN === "true" ? "--dry-run " : "";
+  const resolveDigests = dryRun ? "" : "--resolve-image-digests ";
 
-    // 2. Convert any bind-mount volumes (single files) into configs
-    convertVolumesToConfigs(doc, COMPOSE_BASE_DIR);
+  ociTypes.forEach((ociType) => {
+    const dockerEnv = {
+      ...process.env,
+      JOBS_ENABLED: ociType.includes("-full") ? "true" : "",
+      OPENSEARCH_ENABLED: ociType.includes("-full") ? "true" : "",
+      LDAP_ENABLED: ociType.includes("-full") ? "true" : "",
+      OIDC_ENABLED: ociType.includes("-full") ? "true" : "",
+      COMPOSE_PROFILES: ociType.includes("-full") ? "*" : "",
+      BE_VERSION: ociType.includes("-v3") ? "v3" : "v4",
+    };
 
-    // 3. Inline remaining file-based config content
-    const configs = doc.get("configs");
-    if (configs) {
-      configs.items.forEach((item) => {
-        const node = item.value || item;
-        const fileNode = node.get("file", true);
-        if (!fileNode) return;
-        const filePath = path.join(COMPOSE_BASE_DIR, fileNode.value);
-        node.set("content", inlineFileContent(filePath));
-        node.delete("file");
-      });
-    }
-    fs.writeFileSync(COMPOSE_RESOLVED_FILE, doc.toString());
-
-    // 4. Publish
-    const ociTags = [
-      `${imagePath}:${version}${ociType}`,
-      `${imagePath}:latest${ociType}`,
-    ];
-    ociTags.forEach((ociTag) => {
+    try {
+      // 1. Resolve Compose
       execSync(
-        `yes | docker compose -f ${COMPOSE_RESOLVED_FILE} publish \\
-          ${dryRun}${resolveDigests}--with-env --yes ${ociTag}`,
-        {
-          env: dockerEnv,
-          cwd: COMPOSE_BASE_DIR,
-          stdio: "inherit",
-        },
+        `docker compose -f ${COMPOSE_FILE} config --no-path-resolution > ${COMPOSE_RESOLVED_FILE}`,
+        { env: dockerEnv, cwd: COMPOSE_BASE_DIR },
       );
-    });
-  } catch {
-    process.exit(1);
-  } finally {
-    fs.rmSync(COMPOSE_RESOLVED_FILE, { force: true });
-  }
-});
+
+      const doc = yaml.parseDocument(
+        fs.readFileSync(COMPOSE_RESOLVED_FILE, "utf8"),
+      );
+
+      // 2. Convert any bind-mount volumes (single files) into configs
+      convertVolumesToConfigs(doc, COMPOSE_BASE_DIR);
+
+      // 3. Inline remaining file-based config content
+      inlineConfigFiles(doc, COMPOSE_BASE_DIR);
+
+      fs.writeFileSync(COMPOSE_RESOLVED_FILE, doc.toString());
+
+      // 4. Publish
+      const ociTags = [
+        `${imagePath}:${version}${ociType}`,
+        `${imagePath}:latest${ociType}`,
+      ];
+      ociTags.forEach((ociTag) => {
+        execSync(
+          `yes | docker compose -f ${COMPOSE_RESOLVED_FILE} publish \\
+          ${dryRun}${resolveDigests}--with-env --yes ${ociTag}`,
+          {
+            env: dockerEnv,
+            cwd: COMPOSE_BASE_DIR,
+            stdio: "inherit",
+          },
+        );
+      });
+    } catch {
+      process.exit(1);
+    } finally {
+      fs.rmSync(COMPOSE_RESOLVED_FILE, { force: true });
+    }
+  });
+}
+
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  parseVolumeEntry,
+  sanitizeConfigName,
+  inlineFileContent,
+  namedVolumeNames,
+  convertVolumesToConfigs,
+  inlineConfigFiles,
+};

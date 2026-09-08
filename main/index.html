@@ -551,6 +551,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-ci-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running CI locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-linting-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running linting locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#developing-services-in-dev-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Developing services in DEV mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#previewing-documentation-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Previewing documentation locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#add-a-new-service" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1796,6 +1857,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-ci-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running CI locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-linting-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running linting locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#developing-services-in-dev-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Developing services in DEV mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#previewing-documentation-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Previewing documentation locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#add-a-new-service" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2192,7 +2314,7 @@ but they need to have a local copy of the repository. The following instructions
   <ul>
    <li>
     Jobs - this mechanism posts to a
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/rabbitmq">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/rabbitmq">
      message broker
     </a>
     . In v3 it can then trigger
@@ -2203,7 +2325,7 @@ but they need to have a local copy of the repository. The following instructions
   enabled.
    </li>
    <li>
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v4/services/opensearch">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/services/opensearch">
      OpenSearch
     </a>
     - creates an opensearch service to provide full
@@ -2390,7 +2512,7 @@ then we visualize it as
   <p>
    The user can selectively decide the containers to spin up and the dependencies will be resolved accordingly. The
 available services are in the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services">
     services
    </a>
    folder and are called consistently.
@@ -2491,12 +2613,12 @@ choosing services and setting
    They are used to modify existing services where whenever enabling the feature requires changes in multiple services.
 They also have the advantage, compared to docker profiles, of not needing to define a new profile when a new combination
 of features becomes available. To set an env variable for docker compose, either assign it in the shell or change the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/.env">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
     .env
    </a>
    file. To later unset it, either unset it from the shell or assign it an empty value, either in the shell
 or in the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/.env">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
     .env
    </a>
    file.
@@ -3270,7 +3392,7 @@ the following
    </code>
    ) when left unset. Rather than duplicating that resolution logic at every place a compose
 file needs the final value, it is computed once, in a dedicated section at the bottom of
-   <a href="https://github.com/SciCatProject/scicatlive/blob/.env">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
     .env
    </a>
    , into a
@@ -3363,7 +3485,7 @@ It's also possible to only run some services in development mode by using their 
    <p>
     Please be patient when using DEV as each container sets the env for dev, including the requirements for testing, which
 might take a little to finish. To see if any special precaution is required to run the tests, refer to the
-    <a href="https://github.com/SciCatProject/scicatlive/blob/.github/compose.dev.test.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/compose.dev.test.yaml">
      compose.dev.test.yaml
     </a>
     file where tests files are referenced and refer to their content.
@@ -3474,17 +3596,17 @@ the first time. This is done to avoid clashes with local changes.
    </p>
    <p>
     To ease writing DEV configuration, a dev template is provided at
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/compose.dev.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/compose.dev.yaml">
      ./services/compose.dev.yaml
     </a>
     and each component inhearits from it. As you can see in the
 file
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/compose.dev.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.dev.yaml">
      ./services/frontend/compose.dev.
     </a>
     , setting the componenent specific
 variables from the relative
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/.env">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/.env">
      .env file
     </a>
     .
@@ -3523,7 +3645,7 @@ volumes to push the relevant changes.
     <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/26a0.svg" title=":warning:"/>
     As the DEV containers pull from upstream/latest, there is no guarantee of their functioning outside of
 releases. If they fail to start, try, as a first option, to build the image from a tag (e.g.
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/compose.dev.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.dev.yaml">
      build context
     </a>
     ) using the
@@ -3532,7 +3654,7 @@ releases. If they fail to start, try, as a first option, to build the image from
     </a>
     and then git checkout to that tag
 (e.g. set
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/compose.dev.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.dev.yaml">
      GITHUB_REPO
     </a>
     including the branch using the same syntax and value as
@@ -3546,7 +3668,7 @@ the build context). You can achieve this, by setting the
     </code>
     file (e.g.
 the
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/.env">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/.env">
      frontend env file
     </a>
     ) as follows:
@@ -3571,7 +3693,7 @@ the
      DEV_BBACKUP=true
     </code>
     in the
-    <a href="https://github.com/SciCatProject/scicatlive/blob/.env">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
      .env
     </a>
     file enables bidirectional synchronization between the DEV volume of
@@ -3664,7 +3786,7 @@ localhost subdomains.
     TRAEFIK_HTTPS_PORT
    </code>
    in the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/.env">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
     .env
    </a>
    file whenever those ports are unavailable, for example:
@@ -3723,7 +3845,7 @@ as described in
   </p>
   <p>
    Every service folder (inside the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services">
     services
    </a>
    parent directory) contains its configuration and some
@@ -3735,7 +3857,7 @@ instructions, at least for the non-third-party containers.
     frontend
    </a>
    , the user can change any file in the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/config">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/config">
     frontend config
    </a>
    folder, for which instructions are available in the
@@ -3764,15 +3886,15 @@ instructions, at least for the non-third-party containers.
    </code>
    composability, it is useful to specify its configuration through multiple JSON files, with different scopes, which are
 then merged by a
-   <a href="https://github.com/SciCatProject/scicatlive/blob/entrypoints/merge_json.sh">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/entrypoints/merge_json.sh">
     init script
    </a>
    . For this reason, one can define
-   <a href="https://github.com/SciCatProject/scicatlive/blob/entrypoints">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/entrypoints">
     common entrypoints
    </a>
    and service-specific ones (e.g.
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v4/entrypoints">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/entrypoints">
     backend v4 ones
    </a>
    ) which can be run inside the container, before the
@@ -3786,14 +3908,14 @@ services, it is recommended to place them in an
     entrypoints
    </code>
    folder below the outermost service (e.g.
-   <a href="https://github.com/SciCatProject/scicatlive/blob/entrypoints">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/entrypoints">
     this one
    </a>
    ).
   </p>
   <p>
    To ease the iterative execution of multiple init scripts, one can leverage the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/entrypoints/loop_entrypoints.sh">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/entrypoints/loop_entrypoints.sh">
     loop_entrypoints
    </a>
    utility, which loops alphabetically over
@@ -3801,7 +3923,7 @@ services, it is recommended to place them in an
     /docker-entrypoinst/*.sh
    </code>
    and executes each. This is in use in some services (e.g. in the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/compose.yaml">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.yaml">
     frontend
    </a>
    ), so one can add additional init steps by mounting them, one by one, as
@@ -3829,7 +3951,7 @@ as well).
    <ol>
     <li>
      mount the
-     <a href="https://github.com/SciCatProject/scicatlive/blob/entrypoints/loop_entrypoints.sh">
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/entrypoints/loop_entrypoints.sh">
       loop_entrypoint.sh
      </a>
      as a
@@ -3866,12 +3988,269 @@ as well).
    </ol>
    <p>
     See for example the
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/compose.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.yaml">
      frontend compose file
     </a>
     .
    </p>
   </details>
+  <h2 id="development">
+   Development
+   <a class="headerlink" href="#development" title="Permanent link">
+    ¶
+   </a>
+  </h2>
+  <p>
+   Some tooling to help while developing or contributing to SciCatLive.
+  </p>
+  <h3 id="running-ci-locally">
+   Running CI locally
+   <a class="headerlink" href="#running-ci-locally" title="Permanent link">
+    ¶
+   </a>
+  </h3>
+  <p>
+   The full
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/workflows/compose_test.yaml">
+    CI workflow
+   </a>
+   - changed-file detection,
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/workflows/lint.yaml">
+    linting
+   </a>
+   ,
+and the
+   <code>
+    docker compose up
+   </code>
+   matrix - can be run locally with
+   <a href="https://github.com/nektos/act">
+    nektos/act
+   </a>
+   :
+  </p>
+  <div class="highlight">
+   <pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>.github/compose.lint.yaml<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>lintci
+</code></pre>
+  </div>
+  <p>
+   This is handy for checking whether CI will pass without waiting on it. The
+   <code>
+    JOB
+   </code>
+   env var selects which top-level
+   <code>
+    compose_test.yaml
+   </code>
+   job it runs (defaults to
+   <code>
+    lint
+   </code>
+   ); since
+   <code>
+    test
+   </code>
+   and
+   <code>
+    tests-status
+   </code>
+   both
+   <code>
+    need
+   </code>
+   <code>
+    lint
+   </code>
+   (and
+   <code>
+    test
+   </code>
+   also needs
+   <code>
+    changes
+   </code>
+   ),
+   <code>
+    JOB=tests-status
+   </code>
+   pulls in the whole workflow, including the heavy
+   <code>
+    docker compose up
+   </code>
+   matrix:
+  </p>
+  <div class="highlight">
+   <pre><span></span><code><span class="nv">JOB</span><span class="o">=</span>tests-status<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>.github/compose.lint.yaml<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>lintci
+</code></pre>
+  </div>
+  <p>
+   <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/26a0.svg" title=":warning:"/>
+   Use
+   <code>
+    JOB=tests-status
+   </code>
+   with caution: it runs the full
+   <code>
+    test
+   </code>
+   matrix - every combination of
+   <code>
+    BE_VERSION
+   </code>
+   ,
+   <code>
+    OPENSEARCH_ENABLED
+   </code>
+   ,
+   <code>
+    JOBS_ENABLED
+   </code>
+   ,
+   <code>
+    LDAP_ENABLED
+   </code>
+   ,
+   <code>
+    OIDC_ENABLED
+   </code>
+   and
+   <code>
+    DEV
+   </code>
+   - each spinning up its own
+   <code>
+    docker compose up
+   </code>
+   stack, so it is very resource-heavy (CPU, RAM, disk and network) and can overwhelm a laptop.
+If it does, consider adding
+   <code>
+    --concurrent-jobs 1
+   </code>
+   to the
+   <code>
+    lintci
+   </code>
+   command in
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/compose.lint.yaml">
+    compose.lint.yaml
+   </a>
+   to run the matrix one job at a time instead of in parallel.
+  </p>
+  <h3 id="running-linting-locally">
+   Running linting locally
+   <a class="headerlink" href="#running-linting-locally" title="Permanent link">
+    ¶
+   </a>
+  </h3>
+  <p>
+   <code>
+    lintci
+   </code>
+   (above) runs
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/workflows/lint.yaml">
+    lint.yaml
+   </a>
+   's three jobs as a check, without fixing anything.
+The checks among them that support auto-fixing -
+   <code>
+    ruff
+   </code>
+   ,
+   <code>
+    eslint
+   </code>
+   and
+   <code>
+    markdownlint-cli2
+   </code>
+   - can instead fix what
+they find, via the
+   <code>
+    lint
+   </code>
+   service in
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/compose.lint.yaml">
+    compose.lint.yaml
+   </a>
+   :
+  </p>
+  <div class="highlight">
+   <pre><span></span><code><span class="nv">FIX</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>.github/compose.lint.yaml<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>lint
+</code></pre>
+  </div>
+  <p>
+   Omit
+   <code>
+    FIX
+   </code>
+   to only report issues without fixing them.
+  </p>
+  <h3 id="developing-services-in-dev-mode">
+   Developing services in DEV mode
+   <a class="headerlink" href="#developing-services-in-dev-mode" title="Permanent link">
+    ¶
+   </a>
+  </h3>
+  <p>
+   Setting
+   <code>
+    DEV=true
+   </code>
+   (or a per-service variant, e.g.
+   <code>
+    BACKEND_DEV=true
+   </code>
+   ) boots the SciCat services into a development
+environment instead of running them normally, so you can develop and test against the same dependencies used in
+this project. See
+   <a href="#dev-configuration">
+    DEV configuration
+   </a>
+   for the full list of
+   <code>
+    *_DEV
+   </code>
+   variables and how they behave.
+  </p>
+  <h3 id="previewing-documentation-locally">
+   Previewing documentation locally
+   <a class="headerlink" href="#previewing-documentation-locally" title="Permanent link">
+    ¶
+   </a>
+  </h3>
+  <p>
+   Setting
+   <code>
+    SCICATLIVE_DEV=true
+   </code>
+   and starting the
+   <a href="./services/docs/">
+    docs
+   </a>
+   service renders a live, searchable preview
+of this repository's own documentation (including this README) using MkDocs:
+  </p>
+  <div class="highlight">
+   <pre><span></span><code><span class="nv">SCICATLIVE_DEV</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>docs
+</code></pre>
+  </div>
+  <p>
+   See
+   <a href="#dev-configuration">
+    DEV configuration
+   </a>
+   and the
+   <a href="services/docs/">
+    docs README
+   </a>
+   for more, including
+previewing individual DEV-mode services' own documentation or the external user-documentation repository
+(
+   <code>
+    USER_DOCS_DEV
+   </code>
+   ).
+  </p>
   <h2 id="add-a-new-service">
    Add a new service
    <a class="headerlink" href="#add-a-new-service" title="Permanent link">
@@ -3893,7 +4272,7 @@ which case use a bind-mount volume instead, since configs are always mounted rea
 relevant for the published OCI packages: bind mounts pointing at directories, or at files that no longer exist on
 disk, require the user to have those in their local environment, which might not be the case, so they are left
 untouched by the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/.github/semantic-release/publish-oci.js">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/semantic-release/publish-oci.js">
     release workflow
    </a>
    ; single-file bind mounts, however, are
@@ -3936,7 +4315,7 @@ character replaced by
   <ol>
    <li>
     create a dedicated folder in the
-    <a href="https://github.com/SciCatProject/scicatlive/blob/services">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/services">
      services
     </a>
     one *
@@ -3966,7 +4345,7 @@ character replaced by
    </li>
    <li>
     include the reference to (3) to the global
-    <a href="https://github.com/SciCatProject/scicatlive/blob/compose.yaml">
+    <a href="https://github.com/SciCatProject/scicatlive/blob/main/compose.yaml">
      compose include list
     </a>
     *
@@ -3986,11 +4365,11 @@ same component, add it to the
    </code>
    folder relative to the affected service, and in (6) add it to its inclusion
 list. See an example of a service relative
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services">
     services folder here
    </a>
    and a
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/compose.yaml">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/compose.yaml">
     relative inclusion list here
    </a>
    .
@@ -4009,7 +4388,7 @@ service in the compose, when needed, to avoid possible issues when running
    </code>
    on different platforms,
 for example on MAC with arm64 architecture. See for example the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/searchapi/compose.yaml#L3">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/searchapi/compose.yaml#L3">
     searchapi compose
    </a>
    .
@@ -4050,12 +4429,12 @@ or/and this
     <li>
      eventually, include any service, in the service-specific folder which is specific to the service and not shared by
    other, more general services, e.g. here:
-     <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services">
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services">
       ./services/backend/services/
      </a>
      . This folder
    should also include different versions of the same service, e.g.
-     <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services">
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services">
       v3 and v4
      </a>
     </li>
@@ -4077,7 +4456,7 @@ or/and this
       compose.base.yaml
      </code>
      file, e.g.
-     <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v4/compose.base.yaml">
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.base.yaml">
       ./services/backend/services/v4/compose.base.yaml
      </a>
      , which should
@@ -4097,7 +4476,7 @@ or/and this
       compose.&lt;ENV&gt;.yaml
      </code>
      file, e.g.
-     <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v4/compose.opensearch.yaml">
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.opensearch.yaml">
       backend v4 compose.opensearch.yaml
      </a>
      , with the
@@ -4105,7 +4484,7 @@ or/and this
     </li>
     <li>
      create a symlink from
-     <a href="https://github.com/SciCatProject/scicatlive/blob/services/.empty.yaml">
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/.empty.yaml">
       .empty.yaml
      </a>
      to each
@@ -4113,7 +4492,7 @@ or/and this
       .compose.&lt;ENV&gt;.yaml
      </code>
      , e.g.
-     <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v4/.compose.opensearch.yaml">
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/.compose.opensearch.yaml">
       ./services/backend/services/v4/.compose.opensearch.yaml
      </a>
      . This is used whenever the
@@ -4140,7 +4519,7 @@ or/and this
       ENV
      </code>
      is not set. See an example
-     <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v4/compose.yaml">
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.yaml">
       ./services/backend/services/v4/compose.yaml
      </a>
      .
@@ -4149,7 +4528,7 @@ or/and this
       compose.*.yaml
      </code>
      files, as done in the
-     <a href="https://github.com/SciCatProject/scicatlive/blob/services/frontend/compose.base.yaml">
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/frontend/compose.base.yaml">
       frontend
      </a>
     </li>
@@ -4160,18 +4539,23 @@ or/and this
      </code>
      service, add the
       selective include in the parent compose.yaml, e.g.
-     <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/compose.yaml">
+     <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/compose.yaml">
       ./services/backend/compose.yaml
      </a>
     </li>
     <li>
      <p>
       eventually, modify the
-      <a href="https://github.com/SciCatProject/scicatlive/blob/.github/workflows/compose_test.yaml">
+      <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/workflows/compose_test.yaml">
        compose workflow
       </a>
       to add the toggle to the
-      matrix. If the toggle should only run when relevant files changed (as done for the existing
+      matrix (see
+      <a href="#running-ci-locally">
+       Running CI locally
+      </a>
+      for how to exercise it without waiting on CI). If the
+      toggle should only run when relevant files changed (as done for the existing
       <code>
        opensearch
       </code>
@@ -4200,7 +4584,7 @@ or/and this
         opensearch
        </code>
        , to
-       <a href="https://github.com/SciCatProject/scicatlive/blob/.github/changed_files.yaml">
+       <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/changed_files.yaml">
         .github/changed_files.yaml
        </a>
       </li>
@@ -4243,7 +4627,7 @@ or/and this
      </ol>
      <p>
       (linting is not part of this matrix: it lives in
-      <a href="https://github.com/SciCatProject/scicatlive/blob/.github/workflows/lint.yaml">
+      <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/workflows/lint.yaml">
        .github/workflows/lint.yaml
       </a>
       ,
@@ -4251,28 +4635,29 @@ or/and this
       <code>
        lint
       </code>
-      job. It has two jobs:
+      job. It has three jobs:
       <code>
        static-lint
       </code>
       (YAML, JSON, shell,
-  Python, JavaScript and HTML - checks that only ever look at the repo's own committed files) and
+  Python, JavaScript and HTML - checks that only ever look at the repo's own committed files),
       <code>
        docs-lint
       </code>
-      (Markdown link checking, Markdown style, and the MkDocs link check - kept separate so the
+      (Markdown link checking, Markdown style, and the MkDocs link check), and
       <code>
-       npm install
+       release-lint
       </code>
-      in
+      (dry-runs
+      <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/semantic-release/publish-oci.js">
+       publish-oci.js
+      </a>
+      and
       <code>
-       static-lint
+       semantic-release
       </code>
-      can never leak
-      <code>
-       node_modules
-      </code>
-      into a Markdown-file scan).
+      , so a broken release pipeline
+  is caught on every PR instead of only when a real release runs).
       <code>
        test
       </code>
@@ -4284,9 +4669,9 @@ or/and this
        lint
       </code>
       job, so the
-  heavy compose matrix never starts if either lint job fails. If the new service introduces a file extension
-  none of these tools already cover, add a step for it to whichever job fits, or a new job if it doesn't. If
-  that tool supports auto-fixing, wire it up the way
+  heavy compose matrix never starts if any of the three lint jobs fails. If the new service introduces a file
+  extension none of these tools already cover, add a step for it to whichever job fits, or a new job if it
+  doesn't. If that tool supports auto-fixing, wire it up the way
       <code>
        ruff
       </code>
@@ -4298,38 +4683,24 @@ or/and this
       <code>
        markdownlint-cli2
       </code>
-      are: a shared
-  script under
-      <a href="https://github.com/SciCatProject/scicatlive/blob/.github/lint">
+      are: a
+  shared script under
+      <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/lint">
        .github/lint/
       </a>
       , referenced from both the workflow step and
-      <a href="https://github.com/SciCatProject/scicatlive/blob/.github/compose.lint.yaml">
+      <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/compose.lint.yaml">
        compose.lint.yaml
       </a>
       's
       <code>
        lint
       </code>
-      service, so it can be applied locally with
-      <code>
-       FIX=true docker compose -f .github/compose.lint.yaml run --rm lint
-      </code>
-      . Both jobs can also be run as a
-  check (no fixing) with
-      <code>
-       docker compose -f .github/compose.lint.yaml run --rm lintci
-      </code>
-      , which uses
-      <a href="https://github.com/nektos/act">
-       nektos/act
+      service - see
+      <a href="#running-linting-locally">
+       Running linting locally
       </a>
-      to run
-      <code>
-       lint.yaml
-      </code>
-      directly against your working tree - handy for
-  checking whether CI will pass without waiting on it)
+      for how to use it)
    7. if the ENV's default should fall back to another variable (e.g. to
       <code>
        DEV
@@ -4356,7 +4727,7 @@ or/and this
        enable entrypoints
       </a>
       , e.g. like
-      <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v4/compose.base.yaml">
+      <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/compose.base.yaml">
        ./services/backend/services/v4/compose.base.yaml
       </a>
       , including any

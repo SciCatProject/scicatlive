@@ -1,0 +1,9 @@
+services:
+  docs:
+    volumes:
+      - type: volume
+        source: frontend_dev
+        target: /docs/frontend
+        read_only: true
+        volume:
+          subpath: docs

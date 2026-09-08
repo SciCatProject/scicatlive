@@ -15,79 +15,35 @@ regenerating the shared SDK, verifying behavior end-to-end, and landing changes 
 
 ## Shared setup
 
-Both tracks build on the same running stack, and both need the frontend's admin config editor from
-[PR #2517 — "feat: allow loading configs from other sources"](https://github.com/SciCatProject/frontend/pull/2517)
-(branch `be_conf`) to already be checked out — Track 1 wires the config-loading mechanism that PR adds, and Track 2's
-admin-editor save flow is built directly on top of the editor that PR introduces.
+Both tracks need some preliminary setup before they'll run — one piece in the frontend, one in scicatlive itself.
 
-scicatlive itself already ships wired so the frontend loads (part of) its config from the backend by default — this is
-scicatlive-level configuration, not application code, and it already lives on this branch across four files, so there's
-nothing to do here, just what to know before the steps below:
+**Frontend:** [PR #2517 — "feat: allow loading configs from other sources"](https://github.com/SciCatProject/frontend/pull/2517)
+adds `additionalConfigs`, letting the frontend load part of its configuration from a configurable backend URL instead
+of only its bundled static file. Track 1 investigates and wires up that mechanism; Track 2's admin-editor work builds
+directly on the admin editor the same PR introduces. It isn't merged yet, so this branch checks it out explicitly (see
+step 3 below) rather than relying on whatever's latest on its default branch.
 
-[`services/frontend/config/config.json`](../services/frontend/config/config.json) — points `additionalConfigs` at the
-backend's own `GET /api/v3/admin/config` endpoint, which returns the runtime-config `frontendConfig` document already
-unwrapped to just its `data`:
+**scicatlive:** getting that feature running end-to-end meant passing matching configuration to the backend and
+frontend containers together — the backend now seeds a `frontendConfig` runtime-config entry pointing at itself, and
+the frontend's own config points `additionalConfigs` at the backend endpoint that serves it. That's already wired on
+this branch, across `services/frontend/config/config.json`, `services/backend/services/v4/compose.base.yaml`,
+`services/backend/services/v4/config/frontend.config.json`, and `services/backend/services/v4/config/.env` — nothing
+to do here, just useful context for what follows. See exactly what changed with:
 
-```diff
- {
-    "lbBaseURL": "${BACKEND_URL}",
-    "jobsEnabled": false,
--   "oAuth2Endpoints": []
-+   "oAuth2Endpoints": [],
-+   "additionalConfigs": ["${BACKEND_URL}/api/v3/admin/config"]
- }
+```sh
+git diff origin/main...HEAD -- \
+  services/frontend/config/config.json \
+  services/backend/services/v4/compose.base.yaml \
+  services/backend/services/v4/config/frontend.config.json \
+  services/backend/services/v4/config/.env
 ```
 
-[`services/backend/services/v4/compose.base.yaml`](../services/backend/services/v4/compose.base.yaml) — mounts the
-same [`entrypoints/merge_json.sh`](../entrypoints/merge_json.sh) the frontend uses (at `/docker-entrypoints/05.sh`, so
-it runs before the existing `db_migration_sh` at `10.sh`), plus a new base config fragment mounted at
-`/config/frontend.config.0.json`:
+(the triple-dot diffs against the point where this branch forked from `origin/main`, not its current tip — so it
+shows only what this branch actually added, not unrelated commits `main` has since gained.) Out of the box, scicatlive
+already demonstrates the frontend loading part of its configuration from the backend — which is the behavior Track 1
+investigates and Track 2 edits through the admin UI.
 
-```diff
-     volumes:
-+      - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoints/05.sh:ro
-+      - ./config/frontend.config.json:/config/frontend.config.0.json:ro
-     entrypoint:
-       - loop_entrypoints.sh
-       - docker-entrypoint.sh
-     command: node dist/main
-     ...
-     environment:
-+      CONFIG_FILE: frontend.config
-+      CONFIG_DIR: /config
-+      BACKEND_URL: ${_BACKEND_HTTPS_URL}
-```
-
-[`services/backend/services/v4/config/frontend.config.json`](../services/backend/services/v4/config/frontend.config.json)
-— the new fragment being mounted above, a brand-new file:
-
-```diff
-+{
-+    "lbBaseURL": "${BACKEND_URL}"
-+}
-```
-
-`CONFIG_DIR`/`CONFIG_FILE` tell `merge_json.sh` to merge everything under `/config/frontend.config.*.json` into
-`/config/frontend.config` — right now that's just the one base fragment; Track 1 extends it to the rest.
-
-[`services/backend/services/v4/config/.env`](../services/backend/services/v4/config/.env) — tells the backend to seed
-`frontendConfig` from that merged file instead of its own bundled default:
-
-```diff
- SAMPLE_GROUPS=ingestor
-+FRONTEND_CONFIG_FILE=/config/frontend.config
-```
-
-Together, these four changes close the loop: on a fresh database, the backend seeds `frontendConfig` with a
-`lbBaseURL` pointing at itself, and the frontend's `additionalConfigs` fetches exactly that document and merges it in.
-Out of the box, scicatlive already demonstrates the frontend loading part of its configuration from the backend — which
-is the behavior Track 1 investigates and Track 2 edits through the admin UI.
-
-One more thing that's already set on this branch: [`services/frontend/.env`](../services/frontend/.env) pins
-`GITHUB_REPO` to [PR #2517](https://github.com/SciCatProject/frontend/pull/2517)'s `be_conf` branch, so the frontend
-dev container checks it out automatically the first time its dev volume is created — no manual checkout needed.
-
-With all that in mind, do this once, before splitting into tracks:
+Do this once, before splitting into tracks:
 
 1. **Spin up scicatlive in dev mode.**
 
@@ -110,7 +66,15 @@ With all that in mind, do this once, before splitting into tracks:
    is also installed via [`entrypoints/add_shell_tools.sh`](../entrypoints/add_shell_tools.sh) if you prefer it — just
    run `zsh`.
 
-3. **Start the dev servers.** DEV mode only gives each service a bare dev environment — nothing runs until you start
+3. **Checkout the pre-fixed branch, inside the frontend container.** In dev mode, a service normally builds from
+   whatever's latest on its default branch — but [PR #2517](https://github.com/SciCatProject/frontend/pull/2517) isn't
+   merged yet, so check out its branch explicitly to get its changes:
+
+   ```sh
+   git checkout be_conf
+   ```
+
+4. **Start the dev servers.** DEV mode only gives each service a bare dev environment — nothing runs until you start
    it, and both tracks need the servers actually up (Track 2's first step, for instance, calls the live `PUT`
    endpoint). In the backend container:
 

@@ -1,5 +1,8 @@
 {
    "lbBaseURL": "${BACKEND_URL}",
    "jobsEnabled": false,
-   "oAuth2Endpoints": []
+   "oAuth2Endpoints": [],
+   "additionalConfigs": [
+      "${BACKEND_URL}/api/v3/admin/config"
+   ]
 }

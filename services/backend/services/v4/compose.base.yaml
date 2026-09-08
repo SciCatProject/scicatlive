@@ -13,6 +13,9 @@ services:
       - source: backend_v4_db_migration_sh
         target: /docker-entrypoints/10.sh
         mode: 0555
+    volumes:
+      - ${PWD}/entrypoints/merge_json.sh:/docker-entrypoints/05.sh:ro
+      - ./config/frontend.config.json:/config/frontend.config.0.json:ro
     entrypoint:
       - loop_entrypoints.sh
       - docker-entrypoint.sh
@@ -22,6 +25,10 @@ services:
       - traefik.http.services.backend.loadbalancer.server.port=3000
     env_file:
       - ./config/.env
+    environment:
+      CONFIG_FILE: frontend.config
+      CONFIG_DIR: /config
+      BACKEND_URL: ${_BACKEND_HTTPS_URL}
     healthcheck:
       test: wget --spider -Y off 'http://127.0.0.1:3000/api/v3/health'
       start_period: 5s

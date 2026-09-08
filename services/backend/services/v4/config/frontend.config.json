@@ -1,0 +1,3 @@
+{
+    "lbBaseURL": "${BACKEND_URL}"
+}

@@ -4027,7 +4027,23 @@ and the
    <a href="https://github.com/nektos/act">
     nektos/act
    </a>
-   :
+   .
+   <code>
+    lintci
+   </code>
+   <code>
+    depends_on
+   </code>
+   the
+   <code>
+    lint
+   </code>
+   service (see
+   <a href="#running-linting-locally">
+    Running linting locally
+   </a>
+   ), so running it also runs
+the local lint/test tools first:
   </p>
   <div class="highlight">
    <pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>.github/compose.lint.yaml<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>lintci
@@ -4172,7 +4188,11 @@ they find, via the
    <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/compose.lint.yaml">
     compose.lint.yaml
    </a>
-   :
+   . The same service also runs
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/semantic-release/publish-oci.js">
+    publish-oci.js
+   </a>
+   's unit tests (no fixing, just pass/fail):
   </p>
   <div class="highlight">
    <pre><span></span><code><span class="nv">FIX</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>.github/compose.lint.yaml<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>lint
@@ -4648,16 +4668,20 @@ or/and this
       <code>
        release-lint
       </code>
-      (dry-runs
+      (runs
       <a href="https://github.com/SciCatProject/scicatlive/blob/main/.github/semantic-release/publish-oci.js">
        publish-oci.js
       </a>
+      's unit tests, then dry-runs
+      <code>
+       publish-oci.js
+      </code>
       and
       <code>
        semantic-release
       </code>
-      , so a broken release pipeline
-  is caught on every PR instead of only when a real release runs).
+      , so a broken release pipeline is caught on every PR instead of only when a real release
+  runs).
       <code>
        test
       </code>

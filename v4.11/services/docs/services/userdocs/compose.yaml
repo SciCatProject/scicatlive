@@ -1,0 +1,14 @@
+services:
+  userdocs:
+    image: alpine:3.24.1
+    working_dir: ${WORKDIR}
+    extends:
+      file: ${PWD}/services/compose.dev.yaml
+      service: app-from-local
+    labels: !reset
+    volumes:
+      - ./entrypoints/clone_git.sh:/docker-entrypoints/02.sh:ro
+
+volumes:
+  userdocs_dev:
+    driver: local

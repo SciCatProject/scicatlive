@@ -1,0 +1,6 @@
+services:
+  keycloak:
+    env_file:
+      - ./config/.https.env
+    labels:
+      - traefik.http.services.keycloak.loadbalancer.passhostheader=true

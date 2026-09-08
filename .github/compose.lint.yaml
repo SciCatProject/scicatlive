@@ -8,13 +8,17 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - act_cache:/root/.cache/act
     command:
-      - workflow_call
+      - pull_request
       - -W
-      - .github/workflows/lint.yaml
+      - .github/workflows/compose_test.yaml
+      - -j
+      - ${JOB:-lint}
       - -P
       - ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-latest
       - --local-repository
       - SciCatProject/scicatlive@main=/repo
+      - --env-file
+      - /dev/null
 
   lint:
     image: ghcr.io/catthehacker/ubuntu:act-latest

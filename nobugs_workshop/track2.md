@@ -1,56 +1,34 @@
 # Track 2 — A PATCH endpoint: proving why `generate_sdk` matters
 
-**Repos involved:** `backend`, `frontend` (consumes the regenerated SDK)
-**What this teaches:** the actual, concrete value of SciCat's `generate_sdk` workflow — not as an abstract "keeps things
-in sync" claim, but as something the group watches happen: a client method that simply doesn't exist until they
-regenerate it.
-**SDK impact:** central to the track. Without running `generate_sdk`, none of the frontend work in this track is even
-possible to write, let alone compile.
+**Repos involved:** `backend`, `frontend`
 
 ## The story
 
-This track starts from a real request: an admin user wants to change a single field of the frontend's runtime
-configuration programmatically, without touching anything else. Today, that's not safely possible — the backend's only
-update mechanism is a `PUT`, and it does a full replace of the entire configuration blob. If an admin (or the admin UI
-itself) sends an update containing only the one field they meant to change, the backend happily stores exactly that —
-and quietly deletes every other setting that used to be there. That's not a hypothetical: it's how the existing endpoint
-is written today.
-
-The right fix is a `PATCH` endpoint with proper partial-update semantics: send only the fields you want to change, and
-the backend merges just those into what's already stored, leaving everything else exactly as it was. This is effectively
-[JSON Merge Patch (RFC 7396)](https://www.rfc-editor.org/rfc/rfc7396) — a well-established, named pattern for exactly
-this problem, not something bespoke.
+The backend's only config-update mechanism is `PUT`, which replaces the whole stored blob — so a partial update
+silently deletes every other field. The fix is a proper `PATCH` endpoint with real partial-update semantics: send
+only the fields you want to change, merge just those in. This is effectively [JSON Merge Patch (RFC
+7396)](https://www.rfc-editor.org/rfc/rfc7396).
 
 ## Step by step
 
-Assumes the [shared setup](demo.md#shared-setup) is done: scicatlive running in dev mode, both containers attached, and
-the frontend container checked out on `be_conf` (which is where the admin editor this track wires into already lives).
+Assumes the [shared setup](demo.md#shared-setup) is done.
 
-1. **Reproduce today's bug.** Open the admin config editor (`/admin/configuration`) in two browser tabs, both loaded
-   fresh. In the first tab, edit one field and save. In the second tab — still holding the config as it looked before
-   that save — edit a *different* field and save. Reload either tab: the first tab's change is gone, silently wiped out
-   by the second save's stale, full-object `PUT`. This is the motivating evidence for everything that follows — the
-   group isn't fixing an imagined problem.
+1. **Reproduce the bug.** Open the admin config editor (`/admin/configuration`) in two browser tabs, both loaded
+   fresh. Edit and save one field in the first tab. Edit and save a *different* field in the second tab (still
+   holding the config as it looked before the first save). Reload either tab: the first tab's change is gone.
 
-2. **Design the endpoint correctly, first try.** Rather than a naive "read the document, merge in memory, write the
-   whole thing back" implementation (which introduces its own subtle race — two concurrent partial updates to
-   *different* fields can still stomp on each other if both read the same stale snapshot before either writes), the
-   endpoint is built directly as an atomic operation: a single MongoDB `$set` whose keys are the incoming patch
-   flattened into full dot-notation paths (`data.<key>` for a top-level field, `data.<key>.<nested>` for anything
-   deeper), not just the top level — so a patch can safely touch one leaf buried inside a nested object without
-   disturbing its siblings. Because MongoDB applies each of those key-paths atomically server-side, there's no
-   read-then-write window at all — nothing can go stale in between, because there's no "in between." Two admins patching
-   different sections — or even different leaves of the same nested section — at the same moment both simply succeed.
+2. **Design the endpoint.** Not "read the document, merge in memory, write it back" — that's still racy (two
+   concurrent patches to different fields can stomp on each other). Instead, one atomic MongoDB `$set`, whose keys
+   are the incoming patch flattened into full dot-notation paths (`data.<key>`, `data.<key>.<nested>`), so patches to
+   different leaves — even within the same nested section — always both succeed.
 
-   This lives in the backend's existing runtime-config module: a new DTO alongside the others in
+   Lives in the existing runtime-config module: a new DTO in
    [`src/config/runtime-config/dto/`](https://github.com/SciCatProject/backend/tree/master/src/config/runtime-config/dto),
-   the flattening helper below in
-   [`src/common/utils.ts`](https://github.com/SciCatProject/backend/blob/master/src/common/utils.ts) (next to the
-   other shared helpers
-   [`runtime-config.service.ts`](https://github.com/SciCatProject/backend/blob/master/src/config/runtime-config/runtime-config.service.ts)
-   already imports from there), and the new `patchConfig` method itself in that same
+   a flatten helper in
+   [`src/common/utils.ts`](https://github.com/SciCatProject/backend/blob/master/src/common/utils.ts), the new
+   `patchConfig` method in
    [`runtime-config.service.ts`](https://github.com/SciCatProject/backend/blob/master/src/config/runtime-config/runtime-config.service.ts),
-   called from a new `@Patch(':id')` route on
+   and a new `@Patch(':id')` route on
    [`runtime-config.controller.ts`](https://github.com/SciCatProject/backend/blob/master/src/config/runtime-config/runtime-config.controller.ts).
 
    ```ts
@@ -76,35 +54,24 @@ the frontend container checked out on `be_conf` (which is where the admin editor
    };
    ```
 
-   Optional, if time allows — the endpoint itself is the core deliverable here, not the test — add a test for it in
-   [`test/RuntimeConfig.js`](https://github.com/SciCatProject/backend/blob/master/test/RuntimeConfig.js), alongside
-   the existing PUT tests, covering that a partial PATCH merges into the stored document instead of replacing it.
-   Test it against the backend's own e2e setup: `npm run start:test` in one terminal (boots the backend with the test
-   config), `npm run test:api:mocha` in another (runs the mocha suite, including the new test).
+   Optional, if time allows: add a test in
+   [`test/RuntimeConfig.js`](https://github.com/SciCatProject/backend/blob/master/test/RuntimeConfig.js), run via
+   `npm run start:test` in one terminal and `npm run test:api:mocha` in another.
 
-3. **Backend done.** Commit and push the branch (in a new branch) — a new DTO, a new controller route with the correct
-   Swagger decorators (so it's properly documented, not hidden behind a generic `Object` type the way the existing `PUT`
-   unfortunately is), and the atomic service method.
+3. **Commit and push the backend branch** (new DTO, controller route with proper Swagger decorators, atomic service
+   method).
 
-4. **Regenerate the SDK — and show the diff.** If the frontend dev server is already running, stop it first (`Ctrl+C` on
-   the `npm start -- --host 0.0.0.0` process) — `generate_sdk` reinstalls the frontend's SDK dependency, which a live
-   dev server can't safely pick up mid-run. Then, from the frontend container, run `generate_sdk` (make sure the backend
-   from step 3 is running — `generate_sdk` generates the client from the live backend's OpenAPI spec, so without it
-   there's nothing to generate from). This is the actual moment the track exists to deliver: open the generated client
-   before and after, and point at the fact that `runtimeConfigControllerPatchConfigV3()` simply was not a method a
-   moment ago. There was no way to call this endpoint from TypeScript with any type safety — now there is, for free,
-   from one command. Once it's done, start the frontend back up with the same `npm start -- --host 0.0.0.0`.
+4. **Regenerate the SDK.** If the frontend dev server is running, stop it first (`generate_sdk` reinstalls its SDK
+   dependency, which a live dev server can't pick up mid-run). Make sure the backend is running, then run
+   `generate_sdk` from the frontend container. Diff the generated client:
+   `runtimeConfigControllerPatchConfigV3()` is a method that didn't exist a moment ago. Start the frontend dev server
+   back up.
 
-5. **Wire it into the real admin editor — not a bolt-on demo widget.** The existing admin configuration editor
-   ([`admin-config-edit.component.ts`](https://github.com/SciCatProject/frontend/blob/be_conf/src/app/admin/admin-config-edit/admin-config-edit.component.ts),
-   built in [PR #2517](https://github.com/SciCatProject/frontend/pull/2517), using JSONForms) currently keeps only the
-   live, in-progress edited state (`currentData`) in memory; its `save()` dispatches that entire object via `PUT`. The
-   fix here is small: keep a second, untouched copy of the config as it was when loaded (`originalData`) alongside
-   `currentData`. `save()` then computes the difference between the two recursively — matching the granularity the
-   backend's PATCH now merges at (any nested leaf, not just the top level): plain objects are walked key by key and only
-   their genuinely-changed leaves included, while arrays are compared and kept as a whole, since the backend patch
-   merges nested objects but not array elements. Only the resulting diff is sent via the new
-   `runtimeConfigControllerPatchConfigV3()` call from step 4.
+5. **Wire it into the admin editor.**
+   [`admin-config-edit.component.ts`](https://github.com/SciCatProject/frontend/blob/be_conf/src/app/admin/admin-config-edit/admin-config-edit.component.ts)
+   currently sends its whole edited object (`currentData`) via `PUT`. Keep an untouched snapshot (`originalData`)
+   alongside it; `save()` now diffs the two recursively (arrays compared as a whole, since the backend patch merges
+   nested objects but not array elements) and PATCHes only what changed.
 
    ```ts
    // Recursively computes the parts of `updated` that differ from `original`.
@@ -129,14 +96,9 @@ the frontend container checked out on `be_conf` (which is where the admin editor
    }
    ```
 
-6. **Prove it, reliably.** Repeat step 1's reproduction exactly: two admin editor tabs, a different field edited and
-   saved in each, then reload. This time both changes survive — same setup, opposite outcome, because each save now only
-   PATCHes the leaves it actually changed instead of overwriting the whole document. This is a deterministic test, not a
-   timing-sensitive one: there's no race to catch in the act, just the same two edits that clobbered each other in step
-   1, now not clobbering each other at all.
+6. **Prove it.** Repeat step 1's reproduction exactly. This time both edits survive.
 
-7. **Contribute upstream.** Commit and push the frontend branch (in a new branch); open a PR alongside the backend one.
-   (A proper PR would also add tests for `save()`'s new diff-and-patch behavior — kept out of this demo to keep the
-   track focused.)
+7. **Contribute upstream.** Commit and push the frontend branch; open a PR alongside the backend one. (A proper PR
+   would also add tests for `save()`'s new diff-and-patch behavior — skipped here to stay focused.)
 
 See also: [demo.md](demo.md) for the overview, and [Track 1](track1.md) for the config-loading/backend-restart track.

@@ -9,7 +9,12 @@ and land the result as a draft PR. Two independent tracks, meant to be run in pa
 
 - **Docker** — version 29.7.2 (tested)
 - **Docker Compose** — version 5.3.1 (tested)
-- **VSCode**
+- **VSCode**. Install the following plugins:
+  - **Dev Containers** by Microsoft
+  - **Container Tools** by Microsoft
+
+The process is tested with Linux or MacOS. It is possible to run Docker and VSCode on
+Windows, but some additional setup may be required.
 
 ## Shared setup
 
@@ -24,7 +29,7 @@ frontend containers — already wired on this branch, across `services/frontend/
 `services/backend/services/v4/config/.env`. See exactly what changed with:
 
 ```sh
-git diff origin/main...HEAD -- \
+git diff origin/main...origin/nobugs -- \
   services/frontend/config/config.json \
   services/backend/services/v4/compose.base.yaml \
   services/backend/services/v4/config/frontend.config.json \
@@ -33,7 +38,23 @@ git diff origin/main...HEAD -- \
 
 Do this once, before splitting into tracks:
 
-1. **Spin up scicatlive in dev mode.**
+1. **Check out scicatlive**
+   First, get a copy of scicatlive with the `nobugs` branch.
+   ```sh
+   git clone git@github.com:SciCatProject/scicatlive.git
+   cd scicatlive
+   git checkout nobugs
+   ```
+
+   If you have used scicatlive in the past you can safely reuse the clone. Run `docker
+   compose down` to stop any prior containers. We will use a new project name below for
+   the workshop. This stores all code and database in a new set of docker volumes, so
+   you get a clean setup while preserving any prior modifications saved in the main
+   `scicatlive` containers.
+
+2. **Spin up scicatlive in dev mode.**
+
+   Run the following shell commands from the scicatlive directory:
 
    ```sh
    # Uncomment if ports 80/443 are already taken on your machine:
@@ -45,16 +66,16 @@ Do this once, before splitting into tracks:
    DEV=true docker compose -p $PROJECT_NAME up -d
    ```
 
-2. **Attach to the backend and frontend containers.** VSCode's "Attach to Running Container". Default shell is `sh`;
+3. **Attach to the backend and frontend containers.** VSCode's "Attach to Running Container". Default shell is `sh`;
    `zsh` (with oh-my-zsh) is also installed if you prefer it.
 
-3. **Checkout the pre-fixed branch, inside the frontend container.**
+4. **Checkout the pre-fixed branch, inside the frontend container.**
 
    ```sh
    git checkout be_conf
    ```
 
-4. **Start the dev servers.**
+5. **Start the dev servers.**
 
    ```sh
    npm run start:dev

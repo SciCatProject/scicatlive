@@ -41,9 +41,10 @@ Each mount is gated independently, following the same pattern:
 2. symlink `.compose.<service>.yaml` to [../.empty.yaml](../.empty.yaml), used when the service isn't enabled
 3. add `.${_<SERVICE>_DEV:+/}compose.<service>.yaml` to the `path:` list under `include:` in
    [compose.yaml](./compose.yaml)
-4. add `# <SERVICE>_DEV=true` and `_<SERVICE>_DEV=${DEV:-${<SERVICE>_DEV:-}}` to the root [.env](../../.env), so
-   `DEV=true` also enables it - see [Computed environment variables](../../README.md#computed-environment-variables)
-5. add `_<SERVICE>_DEV` to the `_DOCS_DEV` fallback chain in [.env](./.env), so
+4. add `# <SERVICE>_DEV=true` to the root [.env](../../.env), and `_<SERVICE>_DEV=${DEV:-${<SERVICE>_DEV:-}}` to
+   [.env.computed](../../.env.computed), so `DEV=true` also enables it - see
+   [Computed environment variables](../../README.md#computed-environment-variables)
+5. add `_<SERVICE>_DEV` to the `_DOCS_DEV` fallback chain in [.env.computed](../../.env.computed), so
    [compose.base.yaml](./compose.base.yaml) - and the docs service itself - gets pulled in once this flag alone is
    set
 

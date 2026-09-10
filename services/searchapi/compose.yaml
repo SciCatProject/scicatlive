@@ -3,3 +3,4 @@ include:
       - compose.base.yaml
       - compose.${_BE_VERSION}.yaml
       - .${_SEARCHAPI_DEV:+/}compose.dev.yaml
+    env_file: .env

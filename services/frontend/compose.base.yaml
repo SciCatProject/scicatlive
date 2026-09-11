@@ -43,3 +43,5 @@ configs:
     file: ./config/config.ldap.json
   frontend_config_jobs_json:
     file: ./config/config.jobs.json
+  frontend_config_ingestor_json:
+    file: ./config/config.ingestor.json

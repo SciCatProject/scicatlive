@@ -1,7 +1,11 @@
 services:
   keycloak:
     image: quay.io/keycloak/keycloak:26.7
-    command: start-dev --import-realm --health-enabled=true --http-port=80
+    command: >
+      start-dev
+      --import-realm
+      --health-enabled=true
+      --http-port=${_TRAEFIK_HTTP_PORT}
     env_file: ./config/.env
     environment:
       JAVA_OPTS_APPEND: -Dkeycloak.migration.replace-placeholders=true
@@ -14,7 +18,7 @@ services:
       - source: keycloak_facility_realm_json
         target: /opt/keycloak/data/import/facility-realm.json
     labels:
-      - traefik.http.services.keycloak.loadbalancer.server.port=80
+      - traefik.http.services.keycloak.loadbalancer.server.port=${_TRAEFIK_HTTP_PORT}
     healthcheck:
       test: bash /healthcheck.sh
       start_period: 5s

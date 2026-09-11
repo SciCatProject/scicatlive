@@ -259,6 +259,8 @@ the following [table](#docker-compose-profiles-and-env-variables-configuration-o
 | env     | `<SERVICE>_HTTPS_URL` | `<URL>`: HTTPS termination                                                                                            | `''`    | \*                    | Requests the TLS certificate for the URL to LetsEncrypt through the [proxy](#tls-configuration)                                                                                                                      |                         |
 | env     | `DEV_BBACKUP`         | `true`: bidirectional synchronization of DEV volume                                                                   | `''`    | \*                    | Enables [DEV bidirectional synchronization](#dev-bidirectional-synchronization) between ${PWD}/bbackup/${APP} on the host and the dev volume                                                                         |                         |
 | env     | `DEV_AI_STATE`        | `<path>`: AI coding assistant (e.g. Claude Code) state directory, inside the container                                | `/root/.claude` | \*                    | Path used to persist the state of the AI service (Claude Code) across container restarts, backed by a dedicated volume. It is shared across all DEV-mode node services so that the conversation history/config is preserved and visible from any of them |                         |
+| env     | `TRAEFIK_HTTP_PORT`   | `<port>`: host port for HTTP traffic                                                                                  | `80`            | \*                    | Host port the [proxy](#tls-configuration) binds to for HTTP. Change it if port 80 is already in use on your host, or to run multiple SciCatLive stacks side by side. See [Traefik ports](#traefik-ports)                                                 | frontend,backend,keycloak |
+| env     | `TRAEFIK_HTTPS_PORT`  | `<port>`: host port for HTTPS traffic                                                                                 | `443`           | \*                    | Host port the [proxy](#tls-configuration) binds to for HTTPS. Change it if port 443 is already in use on your host, or to run multiple SciCatLive stacks side by side. See [Traefik ports](#traefik-ports)                                               | frontend,backend,keycloak |
 
 After optionally setting any configuration option, one can still select the services to run as described by the
 [select the services](#select-the-services) section.
@@ -376,6 +378,20 @@ localhost subdomains.
 [frontend documentation](./services/frontend/README.md#enable-additional-features) and the
 [backend documentation](./services/backend/README.md#enable-additional-features).
 
+#### Traefik ports
+
+By default the [proxy](./services/proxy/) binds to the host's ports 80 (HTTP) and 443 (HTTPS). Set `TRAEFIK_HTTP_PORT`
+and/or `TRAEFIK_HTTPS_PORT` in the [.env](./.env) file whenever those ports are unavailable, for example:
+
+- another service on your machine (or another SciCatLive stack) is already using 80/443
+- you are running multiple SciCatLive stacks side by side and need each proxy on its own ports
+- you don't have permission to bind to privileged ports (<1024) on your host
+
+The default local routing (`http://<service>.localhost`, used when no `<SERVICE>_HTTPS_URL` is set) is served through
+`TRAEFIK_HTTP_PORT`, so if you change it you must also include the new port when browsing to a service, e.g.
+`http://backend.localhost:8080`. `TRAEFIK_HTTPS_PORT` only comes into play once a `<SERVICE>_HTTPS_URL` is configured,
+as described in [TLS configuration](#tls-configuration).
+
 ### Service-specific config
 
 It can be changed whenever needing to configure a service independently from the others.
@@ -424,6 +440,68 @@ in the container in the folder `/docker-entrypoints/*.sh`, naming
 See for example the [frontend compose file](./services/frontend/compose.yaml).
 
 </details>
+
+## Development
+
+Some tooling to help while developing or contributing to SciCatLive.
+
+### Running CI locally
+
+The full [CI workflow](.github/workflows/compose_test.yaml) - changed-file detection, [linting](.github/workflows/lint.yaml),
+and the `docker compose up` matrix - can be run locally with [nektos/act](https://github.com/nektos/act). `lintci`
+`depends_on` the `lint` service (see [Running linting locally](#running-linting-locally)), so running it also runs
+the local lint/test tools first:
+
+```sh
+docker compose -f .github/compose.lint.yaml run --rm lintci
+```
+
+This is handy for checking whether CI will pass without waiting on it. The `JOB` env var selects which top-level
+`compose_test.yaml` job it runs (defaults to `lint`); since `test` and `tests-status` both `need` `lint` (and `test`
+also needs `changes`), `JOB=tests-status` pulls in the whole workflow, including the heavy `docker compose up`
+matrix:
+
+```sh
+JOB=tests-status docker compose -f .github/compose.lint.yaml run --rm lintci
+```
+
+:warning: Use `JOB=tests-status` with caution: it runs the full `test` matrix - every combination of `BE_VERSION`,
+`OPENSEARCH_ENABLED`, `JOBS_ENABLED`, `LDAP_ENABLED`, `OIDC_ENABLED` and `DEV` - each spinning up its own
+`docker compose up` stack, so it is very resource-heavy (CPU, RAM, disk and network) and can overwhelm a laptop.
+If it does, consider adding `--concurrent-jobs 1` to the `lintci` command in
+[compose.lint.yaml](.github/compose.lint.yaml) to run the matrix one job at a time instead of in parallel.
+
+### Running linting locally
+
+`lintci` (above) runs [lint.yaml](.github/workflows/lint.yaml)'s three jobs as a check, without fixing anything.
+The checks among them that support auto-fixing - `ruff`, `eslint` and `markdownlint-cli2` - can instead fix what
+they find, via the `lint` service in [compose.lint.yaml](.github/compose.lint.yaml). The same service also runs
+[publish-oci.js](.github/semantic-release/publish-oci.js)'s unit tests (no fixing, just pass/fail):
+
+```sh
+FIX=true docker compose -f .github/compose.lint.yaml run --rm lint
+```
+
+Omit `FIX` to only report issues without fixing them.
+
+### Developing services in DEV mode
+
+Setting `DEV=true` (or a per-service variant, e.g. `BACKEND_DEV=true`) boots the SciCat services into a development
+environment instead of running them normally, so you can develop and test against the same dependencies used in
+this project. See [DEV configuration](#dev-configuration) for the full list of `*_DEV` variables and how they behave.
+
+### Previewing documentation locally
+
+Setting `SCICATLIVE_DEV=true` and starting the [docs](./services/docs/) service renders a live, searchable preview
+of this repository's own documentation (including this README) using MkDocs:
+
+```sh
+SCICATLIVE_DEV=true docker compose up -d docs
+```
+
+See [DEV configuration](#dev-configuration) and the [docs README](./services/docs/README.md) for more, including
+previewing individual DEV-mode services' own documentation or the external user-documentation repository
+(`USER_DOCS_DEV`).
 
 ## Add a new service
 
@@ -500,8 +578,9 @@ feature
       selective include in the parent compose.yaml, e.g.
       [./services/backend/compose.yaml](./services/backend/compose.yaml)
    6. eventually, modify the [compose workflow](.github/workflows/compose_test.yaml) to add the toggle to the
-      matrix. If the toggle should only run when relevant files changed (as done for the existing `opensearch`,
-      `jobs`, `ldap`, `oidc` and `dev` toggles):
+      matrix (see [Running CI locally](#running-ci-locally) for how to exercise it without waiting on CI). If the
+      toggle should only run when relevant files changed (as done for the existing `opensearch`, `jobs`, `ldap`,
+      `oidc` and `dev` toggles):
       1. add a path group for it, e.g. `opensearch`, to
          [.github/changed_files.yaml](.github/changed_files.yaml)
       2. add a matching `<toggle>_values` output to the `changes` job, which turns that group's
@@ -515,19 +594,18 @@ feature
          rule if the new toggle is genuinely incompatible with another matrix value
 
       (linting is not part of this matrix: it lives in [.github/workflows/lint.yaml](.github/workflows/lint.yaml),
-      called as a single reusable workflow from the `lint` job. It has two jobs: `static-lint` (YAML, JSON, shell,
-      Python, JavaScript and HTML - checks that only ever look at the repo's own committed files) and `docs-lint`
-      (Markdown link checking, Markdown style, and the MkDocs link check - kept separate so the `npm install` in
-      `static-lint` can never leak `node_modules` into a Markdown-file scan). `test` `needs` the `lint` job, so the
-      heavy compose matrix never starts if either lint job fails. If the new service introduces a file extension
-      none of these tools already cover, add a step for it to whichever job fits, or a new job if it doesn't. If
-      that tool supports auto-fixing, wire it up the way `ruff`, `eslint` and `markdownlint-cli2` are: a shared
-      script under [.github/lint/](.github/lint/), referenced from both the workflow step and
-      [compose.lint.yaml](.github/compose.lint.yaml)'s `lint` service, so it can be applied locally with
-      `FIX=true docker compose -f .github/compose.lint.yaml run --rm lint`. Both jobs can also be run as a
-      check (no fixing) with `docker compose -f .github/compose.lint.yaml run --rm lintci`, which uses
-      [nektos/act](https://github.com/nektos/act) to run `lint.yaml` directly against your working tree - handy for
-      checking whether CI will pass without waiting on it)
+      called as a single reusable workflow from the `lint` job. It has three jobs: `static-lint` (YAML, JSON, shell,
+      Python, JavaScript and HTML - checks that only ever look at the repo's own committed files), `docs-lint`
+      (Markdown link checking, Markdown style, and the MkDocs link check), and `release-lint` (runs
+      [publish-oci.js](.github/semantic-release/publish-oci.js)'s unit tests, then dry-runs `publish-oci.js` and
+      `semantic-release`, so a broken release pipeline is caught on every PR instead of only when a real release
+      runs). `test` `needs` the `lint` job, so the
+      heavy compose matrix never starts if any of the three lint jobs fails. If the new service introduces a file
+      extension none of these tools already cover, add a step for it to whichever job fits, or a new job if it
+      doesn't. If that tool supports auto-fixing, wire it up the way `ruff`, `eslint` and `markdownlint-cli2` are: a
+      shared script under [.github/lint/](.github/lint/), referenced from both the workflow step and
+      [compose.lint.yaml](.github/compose.lint.yaml)'s `lint` service - see
+      [Running linting locally](#running-linting-locally) for how to use it)
    7. if the ENV's default should fall back to another variable (e.g. to `DEV`, or to a `localhost` URL), compute it
       once as a `_`-prefixed variable instead of duplicating the fallback at each usage site - see
       [Computed environment variables](#computed-environment-variables)

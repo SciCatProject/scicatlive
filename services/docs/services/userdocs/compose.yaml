@@ -5,7 +5,8 @@ services:
     extends:
       file: ${PWD}/services/compose.dev.yaml
       service: app-from-local
-    labels: !reset
+    labels: !override
+      - traefik.enable=false
     volumes:
       - ./entrypoints/clone_git.sh:/docker-entrypoints/02.sh:ro
 

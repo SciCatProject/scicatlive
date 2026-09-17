@@ -268,13 +268,33 @@ After optionally setting any configuration option, one can still select the serv
 Some of the env variables above have a default value that is computed from another one - for example `BACKEND_DEV`
 should also be enabled whenever `DEV=true`, and `BACKEND_HTTPS_URL` falls back to Traefik's local routing
 (`http://backend.localhost`) when left unset. Rather than duplicating that resolution logic at every place a compose
-file needs the final value, it is computed once, in a dedicated section at the bottom of [.env](./.env), into a
-`_`-prefixed variable of the same name (e.g. `_BACKEND_DEV`, `_BACKEND_HTTPS_URL`). Compose files read the
-`_`-prefixed variable, never the plain one.
+file needs the final value, it is computed once, in [.env.computed](./.env.computed), into a `_`-prefixed variable of
+the same name (e.g. `_BACKEND_DEV`, `_BACKEND_HTTPS_URL`). Compose files read the `_`-prefixed variable, never the
+plain one.
 
 These `_`-prefixed variables are **computed automatically and must not be edited directly** - to change a value, set
 the plain variable above it instead (e.g. `BACKEND_DEV=true`, not `_BACKEND_DEV=true`); leaving the plain variable
 unset/commented keeps the documented default.
+
+Unlike [.env](./.env), [.env.computed](./.env.computed) is **not** auto-loaded by `docker compose` - Compose only
+auto-loads a file literally named `.env`, so `.env.computed` only takes effect where explicitly referenced via
+`env_file:`. This is why every entry in the top-level [compose.yaml](compose.yaml) `include:` list repeats
+`env_file: [.env.computed]`. When
+[adding a new top-level service](#add-a-new-service), add it to this list too, or its compose files won't be able to
+resolve any `_`-prefixed variable they reference.
+
+If a variable is only needed to *gate which path an `include:` entry resolves to* (rather than being real
+per-service data), the simplest approach is to compute it as another `_`-prefixed variable directly in
+[.env.computed](./.env.computed), the same way `_BACKEND_DEV` is - see `_DOCS_DEV`, which decides whether
+[services/docs/compose.yaml](./services/docs/compose.yaml)'s first `include:` path is enabled, computed from whether
+any DEV-mode variant is set. This avoids needing a separate `.env` file just to hold one gating expression.
+
+Some services do need real local, non-computed data of their own (e.g. [services/frontend/.env](./services/frontend/.env)'s
+`APP`/`DEV_PORT`/`GITHUB_REPO`). Because Compose does not share `env_file` scope across sibling entries, this must be
+wired in as an explicit `env_file:` somewhere along the chain that reaches it. In this repo, that's done on the
+service's own nested `include:` entry (e.g. [services/frontend/compose.yaml](./services/frontend/compose.yaml)) rather
+than at the top-level entry in [compose.yaml](compose.yaml), which only lists `.env.computed`. Two rules matter if you
+do the same for a new service.
 
 #### DEV configuration
 
@@ -526,7 +546,9 @@ To add a new service (see the [jupyter service](./services/jupyter/) for a minim
 3. create the `compose.yaml` file
 4. eventually, add a `README.md` file in the service
 5. eventually, add the platform field, as described by the [supperted OSs](#supported-os-architectures)
-6. include the reference to (3) to the global [compose include list](compose.yaml) \*
+6. include the reference to (3) to the global [compose include list](compose.yaml) \*, with
+   `env_file: [.env.computed]` so it can resolve `_`-prefixed variables - see
+   [Computed environment variables](#computed-environment-variables)
 7. eventually, update the main [README.md](README.md)
 
 \* if the service to add is not shared globally, but specific to one particular service or another implementation of the
@@ -607,6 +629,9 @@ feature
    7. if the ENV's default should fall back to another variable (e.g. to `DEV`, or to a `localhost` URL), compute it
       once as a `_`-prefixed variable instead of duplicating the fallback at each usage site - see
       [Computed environment variables](#computed-environment-variables)
+   8. if the service needs its own local, non-computed `.env` (e.g. `APP`, `DEV_PORT`, `GITHUB_REPO`), add
+      `env_file:` to its own `include:` entry so it's actually loaded - see
+      [Computed environment variables](#computed-environment-variables) for the rules on where that's safe to do
 
 4. eventually, add entrypoints for init logics, as described by the section to
    [enable entrypoints](#if-the-service-does-not-support-entrypoints-yet-one-needs-to), e.g. like

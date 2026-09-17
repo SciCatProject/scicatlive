@@ -6,6 +6,9 @@ include:
       - .${OIDC_ENABLED:+/services/${_BE_VERSION}/}compose.oidc.yaml
       - .${_BACKEND_DEV:+/services/${_BE_VERSION}/}compose.dev.yaml
       - .${JOBS_ENABLED:+/services/${_BE_VERSION}/}compose.jobs.yaml
+    env_file:
+      - .env
+      - services/${_BE_VERSION}/.env
 
 volumes:
   openapigenerator:

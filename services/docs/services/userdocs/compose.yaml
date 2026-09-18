@@ -1,6 +1,6 @@
 services:
   userdocs:
-    image: alpine:3.24.1
+    image: alpine:3.24.2
     working_dir: ${WORKDIR}
     extends:
       file: ${PWD}/services/compose.dev.yaml

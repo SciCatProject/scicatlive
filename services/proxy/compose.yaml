@@ -20,6 +20,7 @@ services:
       - ./config/.env
       - ./config/.tls.env
       - ${PWD}/.env
+      - ${PWD}/.env.computed
     labels:
       - traefik.http.services.proxy.loadbalancer.server.port=8080
     restart: on-failure

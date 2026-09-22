@@ -20,7 +20,7 @@ services:
         target: /usr/local/bin/loop_entrypoints.sh
         mode: 0555
     volumes:
-      - ${INGESTOR_DATA_DIR:? data directory for ingestor not set}:/data
+      - ${_INGESTOR_DATA_DIR}:/data
     labels:
       - traefik.http.services.ingestor.loadbalancer.server.port=8080
     environment:
@@ -28,9 +28,9 @@ services:
       LOG_LEVEL: ${LOG_LEVEL:-Info}
 
       # URL settings
-      INGESTOR_URL: ${INGESTOR_URL:-http://ingestor.localhost}
-      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend.localhost}
-      FRONTEND_URL: ${FRONTEND_HTTPS_URL:-http://localhost}
+      INGESTOR_URL: ${_INGESTOR_HTTPS_URL}
+      BACKEND_URL: ${_BACKEND_HTTPS_URL}
+      FRONTEND_URL: ${_FRONTEND_HTTPS_URL}
 
       # Transfer settings
       TRANSFER_METHOD: ${TRANSFER_METHOD:-None}
@@ -44,7 +44,7 @@ services:
 
       # Auth settings
       AUTH_ENABLED: ${AUTH_ENABLED:-${OIDC_ENABLED:-true}}
-      KEYCLOAK_URL: ${KEYCLOAK_HTTPS_URL:-http://keycloak.localhost}
+      KEYCLOAK_URL: ${_KEYCLOAK_HTTPS_URL}
     extra_hosts:
       - keycloak.localhost:host-gateway
       - backend.localhost:host-gateway

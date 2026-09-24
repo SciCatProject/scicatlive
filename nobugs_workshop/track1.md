@@ -14,9 +14,9 @@ its file-based defaults.
 
 Assumes the [shared setup](demo.md#shared-setup) is done.
 
-1. **Reproduce the bug.** With the frontend at `http://localhost`, log in as admin, open `/admin/configuration`, edit
-   a field, save, reload — confirm it stuck. Restart the backend (stop and re-run `npm run start:dev`). Reopen the
-   editor: the edit is gone.
+1. **Reproduce the bug.** With the frontend at `http://localhost`, log in as admin (`username: admin, pwd: 2jf70TPNZsS`),
+   open `/admin/configuration`, edit a field, save, reload — confirm it stuck. Restart the backend (stop and re-run `npm run start:dev`).
+   Reopen the editor: the edit is gone.
 
 2. **Find the bug.** In
    [`runtime-config.service.ts`](https://github.com/SciCatProject/backend/blob/master/src/config/runtime-config/runtime-config.service.ts),

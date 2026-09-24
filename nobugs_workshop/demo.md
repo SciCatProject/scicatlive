@@ -18,9 +18,16 @@ Windows, but some additional setup may be required.
 
 ## Quick Start
 
+In order to start SciCatLive stack in dev mode and start playing with the tool, run the following commands: 
+```sh
+git clone git@github.com:SciCatProject/scicatlive.git
+cd scicatlive
+git checkout nobugs
+
+PROJECT_NAME=nobugs_testing
+DEV=true docker compose -p $PROJECT_NAME up -d
 ```
-Add commands here
-```
+Please note that the `Project Name` will change depending on which group you will select/assigned.
 
 ## Shared setup
 

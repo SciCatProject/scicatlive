@@ -16,6 +16,12 @@ and land the result as a draft PR. Two independent tracks, meant to be run in pa
 The process is tested with Linux or MacOS. It is possible to run Docker and VSCode on
 Windows, but some additional setup may be required.
 
+## Quick Start
+
+```
+Add commands here
+```
+
 ## Shared setup
 
 Both tracks depend on frontend [PR #2517 — "feat: allow loading configs from other

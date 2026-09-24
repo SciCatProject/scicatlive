@@ -1,0 +1,13 @@
+services:
+  ingestor:
+    image: ''
+    extends:
+      file: ${PWD}/services/compose.dev.yaml
+      service: app-from-local
+    build:
+      target: builder
+      context: ${GITHUB_REPO:-}
+
+volumes:
+  ingestor_dev:
+    driver: local

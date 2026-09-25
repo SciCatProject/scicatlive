@@ -86,7 +86,7 @@ Do this once, before splitting into tracks:
    DEV=true docker compose -p $PROJECT_NAME up -d
    ```
 
-   > [!TIP] Checkpoint: containers are started
+   > 🚩 Checkpoint: containers are started
 
    Run `docker ps`. The output should look something like this
    ```
@@ -110,10 +110,11 @@ Do this once, before splitting into tracks:
     The default shell is `sh`, but `zsh` (with oh-my-zsh) is also installed if you prefer it.
 
    If you are prompted to open a folder choose `/home/node/app` for the 🗄️backend or `/frontend` in the 🖥️frontend.
-    > [!TIP] Checkpoint: You have two VSCode windows
+   
+    > 🚩 Checkpoint: You have two VSCode windows
 
 
-4. 🗄️ **Start the backend.**
+5. 🗄️ **Start the backend.**
 
    Open a terminal within the 🗄️backend VS Code window (Command Pallet -> "Focus Terminal").
 
@@ -124,9 +125,9 @@ Do this once, before splitting into tracks:
 
    The backend's Swagger explorer at `http://backend.localhost/explorer`.
 
-   > [!TIP] Checkpoint: Open <http://backend.localhost/explorer> in a browser.
+   > 🚩 Checkpoint: Open <http://backend.localhost/explorer> in a browser.
 
-5. 🖥️ **Checkout the suggested frontend branch**
+6. 🖥️ **Checkout the suggested frontend branch**
 
    For now, check out the following branch. In track 1 you will learn how to develop
    this code, but for now check out the provided solution branch.
@@ -135,7 +136,7 @@ Do this once, before splitting into tracks:
    git checkout be_conf
    ```
 
-6. 🖥️ **Start the frontend**
+7. 🖥️ **Start the frontend**
    ```sh
    npm i
    npm start -- --host 0.0.0.0
@@ -144,7 +145,7 @@ Do this once, before splitting into tracks:
    In the frontend container (`--host 0.0.0.0` is required — the dev server otherwise only binds to localhost inside
    the container. The app is served at `http://localhost`.
 
-   > [!TIP] Checkpoint: Open <http://localhost> in a browser.
+   > 🚩 Checkpoint: Open <http://localhost> in a browser.
    >
    > Log in with username: `ingestor` / password: `aman` (or check the backend
    > `functionalAccounts.json` for other valid users).

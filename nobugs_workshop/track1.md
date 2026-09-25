@@ -23,10 +23,11 @@ Assumes the [shared setup](demo.md#shared-setup) is done.
    `onModuleInit()` calls `syncConfig()` for every configured id on each startup. It's supposed to seed from file only
    if the DB entry is missing — but it always overwrites from file, even after an admin has edited it.
 
-3. **Fix it.** Only seed from file when no DB entry exists yet; leave it alone otherwise. Optional, if time allows:
-   add a unit test in
+3. **Fix it.** Only seed from file when no DB entry exists yet (for example checking if all changes were made by `system`); 
+   leave it alone otherwise. Optional, if time allows:
+   eventually add a unit test in
    [`runtime-config.service.spec.ts`](https://github.com/SciCatProject/backend/blob/master/src/config/runtime-config/runtime-config.service.spec.ts)
-   covering both branches, run with `npm run test:api:jest`.
+   covering both branches, run with `npm run test -- --maxWorkers=25%`.
 
 4. **Document the fix.** Add a note to the backend's own
    [`docs/frontend-config-guide/frontend-config.md`](https://github.com/SciCatProject/backend/blob/master/docs/frontend-config-guide/frontend-config.md):
@@ -54,6 +55,7 @@ Assumes the [shared setup](demo.md#shared-setup) is done.
 8. **Update scicatlive's own documentation** to reflect the new default. Check it renders at `http://docs.localhost`.
 
 9. **Lint the change.**
+   (this process is time and resource computing, it can be skipped)
 
    ```sh
    FIX=true docker compose -f .github/compose.lint.yaml run --rm lintci

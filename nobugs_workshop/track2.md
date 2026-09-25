@@ -63,7 +63,7 @@ Assumes the [shared setup](demo.md#shared-setup) is done.
 
 4. **Regenerate the SDK.** If the frontend dev server is running, stop it first (`generate_sdk` reinstalls its SDK
    dependency, which a live dev server can't pick up mid-run). Make sure the backend is running, then run
-   `generate_sdk` from the frontend container. Diff the generated client:
+   `generate_sdk` from the frontend container and then run `rm -rf .angular/cache`. Diff the generated client:
    `runtimeConfigControllerPatchConfigV3()` is a method that didn't exist a moment ago. Start the frontend dev server
    back up.
 

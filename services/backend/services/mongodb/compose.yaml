@@ -1,6 +1,6 @@
 services:
   mongodb:
-    image: mongo:8.3
+    image: mongo:9.0
     volumes:
       - backend${_BE_VERSION}_mongodb_data:/data/db
     configs:

@@ -29,7 +29,7 @@ services:
 
       # URL settings
       INGESTOR_URL: ${_INGESTOR_HTTPS_URL}
-      BACKEND_URL: ${_BACKEND_HTTPS_URL}
+      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend:3000}
       FRONTEND_URL: ${_FRONTEND_HTTPS_URL}
 
       # Transfer settings
@@ -44,11 +44,10 @@ services:
 
       # Auth settings
       AUTH_ENABLED: ${AUTH_ENABLED:-${OIDC_ENABLED:-true}}
-      KEYCLOAK_URL: ${_KEYCLOAK_HTTPS_URL}
+      KEYCLOAK_EXTERNAL_URL: ${_KEYCLOAK_HTTPS_URL}
+      KEYCLOAK_INTERNAL_URL: ${KEYCLOAK_HTTPS_URL:-http://keycloak:9000}
     extra_hosts:
       - keycloak.localhost:host-gateway
-      - backend.localhost:host-gateway
-      - localhost:host-gateway
     entrypoint:
       - loop_entrypoints.sh
 

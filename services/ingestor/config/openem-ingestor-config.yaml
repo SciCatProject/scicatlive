@@ -68,10 +68,10 @@ WebServer:
       Scopes:
         - email
     OIDC:
-      IssuerURL: ${KEYCLOAK_URL}/realms/facility
+      IssuerURL: ${KEYCLOAK_EXTERNAL_URL}/realms/facility
     JWT:
       UseJWKS: true
-      JwksURL: ${KEYCLOAK_URL}/realms/facility/protocol/openid-connect/certs
+      JwksURL: ${KEYCLOAK_EXTERNAL_URL}/realms/facility/protocol/openid-connect/certs
       JwksSignatureMethods:
         - RS256
     RBAC:

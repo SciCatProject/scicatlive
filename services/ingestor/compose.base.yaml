@@ -23,29 +23,8 @@ services:
       - ${_INGESTOR_DATA_DIR}:/data
     labels:
       - traefik.http.services.ingestor.loadbalancer.server.port=8080
-    environment:
-      GIN_MODE: ${GIN_MODE:-release}
-      LOG_LEVEL: ${LOG_LEVEL:-Info}
-
-      # URL settings
-      INGESTOR_URL: ${_INGESTOR_HTTPS_URL}
-      BACKEND_URL: ${BACKEND_HTTPS_URL:-http://backend:3000}
-      FRONTEND_URL: ${_FRONTEND_HTTPS_URL}
-
-      # Transfer settings
-      TRANSFER_METHOD: ${TRANSFER_METHOD:-None}
-      GLOBUS_TRANSFER_PROXY_URL: ${GLOBUS_TRANSFER_PROXY_URL:-http://foo.ch}
-      GLOBUS_SOURCE_FACILITY: ${GLOBUS_SOURCE_FACILITY:-SRCFAC}
-      GLOBUS_DESTINATION_FACILITY: ${GLOBUS_DESTINATION_FACILITY:-DSTFAC}
-      GLOBUS_COLLECTION_ROOT_PATH: ${GLOBUS_COLLECTION_ROOT_PATH:-/mnt/data}
-      EXTRACTOR_PARAMS: ${EXTRACTOR_PARAMS:-}
-      INGESTOR_SERVICE_USER_NAME: ingestor
-      INGESTOR_SERVICE_USER_PASS: aman
-
-      # Auth settings
-      AUTH_ENABLED: ${AUTH_ENABLED:-${OIDC_ENABLED:-true}}
-      KEYCLOAK_EXTERNAL_URL: ${_KEYCLOAK_HTTPS_URL}
-      KEYCLOAK_INTERNAL_URL: ${KEYCLOAK_HTTPS_URL:-http://keycloak:9000}
+    env_file:
+      - ./config/.env
     extra_hosts:
       - keycloak.localhost:host-gateway
     entrypoint:

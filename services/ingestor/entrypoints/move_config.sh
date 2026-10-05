@@ -29,9 +29,3 @@ case "$AUTH_ENABLED" in
 esac
 
 envsubst < "$SOURCE_CONFIG" > "$TARGET_CONFIG"
-
-echo "Start app?"
-if [ -e "/app/ingestor" ]; then
-	echo "Start app!"
-    exec /app/ingestor "$@"
-fi

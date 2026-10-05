@@ -50,6 +50,8 @@ services:
       - keycloak.localhost:host-gateway
     entrypoint:
       - loop_entrypoints.sh
+    command:
+      - /app/ingestor
 
 configs:
   openem-ingestor-config.yaml:

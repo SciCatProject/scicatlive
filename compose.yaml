@@ -1,12 +1,28 @@
 include:
-  - services/backend/compose.yaml
-  - services/frontend/compose.yaml
-  - services/searchapi/compose.yaml
-  - services/proxy/compose.yaml
-  - services/jupyter/compose.yaml
-  - services/landingpage/compose.yaml
-  - services/oaipmh/compose.yaml
-  - services/docs/compose.yaml
+  - path: services/backend/compose.yaml
+    env_file:
+      - .env.computed
+  - path: services/frontend/compose.yaml
+    env_file:
+      - .env.computed
+  - path: services/searchapi/compose.yaml
+    env_file:
+      - .env.computed
+  - path: services/proxy/compose.yaml
+    env_file:
+      - .env.computed
+  - path: services/jupyter/compose.yaml
+    env_file:
+      - .env.computed
+  - path: services/landingpage/compose.yaml
+    env_file:
+      - .env.computed
+  - path: services/oaipmh/compose.yaml
+    env_file:
+      - .env.computed
+  - path: services/docs/compose.yaml
+    env_file:
+      - .env.computed
 
 configs:
   entrypoints_loop_entrypoints_sh:

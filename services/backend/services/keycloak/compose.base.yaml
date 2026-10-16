@@ -10,7 +10,6 @@ services:
     configs:
       - source: keycloak_healthcheck_sh
         target: /healthcheck.sh
-        mode: 0555
       - source: keycloak_facility_realm_json
         target: /opt/keycloak/data/import/facility-realm.json
     labels:

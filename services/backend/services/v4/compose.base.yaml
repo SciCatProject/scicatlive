@@ -9,10 +9,8 @@ services:
         target: /home/node/app/functionalAccounts.json
       - source: entrypoints_loop_entrypoints_sh
         target: /usr/local/bin/loop_entrypoints.sh
-        mode: 0555
       - source: backend_v4_db_migration_sh
         target: /docker-entrypoints/10.sh
-        mode: 0555
     entrypoint:
       - loop_entrypoints.sh
       - docker-entrypoint.sh

@@ -8,7 +8,6 @@ services:
     configs:
       - source: frontend_verify_build_sh
         target: /docker-entrypoints/90.sh
-        mode: 0555
   backend:
     command: npm start
     healthcheck:

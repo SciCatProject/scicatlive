@@ -14,10 +14,8 @@ services:
         target: /config/providers.json
       - source: entrypoints_loop_entrypoints_sh
         target: /usr/local/bin/loop_entrypoints.sh
-        mode: 0555
       - source: backend_v3_merge_json_sh
         target: /docker-entrypoints/10.sh
-        mode: 0555
     entrypoint:
       - loop_entrypoints.sh
       - docker-entrypoint.sh

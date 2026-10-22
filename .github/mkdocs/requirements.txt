@@ -1,6 +1,6 @@
 Babel==2.18.0
 beautifulsoup4==4.15.0
-bracex==3.1
+bracex==3.2
 certifi==2026.10.19
 charset-normalizer==3.5.2
 click==8.5.0

@@ -6,7 +6,6 @@ services:
     configs:
       - source: entrypoints_npm_ci_sh
         target: /docker-entrypoints/10.sh
-        mode: 0555
     env_file:
       - ./config/.dev.env
 

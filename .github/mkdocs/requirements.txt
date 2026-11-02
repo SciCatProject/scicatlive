@@ -37,6 +37,6 @@ six==1.17.0
 soupsieve==3.0.4
 urllib3==2.8.0
 verspec==0.2.1
-watchdog==6.0.0
+watchdog==7.0.0
 wcmatch==11.2
 zipp==4.1.2

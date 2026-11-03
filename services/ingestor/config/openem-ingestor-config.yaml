@@ -1,5 +1,5 @@
 Scicat:
-  Host: ${BACKEND_URL}/api/v3
+  Host: http://backend:3000/api/v3
 Transfer:
   StorageLocation: PSI
   Method: ${TRANSFER_METHOD}

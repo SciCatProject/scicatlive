@@ -1,6 +1,6 @@
 services:
   lintci:
-    image: efrecon/act:v0.2.94
+    image: efrecon/act:v0.2.95
     platform: linux/amd64
     working_dir: /repo
     depends_on:

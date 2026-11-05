@@ -7,6 +7,10 @@ services:
       --health-enabled=true
       --http-port=${_TRAEFIK_HTTP_PORT}
     env_file: ./config/.env
+    environment:
+      JAVA_OPTS_APPEND: -Dkeycloak.migration.replace-placeholders=true
+      FRONTEND_HTTPS_URL: ${_FRONTEND_HTTPS_URL}
+      INGESTOR_URL: ${_INGESTOR_HTTPS_URL}
     configs:
       - source: keycloak_healthcheck_sh
         target: /healthcheck.sh

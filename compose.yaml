@@ -6,6 +6,7 @@ include:
   - services/jupyter/compose.yaml
   - services/landingpage/compose.yaml
   - services/oaipmh/compose.yaml
+  - services/ingestor/compose.yaml
   - services/docs/compose.yaml
 
 configs:

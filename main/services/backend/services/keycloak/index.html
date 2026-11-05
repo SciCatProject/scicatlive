@@ -1091,6 +1091,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../ingestor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ingestor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../jupyter/" class="md-nav__link">
         
   
@@ -1332,11 +1360,11 @@ can use an OIDC service as third-party authentication provider.
   </h2>
   <p>
    The Keycloak configuration is set by the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/keycloak/config/.env">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/keycloak/config/.env">
     .env file
    </a>
    and the realm created is in
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/keycloak/config/facility-realm.json">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/keycloak/config/facility-realm.json">
     facility-realm.json file
    </a>
    .
@@ -1344,13 +1372,14 @@ can use an OIDC service as third-party authentication provider.
   <p>
    For an extensive list of available options see the
    <a href="https://www.keycloak.org/guides#server">
-    keyckload server docshere
+    keycloak server docs
    </a>
    .
   </p>
   <p>
    <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/26a0.svg" title=":warning:"/>
    Realm creation is only done once, when the container is created.
+Configuration changes are not persisted across container restarts
   </p>
   <h2 id="default-configuration">
    Default configuration
@@ -1360,7 +1389,7 @@ can use an OIDC service as third-party authentication provider.
   </h2>
   <p>
    The default configuration
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/keycloak/config/.env">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/keycloak/config/.env">
     .env file
    </a>
    creates the
@@ -1419,12 +1448,12 @@ web UI is available at
    </code>
    (an array of
 strings). The name of the claim can be configured either in
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v3/config/login-callbacks.js">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v3/config/login-callbacks.js">
     login-callbacks.js
    </a>
    for v3
 or with
-   <a href="https://github.com/SciCatProject/scicatlive/blob/services/backend/services/v4/config/.oidc.env">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/services/backend/services/v4/config/.oidc.env">
     environment variables
    </a>
    for v4.
@@ -1437,7 +1466,7 @@ or with
   </h2>
   <p>
    Setting the
-   <a href="https://github.com/SciCatProject/scicatlive/blob/.env">
+   <a href="https://github.com/SciCatProject/scicatlive/blob/main/.env">
     KEYCLOAK_HTTPS_URL env variable
    </a>
    enables changing the keycloak URL and adds to it TLS termination.

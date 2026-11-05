@@ -1,0 +1,34 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.8
+    command: >
+      start-dev
+      --import-realm
+      --health-enabled=true
+      --http-port=${_TRAEFIK_HTTP_PORT}
+    env_file: ./config/.env
+    environment:
+      JAVA_OPTS_APPEND: -Dkeycloak.migration.replace-placeholders=true
+      FRONTEND_HTTPS_URL: ${_FRONTEND_HTTPS_URL}
+      INGESTOR_URL: ${_INGESTOR_HTTPS_URL}
+    configs:
+      - source: keycloak_healthcheck_sh
+        target: /healthcheck.sh
+        mode: 0555
+      - source: keycloak_facility_realm_json
+        target: /opt/keycloak/data/import/facility-realm.json
+    labels:
+      - traefik.http.services.keycloak.loadbalancer.server.port=${_TRAEFIK_HTTP_PORT}
+    healthcheck:
+      test: bash /healthcheck.sh
+      start_period: 5s
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: on-failure
+
+configs:
+  keycloak_healthcheck_sh:
+    file: ./healthcheck/healthcheck.sh
+  keycloak_facility_realm_json:
+    file: ./config/facility-realm.json

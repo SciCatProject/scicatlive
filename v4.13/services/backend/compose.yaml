@@ -1,0 +1,12 @@
+include:
+  - services/mongodb/compose.yaml
+  - path:
+      - services/${_BE_VERSION}/compose.yaml
+      - .${LDAP_ENABLED:+/services/${_BE_VERSION}/}compose.ldap.yaml
+      - .${OIDC_ENABLED:+/services/${_BE_VERSION}/}compose.oidc.yaml
+      - .${_BACKEND_DEV:+/services/${_BE_VERSION}/}compose.dev.yaml
+      - .${JOBS_ENABLED:+/services/${_BE_VERSION}/}compose.jobs.yaml
+
+volumes:
+  openapigenerator:
+    driver: local

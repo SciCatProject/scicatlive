@@ -1,0 +1,4 @@
+services:
+  docs:
+    volumes:
+      - ${PWD}:/docs/scicatlive

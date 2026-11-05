@@ -1,0 +1,12 @@
+include:
+  - ../keycloak/compose.yaml
+
+services:
+  backend:
+    depends_on:
+      keycloak:
+        condition: service_healthy
+    links:
+      - keycloak:keycloak.localhost
+    env_file:
+      - ./config/.oidc.env

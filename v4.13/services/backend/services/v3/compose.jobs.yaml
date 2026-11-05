@@ -1,0 +1,20 @@
+include:
+  - path:
+      - ../rabbitmq/compose.yaml
+      - ../rabbitmq/compose.v3.yaml
+  - services/archivemock/compose.yaml
+
+services:
+  backend:
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    configs:
+      - source: backend_v3_component_config_local_json
+        target: /home/node/app/server/component-config.local.json
+    environment:
+      JOBS_ENABLED: true
+
+configs:
+  backend_v3_component_config_local_json:
+    file: ./config/component-config.local.json

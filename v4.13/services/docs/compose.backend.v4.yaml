@@ -1,0 +1,9 @@
+services:
+  docs:
+    volumes:
+      - type: volume
+        source: v4_dev
+        target: /docs/backend
+        read_only: true
+        volume:
+          subpath: docs

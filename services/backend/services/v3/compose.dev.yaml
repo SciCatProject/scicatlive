@@ -12,7 +12,6 @@ services:
         target: /config/datasources.1.json
       - source: entrypoints_npm_ci_sh
         target: /docker-entrypoints/20.sh
-        mode: 0555
 
 volumes:
   v3_dev:

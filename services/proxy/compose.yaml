@@ -13,7 +13,6 @@ services:
     configs:
       - source: proxy_https_services_sh
         target: /https_services.sh
-        mode: 0555
       - source: proxy_tls_yaml
         target: /config/traefik.pre.yaml
     env_file:

@@ -1,6 +1,6 @@
 services:
   docs:
-    image: squidfunk/mkdocs-material:9.7
+    image: squidfunk/mkdocs-material:9.8
     volumes:
       - ${PWD}/.github/mkdocs/:/config/github-mkdocs
       - ./entrypoints/serve.sh:/usr/local/bin/serve.sh

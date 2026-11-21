@@ -8,7 +8,6 @@ services:
       # so it is neglected in DEV
       - source: entrypoints_merge_json_sh
         target: /docker-entrypoint.d/00.sh
-        mode: 0555
     profiles:
       - search
     restart: on-failure

@@ -7,7 +7,6 @@ services:
     configs:
       - source: entrypoints_merge_json_sh
         target: /post_start/merge_json.sh
-        mode: 0555
       - source: frontend_config_json
         target: /config/config.0.json
       - source: frontend_config_oidc_json

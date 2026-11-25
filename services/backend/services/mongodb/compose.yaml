@@ -6,7 +6,6 @@ services:
     configs:
       - source: mongodb_init_sh
         target: /init.sh
-        mode: 0555
       - source: mongodb_seed_dataset_json
         target: /seed/Dataset.json
       - source: mongodb_seed_instrument_json
